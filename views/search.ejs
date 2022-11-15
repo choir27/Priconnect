@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priconne</title>
+	<link rel="stylesheet" href="/css/normalize.css">
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel='stylesheet' href='/css/mediaQueries.css'>
+</head>
+
+    <body class = 'flex column' id = 'search'>
+        <main class = 'flex column alignItems justifyContent'>
+
+            <section class = 'column flex alignItems nav' id = 'nav'>
+                <div class = 'close flex'><i class="fa-solid fa-xmark" id = 'close'></i></div>
+                <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+                <ul class = 'icons flex'>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+                </ul>
+                <nav class = 'flex'>
+                    <ul class = 'flex'>
+                        <li class = 'flex alignItems'><a href="/about">About</a></li>
+                        <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                        <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                        <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <div class = 'menu hidden'><i class="fa-solid fa-bars" id = 'menu'></i></div>
+
+<header class = 'flex alignItems column' id = 'header'>
+    <h1>Priconne</h1>
+    <span>For Everything Princess:Connect Re-Dive</span>
+
+            <nav>
+                <ul class = 'flex justifyContent alignItems'>
+                    <li> <a class = 'button' href="/">Home</a> </li>
+            <form action = '/search' method = 'POST' class = 'flex search'>
+                <input class = 'button' type = 'search' name = 'search'>
+                <button class = 'button' type = 'submit'>Search</button>
+            </form>
+                 
+            <form action = '/characterNames' method = "POST" class = 'flex select' id = 'characterSelect'>
+            
+                <select class = 'button' name = 'characterNames' id = 'characterNames'>
+                    <% for(let i =0;i < result.length; i++) { %>
+                        <% if(result[i].name !== null && result[i].nickname !==null && result[i].nickname === info[info.length-1].characterNames) { %>
+                            <option class = 'option<%= i %>' id = '<%= result[i].nickname %>' name = '<%= result[i].nickname %>' value = '<%= result[i].nickname %>' selected = 'selected'><%= result[i].name %></option>
+                            <% } %>
+                        <% if(result[i].name !== null && result[i].nickname !==null && result[i].nickname !== info[info.length-1].characterNames) { %>
+                            <option class = 'option<%= i %>' id = '<%= result[i].nickname %>' name = '<%= result[i].nickname %>' value = '<%= result[i].nickname %>'><%= result[i].name %></option>
+                            <% } %>
+
+                    <% } %>
+
+                   
+                </select>
+            
+                <button class = 'button' type = 'submit'>Go To Page</button>
+                </form>
+
+            </ul>
+        </nav>
+</header>
+      
+
+        <section class = 'flex column alignItems' id = 'searchResults'>
+            <h2>Search Results</h2>
+            
+ <%   function separate(array){ %>
+     <% let separated = array.split('').filter( function(ele,i){ %>
+        <%  if(ele !== "'" && ele !== "\"" && ele !== '!' && ele !== '.' && ele !== ',' && ele !== '?'){ %>
+             <% return ele %>
+        <% } %>
+        <% }) %>
+        <%  separated = separated.join('') %>
+        <% return separated.split('-').join(' ') %>
+            
+        <% } %>
+
+
+<%  for(let i = 0; i < result.length ; i++) { %>
+
+    <% let text = separate(result[i].text.toLowerCase()) %>
+    <% let text2 = separate(result[i].text2.toLowerCase()) %>
+    <% let guild = separate(result[i].guild.toLowerCase()) %>
+    <% let name = separate(result[i].name.toLowerCase()) %>
+    <% let nickname =  separate(result[i].nickname.toLowerCase()) %>
+    <% let union = separate(result[i].unionName.toLowerCase()) %>
+
+    <% let upperText = separate(result[i].text) %>
+    <% let upperText2 = separate(result[i].text2) %>
+    <% let upperGuild = separate(result[i].guild) %>
+    <% let upperName = separate(result[i].name) %>
+    <% let upperNickname =  separate(result[i].nickname) %>
+    <% let upperUnion = separate(result[i].unionName) %>
+
+    <% let bio = result[i].text %>
+    <% let bio2 = result[i].text2 %>
+    <% let guildName = result[i].guild %>
+    <% let characterName = result[i].name %>
+    <% let characterNickname =  result[i].nickname %>
+    <% let nameOfUnion = result[i].unionName %>
+ 
+    <% let content = [bio,bio2,guildName,characterName,characterNickname,nameOfUnion] %>
+    <% let allContent = [text,text2,guild, name ,nickname, union] %>
+    <% let upperContent = [upperText, upperText2, upperGuild, upperName, upperNickname, upperUnion] %>
+
+    <% let array = [] %>
+    <% let index = 0 %>
+    <% for(let index = 0; index < allContent.length ; index++) { %>
+      
+     
+
+     <%  if(allContent[index].includes(data[data.length-1].search)){ %>
+
+         <div>
+             <p><%= content[index] %></p>
+             <a class = 'button' href = '/home/<%= nickname%>'><%= characterNickname %></a>
+         </div>
+     
+         <%= index++%>
+     
+        <% } %>
+        
+       <% if(upperContent[index].includes(data[data.length-1].search)){ %>
+         <div>
+             <p><%= content[index] %></p>
+             <a class = 'button' href = '/home/<%= nickname%>'><%= characterNickname %></a>
+         </div>
+     
+             <%= index++%>
+        <% } %>
+     
+        
+     
+         <% } %>
+
+
+         
+     <% } %>
+
+     <%  for(let i = 0;i< content.length; i++){ %>
+        <% let lowerAboutContent = separate(content[i].text.toLowerCase()) %>
+
+        <% let upperAboutContent = separate(content[i].text) %>
+
+        <% let aboutContent = content[i].text %>
+
+        <% let array = [] %>
+        <% let index = 0 %>
+
+
+        <%  if(lowerAboutContent.includes(data[data.length-1].search)){ %>
+            <div>
+                <p><%= aboutContent.substring(aboutContent.indexOf(data[data.length-1].search),aboutContent.indexOf('.')) %></p>
+                <a class = 'button' href = '/about'>About</a>
+            </div>
+                    
+           <% } %>
+           
+          <% if(upperAboutContent.includes(data[data.length-1].search)){ %>
+            <div>
+                <p><%= aboutContent.substring(aboutContent.indexOf(data[data.length-1].search),aboutContent.indexOf('.')) %></p>
+                <a class = 'button' href = '/about'>About</a>
+            </div>
+        
+           <% } %>
+        
+           
+            <% } %>
+        </section>
+                       
+        
+
+      
+
+<footer class = 'flex'>
+    <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+    <ul class = 'icons flex'>
+    <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+    <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+    <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+    <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+    </ul>
+    <nav class = 'flex'>
+        <ul class = 'flex'>
+            <li class = 'flex alignItems'><a href="/about">About</a></li>
+            <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+            <li class = 'flex alignItems'><a href="/add">Add</a></li>
+            <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
+        </main>
+
+<script src="https://kit.fontawesome.com/d0e0071c1c.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </body> 
+</html>

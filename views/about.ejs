@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priconne</title>
+	<link rel="stylesheet" href="/css/normalize.css">
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel='stylesheet' href='/css/mediaQueries.css'>
+</head>
+
+    <body class = 'flex column' id = 'about'>
+        <main class = 'flex column alignItems justifyContent'>
+
+            <section class = 'column flex alignItems nav' id = 'nav'>
+                <div class = 'close flex'><i class="fa-solid fa-xmark" id = 'close'></i></div>
+                <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+                <ul class = 'icons flex'>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+                </ul>
+                <nav class = 'flex'>
+                    <ul class = 'flex'>
+                        <li class = 'flex alignItems'><a href="/about">About</a></li>
+                        <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                        <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                        <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <div class = 'menu hidden'><i class="fa-solid fa-bars" id = 'menu'></i></div>
+
+
+<header class = 'flex alignItems column' id = 'header'>
+    <h1>Priconne</h1>
+    <span>For Everything Princess:Connect Re-Dive</span>
+
+            <nav>
+                <ul class = 'flex justifyContent alignItems'>
+                    <li> <a class = 'button' href="/">Home</a> </li>
+            <form action = '/search' method = 'POST' class = 'flex search'>
+                <input class = 'button' type = 'search' name = 'search'>
+                <button class = 'button' type = 'submit'>Search</button>
+            </form>
+                 
+                <form action = '/characterNames' method = "POST" class = 'flex select' id = 'characterSelect'>
+            
+                    <select class = 'button' name = 'characterNames' id = 'characterNames'>
+                        <% for(let i =0;i < data.length; i++) { %>
+                            <% if(data[i].name !== null && data[i].nickname !==null && data[i].nickname === info[info.length-1].characterNames) { %>
+                                <option class = 'option<%= i %>' id = '<%= data[i].nickname %>' name = '<%= data[i].nickname %>' value = '<%= data[i].nickname %>' selected = 'selected'><%= data[i].name %></option>
+                                <% } %>
+                            <% if(data[i].name !== null && data[i].nickname !==null && data[i].nickname !== info[info.length-1].characterNames) { %>
+                                <option class = 'option<%= i %>' id = '<%= data[i].nickname %>' name = '<%= data[i].nickname %>' value = '<%= data[i].nickname %>'><%= data[i].name %></option>
+                                <% } %>
+
+                                <% } %>
+                    </select>
+            
+                <button class = 'button' type = 'submit'>Go To Page</button>
+                </form>
+
+            </ul>
+        </nav>
+</header>
+     
+<section class = 'column flex alignItems'>
+    <img src = '' class = 'logo row0'>
+
+    <div class = 'flex'>
+    <p>Instead of focusing on an intricate gameplay, Priconne is a game that focuses on other parts instead, such as voice acting, character art cards, the story, as well as offering multiple ways outside of using your premium currency to obtain characters, like free 10 rolls, hard quests that drop character memory pieces, events that give plenty of memory pieces, etc.  The story of the Priconne mobile game defers quite a bit from its anime counterpart, focusing on a more dark tone with the themes and characters; however the game does have a lot of wholesome, lighthearted and comedic aspects to it as well while not detracting from the serious moments either.  </p>
+    <p>Princess Connect! Re:Dive is a mobile application that has a lot of similar functions to other Gacha mobile applications, where the user will have a main premium currency that can be consumed with a certain amount in stock for a chance to recieve a specific characters.  The game offers multiple elements, such as story, limited time events with their own respective stories, an arena and princess arena, etc.  The gameplay mostly plays by itself, although if the user chooses to click on a characters' icon when that characters' union burst bar is full, they will be able manually time the usage of that union burst, this games' equivalent of an ultimate move. </p>
+    </div>
+    
+    <p>The story takes place in the village Landosle in the continent of Astria, where it's mostly focuses around the player being a part of the Gourmet Edfice Guild alongside with Kokkoro, Kyaru, and Peko, as you go on adventures and meet many other characters from many guilds, interacting with and aiding them from time to time.  There are also often story cutscenes that will play out that are not only voiced, but fully animated.  While short, they offer another way for the player to immerse themselves into the world of Priconne and connect with the characters and the scenario that is occuring at the time.  </p>
+    <a target = '_blank' class = 'video flex justifyContent alignItems' href= "https://www.youtube.com/watch?v=U1IwptQDirM">
+        <img src = '' id = 'video' class = 'row1'>
+        <button id = 'play' class = 'button'>Play</button>
+    </a>
+</section>
+
+
+
+
+
+
+
+    <footer class = 'flex'>
+        <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+        <ul class = 'icons flex'>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+        </ul>
+        <nav class = 'flex'>
+            <ul class = 'flex'>
+                <li class = 'flex alignItems'><a href="/about">About</a></li>
+                <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+            </main>
+    
+    <script src="https://kit.fontawesome.com/d0e0071c1c.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src = "/js/main.js"></script>
+        </body> 
+    </html>
