@@ -1,6 +1,5 @@
 const path = require('path')
 const express = require('express');
-const mongoose = require('mongoose')
 const app = express();
 const morgan = require('morgan')
 const passport = require('passport')
@@ -11,7 +10,7 @@ const connectDB = require('./config/db');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
 const cors = require('cors')
-require('dotenv').config()
+require('dotenv').config({path: './config/config.env'})
 // const PORT = 8000
 
 app.use(cors())
