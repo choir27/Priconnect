@@ -29,18 +29,12 @@ router.get('/contact', ensureAuth, (req,res) => {
 
 router.post('/', upload.array('image', 10), async (req, res) => {
   try {
-  let array = []
-  let image = '';
-    for(let i = 0; i < req.files.length; i++){
     image = await cloudinary.uploader.upload(req.files[i].path);
-   array.push(image.secure_url)
-
-    }
     req.body.user = req.user.id
     await Character.create({
       user: req.user,
       name: req.body.name,
-      image: array,
+      image: image.secure_url,
       nickname: req.body.nickname,
       cloudinaryId: image.public_id,
       guild: req.body.guild,
