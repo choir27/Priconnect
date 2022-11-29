@@ -11,7 +11,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')
 const cors = require('cors')
 require('dotenv').config({path: './config/config.env'})
-// const PORT = 8000
+const PORT = 8000
 
 app.use(cors())
 
@@ -65,7 +65,12 @@ app.use(session({
     //cookie: { secure: true }
 }))
 
+if (process.env.NODE_ENV === 'production') {
+    //*Set static folder up in production
+    app.use(express.static('client/build'));
 
+    app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','home.ejs')));
+  }
 
 //Passport middleware
 app.use(passport.initialize())
@@ -94,6 +99,6 @@ app.use('/characters', require('./routes/characters'))
 app.use('/main', require('./routes/main'))
 
 // || PORT
-app.listen(process.env.PORT, ()=>{  
+app.listen(process.env.PORT || PORT, ()=>{  
     console.log(`Server running on port`)
 })
