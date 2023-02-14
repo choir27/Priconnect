@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const { ensureAuth } = require('../middleware/auth')
-const upload = require("../middleware/multer");
 const cloudinary = require("../middleware/cloudinary");
+const upload = require("../middleware/multer");
+
 
 const Character = require('../models/Character')
 
@@ -27,16 +28,29 @@ router.get('/contact', ensureAuth, (req,res) => {
   res.render('characters/contact')
 })
 
-router.post('/', upload.array('image', 10), async (req, res) => {
+router.post('/', upload.single("file"), async (req, res) => {
   try {
-    image = await cloudinary.uploader.upload(req.files[i].path);
+
+    const file = req.file
+
+    console.log(file)
+
+    if (!file) {
+      const error = new Error('Please upload a file')
+      error.httpStatusCode = 400
+      console.error(error)
+    }
+
+      // Upload the image
+      const result = await cloudinary.uploader.upload(file.path);    
+
     req.body.user = req.user.id
     await Character.create({
       user: req.user,
       name: req.body.name,
-      image: image.secure_url,
+      image: result.secure_url,
+      cloudinaryId: result.public_id,
       nickname: req.body.nickname,
-      cloudinaryId: image.public_id,
       guild: req.body.guild,
       unionName: req.body.unionName,
       text: req.body.text
@@ -48,6 +62,7 @@ router.post('/', upload.array('image', 10), async (req, res) => {
     res.render('error/500')
   }
 })
+
 
 router.get('/', ensureAuth, async (req, res) => {
   try {

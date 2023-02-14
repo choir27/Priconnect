@@ -6,11 +6,11 @@ const CharacterSchema = new mongoose.Schema({
         trime: true
     },
     cloudID: {
-        type: Array,
+        type: String,
         trime: true
     },
     image: {
-        type: Array,
+        type: String,
         trime: true
     },
     nickname: {

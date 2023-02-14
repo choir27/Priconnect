@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
-const Search = require('../models/Search')
 
 const Character = require('../models/Character')
 // @desc login/landing page
