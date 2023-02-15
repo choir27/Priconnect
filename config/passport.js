@@ -1,5 +1,4 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose = require('mongoose')
 const User = require('../models/User')
 
 module.exports = function(passport){
@@ -22,14 +21,13 @@ module.exports = function(passport){
 
             if(user){
                 done(null, user)
-            } else{
+            }else{
                 user = await User.create(newUser)
                 done(null, user)
             }
         }catch(err){
             console.error(err)
         }
-
     }
     ))
     

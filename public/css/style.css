@@ -521,7 +521,6 @@ body #nav{ overflow-x: hidden;
 .index{
     width: 100%;
     flex-wrap: wrap;
-    background: no-repeat url('/css/assets/background6.webp') center/cover;
 }
 
 .index div{

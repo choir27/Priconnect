@@ -1,0 +1,36 @@
+<section class = 'add flex column alignItems' id = 'add'>
+    <h2 class = 'heading'>Add a Post to the website!</h2>
+    <form action = '/post' enctype="multipart/form-data" method = "POST" class = 'flex column alignItems'>
+    
+        <div class = 'flex div input'>
+            <div class = 'alignItems column flex'>
+                <h2>Name: </h2><input type = 'text' id = 'name' name = 'name'>
+            </div>
+
+            <div class = 'flex alignItems column'>
+                <h2>Status:</h2>
+                <select id="status" name="status" class = 'button'>
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+        </div>
+
+    
+        <div class ='flex div'>
+           <div class = 'alignItems column flex'>
+                <h2>Image:</h2> <input type = "file" name = "file" value  = ''>
+            </div>
+        </div>
+
+        <div class = 'flex div text'>
+            <div class = 'alignItems column flex'>
+                <h2>Text: </h2><textarea type = 'text' id = 'body' name = 'text'></textarea>
+            </div>
+        </div>
+
+        <button  class = 'button' type = 'submit' id = 'submit'>Submit</button>
+
+    </form>
+
+</section>

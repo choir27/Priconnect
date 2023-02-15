@@ -3,9 +3,7 @@
   function showMenu(){
     document.querySelector('#nav').style.height = '54vh'
     document.querySelector('#menu').style.display = 'none'
-
   }
-
   
   document.querySelector('#close').addEventListener('click',hideMenu)
 

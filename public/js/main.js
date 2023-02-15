@@ -1,6 +1,3 @@
-
-
-
 //MaterializeCSS 1.0.0 Beta
 /* Auto Init allows you to initialize all of the Materialize Components with a single function call. It is important to note that you cannot pass in options using this method.
 */
@@ -10,7 +7,6 @@ M.AutoInit();
 
 var elem = document.querySelector('.sidenav');
 var instance = M.Sidenav.init(elem);
-
 
 // initializing the .sidenav element and modifying its options
 var elem = document.querySelector('.sidenav');

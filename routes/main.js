@@ -1,11 +1,11 @@
-const express = require('express')
-const router = express.Router()
-const { ensureAuth, ensureGuest } = require('../middleware/auth')
-const contact = require('../middleware/main') 
+const express = require('express');
+const router = express.Router();
+const {ensureGuest } = require('../middleware/auth');
+const contact = require('../middleware/main');
 
 // @desc login/landing page
 // @route get/
-router.get('/about', ensureGuest, (req,res) => {
+router.get("/about", ensureGuest, (req,res) => {
     res.render('main/about', {
         layout: 'index'
     })
@@ -30,15 +30,6 @@ router.get('/contact', ensureGuest, (req,res) => {
     })
 })
 
-
-
-router.get('/received', ensureGuest, (req,res) => {
-    res.render('main/received', {
-        layout: 'received'
-    })
-})
-
-
-router.post('/contactEngineer', contact.contactEngineer)
+router.post('/contactMe', contact.contactMe);
 
 module.exports = router

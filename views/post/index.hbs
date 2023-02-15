@@ -1,0 +1,17 @@
+<h1 class = 'character'>Posts</h1>
+
+<section class = 'index flex' id = 'show'>
+    {{#each post}}
+        <div class = 'flex alignItems column'>
+            <div class = 'flex justifyContent id'>
+                <h5>{{name}}</h5>
+            {{{editIcon user ../user _id}}}
+            </div>
+            <p>{{stripTags (truncate text 200)}}</p>
+            <a href="/post/user/{{user._id}}">{{user.displayName}}</a>
+            <a href="/post/{{_id}}" class="btn grey">Read More</a>
+        </div>
+    {{else}}
+        <article class = 'flex justifyContent alignItems'><h1>No Posts to display</h1></article>
+    {{/each}}
+</section>

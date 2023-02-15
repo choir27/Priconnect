@@ -11,7 +11,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')
 const cors = require('cors')
 require('dotenv').config({path: './config/config.env'})
-const PORT = 8000
+const mainRoute = require("./routes/main")
+const authRoute = require("./routes/auth")
+const postRoute = require("./routes/post")
+const indexRoute = require("./routes/index")
 
 app.use(cors())
 
@@ -52,8 +55,10 @@ app.engine('.hbs', engine({ helpers: {
     truncate,
     editIcon,
     select,
-}, defaultLayout: 'main', extname: '.hbs'}))
-app.set('view engine', '.hbs')
+}, defaultLayout: 'main', extname: '.hbs'}));
+
+//View handlebars
+app.set('view engine', '.hbs');
 
 //Sessions middleware
 app.use(session({
@@ -62,16 +67,15 @@ app.use(session({
     saveUnitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI
     })
-    //cookie: { secure: true }
-}))
+}));
 
 //Passport middleware
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(express.static('assets'))
-app.use(express.static('assets/lyrical'))
-app.use(express.static('assets/gourmet'))
+app.use(express.static('assets'));
+app.use(express.static('assets/lyrical'));
+app.use(express.static('assets/gourmet'));
 
 
 
@@ -79,19 +83,19 @@ app.use(express.static('assets/gourmet'))
 app.use(function (req,res,next) {
     res.locals.user = req.user || null
     next()
-})
+});
 
 
 //Static Folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', require('./routes/index'))
-app.use('/auth', require('./routes/auth'))
-app.use('/characters', require('./routes/characters'))
-app.use('/main', require('./routes/main'))
+app.use('/', indexRoute);
+app.use('/auth', authRoute);
+app.use('/post', postRoute);
+app.use('/main', mainRoute);
 
 // || PORT
 app.listen(process.env.PORT || PORT, ()=>{  
-    console.log(`Server running on port`)
+    console.log(process.env.PORT ? `Server running on port ${process.env.PORT}` : "Server is running");
 })

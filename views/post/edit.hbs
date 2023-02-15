@@ -1,0 +1,32 @@
+<section class = 'add flex column alignItems' id = 'add'>
+    <h2 class = 'heading'>Edit your Post!</h2>    
+    <form action="/post/{{post._id}}" method="POST"  class = 'flex column alignItems'>
+        <input type = "hidden" class="_method" value="PUT">
+        <input type="hidden" name="_method" value="PUT">
+
+            <div class = 'flex div'>
+                <div class = 'alignItems column flex'>
+                    <h2>Name: </h2><input required="required" value = '{{post.name}}' type = 'text' id = 'name' name = 'name'>
+                </div>
+
+                <div class = 'flex alignItems column'>
+                    <h2>Status:</h2>
+                    <select id="status" name="status" class = 'button'>
+                        {{#select post.status}}
+                        <option value="public" selected>Public</option>
+                        <option value="private">Private</option>
+                        {{/select}}
+                    </select>
+                </div>
+            </div>
+   
+    
+
+        <div class = 'textarea'>
+            <h2 class = 'flex justifyContent'>Text: </h2><textarea required = 'required' id = 'body' name = 'text'>{{post.text}}</textarea>
+        </div>
+
+        <button  class = 'button' type = 'submit' id = 'submit'>Submit</button>
+
+    </form>
+</section>
