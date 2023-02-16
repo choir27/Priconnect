@@ -1,40 +1,40 @@
 <section class = 'flex column alignItems {{{post.nickname}}}' id = 'template'>
 
-    <div class = 'flex row name'>
-        <div class = 'left'>
-            <h2> Name: {{{post.name}}}</h2>
+    {{#if post.title}}
+    <h1 class = 'flex justifyContent'>{{{post.title}}}</h1>
+    {{/if}}
 
-            {{#if post.text}}
-            <blockquote>
-                <p>{{{post.text}}}</p>
-            </blockquote>
-            {{/if}}
+    <div class = 'flex user column alignItems'>
+        <small>{{{
+            editIcon 
+            post.user 
+            user 
+            post._id 
+            false}}}
+        </small>
+        <span>{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>         
+        <div class = 'flex justifyContent'>
+            <span>User: </span>
+            <span class="card-title">
+                {{post.user.displayName}}
+            </span>
         </div>
+        <a href="/post/user/{{post.user._id}}">
+        More From {{post.user.firstName}}
+        </a>
 
-
-
-
-        <div class = 'container-alt flex    '>
-
-            <div class = 'right flex column alignItems user'>
-                <small>{{{editIcon post.user user post._id false}}}</small>
-                <span>{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>         
-                <div class = 'flex justifyContent'><span>User: </span><span class="card-title">{{post.user.displayName}}</span></div>
-                <a href="/post/user/{{post.user._id}}">More From {{post.user.firstName}}</a>
-
-            </div>
-        </div>
     </div>
 
+    {{#if post.image}}
+    <img src = {{post.image}}>
+    {{/if}}
+
+    {{#if post.text}}
+    <blockquote>
+        <p>{{{post.text}}}</p>
+    </blockquote>
+    {{/if}}
   
-    
-    <div class = 'flex game alignItems'>
-        <div class = 'flex alignItems column'>
-               <img src = {{post.image}}>
-
-        </div>
-    </div>
-
 </section>
 
 

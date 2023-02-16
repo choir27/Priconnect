@@ -4,9 +4,9 @@
         <input type = "hidden" class="_method" value="PUT">
         <input type="hidden" name="_method" value="PUT">
 
-            <div class = 'flex div'>
+            <div class = 'flex div input'>
                 <div class = 'alignItems column flex'>
-                    <h2>Name: </h2><input required="required" value = '{{post.name}}' type = 'text' id = 'name' name = 'name'>
+                    <h2>Title: </h2><input required="required" value = '{{post.title}}' type = 'text' id = 'name' name = 'title'>
                 </div>
 
                 <div class = 'flex alignItems column'>
@@ -19,11 +19,19 @@
                     </select>
                 </div>
             </div>
+
+        {{!-- For security reasons, there is no default value shown here --}}
+        <div class ='flex div'>
+           <div class = 'alignItems column flex'>
+                <h2>Image:</h2> <input type = "file" name = "file" id = 'file'>
+            </div>
+        </div>
    
     
-
-        <div class = 'textarea'>
-            <h2 class = 'flex justifyContent'>Text: </h2><textarea required = 'required' id = 'body' name = 'text'>{{post.text}}</textarea>
+        <div class = 'flex div text'>
+            <div class = 'alignItems column flex'>
+                <h2>Text: </h2><textarea class = 'text' required = 'required' id = 'body' name = 'text'>{{post.text}}</textarea>
+            </div>
         </div>
 
         <button  class = 'button' type = 'submit' id = 'submit'>Submit</button>

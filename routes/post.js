@@ -52,7 +52,7 @@ router.post('/', upload.single("file"), async (req, res, next) => {
 
     await Post.create({
       user: req.user,
-      name: req.body.name,
+      title: req.body.title,
       text: req.body.text,
       image: result.secure_url,
       cloudinaryId: result.public_id,

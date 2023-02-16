@@ -705,7 +705,7 @@ svg{
 
 #add div{
 padding: 2rem 4rem;
-    width: 100%;
+width: 100%;
 justify-content: space-around;
 }
 
@@ -714,6 +714,7 @@ justify-content: space-around;
 }
 
 #add{
+    width: 100%;
     padding: 4rem;
     background: no-repeat url('/css/assets/background7.jpg') center/cover;
     margin: 0rem 5rem;
