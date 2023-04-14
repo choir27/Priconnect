@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priconne</title>
+	<link rel="stylesheet" href="/css/normalize.css">
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel='stylesheet' href='/css/mediaQueries.css'>
+</head>
+
+    <body class = 'flex column alignItems justifyContent' id = 'add'>
+        <main class = 'flex column alignItems justifyContent'>
+
+            <section class = 'column flex alignItems nav' id = 'nav'>
+                <div class = 'close flex'><i class="fa-solid fa-xmark" id = 'close'></i></div>
+                <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+                <ul class = 'icons flex'>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+                </ul>
+                <nav class = 'flex'>
+                    <ul class = 'flex'>
+                        <li class = 'flex alignItems'><a href="/about">About</a></li>
+                        <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                        <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                        <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <div class = 'menu hidden'><i class="fa-solid fa-bars" id = 'menu'></i></div>
+
+
+
+
+
+<header class = 'flex alignItems column' id = 'header'>
+    <h1>Priconne</h1>
+    <span>For Everything Princess:Connect Re-Dive</span>
+
+            <nav>
+                <ul class = 'flex justifyContent alignItems'>
+                    <li> <a class = 'button' href="/">Home</a> </li>
+            <form action = '/search' method = 'POST' class = 'flex search'>
+                <input class = 'button' type = 'search' name = 'search'>
+                <button class = 'button' type = 'submit'>Search</button>
+            </form>
+                 
+                <form action = '/characterNames' method = "POST" class = 'flex select' id = 'characterSelect'>
+            
+                    <select class = 'button' name = 'characterNames' id = 'characterNames'>
+                        <% for(let i =0;i < data.length; i++) { %>
+                            <% if(data[i].name !== null && data[i].nickname !==null && data[i].nickname === info[info.length-1].characterNames) { %>
+                                <option class = 'option<%= i %>' id = '<%= data[i].nickname %>' name = '<%= data[i].nickname %>' value = '<%= data[i].nickname %>' selected = 'selected'><%= data[i].name %></option>
+                                <% } %>
+                            <% if(data[i].name !== null && data[i].nickname !==null && data[i].nickname !== info[info.length-1].characterNames) { %>
+                                <option class = 'option<%= i %>' id = '<%= data[i].nickname %>' name = '<%= data[i].nickname %>' value = '<%= data[i].nickname %>'><%= data[i].name %></option>
+                                <% } %>
+
+                                <% } %>
+                    </select>
+            
+                <button class = 'button' type = 'submit'>Go To Page</button>
+                </form>
+
+            </ul>
+        </nav>
+</header>
+     
+<section class = 'add flex column alignItems'>
+    <h2 class = 'heading'>Add a Priconne Character to the website!</h2>
+    <form action = '/characters' method = "POST" class = 'flex column alignItems'>
+        <div class = 'flex div'>
+        <div class = 'alignItems column flex'>
+        <h2>Card:</h2> <input  class = 'button' required = 'required' type = 'file' id = 'card' name = 'card'>
+        </div>
+        <div class = 'alignItems column flex'>
+        <h2>Image:</h2> <input  class = 'button' required = 'required' type = 'file' id = 'image' name = 'image'>
+    </div>
+        </div>
+
+        <div class = 'flex div'>
+        <div class = 'alignItems column flex'>
+            <h2>Union Burst Name: </h2><input required="required" type = 'text' id = 'unionName' name = 'unionName'>
+        </div>
+        <div class = 'alignItems column flex'>
+        <h2>Union Burst:</h2> <input class = 'button' required="required" type = 'file' id = 'union' name = 'union'>
+        </div>
+    </div>
+
+
+    <div class = 'flex div'>
+        <div class = 'alignItems column flex'>
+        <h2>Sprite Image:</h2> <input  class = 'button' required="required" type = 'file' id = 'sprite' name = 'sprite'>
+    </div>
+        <div class = 'alignItems column flex'>
+        <h2>Chibi:</h2> <input  class = 'button' required="required" type = 'file' id = 'chibi' name = 'chibi'>
+        </div>
+    </div>
+
+    <div class ='flex div'>
+        <div class = 'alignItems column flex'>
+        <h2>Guild Image:</h2> <input class = 'button'  required = 'required' type = 'file' id = 'guildImage' name = 'guildImage'>
+        </div>
+        <div class = 'alignItems column flex'>
+        <h2>Guild Name: </h2><input required="required" type = 'text' id = 'guild' name = 'guild'>
+        </div>
+    </div>
+
+
+        <div class = 'flex div'>
+        <div class = 'alignItems column flex'>
+        <h2>Name: </h2><input required="required" type = 'text' id = 'name' name = 'name'>
+        </div>
+        <div class = 'alignItems column flex'>
+        <h2>Nickname: </h2><input required="required" type = 'text' id = 'nickname' name = 'nickname'>
+        </div>
+    </div>
+
+    <h2>Text: </h2><textarea required = 'required' type = 'text' id = 'text' name = 'text'></textarea>
+    <h2>Text2: </h2><textarea required = 'required' type = 'text' id = 'text2' name = 'text2'></textarea>
+
+
+        <button  class = 'button' type = 'submit' id = 'submit'>Submit</button>
+
+    </form>
+
+</section>
+
+
+
+    <footer class = 'flex'>
+        <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+        <ul class = 'icons flex'>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+        </ul>
+        <nav class = 'flex'>
+            <ul class = 'flex'>
+                <li class = 'flex alignItems'><a href="/about">About</a></li>
+                <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+            </main>
+    
+    <script src="https://kit.fontawesome.com/d0e0071c1c.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src = "/js/main.js"></script>
+        </body> 
+    </html>

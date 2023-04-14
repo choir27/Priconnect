@@ -1,0 +1,17 @@
+<h1 class = 'character'>Characters</h1>
+
+<section class = 'index flex' id = 'show'>
+    {{#each characters}}
+                   <div class = 'flex alignItems column'>
+                    <div class = 'flex justifyContent id'>
+                        <h5>{{name}}</h5>
+                    {{{editIcon user ../user _id}}}
+                    </div>
+                     <p>{{stripTags (truncate text 200)}}</p>
+                        <a href="/characters/user/{{user._id}}">{{user.displayName}}</a>
+                    <a href="/characters/{{_id}}" class="btn grey">Read More</a>
+                    </div>
+    {{else}}
+        <p>No stories to display</p>
+    {{/each}}
+</section>

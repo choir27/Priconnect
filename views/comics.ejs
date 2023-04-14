@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priconne</title>
+	<link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel='stylesheet' href='/css/mediaQueries.css'>
+</head>
+
+    <body class = 'flex column' id = 'comics'>
+        <main class = 'flex column alignItems justifyContent'>
+
+            <section class = 'column flex alignItems nav' id = 'nav'>
+                <div class = 'close flex'><i class="fa-solid fa-xmark" id = 'close'></i></div>
+                <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+                <ul class = 'icons flex'>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+                <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+                </ul>
+                <nav class = 'flex'>
+                    <ul class = 'flex'>
+                        <li class = 'flex alignItems'><a href="/about">About</a></li>
+                        <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                        <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                        <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <div class = 'menu hidden'><i class="fa-solid fa-bars" id = 'menu'></i></div>
+
+
+
+
+<header class = 'flex alignItems column' id = 'header'>
+    <h1>Priconne</h1>
+    <span>For Everything Princess:Connect Re-Dive</span>
+
+            <nav>
+                <ul class = 'flex justifyContent alignItems'>
+                    <li> <a class = 'button' href="/">Home</a> </li>
+            <form action = '/search' method = 'POST' class = 'flex search'>
+                <input class = 'button' type = 'search' name = 'search'>
+                <button class = 'button' type = 'submit'>Search</button>
+            </form>
+                 
+                <form action = '/characterNames' method = "POST" class = 'flex select' id = 'characterSelect'>
+            
+                    <select class = 'button' name = 'characterNames' id = 'characterNames'>
+                        <% for(let i =0;i < data.length; i++) { %>
+                            <% if(data[i].name !== null && data[i].nickname !==null && data[i].nickname === info[info.length-1].characterNames) { %>
+                                <option class = 'option<%= i %>' id = '<%= data[i].nickname %>' name = '<%= data[i].nickname %>' value = '<%= data[i].nickname %>' selected = 'selected'><%= data[i].name %></option>
+                                <% } %>
+                            <% if(data[i].name !== null && data[i].nickname !==null && data[i].nickname !== info[info.length-1].characterNames) { %>
+                                <option class = 'option<%= i %>' id = '<%= data[i].nickname %>' name = '<%= data[i].nickname %>' value = '<%= data[i].nickname %>'><%= data[i].name %></option>
+                                <% } %>
+
+                                <% } %>
+                    </select>
+            
+                <button class = 'button' type = 'submit'>Go To Page</button>
+                </form>
+
+            </ul>
+        </nav>
+</header>
+     
+<section class = 'comicStrips'>
+    <h2 class = 'justifyContent flex'>Comics</h2>
+<article class = 'flex'>
+    <p>Separate from the mobile games' or the animes' main story, there is quite a collection of short comic panels following the everyday exploits of the Priconne characters in their universe, where they focus on the slice of life aspects of the characters and their interactions with each other, the world, and sometimes going on small adventures. </p>
+    <p>There is also a collection of fan comics called the Puchikone series, where the comic universe focuses on the characters having their own respective chibi, or smaller and cuter versions of themselves.  These chibi, or puchi, versions suddenly appear in their lives, and the comic strips center around the characters and their puchis interacting with other characters and their puchis.</p>
+</article>
+
+
+<section class = 'flex strips'> 
+    <section class = 'flex column alignItems'>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+       <% let numOfComics = 10 %>
+       <li data-target="#myCarousel" data-slide-to="0" class = "active"></li>
+
+       <% for(let i =1;i < numOfComics; i++) { %>
+
+     <li data-target="#myCarousel" data-slide-to="<%= i%>"></li>
+     <% } %>
+
+   </ol>
+       <!-- Wrapper for slides -->
+       <div class="carousel-inner" role="listbox">
+
+       <div class = "item active">
+           <img src = '/comics/Comic0.png' >
+       </div>
+<% for(let i =1;i < numOfComics; i++) { %>
+   <div class = "item">
+<img src = '/comics/Comic<%= i %>.png'>
+   </div>
+
+<% } %>
+</div>
+
+ <!-- Left and right controls -->
+ <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+   <span class="icon-prev" aria-hidden="true"></span>
+   <span class="sr-only">Previous</span>
+ </a>
+ <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+   <span class="icon-next" aria-hidden="true"></span>
+   <span class="sr-only">Next</span>
+ </a>
+</div>
+</div>
+</section>
+
+<section class = 'flex column alignItems comics'>
+<ul class="gallery">
+    <% let comics = 24 %>
+
+    <% for(let i =10;i < comics; i++) { %>
+	<li><img src = '/comics/Comic<%= i %>.png'></li>
+    <% } %>
+
+</ul>
+</section>
+</section>
+
+
+</section>
+
+    <footer class = 'flex'>
+        <small class = 'flex alignItems justifyContent'>For Everything Priconne &copy; choir</small>
+        <ul class = 'icons flex'>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.facebook.com/richard.choi.54772/about?section=bio&lst=100052959996942%3A100052959996942%3A1593271248'><i class="fa-brands fa-facebook-f"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.linkedin.com/in/richard-choir/'><i class="fa-brands fa-linkedin"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://www.instagram.com/225kh_drw/?hl=en'><i class="fa-brands fa-instagram"></i></a></li>
+        <li class = 'flex alignItems justifyContent'><a target = '_blank' href = 'https://twitter.com/choir241'><i class="fa-brands fa-twitter"></i></a></li>
+        </ul>
+        <nav class = 'flex'>
+            <ul class = 'flex'>
+                <li class = 'flex alignItems'><a href="/about">About</a></li>
+                <li class = 'flex alignItems'><a href="/comics">Comics</a></li>
+                <li class = 'flex alignItems'><a href="/add">Add</a></li>
+                <li class = 'flex alignItems'><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+            </main>
+    
+    <script src="https://kit.fontawesome.com/d0e0071c1c.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src = "/js/comics.js"></script>
+
+        </body> 
+    </html>
