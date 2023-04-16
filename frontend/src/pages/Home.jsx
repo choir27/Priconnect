@@ -22,7 +22,7 @@
             }
         },
         // flow: 'implicit
-        onError: errorResponse => console.log(errorResponse),
+        onError: errorResponse => console.error(errorResponse),
     });
      
       return (

@@ -54,7 +54,7 @@ const oAuth2Client = new OAuth2Client(
 
   app.post('/google/refresh-token', async(req, res, next) => {
     
-    const user = new User({
+   await User.create({
         displayName: req.body.userInfo.name,
         firstName: req.body.userInfo.given_name,
         lastName: req.body.userInfo.family_name,
@@ -62,38 +62,6 @@ const oAuth2Client = new OAuth2Client(
         email: req.body.userInfo.email,
         accessToken: req.body.tokenResponse.access_token,
     });
-    
-    User.findOne( { $or: [{email: req.body.userInfo.email,}] })
-        .then(
-            (err, existingUser) => {
-                if (err) {
-                  return next(err);
-                }
-                if (existingUser) {
-                    res.status(500).send("User Already Exists");
-                    return next(err);
-                }
-                user.save().then(
-                    (err) => {
-                    return next(err);
-                    },
-                    req.logIn(user, (err) => {
-                    if (err) {
-                      return next(err);
-                    }
-                    
-                    if(user){
-                        res.status(500).send({user});
-                    } 
-                    
-                    else{
-                      res.status(500).send("Invalid user data");
-                      return next(err);
-                        }           
-                          
-                  })
-                );
-                });
       
             })
     
