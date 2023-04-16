@@ -1,24 +1,37 @@
-import { useGoogleLogin, googleLogout } from '@react-oauth/google';
+    import {useGoogleLogin} from "@react-oauth/google"
+    import axios from "axios"
 
-const Home = () => {
+    const Home = () => {
 
-    const login = useGoogleLogin({
-        onSuccess: codeResponse => console.log(codeResponse),
-        flow: 'auth-code',
+      const googleLogin = useGoogleLogin({
+    
+        onSuccess: async tokenResponse => {
+          // fetching userinfo can be done on the client or the server
+          const userInfo = await axios
+            .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+              headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+            })
+            .then(res => res.data);
+    
+            if(userInfo){
+                await axios
+                  .post("http://www.localhost:8000/google/refresh-token", {
+                      userInfo,
+                      tokenResponse             
+                  })
+            }
+        },
+        // flow: 'implicit
+        onError: errorResponse => console.log(errorResponse),
     });
-      
-  return (
-    <div>
-        <h1>Home</h1>
-        <button onClick = {()=>login()}>
+     
+      return (
+        <>
+          <button onClick = {()=>googleLogin()}>
             Login
-        </button>
-        <button onClick = {()=>googleLogout()
-        }>
-            Logout
-        </button>
-    </div>
-  )
-}
+          </button>
+        </>
+      )
+    }
 
-export default Home
+    export default Home
