@@ -18,6 +18,8 @@ const upload = multer({
     }
 });
 
-router.post("/post", upload.single("file"), mainController.postDrawing);
+router.post("/post", upload.single("file"), mainController.createPost);
+
+router.put("/editPost/:id", upload.single("file"), mainController.editPost);
 
 module.exports = router;

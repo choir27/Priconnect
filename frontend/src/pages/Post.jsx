@@ -15,8 +15,6 @@ const Post = () => {
     try{
       e.preventDefault();
 
-      console.log(post)
-
       const TITLE_REGEX = /^[a-zA-Z]*$/;
 
       const checkTitle = TITLE_REGEX.test(title);

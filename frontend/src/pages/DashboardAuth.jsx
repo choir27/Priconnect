@@ -1,5 +1,6 @@
 import HeaderAuth from "../components/HeaderAuth"
 import {useCallback, useState, useEffect, useMemo} from "react"
+import {useNavigate} from "react-router-dom"
 import axios from "axios"
 
 const DashboardAuth = () => {
@@ -7,6 +8,7 @@ const DashboardAuth = () => {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [table, setTable] = useState([]);
+  const navigate = useNavigate();
 
   const fetchData = useCallback(async()=>{
     try{
@@ -18,6 +20,11 @@ const DashboardAuth = () => {
       console.error(err);
     }
   },[]);
+
+  const handleEdit = useCallback(async(id)=>{
+    localStorage.setItem("postId", id);
+    navigate("/editPost");
+  },[navigate]);
 
   useEffect(()=>{fetchData()},[fetchData]);
 
@@ -50,9 +57,9 @@ const DashboardAuth = () => {
               {drawing.user === localStorage.getItem("id") ?
             <i className = "fa-solid fa-trash"></i> : "" }
               {drawing.user === localStorage.getItem("id") ?
-            <i className = "fa-solid fa-pen-to-square"></i> : "" }
+            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(drawing._id)}></button> : "" }
             </div>
-            
+
             <img src = {drawing.post} alt = {`Drawing of ${drawing.title}`}/>
        
           </section>
@@ -62,7 +69,7 @@ const DashboardAuth = () => {
 
     return listOfPosts;
   }
-  },[posts, users]);
+  },[posts, users, handleEdit]);
 
   useMemo(()=>{setTable(renderPosts())}, [renderPosts]);
 

@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
     post:{
         type: String
     },
-    cloudinaryID:{
+    cloudinaryId:{
         type: String
     },
     user: {

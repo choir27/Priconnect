@@ -1,15 +1,15 @@
-const Drawing = require("../models/Post");
+const Post = require("../models/Post");
 const cloudinary = require("../middleware/cloudinary.js");
 
 module.exports = {
-    postDrawing: async (req,res) => {
+    createPost: async (req,res) => {
         try{
             const result = await cloudinary.uploader.upload(    
                 req.file.path, 
                 {resource_type: "auto"
             });
             
-            const post = await Drawing.create({
+            const post = await Post.create({
                 title: req.body.title,
                 post: result.secure_url,
                 cloudinaryId: result.public_id,
@@ -19,6 +19,35 @@ module.exports = {
             });
 
             res.status(200).json({post});
+
+        }catch(err){
+            console.error(err);
+        }
+    },
+    editPost: async (req,res) => {
+        try{
+            let post = await Post.findById({ _id: req.params.id });
+            await cloudinary.uploader.destroy(post.cloudinaryId);
+
+            const result = await cloudinary.uploader.upload(    
+                req.file.path, 
+                {resource_type: "auto"
+            });
+            
+            const updatedPost = await Post.findOneAndUpdate({_id: req.params.id},{
+                title: req.body.title,
+                post: result.secure_url,
+                cloudinaryId: result.public_id,
+                user: req.body.user,
+                comments: post.comments,
+                likes: post.likes
+            }, 
+            {
+                new: true,
+                runValidators: true,
+            });
+
+            res.status(200).json({updatedPost});
 
         }catch(err){
             console.error(err);
