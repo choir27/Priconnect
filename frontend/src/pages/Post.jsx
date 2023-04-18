@@ -54,7 +54,7 @@ const Post = () => {
   },[title, post, navigate]);
 
   return (
-    <>
+    <main>
     <HeaderAuth/>
     <h1>Post</h1>
     <form onSubmit = {handleSubmit}>
@@ -70,7 +70,7 @@ const Post = () => {
         <input type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your artwork/post a title"/>
         <button type = "submit">Submit</button>
     </form>
-    </>
+    </main>
   )
 }
 

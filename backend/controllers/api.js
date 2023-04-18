@@ -31,5 +31,13 @@ module.exports = {
         }catch(err){
             console.error(err);
         }
+    },
+    getPosts : async(req,res)=>{
+        try{
+            const data = await getCollectionData("posts");
+            res.json(data);
+        }catch(err){
+            console.error(err);
+        }
     }
 }

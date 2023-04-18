@@ -1,0 +1,47 @@
+.flex{
+    display: flex;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.alignItems{
+    align-items: center;
+}
+
+.justifyContent{
+    justify-content: center;
+}
+
+.post{
+    padding: 2rem;
+    width: 25%;
+}
+
+.post h2{
+    margin: 0rem;
+    padding: 0rem 0rem .5rem 0rem;
+}
+
+.post div{
+    padding: .5rem 0rem 1rem 0rem;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.post div section span{
+    margin-left: 1rem;
+}
+
+section img{
+    max-width: 20vw;
+}
+
+.icons{
+    min-height: 2rem;
+}
+
+#table{
+    flex-wrap: wrap;
+}
