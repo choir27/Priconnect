@@ -52,5 +52,16 @@ module.exports = {
         }catch(err){
             console.error(err);
         }
+    },
+    deletePost: async (req,res) => {
+        try{
+            let post = await Post.findById({ _id: req.params.id });
+            await cloudinary.uploader.destroy(post.cloudinaryId);
+            await Post.deleteOne({ _id: req.params.id });
+
+            res.status(200).json({post});
+        }catch(err){
+            console.error(err);
+        }
     }
 }

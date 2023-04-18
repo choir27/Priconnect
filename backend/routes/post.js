@@ -20,6 +20,8 @@ const upload = multer({
 
 router.post("/post", upload.single("file"), mainController.createPost);
 
+router.delete("/deletePost/:id", mainController.deletePost);
+
 router.put("/editPost/:id", upload.single("file"), mainController.editPost);
 
 module.exports = router;

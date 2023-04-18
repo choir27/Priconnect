@@ -26,6 +26,18 @@ const DashboardAuth = () => {
     navigate("/editPost");
   },[navigate]);
 
+  const handleDelete = useCallback(async(id)=>{
+    try{
+      axios.delete(`http://localhost:8000/deletePost/${id}`)
+        .then(res=>{
+          console.log(res);
+          window.location.reload();
+        })
+    }catch(err){
+      console.error(err);
+    }
+  },[]);
+
   useEffect(()=>{fetchData()},[fetchData]);
 
   const renderPosts = useCallback(()=>{
@@ -55,7 +67,12 @@ const DashboardAuth = () => {
 
             <div className = "flex justifyContent icons">
               {drawing.user === localStorage.getItem("id") ?
-            <i className = "fa-solid fa-trash"></i> : "" }
+              <form>
+                <button className = "fa-solid fa-trash"
+                onClick = {(e)=>{
+                e.preventDefault();
+                handleDelete(drawing._id)}}></button></form> : "" }
+
               {drawing.user === localStorage.getItem("id") ?
             <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(drawing._id)}></button> : "" }
             </div>
@@ -63,13 +80,13 @@ const DashboardAuth = () => {
             <img src = {drawing.post} alt = {`Drawing of ${drawing.title}`}/>
        
           </section>
-        )
-      }
+        );
+      };
     });
 
     return listOfPosts;
   }
-  },[posts, users, handleEdit]);
+  },[posts, users, handleEdit, handleDelete]);
 
   useMemo(()=>{setTable(renderPosts())}, [renderPosts]);
 
