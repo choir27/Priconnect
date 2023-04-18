@@ -4,16 +4,12 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const connectDB = require("./config/db");
-const mainRoutes = require("./routes/main");
-require("dotenv").config();
-const User = require("./models/User");
-const router = express.Router();
 const passport = require("passport");
-
-const {
-    OAuth2Client,
-  } = require('google-auth-library');
+const connectDB = require("./config/db");
+const postRoutes = require("./routes/post");
+const authRoutes = require("./routes/auth");
+const apiRoutes = require("./routes/api");
+require("dotenv").config();
 
 connectDB();
 
@@ -40,32 +36,10 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-const oAuth2Client = new OAuth2Client(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    'postmessage',
-  );
-
-  app.post('/auth/google', async (req, res) => {
-    const { tokens } = await oAuth2Client.getToken(req.body.code); // exchange code for tokens    
-    res.json(tokens);
-  });
-
-  app.post('/google/refresh-token', async(req, res, next) => {
     
-   await User.create({
-        displayName: req.body.userInfo.name,
-        firstName: req.body.userInfo.given_name,
-        lastName: req.body.userInfo.family_name,
-        image: req.body.userInfo.picure,
-        email: req.body.userInfo.email,
-        accessToken: req.body.tokenResponse.access_token,
-    });
-      
-            })
-    
-app.use("/", mainRoutes);
+app.use("/auth", authRoutes);
+app.use("/api", apiRoutes);
+app.use("/", postRoutes);
 
 app.listen(process.env.PORT,()=>{
 console.log(`${process.env.PORT}`)
