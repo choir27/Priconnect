@@ -12,6 +12,7 @@ module.exports = {
             const post = await Post.create({
                 title: req.body.title,
                 post: result.secure_url,
+                fileName: req.body.fileName,
                 cloudinaryId: result.public_id,
                 user: req.body.user,
                 comments: [],
@@ -37,6 +38,7 @@ module.exports = {
             const updatedPost = await Post.findOneAndUpdate({_id: req.params.id},{
                 title: req.body.title,
                 post: result.secure_url,
+                fileName: req.body.fileName,
                 cloudinaryId: result.public_id,
                 user: req.body.user,
                 comments: post.comments,

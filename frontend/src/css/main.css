@@ -30,12 +30,12 @@
     width: 100%;
 }
 
-.post div section span{
+span{
     margin-left: 1rem;
 }
 
-section img{
-    max-width: 20vw;
+section.post img{
+    max-width: 80%;
 }
 
 .icons{
@@ -44,4 +44,26 @@ section img{
 
 #table{
     flex-wrap: wrap;
+}
+
+#post img{
+    padding: 2rem;
+    max-width: 100%;
+}
+
+#post{
+    width: 100%;
+    padding: 5rem;
+}
+
+section#post img{
+    max-width: 100%;
+}
+
+#icons i{
+    font-size: 2rem;
+}
+
+#icons section{
+    margin-right: 2rem;
 }

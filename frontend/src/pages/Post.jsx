@@ -36,6 +36,7 @@ const Post = () => {
 
       const formData = new FormData();
       formData.append("file", post);
+      formData.append("fileName", post.name);
       formData.append("title", title);
       formData.append("user", localStorage.getItem("id"));
 

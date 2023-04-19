@@ -54,6 +54,7 @@ const EditPost = () => {
     
             const formData = new FormData();
             formData.append("file", post);
+            formData.append("fileName",post.name)
             formData.append("title", title);
             formData.append("user", localStorage.getItem("id"));
       
@@ -79,7 +80,7 @@ const EditPost = () => {
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="title" defaultValue={currentPost.title} onChange = {(e)=>setTitle(e.target.value)}/>
                     <label htmlFor="file">
-                      Upload file: {post.name || currentPost.post }
+                      Upload file: {post.name || currentPost.fileName }
                       <input type="file" name="file" onChange = {(e)=>setPost(e.target.files[0])} />
                     </label>
                     <button type="submit">Submit</button>

@@ -67,11 +67,10 @@ const DashboardAuth = () => {
 
             <div className = "flex justifyContent icons">
               {drawing.user === localStorage.getItem("id") ?
-              <form>
                 <button className = "fa-solid fa-trash"
                 onClick = {(e)=>{
                 e.preventDefault();
-                handleDelete(drawing._id)}}></button></form> : "" }
+                handleDelete(drawing._id)}}></button>: "" }
 
               {drawing.user === localStorage.getItem("id") ?
             <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(drawing._id)}></button> : "" }

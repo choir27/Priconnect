@@ -19,6 +19,18 @@ const Account = () => {
     navigate("/editPost");
   },[navigate]);
 
+  const handleDelete = useCallback(async(id)=>{
+    try{
+      axios.delete(`http://localhost:8000/deletePost/${id}`)
+        .then(res=>{
+          console.log(res);
+          window.location.reload();
+        })
+    }catch(err){
+      console.error(err);
+    }
+  },[]);
+
   useMemo(()=>{fetchData()},[fetchData]);
 
   const renderPosts = useCallback(()=>{
@@ -40,7 +52,9 @@ const Account = () => {
             </div>
 
             <div className = "flex justifyContent icons">
-            <i className = "fa-solid fa-trash"></i>
+            <button className = "fa-solid fa-trash" onClick = {(e)=>{
+                e.preventDefault();
+                handleDelete(drawing._id)}}></button>
             <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(drawing._id)}></button>
             </div>
 
@@ -52,7 +66,7 @@ const Account = () => {
       });
       return postArray;
     }
-  },[listOfPosts, handleEdit]);
+  },[listOfPosts, handleEdit, handleDelete]);
 
   useMemo(()=>{setPosts(renderPosts())},[renderPosts]);
 

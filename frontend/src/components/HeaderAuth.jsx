@@ -18,7 +18,7 @@ const HeaderAuth = () => {
   };
 
   return (
-    <nav>
+    <nav className = "flex">
         <h1>DrawConnect</h1>
         <ul>
             <li><Link to = "/">Home</Link></li>

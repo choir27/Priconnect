@@ -7,6 +7,9 @@ const PostSchema = new mongoose.Schema({
     post:{
         type: String
     },
+    fileName:{
+        type: String  
+    },
     cloudinaryId:{
         type: String
     },
