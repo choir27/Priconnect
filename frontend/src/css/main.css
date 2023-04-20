@@ -140,15 +140,18 @@ header h2{
     width: auto;
 }
 
+.about{
+    border-radius: 10px;
+    padding: 2rem;
+    background: rgb(26,55,135);
+    width: 50%;
+}
+
 header h1{
     width: auto;
     border-top: 3px solid white;
-    padding-top: 2rem;
 }
 
-header{
-    padding-bottom: 12rem;
-}
 
 header nav{
     padding-bottom: 4rem;
@@ -180,7 +183,7 @@ footer{
 }
 
 #footer nav, #footer{
-    width: 80%;
+    width: 100%;
 }
 
 footer nav ul li, footer nav ul{
@@ -542,6 +545,8 @@ body #nav{
 #home #header span, #comics #header span, #contact #header span, #about #header span{
     border-bottom: 2px solid white;
 }
+
+
 
 
 .icons{

@@ -60,7 +60,7 @@ const Signup = () => {
       onClick = {(e)=>{
         e.preventDefault();
         handleSignUp()}}>
-      <i className = "fab fa-google left"></i> SignUp
+      <i className = "fab fa-google left"></i> Don't Have An Account? Sign Up Here
       </a> 
 
     )

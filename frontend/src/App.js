@@ -14,7 +14,6 @@ function App() {
   const Post = lazy(()=>import("./pages/Post"));
   const EditPost = lazy(()=>import("./pages/EditPost"));
   const ViewPost = lazy(()=>import("./pages/ViewPost"));
-  const About = lazy(()=>import("./pages/About"));
   const Comics = lazy(()=>import("./pages/Comics"));
 
     return(
@@ -26,7 +25,6 @@ function App() {
                 <Route path = "/dashboard" element = {<Dashboard/>}/>
                 <Route path = "/viewPost" element = {<ViewPost/>}/>
                 <Route path = "/comics" element = {<Comics/>}/>
-                <Route path = "/about" element = {<About/>}/>
 
                 <Route element={<PrivateRoutes />}>
                   <Route path = "/editPost" element = {<EditPost/>}/>

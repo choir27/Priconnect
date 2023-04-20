@@ -17,8 +17,6 @@ const HomeGuest = () => {
 
             <li><Link className = "button" to = "/Dashboard">Dashboard</Link></li>
 
-            <li><Link className = "button" to = "/about">About</Link></li>
-
             <li><Link className = "button" to = "/comics">Comics</Link></li>
 
             <li><Signup/></li>
