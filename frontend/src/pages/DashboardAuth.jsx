@@ -1,6 +1,7 @@
 import {useCallback, useState, useEffect, useMemo} from "react"
 import {useNavigate} from "react-router-dom"
 import axios from "axios"
+import HeaderAuth from "../components/HeaderAuth"
 
 const DashboardAuth = () => {
 
@@ -39,6 +40,11 @@ const DashboardAuth = () => {
 
   useEffect(()=>{fetchData()},[fetchData]);
 
+  const viewPost = useCallback((id) => {
+    localStorage.setItem("postId", id);
+    navigate("/viewPost");
+  },[navigate]);
+
   const renderPosts = useCallback(()=>{
     if(posts.length && users.length){
 
@@ -52,10 +58,10 @@ const DashboardAuth = () => {
       const usersName = userMap.get(post.user);
       if(usersName){
         listOfPosts.push(
-          <section key = {post._id} className="post column alignItems flex">
+          <section key = {post._id} className="column alignItems flex post" onClick = {()=>viewPost(post._id)}>
             <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
-
-            <div className = "flex">
+       
+            <div className = "icons flex">
               <section>
               <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
               </section>
@@ -64,19 +70,19 @@ const DashboardAuth = () => {
               </section>
             </div>
 
-            <div className = "flex justifyContent icons">
+            <img src = {post.post} alt = {`Post of ${post.title}`}/>
+
+            <div className = "flex buttons">
               {post.user === localStorage.getItem("id") ?
-                <button className = "fa-solid fa-trash"
+                <button className = "fa-solid fa-trash button"
                 onClick = {(e)=>{
                 e.preventDefault();
                 handleDelete(post._id)}}></button>: "" }
 
               {post.user === localStorage.getItem("id") ?
-            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(post._id)}></button> : "" }
+            <button className = "fa-solid fa-pen-to-square button" 
+            onClick = {()=>handleEdit(post._id)}></button> : "" }
             </div>
-
-            <img src = {post.post} alt = {`Post of ${post.title}`}/>
-       
           </section>
         );
       };
@@ -84,14 +90,16 @@ const DashboardAuth = () => {
 
     return listOfPosts;
   }
-  },[posts, users, handleEdit, handleDelete]);
+  },[posts, users, handleEdit, handleDelete, viewPost]);
 
   useMemo(()=>{setTable(renderPosts())}, [renderPosts]);
 
   return (
-    <main>
-    <h1>Dashboard</h1>
-    <section id = "table" className = "flex">
+    <main className = "flex column justifyContent" id = "show">
+    <HeaderAuth className = {"pages"}/>
+    <h1 className = "justifyContent flex">Dashboard</h1>
+    <h2 className = "justifyContent flex">Click the post to view it!</h2>
+    <section className = "posts flex">
       {table}
     </section>
     </main>

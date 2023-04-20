@@ -33,14 +33,11 @@ const Comics = () => {
     setCarousel(arr);
   },[]);
 
-
-
   return (
-    <main className = "flex justifyContent column">
-    <h1 className = "justifyContent flex">Comics</h1>
+    <main className = "flex justifyContent column" id = "comics">
       <HeaderGuest/>
-      <section className = 'flex strips'> 
-    <section className = 'flex column alignItems'>
+      <h1 className = "justifyContent flex">Comics</h1>
+      <section className = 'flex justifyContent strips'> 
 <div id="myCarousel" className="carousel slide" data-ride="carousel">
     <ol className="carousel-indicators">
        <li data-target="#myCarousel" data-slide-to="0" className = "active"></li>
@@ -65,7 +62,6 @@ const Comics = () => {
    <span className="sr-only">Next</span>
  </a>
 </div>
-</section>
 </section>
     </main>
   )

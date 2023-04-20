@@ -1,9 +1,6 @@
+
 /* General
    ========================================================================== */
-
-   .dropdown-content, .select-dropdown, path{
-    display: none;
-}
 
 .select-dropdown{
     cursor: pointer;
@@ -28,10 +25,6 @@
 
 .clear {
 	clear: both;
-}
-
-html{
-font-size: 62.5%;
 }
 
 .flex{
@@ -62,7 +55,7 @@ a{
      text-decoration: none;
 }
 
-.hidden{
+.dropdown-content, .select-dropdown, .hidden{
      display: none;
 }
 
@@ -70,238 +63,134 @@ body{
      background: no-repeat url('../assets/background/blueSky.jpg') center/cover;
 }
 
-#nav{
-     display: none;
-}
-
-
-h1{
-    font-size: 7rem;
-}
-
-h2{
-    font-size: 4rem;
-}
-
-h3, i{
-    font-size: 3.5rem;
-}
-
-h4{
-    font-size: 3rem;
-}
-
-h5{
-    font-size: 3rem;
-}
-
-h6{
-    font-size: 2rem;
-}
-
-li, a, p{
-    font-size: 2rem;
-}
-
-small{
-    font-size: 1.5rem;
+.index section, textarea, input, label, .button{
+    border-radius: 5px;
 }
 
 .button{
-     background: rgb(26,55,135);
-     border: 2px solid white;
-     padding: 1rem;
-     font-size: 3rem;
-     border-radius: 5px;
-}
+    background: rgba(27, 31, 34, 0.85);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    box-shadow: inset 0 0 0 1px #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    line-height: 2.75rem;
+    outline: 0;
+    padding: 1rem 1.25rem 1rem 1.35rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    border: 1px solid white;
+}   
 
 .button:hover{
     text-decoration: none;
     cursor: pointer;
     background: rgb(187, 187, 187,.4);
+    color: black;
 }
 
 i:hover{
     color: rgb(187, 187, 187,.4);
 }
 
-.button a, .button, p, h1, h2, h3, h4, h5, h6, i, span, small, a, li{
+::placeholder, textarea, input, label, .button, p, h1, h2, h3, h4, h5, h6, i, td, th, span, small, a, li, nav i:hover{
      color: white;
 }
 
+.about h2{
+    font-size: 3rem;
+}
+
+h1{
+    font-size: 6rem;
+    margin: 0rem;
+    padding: 1rem 0rem 2rem 0rem;
+}
+
+img{
+    width: 100%;
+}
 
 /* Header
    ========================================================================== */
 
-header h2{
-    margin-bottom: 6rem;
-    padding-bottom: 2rem;
-    border-bottom: 3px solid white;
-    width: auto;
-}
-
-.about{
-    border-radius: 10px;
-    padding: 2rem;
-    background: rgb(26,55,135);
-    width: 50%;
-}
-
 header h1{
-    width: auto;
+    margin-bottom: 1rem;
+    padding: 2rem 0rem;
+    border-bottom: 3px solid white;
     border-top: 3px solid white;
-}
-
-
-header nav{
-    padding-bottom: 4rem;
-}
-
-header nav, header nav ul{
-    width: 100%;
-}
-
-#header.pages{
-    padding-bottom: 0;
-}
-
-#header li{
-    height: auto;
+    width: auto;
+    font-size: 4rem;
 }
 
 header ul{
+    margin-top: 1rem;
     justify-content: space-around;
+} 
+
+header li{
+    height: auto;
 }
 
+header{
+    padding: 0rem 0rem 2rem 0rem;
+}
 
+.about{
+    background: rgba(27, 31, 34, 0.85);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 85%;
+}
+
+header nav{
+    width: 85%;
+    padding-bottom: 0rem;
+}
+
+header.pages{
+    padding-bottom: 0;
+}
+
+header.pages h1{
+    margin-top: 1rem;
+}
 
 /* Footer
    ========================================================================== */
 
-footer{
-    padding-bottom: 4rem;
-}
 
-#footer nav, #footer{
-    width: 100%;
-}
-
-footer nav ul li, footer nav ul{
-    height: 100%;
-}
-
-#footer .icons{
-    width: 50%;
-    margin: 2rem;
+footer .icons{
+    font-size: 2rem;
+    width: 40%;
     padding: 2rem;
 }
 
 footer small{
-    width: 60%;
+    text-align: left;
+    width: 30%;
 }
 
-footer ul, footer .icons, footer{
+footer .icons{
     justify-content: space-around;
 }
 
-footer a{
-    font-size: 3rem;
-}
-
-footer nav, footer nav ul li, footer nav ul{
-    width: 100%;
-}
-
-footer li:hover, footer a:hover{
-    color:rgb(216, 191, 191);
-    text-decoration: none;
-}
-
-/* About
-   ========================================================================== */
-
-#about .video{
-    position: relative;
-}
-
-#about .video img{
-    width: 50%;
-}
-
-#about .video button{
-    position: absolute;
-    width: 10%;
-    border-radius: 5px;
-    background-color: rgb(0,0,0,.3);
-}
-
-
-#about #play{
-    height: 12rem;
-  }
-
-#about #play:hover{
-    background-color: rgb(0,0,0,.7)
-}
-
-#about #play:active{
-    background-color: black;
-}
-
-#about p{
-    color: white;
-    font-size: 3rem;
-    padding: 4rem;
-}
-
-
-#about{
-    padding: 2rem;
-}
-
-#about .logo{
-    padding-top: 8rem;
-    margin: -12rem;
+footer{
+    justify-content: space-evenly;
+    padding: 0rem 2rem;
 }
 
 
 /* Comics
    ========================================================================== */
 
-
-   #comics img{
-    width: 100%;
-  }
-  
-  #comics article p{
-  color: black;
-  font-size: 2rem;
-  width: 40%;
-  text-align: center;
-  }
-
   #myCarousel{
-    width: 60%;
+    max-width: 40%;
+    min-width: 40%;
   }
-  
-  #comics article{
-       justify-content: space-around;
-       padding: 2rem;
-  }
-  
-  #comics .gallery {
-       width: 100%;
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: repeat(14, 30vw);
-      grid-template-rows: 1fr;
-      grid-column-gap: 1rem;
-      grid-row-gap: 1rem;
-       scroll-padding: 1rem;
-      overflow: scroll;
-      scroll-snap-type: both mandatory;
-  }
-  
+
   #comics .active {
       scroll-snap-type: unset;
   }
@@ -309,149 +198,152 @@ footer li:hover, footer a:hover{
   #comics li {
       scroll-snap-align: center;
       display: inline-block;
-      border-radius: 3px;
-      font-size: 0;
-  }
-  
-  #comics .comics{
-       width: 100%;
-       margin: 0rem 6rem 8rem 6rem;
-  }
-  
-  #comics .strips{
-       width: 100%;
-       justify-content: space-around;
-  }
-  
-  #comics{
-    padding: 2rem;
-       width: 100%;
-  }
-  
-  #comics article{
-       padding: 2rem;
-       margin: 2rem;
-  }
-
-  #comics{
-    padding: 2rem;
-  }
-  
-  #comics .gallery{
-       height: 112vh;
-       width: 100%;
-     }
-
-#myCarousel{
-    padding-bottom: 8rem;
-   margin-bottom: 12rem;
-}
-     
-
-/* Contact
-   ========================================================================== */
-
-   #contact input, #contact p, #contact textarea{
-    font-size: 2rem;
-  }
-
-  #contact input, #contact textarea{
-    font-size: 4rem;
-  }
-
-  #contact h2{
-    padding: 3rem;
-    font-size: 4rem;
-  }
-
-  #contact h2,#contact input, #contact p, #contact textarea{
-    color: white;
-  }
-
- #contact{
-    padding-bottom: 4rem;
-    width: 100%;
-  } 
-
-
-
-  #contact input, #contact textarea{
-    width: 100%;
-  }
-
-  #contact textarea{
-    height: 40vh;
-    margin: 4rem;
-  }
-  
-  main{
-    min-width: 100%;
   }
 
 
-/* Received
+/* Show
   ========================================================================== */
 
-  #received{
-    height: 100vh;
-  }
+#show h2, #show h4, #show a{
+font-size: 2rem;
+text-transform: capitalize;
+}
 
-  #received h2, #received span, #received a{
-    font-size: 5rem;
-    color: white;
-  }
+#show h2{
+    padding-bottom: 3rem;
+}
+
+#show .post h2{
+    padding-bottom: .5rem;
+}
+
+.posts{
+    flex-wrap: wrap;
+}
+
+#show .post{
+    padding: 2rem;
+    background: rgba(27, 31, 34, 0.85);
+    max-width: 20%;
+}
+
+#show .post:hover{
+    cursor: pointer;
+    background: rgb(187, 187, 187,.4);
+}
+
+#show .posts, #show .post{
+    margin: 0rem 2rem;
+}
+
+.icons i{
+    font-size: 2rem;
+    padding: .5rem 0rem;
+}
+
+.icons span{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.icons{
+    padding: 0rem 0rem .5rem 0rem;
+    margin: 0rem;
+}
+
+.post a{
+    padding: .5rem;
+    padding-bottom: 0rem;   
+    margin: 0rem;
+}
+
+.post .button{
+    padding: .8rem;
+}
+
+.buttons{
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 1rem;
+}
 
 
-  #links section a{
-    color: white;
-    font-size: 4rem;
-  }
-/* Plus
-   ========================================================================== */
+/* Add
+  ========================================================================== */
 
-   .plus{
+#add{
+    min-width: 54rem;
+    background: rgba(27, 31, 34, 0.85);
+    margin-top: 4rem;
+    border-radius: 4px;
+}
+
+
+#add .input{
+    background: none;
+    margin: 1rem;
+}
+
+
+#add .submit{
+    width: 30%;
+}
+
+
+#add .form section, #add .submit, #add textarea, #add .buttons section, #add .input{
+    padding: 1rem;
+}
+
+#add textarea{
+    resize: none;
+    background: none;
+    margin: 1rem;
+    height: 20vh;
+}
+
+#add .form{
+    justify-content: space-evenly;
+}
+
+#add form h2{
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+}
+
+#add .form section, #add .form .button, #add form, #add input, #add textarea, #add .buttons div label, #add .buttons div select{
     width: 100%;
 }
 
-.plus a{
-    width: 50%;
+#add input, #add textarea{
+    border: 1px solid white;
 }
 
-.plus i{
-    margin-left: 2rem;
-    font-size: 5rem;
+#add form{
+    padding: 2rem;
 }
 
-#plus a:hover{
-    color: rgb(219, 196, 196);
+#add .form select{
+    padding: 1.2rem;
 }
+
 
 /* Dashboard
   ========================================================================== */
 
-#dashboard{
+/* #dashboard{
     padding-bottom: 2rem;
     min-height: 100vh;
 }
 
 #dashboard div a, #dashboard p, #dashboard h5, #dashboard h6, #dashboard h3{
-    color: white;
-    font-size: 2rem;
     margin-bottom: 2rem;
-}
-#dashboard h6{
-    font-size: 3rem;
 }
 
 #dashboard h3{
-    font-size: 4rem;
     margin-bottom: 4rem;
 }
-
-#dashboard h5{
-    font-size: 3.5rem;
-} 
-
 
 #dashboard main{
     height: 100%;
@@ -463,11 +355,6 @@ footer li:hover, footer a:hover{
 
 #dashboard footer, #add footer, #characters footer, #edit footer, #dashboard section, #dashboard main{
     width: 100%;
-}
-
-#dashboard th, #dashboard td, #dashboard main a{
-    color: white;
-    font-size: 3rem;
 }
 
 #edit i, #delete i{
@@ -483,9 +370,6 @@ footer li:hover, footer a:hover{
     padding: 2rem;
 }
 
-tr{
-    border: solid 2px white;
-}
 
 #dashboard table{
     margin: 4rem 0rem;
@@ -497,282 +381,5 @@ color:rgb(216, 191, 191);
 
 #edit:hover, #delete:hover, #dashboard td a:hover{
     cursor: pointer;
-}
-
-/* Show
-  ========================================================================== */
-
-#show section h1, #show section h5, #show section a, #show section p{
-    font-size: 4rem;
-    color: white;
-    padding: 2rem;
-}
-
-
-.index h5, .index p, .index a{
-    font-size: 3rem;
-}
-
-body #nav{ 
-    overflow-x: hidden;
-}
-
-.index{
-    padding: 3rem;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.index section{
-    padding: 1rem;
-    border-radius: 5px;
-    margin: 1rem;
-    width: 25%;
-    background:  rgb(26,55,135);
-}
-
-.index img{
-    max-width: 30%;
-}
-
-
-.index img, .index h5, .index p, .index a{
-    padding: 2rem;
-} 
-
-
-
-#home #header span, #comics #header span, #contact #header span, #about #header span{
-    border-bottom: 2px solid white;
-}
-
-
-
-
-.icons{
-    min-height: 2rem;
-}
-
-.icons span{
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-
-#table{
-    flex-wrap: wrap;
-}
-
-
-.post{
-    padding: 2rem;
-    width: 25%;
-}
-
-.post h2{
-    margin: 0rem;
-    padding: 0rem 0rem .5rem 0rem;
-}
-
-.post div{
-    padding: .5rem 0rem 1rem 0rem;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-section.post img{
-    max-width: 60%;
-}
-
-section.post img:hover{
-    cursor: pointer;
-}
-
-
-/* Template
-   ========================================================================== */
-   #template .left,  #template .container-alt .right,#template div, #template .name img, #template p,#template blockquote{
-    width: 100%;
-}
-
-#template h5, #template h1, #template main i, #template main a, #template h2, #template p, #template .user small, #template .user span{
-    color: white;
-}
-
-#template h5, #template h1, #template main i, #template main  a{
-    font-size: 5rem;
-}
-
-#template h2, #template .user small, #template .user span{
-font-size: 3rem;
-}
-
-#template .name,#template .game{
-    justify-content: space-around;
-}
-
-#template h2{
-    text-align: center;
-}
-
-
-#template .right,#template .game .union{
-    width: 40%;
-}
-
-#template .game .sprite{
-    width: 30%;
-}
-
-#template .game .sprite, #template .container-alt .right img{
-    width: 60%;
-}
-
-#template .guild img{
-    width: 70%;
-}
-#template p,#template blockquote{
-    border: none;
-    padding: 1rem;
-    margin: 1rem;
-    line-height: 2.5rem;
-}
-
-#template{
-    margin: 0rem 5rem;
-}
-
-#template header{
-    margin: 1rem; 
-    padding: 1rem;
-}
-
-#template div div,#template .guild .chibi, #template .user, #template .name blockquote, #template .name img{
-    padding: 2rem;
-}
-
-#template .game{
-    padding: 0rem;
-}
-
-#template{
-    padding: 3rem;
-}
-
-#template .user small, #template .user span{
-    margin-bottom: 2rem;
-}
-#template .user div span{
-    margin-right: 2rem;
-}
-
-#template blockquote p{
-    font-size: 3rem;
-}
-
-#template .index p{
-    width: 80%;
-    line-height: 4rem;
-    text-align: center;
-}
-
-
-   
-/* Add
-   ========================================================================== */
-
-   #add select{
-    width: 100%;
-}
-
-svg{
-    display: none;
-}
-
-.select-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-#add .textarea{
-    width: 80%;
-}
-
-#add .cke_chrome {
-    display: flex;
-    justify-content: center;
-    border: none;
-}
-
-  #add h2, #add input{
-    color: white;
-  }
-
-
-  #add h2{
-    margin: 2rem;
-    font-size: 3rem;
-  }
-
-  #add h3{
-    color: white;
-    font-size: 3rem;
-}
-
-#add input{
-    width: 100%;
-    height: 5;
-    margin: 2rem;
-}
-
-#add textarea{
-    width: 100%;
-    height: 20vh;
-}
-
-#add textarea, #add input{
-    border: 2px solid white;
-    background: none;
-    color: white;
-    font-size: 4rem;
-    border-radius: 5px;
-}
-
-
-#add div{
-padding: 2rem 4rem;
-width: 100%;
-justify-content: space-around;
-}
-
-#add .heading{
-    font-size: 5rem;
-}
-
-#add{
-    width: 100%;
-    padding: 4rem;
-    margin: 0rem 5rem;
-}
-
-
-#add form{
-    padding: 2rem;
-}
-
-#add #submit{
-    width: 20%;
-}
-
-
-body#add input.button{
-    height: 12vh;
-    width: 80%;
-  }
-
-#add #submit{
-    width: 40%;
-}
-
+} */
 

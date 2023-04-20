@@ -7,7 +7,7 @@ const DashboardGuest = () => {
 
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [table, setTable] = useState([]);
+  const [listOfPosts, setListOfPosts] = useState([]);
 
   const navigate = useNavigate();
 
@@ -44,14 +44,11 @@ const DashboardGuest = () => {
         listOfPosts.push(
           <section key = {post._id} className="column alignItems flex post">
             <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
-              <section className = "flex icons justifyContent">
+
+              <section className = "icons flex">
               <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
               <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
               </section>
-
-              <a href = "/" onClick = {(e)=>{
-                e.preventDefault();
-                viewPost(post._id)}}>See Post</a>
             <img src = {post.post} alt = {`Post Of ${post.title}`} onClick = {()=>viewPost(post._id)}/>
        
           </section>
@@ -63,14 +60,16 @@ const DashboardGuest = () => {
   }
   },[posts, users, viewPost]);
 
-  useMemo(()=>{setTable(renderPosts())}, [renderPosts]);
+  useMemo(()=>{setListOfPosts(renderPosts())}, [renderPosts]);
 
   return (
-    <main className = "flex column justifyContent">
-    <h1 className = "justifyContent flex">Dashboard</h1>
+    <main className = "flex column justifyContent" id = "show">
     <HeaderGuest className = {"pages"}/>
-    <section className = "flex index" id = "show">
-      {table}
+    <h1 className = "justifyContent flex">Dashboard</h1>
+    <h2 className = "justifyContent flex">Click the post to view it!</h2>
+    <section className = "posts flex">
+
+      {listOfPosts}
     </section>
     </main>
   )

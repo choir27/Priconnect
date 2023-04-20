@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom"
 import {googleLogout} from "@react-oauth/google"
 
-const HeaderAuth = () => {
+const HeaderAuth = ({className}) => {
 
     const handleLogout = async()=>{
         try{
@@ -18,20 +18,23 @@ const HeaderAuth = () => {
   };
 
   return (
-    <nav className = "flex">
-        <h1>For Everything Priconne</h1>
-        <ul>
-            <li><Link to = "/">Home</Link></li>
+    <header className = {`flex alignItems column ${className}`}>
+             <h1>For Everything Princess:Connect Re-Dive</h1>   
 
-            <li><Link to = "/Dashboard">Dashboard</Link></li>
+    <nav>
+    <ul className = "flex alignItems">
+            <li><Link className = "button" to = "/">Home</Link></li>
 
-            <li><Link to = "/Account">Account</Link></li>
+            <li><Link className = "button" to = "/dashboard">Dashboard</Link></li>
 
-            <li><Link to = "/Post">Post</Link></li>
+            <li><Link className = "button" to = "/account">Account</Link></li>
 
-            <li><button onClick = {()=>handleLogout()}>Logout</button></li>
+            <li><Link className = "button" to = "/post">Post</Link></li>
+
+            <li><button className = "button" onClick = {()=>handleLogout()}>Logout</button></li>
         </ul>
     </nav>
+    </header>
   )
 }
 

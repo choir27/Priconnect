@@ -1,13 +1,13 @@
-import comic0 from "../assets/comics/Comic0.png"
-import comic1 from "../assets/comics/Comic1.png"
-import comic2 from "../assets/comics/Comic2.png"
-import comic3 from "../assets/comics/Comic3.png"
-import comic4 from "../assets/comics/Comic4.png"
-import comic5 from "../assets/comics/Comic5.png"
-import comic6 from "../assets/comics/Comic6.png"
-import comic7 from "../assets/comics/Comic7.png"
-import comic8 from "../assets/comics/Comic8.png"
-import comic9 from "../assets/comics/Comic9.png"
+import comic0 from "../assets/comics/Comic0.jpeg"
+import comic1 from "../assets/comics/Comic1.jpeg"
+import comic2 from "../assets/comics/Comic2.jpeg"
+import comic3 from "../assets/comics/Comic3.jpeg"
+import comic4 from "../assets/comics/Comic4.jpeg"
+import comic5 from "../assets/comics/Comic5.jpeg"
+import comic6 from "../assets/comics/Comic6.jpeg"
+import comic7 from "../assets/comics/Comic7.jpeg"
+import comic8 from "../assets/comics/Comic8.jpeg"
+import comic9 from "../assets/comics/Comic9.jpeg"
 
 const Assets = {
     comic0,

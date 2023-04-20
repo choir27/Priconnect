@@ -2,6 +2,7 @@ import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import {useCallback, useState} from "react"
 import {toast} from "react-toastify"
+import HeaderAuth from "../components/HeaderAuth"
 
 const Post = () => {
 
@@ -52,21 +53,53 @@ const Post = () => {
   },[title, post, navigate]);
 
   return (
-    <main>
-    <h1>Post</h1>
+    <main className = "flex column">
+    <HeaderAuth className = {"pages"}/>
+    <div className = "flex justifyContent">
+    <section className = "flex column alignItems" id = "add">
+
     <form onSubmit = {handleSubmit}>
-      <label htmlFor="file">Choose File</label>
+    <h1 className = "flex justifyContent">Add Post</h1>
+
+    <section className = "flex form">
+    <section>
+    <h2>Add</h2>
+
+    <label className = "button" htmlFor="file">Choose File</label>
         <input
           id="file"
           name="file"
           accept="image/*"
-          className="hidden"
           type="file"
           onChange={(e)=>setPost(e.target.files[0])}
+          className="hidden"
         />
-        <input type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your artwork/post a title"/>
-        <button type = "submit">Submit</button>
+    </section>
+        <section>
+           <h2>Status</h2>
+                <select id="status" name="status" class = 'button'>
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                </select>
+        </section>
+    </section>
+
+    <section className = "flex justifyContent">
+      <input  spellcheck = {true} className = "input" type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your artwork/post a title here"/>
+    </section>
+
+    <section className = "flex justifyContent textarea">
+      <textarea spellcheck = {true} wrap = "hard" className = "input" type = "text" name = "description" placeholder = "Put description of your post here!"/>
+    </section>
+
+    <section className = "flex submit">
+    <input type = "submit" className = "button"/>
+    </section>
+
+    
     </form>
+      </section>
+      </div>
     </main>
   )
 }

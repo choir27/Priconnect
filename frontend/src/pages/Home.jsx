@@ -1,5 +1,5 @@
-  import Header from "../components/HomeGuest"
-  import HeaderAuth from "../components/HomeAuth"
+  import HeaderGuest from "../components/HeaderGuest"
+  import HeaderAuth from "../components/HeaderAuth"
 
   const Home = () => {
 
@@ -7,7 +7,7 @@
    
     return (
       <main className = "flex column justifyContent">
-      {localStorage.getItem("id") ? <HeaderAuth/> : <Header/>}
+      {localStorage.getItem("id") ? <HeaderAuth/> : <HeaderGuest/>}
  
       <div className = "flex justifyContent">
       <section className = "about">
