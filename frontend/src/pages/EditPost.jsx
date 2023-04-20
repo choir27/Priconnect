@@ -1,4 +1,3 @@
-import HeaderAuth from "../components/HeaderAuth"
 import {useCallback, useState, useMemo} from "react"
 import axios from "axios"
 import {toast} from "react-toastify"
@@ -22,9 +21,9 @@ const EditPost = () => {
 
     useMemo(()=>{
         if(listOfPosts){
-            listOfPosts.forEach(drawing=>{
-                if(drawing._id === localStorage.getItem("postId")){
-                    setCurrentPost(drawing);
+            listOfPosts.forEach(post=>{
+                if(post._id === localStorage.getItem("postId")){
+                    setCurrentPost(post);
                 };
             });
         };
@@ -72,7 +71,6 @@ const EditPost = () => {
 
     return (
         <main>
-            <HeaderAuth/>
             <h1>Edit Your Post</h1>
 
             {currentPost && listOfPosts ?

@@ -19,7 +19,7 @@ const HeaderAuth = () => {
 
   return (
     <nav className = "flex">
-        <h1>DrawConnect</h1>
+        <h1>For Everything Priconne</h1>
         <ul>
             <li><Link to = "/">Home</Link></li>
 

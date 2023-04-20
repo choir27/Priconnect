@@ -1,15 +1,14 @@
-  import Header from "../components/Header"
-  import HeaderAuth from "../components/HeaderAuth"
+  import Header from "../components/HomeGuest"
+  import HeaderAuth from "../components/HomeAuth"
 
   const Home = () => {
 
 
    
     return (
-      <>
-      <h1>Draw Connect</h1>
+      <main className = "flex column justifyContent">
       {localStorage.getItem("id") ? <HeaderAuth/> : <Header/>}
-      </>
+      </main>
     )
   }
 

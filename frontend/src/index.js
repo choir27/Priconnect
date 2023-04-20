@@ -2,7 +2,10 @@ import React from "react"
 import {createRoot} from "react-dom/client"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals.js"
+import "./css/reset.css"
+import "./css/normalize.css"
 import "./css/main.css"
+import "./css/mediaQueries.css"
 
 const container = document.getElementById("root");
 const root = createRoot(container);

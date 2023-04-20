@@ -1,4 +1,3 @@
-import HeaderAuth from "../components/HeaderAuth"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import {useCallback, useState} from "react"
@@ -54,7 +53,6 @@ const Post = () => {
 
   return (
     <main>
-    <HeaderAuth/>
     <h1>Post</h1>
     <form onSubmit = {handleSubmit}>
       <label htmlFor="file">Choose File</label>

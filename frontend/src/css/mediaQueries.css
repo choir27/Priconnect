@@ -1,0 +1,644 @@
+/* Home Media Queries
+   ========================================================================== */
+
+   @media all and (min-width: 1080px) and (max-width: 1320px){
+    header form{
+      flex-direction: column;
+    }
+
+
+    header ul li{
+      height: 23vh;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+    }
+
+    footer{
+      width: 100%;
+    }
+      
+ }
+
+
+ @media all and (min-width: 200px) and (max-width: 1080px){
+  header nav ul li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  #header h1, #header h2{
+      width: 80%;
+  }
+
+  header nav ul{
+      padding-top: 3rem;
+      display: flex;
+      flex-direction: column;
+  }
+
+  #header li a{
+    display: flex;
+    justify-content: center;
+  }
+
+  #header li{
+    margin-bottom: 2rem;
+  }
+
+  
+  #header .button, #header li, #header nav, #header ul{
+    width: 100%;
+  }
+ 
+ 
+  #header nav{
+    padding: 0rem 4rem 2rem 4rem;
+  }
+  
+  #search footer{
+      padding-top: 2rem;
+  }
+
+  footer{
+      align-items: center;
+      flex-direction: column;
+  }
+ }
+
+
+
+ @media all and (min-width: 200px) and (max-width: 690px){
+  
+  #header li, #header nav, #header ul,  #header .google{
+    width: 100%;
+  }
+
+  #header .button, #header .google .button{
+    width: 80%;
+  }
+
+  #header .google .button{
+   display: flex;
+   justify-content: center;
+  }
+
+
+  #header .google i{
+    padding-right: 2rem;
+  }
+  
+  #header nav, #header .google{
+    padding: 0rem 4rem 2rem 4rem;
+  }
+ 
+          header form{
+              flex-direction: column;                    
+          }
+          #header h1, #header h2{
+              width: 70%;
+          }
+}
+
+
+@media all and (min-width: 200px) and (max-width: 530px){
+
+  #header h1, #header h2{
+      width: 60%;
+  }
+footer.flex{
+  display: none;
+}
+
+#nav.nav i, #nav.nav a, #nav.nav small{
+  color: white;
+  font-size: 3rem;
+}
+
+body.flex #nav{
+  position: fixed;
+  display: flex;
+  margin: 0rem;
+  margin-top: -3rem;
+  padding-top: 2rem;
+  height: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: 0.5s;
+  background: linear-gradient(rgb(56, 52, 52), rgb(0,0,0));
+}
+
+#nav nav{
+  width: 100%;
+}
+
+#add div{
+  justify-content: flex-end;
+}
+
+#add section{
+  padding: 0rem;
+}
+
+#nav #close{
+  overflow: hidden;
+}
+
+section.nav.nav a, section#nav.nav li, .nav i, #close, .close{
+  
+  transition: 0.3s;
+  display: block;
+}
+
+#nav.nav i{
+  font-size: 5rem;
+}
+
+section#nav.nav nav ul{
+  justify-content: space-around;
+  width: 100%;
+}
+
+section#nav.nav small{
+  width: 100%;
+}
+
+#nav small, #nav ul, #nav nav{
+  margin-bottom: 4rem;
+}
+
+section#nav.nav .icons{
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+section#nav.nav nav{
+  justify-content: center;
+}
+
+#home header{
+  padding: 0rem;
+  margin: 0rem;
+}
+
+section#nav.nav{
+  width: 100%;
+}
+
+#menu{
+  position: fixed;
+  padding: 2rem;
+  color: white;
+  font-size: 8rem;
+}
+.menu{
+ 
+  width: 100%;
+  justify-content: flex-end;
+  display: flex !important; 
+}
+
+.close{
+  width: 100%;
+  justify-content: flex-end;
+}
+
+#close{
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  font-size: 8rem;
+  padding: 2rem;
+}
+}
+
+
+/* Home Zoom Out Media Queries
+ ========================================================================== */
+
+
+@media all and (min-width: 1500px) and (max-width: 6200px){
+  body{
+      min-height: 100vh;
+  }
+}
+
+
+
+@media all and (min-width: 2500px) and (max-width: 4200px){
+
+  header h1{
+      font-size: 12rem;
+  }
+
+  header a, header .button, header input, header span, footer i, footer a{
+      font-size: 5rem;
+  }
+
+  footer small{
+      font-size: 3rem;
+  }
+
+  header .search input{
+      height: 8rem;
+  }
+}
+
+
+@media all and (min-width: 4200px) and (max-width: 6200px){
+
+  header h1{
+      font-size: 18rem;
+  }
+
+  header a, header .button, header input, header span, footer i, footer a{
+      font-size: 7rem;
+  }
+
+  footer small{
+      font-size: 5rem;
+  }
+
+  header .search input{
+      height: 10rem;
+  }
+}
+
+
+/* Template Media Queries
+ ========================================================================== */
+ @media all and (min-width: 200px) and (max-width: 980px){
+  #footer{
+    margin-top: 2rem;
+  }
+    }
+
+ @media all and (min-width: 200px) and (max-width: 700px){
+  
+#template .container-alt .right img, #template .guild img{
+width: 100%;
+}
+
+  #template .game h2{
+    margin-bottom: 2rem;
+  }
+
+  #template .game{
+    padding-bottom: 3rem;
+  }
+
+  #template .game div{
+    margin-bottom: 2rem;
+  }
+    }
+
+ @media all and (min-width: 200px) and (max-width: 1080px){
+#template footer, #add footer, #about footer, #comics footer, #contact footer{
+  margin-top: 2rem;
+}   
+
+
+#template div{
+  flex-direction: column;
+  align-items: center;
+}
+
+#template p{
+text-align: center;
+}
+
+#template blockquote{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+#template blockquote, #template p, #template .name, #template .left{
+padding: 0rem;
+margin: 0rem;
+}
+
+#template .name{
+margin-top: 6rem;
+}
+
+#template .name h2{
+margin-bottom: 2rem;
+}
+
+#template{
+padding: 0rem;
+}
+
+
+#template div.left,#template div.right , #template div.game .union, #template div.game .sprite,#template img {
+width: 100%;
+}
+ }
+
+
+ @media all and (min-width: 2300px) and (max-width: 6200px){
+  #template  div img,  #template div.game .union, #template div.game .sprite,#template img {
+      width: 30%;
+  }
+#template  div.right img, #template div.guild img{
+      width: 50%;
+  }
+  #template div.left img{
+      width: 80%;
+  }
+
+  #template p{
+      font-size: 5rem;
+      line-height: 9rem;
+  }
+
+  #template h2{
+      font-size: 7rem;
+  }
+ }
+
+
+
+
+/* Add Media Queries
+ ========================================================================== */
+
+ @media all and (min-width: 200px) and (max-width: 1000px){
+    #add form, #add form div{
+      padding: 0rem;
+    }
+
+    #add form .text{
+      margin-bottom: 2rem;
+    }
+}
+
+@media all and (min-width: 200px) and (max-width: 800px){
+  #add{
+    padding: 0rem;
+    margin: 0rem;
+  }
+
+  #add form button{
+    margin-bottom: 6rem;
+  }
+
+  #add h2{
+    margin-top: 6rem;
+  }
+}
+
+
+
+ @media all and (min-width: 200px) and (max-width: 1680px){
+#add form div.div{
+  flex-direction: column;
+  align-items: center;
+} 
+
+
+#add .add form,  #add form input.button, #add div.div, #add div.div div{
+  width: 100%;
+}
+
+
+#add .add, #add form{
+  padding: 0rem;
+  margin: 0rem;
+}
+
+#add .add #submit{
+  width: 100%;
+}
+
+}
+
+
+@media all and (min-width: 200px) and (max-width: 450px){
+  #add div, #add form{
+      margin: 0rem;
+      padding: 0rem;
+  }
+}
+
+
+@media all and (min-width: 4200px) and (max-width: 6200px){
+  #add h2, #add input{
+      font-size: 7rem;
+  }
+}
+
+
+/* About Media Queries
+ ========================================================================== */
+
+ 
+@media all and (min-width: 200px) and (max-width: 1070px){
+  #about article{
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #about p{
+    text-align: center;
+  }
+}
+
+
+ 
+@media all and (min-width: 200px) and (max-width: 890px){
+  #about .video, #about #video{
+    width:100%
+  }
+  #about .video #play{
+      width:40%
+      }
+
+  }
+
+@media all and (min-width: 600px) and (max-width: 700px){
+#about .logo{
+    width: 100%;
+    padding-bottom: 3rem;
+}
+      }
+
+
+@media all and (min-width: 100px) and (max-width: 600px){
+    #about .logo{
+       display: none;
+    }
+    }
+
+@media all and (min-width: 4200px) and (max-width: 6200px){
+#about p{
+  line-height: 12rem;
+    font-size: 7rem;
+}
+#about .logo{
+  width: 40%;
+}
+
+}
+
+/* Comics Media Queries
+ ========================================================================== */
+@media all and (min-width: 1000px) and (max-width: 1200px){
+  #comics .gallery{
+      height: 80vh;
+  }
+}
+
+
+@media all and (min-width: 200px) and (max-width: 1000px){
+  #comics section.strips ,   #comics .comicStrips article{
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #comics .strips section,  #comics p{
+      width: 100%;
+  }
+
+}
+
+@media all and (min-width: 200px) and (max-width: 800px){
+#comics article{
+  flex-direction: column;
+  align-items: center;
+}
+
+#comics article p{
+  width: 100%;
+}
+}
+
+@media all and (min-width: 650px) and (max-width: 800px){
+
+  #comics .gallery{
+      height: 40vh;
+  }
+
+  #comics .gallery li, #comics .gallery, #comics .gallery img{
+      height: 80vh;
+  }
+}
+
+@media all and (min-width: 250px) and (max-width: 650px){
+#comics, #comics section{
+  padding: 0rem;
+  margin: 0rem;
+}
+
+#comics .comics{
+  display: none;
+}
+}
+
+
+
+
+
+@media all and (min-width: 2200px) and (max-width: 4200px){
+#comics .comics ul.gallery{
+  height: 112vh;
+}
+}
+
+
+@media all and (min-width: 4200px) and (max-width: 6200px){
+ #comics article p{
+  font-size: 6rem;
+  line-height: 12rem;
+ }
+
+ #comics h2{
+  font-size: 10rem;
+ }
+
+ #comics #myCarousel{
+  height: 90vh;
+  width: 100%;
+ }
+ #comics .comics ul.gallery{
+  height: 88vh;
+}
+
+}
+
+
+
+/* Contact and received
+ ========================================================================== */
+
+ @media all and (min-width: 200px) and (max-width: 1000px){
+#contact form input, #contact form textarea{
+  width: 100%;
+}
+#received h2, #received a{
+  width: 80%;
+  text-align: center;
+}
+
+
+ }
+
+
+ @media all and (min-width: 4200px) and (max-width: 6200px){
+#contact section h2, #contact form button,#contact form input, #contact form textarea{
+font-size: 6rem;
+}
+
+#received h2, #received a{
+font-size: 8rem;
+}
+
+ }
+
+
+/* Dashboard Media Queries
+ ========================================================================== */
+ @media all and (min-width: 200px) and (max-width: 1020px){
+ #dashboard table{
+  width: 80%;
+ }
+}
+
+@media all and (min-width: 200px) and (max-width: 650px){
+  #dashboard table tr{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   }
+ }
+
+ /* Dashboard Media Queries
+ ========================================================================== */
+
+ @media all and (min-width: 200px) and (max-width: 1090px){
+#show{
+flex-direction: column;
+align-items: center;
+}
+
+#show div.column{
+width: 70%;
+}
+
+#show div p{
+text-align: center;
+}
+ }
+
+
+
+ @media all and (min-width: 200px) and (max-width: 800px){
+  #show div.column{
+   width: 90%;
+  }
+    }

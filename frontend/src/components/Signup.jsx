@@ -55,9 +55,14 @@ const Signup = () => {
     });
 
     return(
-    <button onClick = {()=>handleSignUp()}>
-        SignUp With Existing Google Account
-    </button>
+      <a href = "/" 
+      className = "button" 
+      onClick = {(e)=>{
+        e.preventDefault();
+        handleSignUp()}}>
+      <i className = "fab fa-google left"></i> SignUp
+      </a> 
+
     )
 
 }

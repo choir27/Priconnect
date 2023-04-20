@@ -32,10 +32,14 @@ const Login = () => {
     });
 
   return (
-        <button onClick = {()=>handleLogin()}>
-        Login With Existing Google Account
-        </button>  
-    )
+      <a href = "/" 
+      className = "button" 
+      onClick = {(e)=>{
+        e.preventDefault();
+        handleLogin()}}>
+      <i className = "fab fa-google left"></i> Login
+      </a> 
+      )
 }
 
 export default Login

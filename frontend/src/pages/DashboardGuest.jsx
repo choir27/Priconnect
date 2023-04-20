@@ -1,7 +1,7 @@
-import Header from "../components/Header"
 import {useCallback, useState, useEffect, useMemo} from "react"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import HeaderGuest from "../components/HeaderGuest"
 
 const DashboardGuest = () => {
 
@@ -24,9 +24,9 @@ const DashboardGuest = () => {
 
   useEffect(()=>{fetchData()},[fetchData]);
 
-  const viewDrawing = useCallback((id) => {
+  const viewPost = useCallback((id) => {
     localStorage.setItem("postId", id);
-    navigate("/drawing");
+    navigate("/viewPost");
   },[navigate]);
 
   const renderPosts = useCallback(()=>{
@@ -38,23 +38,21 @@ const DashboardGuest = () => {
     };
 
     const listOfPosts = [];
-    posts.forEach(drawing=>{
-      const usersName = userMap.get(drawing.user);
+    posts.forEach(post=>{
+      const usersName = userMap.get(post.user);
       if(usersName){
         listOfPosts.push(
-          <section key = {drawing._id} className="post column alignItems flex">
-            <h2>{drawing.title}</h2><h4>By: {usersName.displayName}</h4>
-
-            <div className = "flex">
-              <section>
-              <i className="fa-solid fa-thumbs-up"><span>{drawing.likes}</span></i>
+          <section key = {post._id} className="column alignItems flex post">
+            <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
+              <section className = "flex icons justifyContent">
+              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
+              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
               </section>
-              <section>
-              <i className="fa-solid fa-comment"><span>{drawing.comments.length}</span></i>
-              </section>
-            </div>
 
-            <img src = {drawing.post} alt = {`Drawing of ${drawing.title}`}  onClick = {()=>viewDrawing(drawing._id)}/>
+              <a href = "/" onClick = {(e)=>{
+                e.preventDefault();
+                viewPost(post._id)}}>See Post</a>
+            <img src = {post.post} alt = {`Post Of ${post.title}`} onClick = {()=>viewPost(post._id)}/>
        
           </section>
         );
@@ -63,15 +61,15 @@ const DashboardGuest = () => {
 
     return listOfPosts;
   }
-  },[posts, users, viewDrawing]);
+  },[posts, users, viewPost]);
 
   useMemo(()=>{setTable(renderPosts())}, [renderPosts]);
 
   return (
-    <main>
-    <Header/>
-    <h1>Dashboard</h1>
-    <section id = "table" className = "flex">
+    <main className = "flex column justifyContent">
+    <h1 className = "justifyContent flex">Dashboard</h1>
+    <HeaderGuest className = {"pages"}/>
+    <section className = "flex index" id = "show">
       {table}
     </section>
     </main>

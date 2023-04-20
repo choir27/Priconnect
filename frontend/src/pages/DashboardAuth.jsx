@@ -1,4 +1,3 @@
-import HeaderAuth from "../components/HeaderAuth"
 import {useCallback, useState, useEffect, useMemo} from "react"
 import {useNavigate} from "react-router-dom"
 import axios from "axios"
@@ -49,34 +48,34 @@ const DashboardAuth = () => {
     };
 
     const listOfPosts = [];
-    posts.forEach(drawing=>{
-      const usersName = userMap.get(drawing.user);
+    posts.forEach(post=>{
+      const usersName = userMap.get(post.user);
       if(usersName){
         listOfPosts.push(
-          <section key = {drawing._id} className="post column alignItems flex">
-            <h2>{drawing.title}</h2><h4>By: {usersName.displayName}</h4>
+          <section key = {post._id} className="post column alignItems flex">
+            <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
 
             <div className = "flex">
               <section>
-              <i className="fa-solid fa-thumbs-up"><span>{drawing.likes}</span></i>
+              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
               </section>
               <section>
-              <i className="fa-solid fa-comment"><span>{drawing.comments.length}</span></i>
+              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
               </section>
             </div>
 
             <div className = "flex justifyContent icons">
-              {drawing.user === localStorage.getItem("id") ?
+              {post.user === localStorage.getItem("id") ?
                 <button className = "fa-solid fa-trash"
                 onClick = {(e)=>{
                 e.preventDefault();
-                handleDelete(drawing._id)}}></button>: "" }
+                handleDelete(post._id)}}></button>: "" }
 
-              {drawing.user === localStorage.getItem("id") ?
-            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(drawing._id)}></button> : "" }
+              {post.user === localStorage.getItem("id") ?
+            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(post._id)}></button> : "" }
             </div>
 
-            <img src = {drawing.post} alt = {`Drawing of ${drawing.title}`}/>
+            <img src = {post.post} alt = {`Post of ${post.title}`}/>
        
           </section>
         );
@@ -91,7 +90,6 @@ const DashboardAuth = () => {
 
   return (
     <main>
-    <HeaderAuth/>
     <h1>Dashboard</h1>
     <section id = "table" className = "flex">
       {table}

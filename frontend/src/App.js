@@ -13,7 +13,9 @@ function App() {
   const Account = lazy(()=>import("./pages/Account"));
   const Post = lazy(()=>import("./pages/Post"));
   const EditPost = lazy(()=>import("./pages/EditPost"));
-  const Drawing = lazy(()=>import("./pages/Drawing"));
+  const ViewPost = lazy(()=>import("./pages/ViewPost"));
+  const About = lazy(()=>import("./pages/About"));
+  const Comics = lazy(()=>import("./pages/Comics"));
 
     return(
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
@@ -22,7 +24,10 @@ function App() {
               <Routes>
                 <Route exact path = "/" element = {<Home/>}/>
                 <Route path = "/dashboard" element = {<Dashboard/>}/>
-                <Route path = "/drawing" element = {<Drawing/>}/>
+                <Route path = "/viewPost" element = {<ViewPost/>}/>
+                <Route path = "/comics" element = {<Comics/>}/>
+                <Route path = "/about" element = {<About/>}/>
+
                 <Route element={<PrivateRoutes />}>
                   <Route path = "/editPost" element = {<EditPost/>}/>
                   <Route path = "/post" element = {<Post/>}/>

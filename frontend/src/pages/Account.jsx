@@ -1,4 +1,3 @@
-import HeaderAuth from "../components/HeaderAuth"
 import axios from "axios"
 import {useState, useMemo, useCallback} from "react"
 import {useNavigate} from "react-router-dom"
@@ -36,29 +35,29 @@ const Account = () => {
   const renderPosts = useCallback(()=>{
     if(listOfPosts){
       const postArray = [];
-      listOfPosts.forEach(drawing=>{
-        if(drawing.user === localStorage.getItem("id")){
+      listOfPosts.forEach(post=>{
+        if(post.user === localStorage.getItem("id")){
           postArray.push(
-            <section key = {drawing._id} className="post column alignItems flex">
-            <h2>{drawing.title}</h2>
+            <section key = {post._id} className="post column alignItems flex">
+            <h2>{post.title}</h2>
 
             <div className = "flex">
               <section>
-              <i className="fa-solid fa-thumbs-up"><span>{drawing.likes}</span></i>
+              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
               </section>
               <section>
-              <i className="fa-solid fa-comment"><span>{drawing.comments.length}</span></i>
+              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
               </section>
             </div>
 
             <div className = "flex justifyContent icons">
             <button className = "fa-solid fa-trash" onClick = {(e)=>{
                 e.preventDefault();
-                handleDelete(drawing._id)}}></button>
-            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(drawing._id)}></button>
+                handleDelete(post._id)}}></button>
+            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(post._id)}></button>
             </div>
 
-            <img src = {drawing.post} alt = {`Drawing of ${drawing.title}`}/>
+            <img src = {post.post} alt = {`Post of ${post.title}`}/>
        
           </section>
           );
@@ -72,7 +71,6 @@ const Account = () => {
 
   return (
     <main>
-    <HeaderAuth/>
     <h1>Account</h1>
     <section id = "table" className = "flex">
       {posts}
