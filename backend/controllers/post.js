@@ -12,9 +12,11 @@ module.exports = {
             const post = await Post.create({
                 title: req.body.title,
                 post: result.secure_url,
+                description: req.body.description,
                 fileName: req.body.fileName,
                 cloudinaryId: result.public_id,
                 user: req.body.user,
+                displayName: req.body.displayName,
                 comments: [],
                 likes: 0
             });

@@ -7,6 +7,17 @@ const PostSchema = new mongoose.Schema({
     post:{
         type: String
     },
+    description:{
+        type: String
+    },
+    displayName:{
+        type: String
+    },
+    status: {
+        type: String,
+        default: 'public',
+        enum: ['public', 'private']
+    },
     fileName:{
         type: String  
     },

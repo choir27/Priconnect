@@ -8,6 +8,8 @@ const Post = () => {
 
   const [post, setPost] = useState("");
   const [title, setTitle] = useState("");
+  const [status, setStatus] = useState("");
+  const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const Post = () => {
     try{
       e.preventDefault();
 
-      const TITLE_REGEX = /^[a-zA-Z]*$/;
+      const TITLE_REGEX = /^[a-zA-Z\s]*$/;
 
       const checkTitle = TITLE_REGEX.test(title);
 
@@ -34,12 +36,16 @@ const Post = () => {
         return;
       }
 
+      const {data: userData} = await axios.get("http://localhost:8000/api/users");
+
       const formData = new FormData();
       formData.append("file", post);
       formData.append("fileName", post.name);
       formData.append("title", title);
+      formData.append("status", status);
+      formData.append("description", description);
       formData.append("user", localStorage.getItem("id"));
-
+      formData.append("displayName", userData.displayName);
       await axios.post("http://localhost:8000/post", formData)
         .then(res=>{
           console.log(res);
@@ -50,7 +56,7 @@ const Post = () => {
       console.error(err);
     }
 
-  },[title, post, navigate]);
+  },[title, post, navigate, status, description]);
 
   return (
     <main className = "flex column">
@@ -65,7 +71,7 @@ const Post = () => {
     <section>
     <h2>Add</h2>
 
-    <label className = "button" htmlFor="file">Choose File</label>
+    <label className = "button" htmlFor="file">{post? post.name : "Choose File"}</label>
         <input
           id="file"
           name="file"
@@ -77,19 +83,19 @@ const Post = () => {
     </section>
         <section>
            <h2>Status</h2>
-                <select id="status" name="status" class = 'button'>
-                    <option value="public" selected>Public</option>
+                <select name="status" className = 'button' onChange = {(e)=>setStatus(e.target.value)}>
+                    <option value="public" defaultValue = "public">Public</option>
                     <option value="private">Private</option>
                 </select>
         </section>
     </section>
 
     <section className = "flex justifyContent">
-      <input  spellcheck = {true} className = "input" type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your artwork/post a title here"/>
+      <input spellCheck = {true} className = "input" type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your artwork/post a title here"/>
     </section>
 
     <section className = "flex justifyContent textarea">
-      <textarea spellcheck = {true} wrap = "hard" className = "input" type = "text" name = "description" placeholder = "Put description of your post here!"/>
+      <textarea spellCheck = {true} wrap = "hard" className = "input" type = "text" name = "description" placeholder = "Put description of your post here!" onChange={(e)=>setDescription(e.target.value)}/>
     </section>
 
     <section className = "flex submit">

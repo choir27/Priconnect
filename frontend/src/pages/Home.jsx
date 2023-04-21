@@ -2,8 +2,6 @@
   import HeaderAuth from "../components/HeaderAuth"
 
   const Home = () => {
-
-
    
     return (
       <main className = "flex column justifyContent">

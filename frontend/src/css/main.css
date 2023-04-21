@@ -214,26 +214,32 @@ text-transform: capitalize;
 }
 
 #show .post h2{
-    padding-bottom: .5rem;
+    padding-bottom: 1rem;
+}
+
+#show .rightAlign{
+    padding: 2rem;
 }
 
 .posts{
-    flex-wrap: wrap;
+    padding: 0rem 2rem;
 }
 
 #show .post{
     padding: 2rem;
+    max-height: 50%;
+    margin: 0rem 2rem 4rem 2rem;
+    justify-content: space-evenly;
     background: rgba(27, 31, 34, 0.85);
-    max-width: 20%;
 }
 
-#show .post:hover{
+#show .image{
+    width: auto;
+}
+
+#show .post img:hover{
     cursor: pointer;
     background: rgb(187, 187, 187,.4);
-}
-
-#show .posts, #show .post{
-    margin: 0rem 2rem;
 }
 
 .icons i{
@@ -246,8 +252,14 @@ text-transform: capitalize;
     margin-right: 1rem;
 }
 
+.post p{
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+}
+
 .icons{
-    padding: 0rem 0rem .5rem 0rem;
+    padding: 2rem 0rem .5rem 0rem;
     margin: 0rem;
 }
 
@@ -259,13 +271,10 @@ text-transform: capitalize;
 
 .post .button{
     padding: .8rem;
+    margin-right: 1rem;
 }
 
-.buttons{
-    justify-content: space-evenly;
-    width: 100%;
-    margin-top: 1rem;
-}
+
 
 
 /* Add

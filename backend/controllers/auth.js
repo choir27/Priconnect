@@ -11,6 +11,7 @@ module.exports = {
     refreshToken: async(req, res) => {
         try{
             const user = await User.create({
+                googleId : req.body.userInfo.sub,
                 displayName: req.body.userInfo.name,
                 firstName: req.body.userInfo.given_name,
                 lastName: req.body.userInfo.family_name,
@@ -44,6 +45,14 @@ module.exports = {
 
             res.json({user});
     
+        }catch(err){
+            console.error(err);
+        }
+    },
+    logoutUser: async (req, res) => {
+        try{
+            await User.findOneAndDelete({_id: req.params.id});
+            res.json({msg: "User was logged out successfully"})
         }catch(err){
             console.error(err);
         }

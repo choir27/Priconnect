@@ -1,6 +1,6 @@
 import {useCallback, useState, useEffect, useMemo} from "react"
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 import HeaderGuest from "../components/HeaderGuest"
 
 const DashboardGuest = () => {
@@ -24,6 +24,14 @@ const DashboardGuest = () => {
 
   useEffect(()=>{fetchData()},[fetchData]);
 
+  const trim = (string) => {
+    if(string.length > 150){
+      return string.substring(0,152) + "..."
+    }else{
+      return string
+    }
+  }
+
   const viewPost = useCallback((id) => {
     localStorage.setItem("postId", id);
     navigate("/viewPost");
@@ -40,18 +48,39 @@ const DashboardGuest = () => {
     const listOfPosts = [];
     posts.forEach(post=>{
       const usersName = userMap.get(post.user);
-      if(usersName){
+      if(usersName && post.status === "public"){
         listOfPosts.push(
-          <section key = {post._id} className="column alignItems flex post">
-            <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
-
-              <section className = "icons flex">
-              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
-              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
+            <section key = {post._id} className="post flex">
+  
+            <div className = "image">
+            <img src = {post.post} alt = {`Post of ${post.title}`}  onClick = {()=>viewPost(post._id)}/>
+  
+            </div>
+              
+              <section className = "rightAlign">
+              <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
+              <div className = "icons flex">
+                <section>
+                <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
+                </section>
+                <section>
+                <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
+                </section>
+  
+              </div>
+  
+  
+              <div className = "flex buttons">
+                  <p>{trim(post.description)}</p>
+              </div>
+  
+              <Link to = "/" 
+              className = "button"
+              onClick = {(e)=>{e.preventDefault()
+              viewPost();
+              }}>View Post</Link>
               </section>
-            <img src = {post.post} alt = {`Post Of ${post.title}`} onClick = {()=>viewPost(post._id)}/>
-       
-          </section>
+            </section>
         );
       };
     });
@@ -67,7 +96,7 @@ const DashboardGuest = () => {
     <HeaderGuest className = {"pages"}/>
     <h1 className = "justifyContent flex">Dashboard</h1>
     <h2 className = "justifyContent flex">Click the post to view it!</h2>
-    <section className = "posts flex">
+    <section className = "posts flex alignItems column">
 
       {listOfPosts}
     </section>
