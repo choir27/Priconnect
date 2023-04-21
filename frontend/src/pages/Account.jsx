@@ -1,4 +1,5 @@
 import axios from "axios"
+import HeaderAuth from "../components/HeaderAuth"
 import {useState, useMemo, useCallback} from "react"
 import {useNavigate} from "react-router-dom"
 
@@ -38,28 +39,27 @@ const Account = () => {
       listOfPosts.forEach(post=>{
         if(post.user === localStorage.getItem("id")){
           postArray.push(
-            <section key = {post._id} className="post column alignItems flex">
-            <h2>{post.title}</h2>
+            <tr key = {post._id}>
+               <td className = "tableImage">
+            <img src = {post.post} alt = {`Post of ${post.title}`}/>
+            </td>
 
-            <div className = "flex">
-              <section>
-              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
-              </section>
-              <section>
-              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
-              </section>
-            </div>
+            <td>{post.title}</td>
 
-            <div className = "flex justifyContent icons">
-            <button className = "fa-solid fa-trash" onClick = {(e)=>{
+            <td className = "icons buttons">
+              <i className="fa-solid fa-thumbs-up button"><span>{post.likes}</span></i>
+              <i className="fa-solid fa-comment button"><span>{post.comments.length}</span></i>
+            </td>
+
+            <td className = "buttons">
+            <button className = "fa-solid fa-trash button" onClick = {(e)=>{
                 e.preventDefault();
                 handleDelete(post._id)}}></button>
-            <button className = "fa-solid fa-pen-to-square" onClick = {()=>handleEdit(post._id)}></button>
-            </div>
+            <button className = "fa-solid fa-pen-to-square button" onClick = {()=>handleEdit(post._id)}></button>
+            </td>
 
-            <img src = {post.post} alt = {`Post of ${post.title}`}/>
-       
-          </section>
+           
+          </tr>
           );
         };
       });
@@ -70,11 +70,26 @@ const Account = () => {
   useMemo(()=>{setPosts(renderPosts())},[renderPosts]);
 
   return (
-    <main>
-    <h1>Account</h1>
-    <section id = "table" className = "flex">
+    <main className = "flex column justifyContent" id = "dashboard">
+      <HeaderAuth className = {"pages"}/>
+      <h1 className = "justifyContent flex">Welcome to Your Account</h1>
+      <div className = "table-wrapper">
+    <table>
+
+      <thead>
+        <tr>
+        <th>Image</th>
+        <th>Post Title</th>
+        <th>Like/Comment</th>
+        <th>Edit/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
       {posts}
-    </section>
+
+      </tbody>
+    </table>
+    </div>
     </main>
   )
 }

@@ -1,6 +1,6 @@
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
-import {useCallback, useState} from "react"
+import {useCallback, useState, useEffect} from "react"
 import {toast} from "react-toastify"
 import HeaderAuth from "../components/HeaderAuth"
 
@@ -13,6 +13,10 @@ const Post = () => {
 
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    setStatus("public");
+  },[]);
+
   const handleSubmit = useCallback(async(e) => {
     try{
       e.preventDefault();
@@ -21,7 +25,7 @@ const Post = () => {
 
       const checkTitle = TITLE_REGEX.test(title);
 
-      if(!post || !title){
+      if(!post || !title || !description || !status){
         toast.error("No Input Detected, Please Try Again!");
         return;
       }
@@ -31,12 +35,14 @@ const Post = () => {
         return;
       }
 
-      if(!post.type.includes("png") && !post.type.includes("jpg") && !post.type.includes("jpeg") && !post.type.includes("webp")){
+      if(!post.type.includes("gif") && !post.type.includes("png") && !post.type.includes("jpg") && !post.type.includes("jpeg") && !post.type.includes("webp")){
         toast.error("Please Input A Picture File");
         return;
       }
 
-      const {data: userData} = await axios.get("http://localhost:8000/api/users");
+      const [usersResponse] = await Promise.all([
+        axios.get("http://localhost:8000/api/users"),
+      ]);
 
       const formData = new FormData();
       formData.append("file", post);
@@ -45,7 +51,7 @@ const Post = () => {
       formData.append("status", status);
       formData.append("description", description);
       formData.append("user", localStorage.getItem("id"));
-      formData.append("displayName", userData.displayName);
+      formData.append("displayName", usersResponse.data[0].displayName);
       await axios.post("http://localhost:8000/post", formData)
         .then(res=>{
           console.log(res);
@@ -91,11 +97,11 @@ const Post = () => {
     </section>
 
     <section className = "flex justifyContent">
-      <input spellCheck = {true} className = "input" type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your artwork/post a title here"/>
+      <input spellCheck = {true} className = "input" type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)} placeholder = "Give your post a title here"/>
     </section>
 
     <section className = "flex justifyContent textarea">
-      <textarea spellCheck = {true} wrap = "hard" className = "input" type = "text" name = "description" placeholder = "Put description of your post here!" onChange={(e)=>setDescription(e.target.value)}/>
+      <textarea spellCheck = {true} wrap = "hard" type = "text" name = "description" placeholder = "Put description of your post here!" onChange={(e)=>setDescription(e.target.value)}/>
     </section>
 
     <section className = "flex submit">

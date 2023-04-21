@@ -18,10 +18,14 @@ const upload = multer({
     }
 });
 
+router.put("/addLike/:id", mainController.addLike);
+
 router.post("/post", upload.single("file"), mainController.createPost);
 
 router.delete("/deletePost/:id", mainController.deletePost);
 
 router.put("/editPost/:id", upload.single("file"), mainController.editPost);
+
+router.put("/addComment/:id", mainController.addComment);
 
 module.exports = router;

@@ -1,33 +1,13 @@
-import {useCallback, useState, useEffect, useMemo} from "react"
-import {useNavigate, Link} from "react-router-dom"
-import axios from "axios"
-import HeaderAuth from "../components/HeaderAuth"
+import HeaderAuth from "../components/HeaderAuth";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
-const DashboardAuth = () => {
+const renderPosts = (posts, users, viewPost, updatePostLikes) => {
 
-  const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [table, setTable] = useState([]);
-  const navigate = useNavigate();
-
-  const fetchData = useCallback(async()=>{
+  const handleDelete = async(e,id)=>{
     try{
-      const {data: postData} = await axios.get("http://localhost:8000/api/posts");
-      const {data: userData} = await axios.get("http://localhost:8000/api/users");
-      setPosts(postData);
-      setUsers(userData);
-    }catch(err){
-      console.error(err);
-    }
-  },[]);
-
-  const handleEdit = useCallback(async(id)=>{
-    localStorage.setItem("postId", id);
-    navigate("/editPost");
-  },[navigate]);
-
-  const handleDelete = useCallback(async(id)=>{
-    try{
+      e.preventDefault();
       axios.delete(`http://localhost:8000/deletePost/${id}`)
         .then(res=>{
           console.log(res);
@@ -36,128 +16,129 @@ const DashboardAuth = () => {
     }catch(err){
       console.error(err);
     }
-  },[]);
+  };
 
-  useEffect(()=>{fetchData()},[fetchData]);
 
-  const viewPost = useCallback((id) => {
-    localStorage.setItem("postId", id);
-    navigate("/viewPost");
-  },[navigate]);
-
-  const trim = (string) => {
-    if(string.length > 150){
-      return string.substring(0,152) + "..."
-    }else{
-      return string
-    }
+  const userMap = new Map();
+  for (const user of users) {
+    userMap.set(user.googleId, user);
   }
 
-  const renderPosts = useCallback(()=>{
-    if(posts.length && users.length){
+  return posts.map((post) => {
+    const user = userMap.get(post.user);
+    const isCurrentUserPost = localStorage.getItem("id") === post.user;
+    const isPostPublic = post.status === "public";
 
-    const userMap = new Map();
-    for(const account of users){
-      userMap.set(account.googleId, account);
-    };
-    
-
-    const listOfPosts = [];
-    posts.forEach(post=>{
-      const usersName = userMap.get(post.user);
-        if(usersName && localStorage.getItem("id") === post.user){
-        listOfPosts.push(
-          <section key = {post._id} className="post flex">
-
-        
-<div className = "image">
-          <img src = {post.post} alt = {`Post of ${post.title}`}  onClick = {()=>viewPost(post._id)}/>
+    return (
+      <section key={post._id} className="post flex">
+        <div className="image">
+          <img src={post.post} alt={`Post of ${post.title}`} onClick={() => viewPost(post._id)} />
+        </div>
+        <section className="rightAlign">
+          <h2>{post.title}</h2>
+          {user && <h4>By: {user.displayName}</h4>}
+          <div className="icons flex">
+            <button className="button" onClick={(e) => handleLike(e, post, updatePostLikes)}>
+              <i className="fa-solid fa-thumbs-up">
+                <span>{post.likes}</span>
+              </i>
+            </button>
+            <Link to = "/comments" className="button" onClick = {()=>localStorage.setItem("postId",post._id)}>
+              <i className="fa-solid fa-comment">
+                <span>{post.comments.length}</span>
+              </i>
+            </Link>
+            {isCurrentUserPost && (
+              <>
+                <button className="fa-solid fa-trash button" onClick={(e) => handleDelete(e, post._id)}></button>
+                <Link to = "/editPost" className="fa-solid fa-pen-to-square button" onClick={() => localStorage.setItem("postId", post._id)}></Link>
+              </>
+            )}
           </div>
-
-            <section className = "rightAlign">
-            <h2>{post.title}</h2><h4>By: {usersName.displayName}</h4>
-            <div className = "icons flex">
-              <section>
-              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
-              </section>
-              <section>
-              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
-              </section>
-
-                <button className = "fa-solid fa-trash button"
-                onClick = {(e)=>{
-                e.preventDefault();
-                handleDelete(post._id)}}></button>
-
-            <button className = "fa-solid fa-pen-to-square button" 
-            onClick = {()=>handleEdit(post._id)}></button>
-            </div>
-
-
-            <div className = "flex buttons">
-                <p>{trim(post.description)}</p>
-            </div>
-
-            <Link to = "/" 
-            className = "button"
-            onClick = {(e)=>{e.preventDefault()
-            viewPost();
-            }}>View Post</Link>
-            </section>
-          </section>
-        );
-      }else if(post.status === "public"){
-        listOfPosts.push(
-          <section key = {post._id} className="post flex">
-
-          <div className = "image">
-          <img src = {post.post} alt = {`Post of ${post.title}`}  onClick = {()=>viewPost(post._id)}/>
-
+          <div className="flex buttons">
+            <p>{trim(post.description)}</p>
           </div>
-            
-            <section className = "rightAlign">
-            <div className = "icons flex">
-              <section>
-              <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
-              </section>
-              <section>
-              <i className="fa-solid fa-comment"><span>{post.comments.length}</span></i>
-              </section>
+          <Link to="/viewPost" className="button" onClick={() =>localStorage.setItem("postId", post._id)}>
+            View Post
+          </Link>
+        </section>
+      </section>
+    );
+  });
+};
 
-            </div>
+const handleLike = async (event, post, updatePostLikes) => {
+  event.preventDefault();
+  const postId = post._id;
+  const newLikesCount = post.likes + 1;
 
-
-            <div className = "flex buttons">
-                <p>{trim(post.description)}</p>
-            </div>
-
-            <Link to = "/" 
-            className = "button"
-            onClick = {(e)=>{e.preventDefault()
-            viewPost();
-            }}>View Post</Link>
-            </section>
-          </section>
-        );
-      };
+  try {
+    const response = await axios.put(`http://localhost:8000/addLike/${postId}`, {
+      likes: newLikesCount,
     });
-
-    return listOfPosts;
+    const updatedPost = response.data;
+    updatePostLikes(updatedPost);
+  } catch (error) {
+    console.error(error);
   }
-  },[posts, users, handleEdit, handleDelete, viewPost]);
+};
 
-  useMemo(()=>{setTable(renderPosts())}, [renderPosts]);
 
+
+const trim = (description) => {
+  const maxLength = 100;
+  return description.length > maxLength ? `${description.slice(0, maxLength)}...` : description;
+};
+
+const DashboardAuth = ({viewPost }) => {
+  const [postLikes, setPostLikes] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const fetchData = useCallback(async () => {
+    const [postsResponse, usersResponse] = await Promise.all([
+      axios.get("http://localhost:8000/api/posts"),
+      axios.get("http://localhost:8000/api/users"),
+    ]);
+    setPosts(postsResponse.data);
+    setUsers(usersResponse.data);
+  },[setPosts, setUsers]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+  
+  useEffect(()=>{
+  const likesMap = new Map();
+  for (const post of posts) {
+  likesMap.set(post._id, post.likes);
+  }
+  setPostLikes(likesMap);
+  }, [posts]);
+
+  
+  const updatePostLikes = (updatedPost) => {
+  const newPostLikes = new Map(postLikes);
+  newPostLikes.set(updatedPost._id, updatedPost.likes);
+  setPostLikes(newPostLikes);
+  };
+  
+  const sortedPosts = useMemo(() => {
+  return [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }, [posts]);
+  
   return (
-    <main className = "flex column justifyContent" id = "show">
-    <HeaderAuth className = {"pages"}/>
-    <h1 className = "justifyContent flex">Dashboard</h1>
-    <h2 className = "justifyContent flex">Click the image/link to view the post!</h2>
-    <section className = "posts flex alignItems column">
-      {table}
-    </section>
-    </main>
-  )
-}
+  <main className = "flex column justifyContent" id = "show">
+  <HeaderAuth className = {"pages"}/>
+  <h1 className = "justifyContent flex">Dashboard</h1>
+  <h2 className = "justifyContent flex">Click the image/link to view the post!</h2>
+  <section className = "posts flex alignItems column">
 
-export default DashboardAuth
+  {renderPosts(sortedPosts, users, viewPost, updatePostLikes)}
+  </section>
+
+  </main>
+  );
+  };
+  
+  export default DashboardAuth;

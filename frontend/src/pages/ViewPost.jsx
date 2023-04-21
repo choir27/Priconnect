@@ -1,20 +1,21 @@
 import axios from "axios"
+import HeaderAuth from "../components/HeaderAuth"
 import {useMemo, useCallback, useState} from "react"
 import moment from "moment"
 
 const ViewPost = () => {
 
-    const [users, setUsers] = useState([]);
     const [listOfPosts, setListOfPosts] = useState([]);
     const [post, setPost] = useState({});
-    const [userOfPost, setUserOfPost] = useState({});
 
-    const fetchData = useCallback(async() => {
-        const {data: postData} = await axios.get("http://localhost:3000/api/posts");
-        const {data: userData} = await axios.get("http://localhost:3000/api/users");
-        setUsers(userData);
-        setListOfPosts(postData);
-    },[]);
+    const fetchData = useCallback(async () => {
+        const [postsResponse] = await Promise.all([
+          axios.get("http://localhost:8000/api/posts"),
+        ]);
+        setListOfPosts(postsResponse.data);
+      },[setListOfPosts]);
+    
+
 
     useMemo(()=>fetchData(),[fetchData]);
 
@@ -24,19 +25,14 @@ const ViewPost = () => {
         }
     },[listOfPosts]);
 
-    useMemo(()=>{
-        if(users && post){
-        setUserOfPost(users.find(account=>account._id === post.user));
-        };
-    },[users, post]);
-    
     return (
         <>
-        {post && users && listOfPosts && userOfPost ? 
+        {post && listOfPosts ? 
         <main className = "flex justifyContent column alignItems">
+            <HeaderAuth className = {"pages"}/>
             <section className = "post column alignItems flex" id = "post">
             <h1>{post.title}</h1>
-            <h3>Posted By {userOfPost.displayName}</h3>
+            <h3>Posted By {post.displayName}</h3>
             <span>Posted At {moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>
             <div className = "flex justifyContent" id = "icons">
             <section>
