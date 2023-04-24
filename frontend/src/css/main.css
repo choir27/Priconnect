@@ -422,7 +422,7 @@ text-transform: capitalize;
     text-align: center;
 }
 
-#comments span{
+#comments .viewPost span{
     margin-left: 2rem;
 }
 
@@ -459,4 +459,47 @@ text-transform: capitalize;
     padding: 1rem;
     width: 100%;
     border: 1px solid white;
+}
+
+#comments .comments{
+    justify-content: space-between;
+    background: rgba(101, 110, 117, 0.45);
+    margin-bottom: 2rem;
+    padding: 1rem;
+    width: 60%;
+}
+
+#comments .user{
+    font-size: .8rem;
+}
+
+#comments .text{
+    padding: .8rem;
+    margin-top: .8rem;
+    border-radius: 5px;
+    overflow: auto;
+    background:rgba(163, 174, 182, 0.45)
+}
+
+#comments h6{
+    font-size: 1rem;
+}
+
+#comments .comments li{
+    line-height: 1.5rem;
+}
+
+#comments .info{
+    width: 100%;
+    padding: .5rem;
+}
+
+#comments .icons li{
+    font-size: 1rem;
+    width: 5rem;
+    padding: .5rem;
+}
+
+#comments .icons span{
+    margin-left: 1rem;
 }

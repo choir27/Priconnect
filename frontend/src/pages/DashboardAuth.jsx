@@ -18,18 +18,19 @@ const renderPosts = (posts, users, viewPost, updatePostLikes) => {
     }
   };
 
-
   const userMap = new Map();
   for (const user of users) {
     userMap.set(user.googleId, user);
   }
 
-  return posts.map((post) => {
+    const array = [];
+    if(posts){
+  posts.forEach((post) => {
+    if(post.comments.length){
     const user = userMap.get(post.user);
     const isCurrentUserPost = localStorage.getItem("id") === post.user;
-    const isPostPublic = post.status === "public";
-
-    return (
+    // const isPostPublic = post.status === "public";
+    array.push(
       <section key={post._id} className="post flex">
         <div className="image">
           <img src={post.post} alt={`Post of ${post.title}`} onClick={() => viewPost(post._id)} />
@@ -64,8 +65,12 @@ const renderPosts = (posts, users, viewPost, updatePostLikes) => {
         </section>
       </section>
     );
+            }
   });
-};
+}
+
+  return array;
+}
 
 const handleLike = async (event, post, updatePostLikes) => {
   event.preventDefault();
@@ -94,6 +99,7 @@ const DashboardAuth = ({viewPost }) => {
   const [postLikes, setPostLikes] = useState({});
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [dashboard, setDashboard] = useState([]);
 
   const fetchData = useCallback(async () => {
     const [postsResponse, usersResponse] = await Promise.all([
@@ -116,16 +122,22 @@ const DashboardAuth = ({viewPost }) => {
   setPostLikes(likesMap);
   }, [posts]);
 
-  
-  const updatePostLikes = (updatedPost) => {
-  const newPostLikes = new Map(postLikes);
-  newPostLikes.set(updatedPost._id, updatedPost.likes);
-  setPostLikes(newPostLikes);
-  };
-  
+
   const sortedPosts = useMemo(() => {
   return [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   }, [posts]);
+
+  useEffect(()=>{
+
+    const updatePostLikes = (updatedPost) => {
+      const newPostLikes = new Map(postLikes);
+      newPostLikes.set(updatedPost._id, updatedPost.likes);
+      setPostLikes(newPostLikes);
+      };
+
+    setDashboard(renderPosts(sortedPosts, users, viewPost, updatePostLikes))
+  },[sortedPosts, users, viewPost, postLikes]);
+      
   
   return (
   <main className = "flex column justifyContent" id = "show">
@@ -134,7 +146,7 @@ const DashboardAuth = ({viewPost }) => {
   <h2 className = "justifyContent flex">Click the image/link to view the post!</h2>
   <section className = "posts flex alignItems column">
 
-  {renderPosts(sortedPosts, users, viewPost, updatePostLikes)}
+  {dashboard}
   </section>
 
   </main>

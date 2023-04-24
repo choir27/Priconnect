@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const Comment = require("../models/Comment");
 const cloudinary = require("../middleware/cloudinary.js");
 
 module.exports = {
@@ -105,25 +106,24 @@ module.exports = {
     },
     addComment: async (req,res)=> {
         try{
-            const post= await Post.findById({_id: req.params.id});
-            const data = post.comments
+            await Comment.create({
+                comments: req.body.comments,
+                email : req.body.email, 
+                displayName: req.body.displayName, 
+                postId: req.params.id,
+                user: req.body.user,
+                likes: 0, 
+                replies: []
+            })
 
-            data.push(req.body.comments);            
-
-            await Post.findByIdAndUpdate(
-                {_id: req.params.id},
-                {
-                    title: post.title,
-                    post: post.post,
-                    description: post.description,
-                    fileName: post.fileName,
-                    cloudinaryId: post.cloudinaryId,
-                    user: post.user,
-                    displayName: post.displayName,
-                    comments: data,
-                    likes: post.likes
-                }
-            )
+            res.json({msg: "Added comment"})
+        }catch(err){
+            console.error(err);
+        }
+    },
+    deleteComment: async (req,res)=> {
+        try{
+            await Comment.deleteOne({ _id: req.params.id });
 
             res.json({msg: "Added comment"})
         }catch(err){

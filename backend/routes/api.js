@@ -5,4 +5,6 @@ router.get("/users", apiController.getUsers);
 
 router.get("/posts", apiController.getPosts);
 
+router.get("/comments", apiController.getComments);
+
 module.exports = router;

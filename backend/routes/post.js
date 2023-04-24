@@ -28,4 +28,6 @@ router.put("/editPost/:id", upload.single("file"), mainController.editPost);
 
 router.put("/addComment/:id", mainController.addComment);
 
+router.delete("/deleteComment/:id", mainController.deleteComment);
+
 module.exports = router;
