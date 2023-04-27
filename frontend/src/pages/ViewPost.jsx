@@ -15,8 +15,6 @@ const ViewPost = () => {
         setListOfPosts(postsResponse.data);
       },[setListOfPosts]);
     
-
-
     useMemo(()=>fetchData(),[fetchData]);
 
     useMemo(()=>{
@@ -28,20 +26,23 @@ const ViewPost = () => {
     return (
         <>
         {post && listOfPosts ? 
-        <main className = "flex justifyContent column alignItems">
+        <main className = "flex justifyContent column" id = "viewPost">
             <HeaderAuth className = {"pages"}/>
             <section className = "post column alignItems flex" id = "post">
-            <h1>{post.title}</h1>
-            <h3>Posted By {post.displayName}</h3>
-            <span>Posted At {moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>
-            <div className = "flex justifyContent" id = "icons">
+                <h1>{post.title}</h1>
+
+                <section className = "info">
+                    <h3>Posted By {post.displayName}</h3>
+                    <span>Posted At {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</span>
+                </section>
+            <section className = "flex justifyContent" id = "icons">
             <section>
             <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
             </section>
             <section>
             <i className="fa-solid fa-comment"><span>{post.comments ? post.comments.length : ""}</span></i>
             </section>
-            </div>
+            </section>
             <img src = {post.post} alt = {`Post Of ${post.title}`}/>
             </section>
         </main>

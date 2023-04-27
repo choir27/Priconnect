@@ -1,8 +1,7 @@
-import axios from "axios"
 import {useNavigate} from "react-router-dom"
-import {useCallback, useState, useEffect} from "react"
-import {toast} from "react-toastify"
+import {useState, useEffect} from "react"
 import HeaderAuth from "../components/HeaderAuth"
+import {handleSubmit} from "../hooks/Post"
 
 const Post = () => {
 
@@ -13,56 +12,10 @@ const Post = () => {
 
   const navigate = useNavigate();
 
+  //Set default value for submit input
   useEffect(()=>{
     setStatus("public");
   },[]);
-
-  const handleSubmit = useCallback(async(e) => {
-    try{
-      e.preventDefault();
-
-      const TITLE_REGEX = /^[a-zA-Z\s]*$/;
-
-      const checkTitle = TITLE_REGEX.test(title);
-
-      if(!post || !title || !description || !status){
-        toast.error("No Input Detected, Please Try Again!");
-        return;
-      }
-
-      if(!checkTitle){
-        toast.error("Title Input Must Not Include Numbers/Special Characters");
-        return;
-      }
-
-      if(!post.type.includes("gif") && !post.type.includes("png") && !post.type.includes("jpg") && !post.type.includes("jpeg") && !post.type.includes("webp")){
-        toast.error("Please Input A Picture File");
-        return;
-      }
-
-      const [usersResponse] = await Promise.all([
-        axios.get("http://localhost:8000/api/users"),
-      ]);
-
-      const formData = new FormData();
-      formData.append("file", post);
-      formData.append("fileName", post.name);
-      formData.append("title", title);
-      formData.append("status", status);
-      formData.append("description", description);
-      formData.append("user", localStorage.getItem("id"));
-      formData.append("displayName", usersResponse.data[0].displayName);
-      await axios.post("http://localhost:8000/post", formData)
-        .then(res=>{
-          console.log(res);
-          navigate("/account");
-        })
-        
-    }catch(err){
-      console.error(err);
-    }
-
-  },[title, post, navigate, status, description]);
 
   return (
     <main className = "flex column">
@@ -70,7 +23,7 @@ const Post = () => {
     <div className = "flex justifyContent">
     <section className = "flex column alignItems" id = "add">
 
-    <form onSubmit = {handleSubmit}>
+    <form onSubmit = {(e) => handleSubmit(e, navigate, post, title, status, description)}>
     <h1 className = "flex justifyContent">Add Post</h1>
 
     <section className = "flex form">

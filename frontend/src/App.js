@@ -18,7 +18,7 @@ function App() {
   const Comments = lazy(()=>import("./pages/Comments"));
 
     return(
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
           <Suspense fallback = {<h1>Loading...</h1>}>
             <BrowserRouter>
               <Routes>

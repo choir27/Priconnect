@@ -9,6 +9,7 @@ const EditPost = () => {
     const [listOfPosts, setListOfPosts] = useState([]); 
     const [currentPost, setCurrentPost] = useState({});
     const [title, setTitle] = useState("");
+    const [defaultPost, setDefaultPost] = useState("");
     const [post, setPost] = useState("");
     const [status, setStatus] = useState("");
     const [description, setDescription] = useState("");
@@ -19,6 +20,16 @@ const EditPost = () => {
         const {data: postData} = await axios.get("http://localhost:3000/api/posts");
         setListOfPosts(postData);
     },[]);
+
+    const trim = (str) => {
+      if(str){
+      if(str.length > 24){
+        return str.substring(0,25) + "...";
+      }else{
+        return str;
+      }
+    }
+    }
 
     useMemo(()=>{fetchData()},[fetchData]);
 
@@ -36,7 +47,7 @@ const EditPost = () => {
         if(currentPost && listOfPosts){
         setTitle(currentPost.title);
         setDescription(currentPost.description);
-        setPost(currentPost.post);
+        setDefaultPost(currentPost.post);
         setStatus(currentPost.status);
         }
     },[currentPost.description, currentPost.title, currentPost.post, currentPost.status, currentPost, listOfPosts]);
@@ -45,11 +56,10 @@ const EditPost = () => {
         try{
             e.preventDefault();
 
-
             const TITLE_REGEX = /^[a-zA-Z\s]*$/;
             const checkTitle = TITLE_REGEX.test(title);
 
-            if(!post || !title){
+            if(!defaultPost || !description || !title){
               toast.error("No Input Detected, Please Try Again!");
               return;
             }
@@ -59,8 +69,8 @@ const EditPost = () => {
               return;
             }
     
-            if(post.includes("https://res.cloudinary.com/melt/image/upload")){
-              if(!post.includes("png") && !post.includes("jpg") && !post.includes("jpeg") && !post.includes("webp")){
+            if(defaultPost.includes("https://res.cloudinary.com/melt/image/upload")){
+              if(!defaultPost.includes("png") && !defaultPost.includes("jpg") && !defaultPost.includes("jpeg") && !defaultPost.includes("webp")){
                 toast.error("Please Input A Picture File");
                 return;
               }
@@ -77,11 +87,13 @@ const EditPost = () => {
 
             const formData = new FormData();
 
-            if(post.includes("https://res.cloudinary.com/melt/image/upload")){
-            formData.append("file", post);
-            formData.append("fileName", post);
+            if(!post){
+            formData.append("file", defaultPost);
+            formData.append("fileName", currentPost.fileName);
             formData.append("cloudinaryId", currentPost.cloudinaryId);
           }
+            formData.append("file", post);
+            formData.append("fileName", post.fileName);
             formData.append("comments", currentPost.comments);
             formData.append("likes", currentPost.likes);
             formData.append("title", title);
@@ -99,7 +111,7 @@ const EditPost = () => {
         }catch(err){
             console.error(err);
         }
-    },[navigate, post, title, status, description, currentPost._id]);
+    },[navigate, post, title, status, description, currentPost._id, currentPost.cloudinaryId, currentPost.comments, currentPost.likes, defaultPost, currentPost.fileName]);
 
     return (
         <main className = "flex column">
@@ -107,8 +119,7 @@ const EditPost = () => {
         <div className = "flex justifyContent">
     <section className = "flex column alignItems" id = "add">
 
-
-            {currentPost && listOfPosts && post ?
+            {currentPost && listOfPosts && defaultPost?
                 <form onSubmit={handleSubmit}>
                             <h1 className = "flex justifyContent">Edit Your Post</h1>
 
@@ -117,7 +128,7 @@ const EditPost = () => {
                     <h2>Add</h2>
 
                     <label htmlFor="file" className = "button">
-                      Upload file: {post.name || currentPost.fileName }
+                      Upload file: {post ? trim(post.name) : trim(currentPost.fileName) }
                       <input id ="file" type="file" name="file" accept = "image/*" className = "hidden" onChange = {(e)=>setPost(e.target.files[0])} />
                     </label>
                     </section>
@@ -131,7 +142,7 @@ const EditPost = () => {
         </section>
 
         <section className = "flex justifyContent">
-      <input spellCheck = {true} className = "input" defaultValue={post ? currentPost.title : title} type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)}/>
+      <input spellCheck = {true} className = "input" defaultValue={defaultPost ? currentPost.title : title} type = "text" name = "title" onChange = {(e)=>setTitle(e.target.value)}/>
     </section>
 
     

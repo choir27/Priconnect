@@ -75,8 +75,8 @@ module.exports = {
                 cloudinaryId: result.public_id,
                 user: req.body.user,
                 displayName: req.body.displayName,
-                comments: [],
-                likes: 0
+                comments: req.params.comments,
+                likes: req.params.likes
             }, 
             {
                 new: true,
@@ -104,8 +104,49 @@ module.exports = {
             console.error(err);
         }
     },
+    addReplies: async (req,res)=>{
+        try{
+            const comment = await Comment.findById({_id: req.params.id});
+
+            const array = comment["replies"]
+
+            array.push(req.params.replies);
+
+            console.log(array);
+
+            //await Comment.findOneAndUpdate(
+            //     {_id: req.params.id},
+            //     {
+
+            //     }
+            // )
+
+        }catch(err){
+            console.error(err);
+        }
+    },
     addComment: async (req,res)=> {
         try{
+            const post= await Post.findById({_id: req.params.id});
+            const data = post.comments
+
+            data.push(req.body.comments);            
+
+            await Post.findByIdAndUpdate(
+                {_id: req.params.id},
+                {
+                    title: post.title,
+                    post: post.post,
+                    description: post.description,
+                    fileName: post.fileName,
+                    cloudinaryId: post.cloudinaryId,
+                    user: post.user,
+                    displayName: post.displayName,
+                    comments: data,
+                    likes: post.likes
+                }
+            )
+
             await Comment.create({
                 comments: req.body.comments,
                 email : req.body.email, 

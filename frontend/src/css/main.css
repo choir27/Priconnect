@@ -187,8 +187,8 @@ footer{
    ========================================================================== */
 
   #myCarousel{
-    max-width: 40%;
-    min-width: 40%;
+    max-width: 60%;
+    min-width: 60%;
   }
 
   #comics .active {
@@ -275,8 +275,6 @@ text-transform: capitalize;
 }
 
 
-
-
 /* Add
   ========================================================================== */
 
@@ -304,7 +302,7 @@ text-transform: capitalize;
     padding: 1rem;
 }
 
-#add textarea{
+#add textarea, textarea{
     resize: none;
     background: none;
     font-size: 1.4rem;
@@ -392,15 +390,14 @@ text-transform: capitalize;
         padding-left: 1rem; 
     }
 
-    table .buttons{
-        text-align: center;
-    }
-
     table .button{
         margin-right: 2rem;
     }
 
-
+    #dashboard .buttons{
+        text-align: center;
+    }
+    
     
 /* Comments
   ========================================================================== */
@@ -503,3 +500,71 @@ text-transform: capitalize;
 #comments .icons span{
     margin-left: 1rem;
 }
+
+#comments header, #comments h1, #comments .viewPost, #comments .showComments{
+    position: relative;
+    z-index:0;
+}
+
+/* Reply
+  ========================================================================== */
+
+#reply{
+    background:rgba(7, 21, 31);
+    width: 80%;
+    height: 100%;
+    position:fixed;
+    z-index: 1;
+    padding: 1rem;
+}
+
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+.show {
+    display: block;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+
+#reply small{
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 4rem;
+}
+
+#reply small:hover{
+    cursor: pointer;
+    color:rgba(101, 110, 117, 0.45);
+}
+
+#reply form{
+    padding: 0rem 2rem 2rem 2rem;
+    width: 100%;
+}
+
+#reply textarea{
+    font-size: 2.5rem;
+    height: 20rem;
+    color: white;
+}
+
+#reply input{
+    margin-top: 2rem;
+}
+
+
+/* viewPost
+  ========================================================================== */
+
+  body *{
+    border: 3px solid black;
+  }

@@ -26,8 +26,10 @@ router.delete("/deletePost/:id", mainController.deletePost);
 
 router.put("/editPost/:id", upload.single("file"), mainController.editPost);
 
-router.put("/addComment/:id", mainController.addComment);
+router.post("/addComment/:id", mainController.addComment);
 
 router.delete("/deleteComment/:id", mainController.deleteComment);
+
+router.put("/addReplies/:id", mainController.addReplies);
 
 module.exports = router;
