@@ -565,6 +565,51 @@ text-transform: capitalize;
 /* viewPost
   ========================================================================== */
 
-  body *{
-    border: 3px solid black;
+  #viewPost .info{
+    font-size: 2rem;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+  }
+
+  #viewPost .info section{
+    background:rgba(0, 0, 0, 0.45);
+    padding: 2rem;
+  }
+
+  #viewPost .info .button:hover{
+    text-decoration: none;
+    cursor: pointer;
+    background: rgb(187, 187, 187,.4);
+    color: black;
+  }
+
+  #viewPost .info section.column{
+    justify-content: space-between;
+  }
+  
+  #viewPost .info h3{
+    text-transform: capitalize;
+  }
+
+  #viewPost #icons .button span{
+    margin-left: 1rem;
+  }
+
+  #viewPost img{
+    max-width: auto;
+  }
+
+  #viewPost .image{
+    max-width: 80%;
+    padding: 2rem;
+  }
+
+  #viewPost .description p{
+    font-size: 3rem;
+  }
+
+  #viewPost .description{
+    padding: 2rem;
+    border-radius: 5px;
+    background: rgb(187, 187, 187,.4);
   }

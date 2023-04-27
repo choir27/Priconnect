@@ -29,6 +29,17 @@ const handleLike = async(e,id)=>{
   }
 }
 
+const handleComment = async(e,id,navigate)=>{
+  try{
+    e.preventDefault();
+    localStorage.setItem("postId",id);
+    navigate("/comments");
+  }catch(err){
+    console.error(err);
+  }
+}
+
 export {trim,
         handleLike,
-        handleDelete}
+        handleDelete,
+        handleComment}

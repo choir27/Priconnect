@@ -3,6 +3,8 @@ import HeaderGuest from "../components/HeaderGuest"
 import axios from "axios"
 import {useState, useEffect, useMemo, useCallback} from "react"
 import {Link} from "react-router-dom"
+import {handleDelete, handleComment} from "../hooks/Comments"
+import {toast} from "react-toastify"
 
 const Comments = () => {
 
@@ -35,24 +37,6 @@ const Comments = () => {
         fetchData();
     },[]);
 
-    const handleComment = useCallback(async(e) => {
-      e.preventDefault();
-        const currentUser = user.find(ele=>ele.googleId === localStorage.getItem("id"))
-        if(currentUser){        
-        const response = await axios.post(`http://localhost:8000/addComment/${localStorage.getItem("postId")}`, {
-          user: localStorage.getItem("id"),
-          email: currentUser.email, 
-          displayName: currentUser.displayName,
-          comments: comments,
-        });
-        const updatedComments = response.data;
-
-        console.log(updatedComments);
-
-        window.location.reload();
-      }
-    },[comments, user])
-
     const findComments = useCallback(()=>{
       if(commentList){
         const array = [];
@@ -66,17 +50,6 @@ const Comments = () => {
       setPostComments(array);
       }
     },[commentList]);
-
-    const handleDelete = useCallback(async(e, id)=>{
-      e.preventDefault();
-      const response = await axios.delete(`http://localhost:8000/deleteComment/${id}`)
-      
-      const deleteComments = response.data;
-
-      console.log(deleteComments);
-
-      window.location.reload();
-    },[])
 
     useMemo(()=>setCommentList(findComments()),[findComments]);
 
@@ -135,10 +108,10 @@ const Comments = () => {
 
   return (
     <div className = "flex justifyContent">
+                  {responseDisplay}
     {currentPost?
   <main className = "flex column justifyContent" id = "comments">
         {localStorage.getItem("id") ? <HeaderAuth className = {"pages"}/> : <HeaderGuest className = {"pages"}/>}
-
         <h1>Comments for {currentPost ? currentPost.title : ""}</h1>
 
         <section className = "flex viewPost">
@@ -150,15 +123,15 @@ const Comments = () => {
           </i>
           </div>
 
-          {localStorage.getItem("id") ?
-      <form onSubmit = {handleComment}>
+          {localStorage.getItem("id")?
+      <form onSubmit = {(e)=>handleComment(e,user,comments)}>
             <textarea type = "text" spellCheck = {true} name = "comments" onChange = {(e)=>setComments(e.target.value)}/>        
             <input type = "submit" className = "button"/>        
       </form>
      : 
-     <form onSubmit = {handleComment}>
+     <form>
      <textarea disabled type = "text" spellCheck = {true} name = "comments" onChange = {(e)=>setComments(e.target.value)}/>        
-     <input disabled type = "submit" className = "button"/>        
+     <input onClick = {toast.error("Login to comment on posts")} disabled type = "submit" className = "button"/>        
 </form>
      }
       </section>

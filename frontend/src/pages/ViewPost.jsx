@@ -2,11 +2,15 @@ import axios from "axios"
 import HeaderAuth from "../components/HeaderAuth"
 import {useMemo, useCallback, useState} from "react"
 import moment from "moment"
+import {handleLike, handleComment} from "../hooks/PostDashboard"
+import {useNavigate} from "react-router-dom"
 
 const ViewPost = () => {
 
     const [listOfPosts, setListOfPosts] = useState([]);
     const [post, setPost] = useState({});
+    const [comments, setComments] = useState([]);
+    const navigate = useNavigate();
 
     const fetchData = useCallback(async () => {
         const [postsResponse] = await Promise.all([
@@ -23,27 +27,51 @@ const ViewPost = () => {
         }
     },[listOfPosts]);
 
+    useMemo(()=>{
+        if(post){
+            if(post.comments){
+            setComments(post.comments.map((ele,i)=><li key = {i}>{ele}</li>));
+            }
+        }
+    },[post]);
+
+
+
     return (
         <>
         {post && listOfPosts ? 
         <main className = "flex justifyContent column" id = "viewPost">
             <HeaderAuth className = {"pages"}/>
-            <section className = "post column alignItems flex" id = "post">
+            <section className = "column alignItems flex">
                 <h1>{post.title}</h1>
 
-                <section className = "info">
+            <section className = "flex info">
+                <section className = "flex column">
                     <h3>Posted By {post.displayName}</h3>
                     <span>Posted At {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</span>
                 </section>
-            <section className = "flex justifyContent" id = "icons">
-            <section>
-            <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
+
+                <section className = "flex justifyContent" id = "icons">
+                    <section className = "button" onClick = {(e)=>handleLike(e,post._id)}>
+                        <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
+                    </section>
+                    <section className = "button" onClick = {(e)=>handleComment(e,post._id,navigate)}>
+                        <i className="fa-solid fa-comment"><span>{post.comments ? post.comments.length : ""}</span></i>
+                    </section >
+                </section>
             </section>
-            <section>
-            <i className="fa-solid fa-comment"><span>{post.comments ? post.comments.length : ""}</span></i>
-            </section>
-            </section>
-            <img src = {post.post} alt = {`Post Of ${post.title}`}/>
+            
+                <div className = "image">
+                    <img src = {post.post} alt = {`Post Of ${post.title}`}/>
+                </div>
+
+                <div className = "description">
+                    <p>{post.description}</p>
+                </div>
+
+                <ul className = "comments">
+                    {comments}
+                </ul>
             </section>
         </main>
         : ""}
