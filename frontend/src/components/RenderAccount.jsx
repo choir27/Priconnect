@@ -1,10 +1,25 @@
-import {useCallback, useMemo} from "react"
-import {handleDelete, handleLike} from "../hooks/Account"
+import {useCallback, useMemo, useState} from "react"
+import {handleDelete, handleLike} from "../hooks/Post"
 import {Link} from "react-router-dom"
+import axios from "axios"
 
-const RenderAccount = ({listOfPosts, setPosts, posts}) => {
+const RenderAccount = () => {
 
-    const renderPosts = useCallback(()=>{
+  const [listOfPosts, setListOfPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  const fetchData = useCallback(async()=>{
+    try{
+      const {data: postData} = await axios.get("http://localhost:3000/api/posts");
+      setListOfPosts(postData); 
+    }catch(err){
+      console.error(err);
+    } 
+  },[]);
+
+  useMemo(()=>{fetchData()},[fetchData]);
+
+  const renderPosts = useCallback(()=>{
         if(listOfPosts){
           let c1 = false;
           const postArray = [];
@@ -14,13 +29,14 @@ const RenderAccount = ({listOfPosts, setPosts, posts}) => {
               c1 = true;
               postArray.push(
                 <tr key = {post._id}>
-                    <Link to = "/viewPost"
-                    onClick = {()=>localStorage.setItem("postId",post._id)}
-                    >
-                        <td className = "tableImage">
-                            <img src = {post.post} alt = {`Post of ${post.title}`}/>
-                        </td>
-                    </Link>
+                    
+                    <td className = "tableImage">
+                      <Link to = "/viewPost"
+                      onClick = {()=>localStorage.setItem("postId",post._id)}
+                      >
+                        <img src = {post.post} alt = {`Post of ${post.title}`}/>
+                      </Link>
+                    </td>
     
                     <td>{post.title}</td>
     
@@ -59,11 +75,10 @@ const RenderAccount = ({listOfPosts, setPosts, posts}) => {
           }
           return postArray;
         };
-    },[listOfPosts]);
-    
-    useMemo(()=>{setPosts(renderPosts())},[renderPosts, setPosts]);
-
-    return posts;
+  },[listOfPosts]);
+  
+  useMemo(()=>{setPosts(renderPosts())},[renderPosts, setPosts]);
+  return posts;
 }
 
 export default RenderAccount

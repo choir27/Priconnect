@@ -2,7 +2,7 @@ import axios from "axios"
 import HeaderAuth from "../components/HeaderAuth"
 import {useMemo, useCallback, useState} from "react"
 import moment from "moment"
-import {handleLike, handleComment} from "../hooks/PostDashboard"
+import {handleLike, handleComment} from "../hooks/Post"
 import {useNavigate} from "react-router-dom"
 
 const ViewPost = () => {
@@ -36,7 +36,6 @@ const ViewPost = () => {
     },[post]);
 
 
-
     return (
         <>
         {post && listOfPosts ? 
@@ -45,7 +44,7 @@ const ViewPost = () => {
             <section className = "column alignItems flex">
                 <h1>{post.title}</h1>
 
-            <section className = "flex info">
+                <section className = "flex info">
                 <section className = "flex column">
                     <h3>Posted By {post.displayName}</h3>
                     <span>Posted At {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</span>
@@ -55,23 +54,26 @@ const ViewPost = () => {
                     <section className = "button" onClick = {(e)=>handleLike(e,post._id)}>
                         <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
                     </section>
+
                     <section className = "button" onClick = {(e)=>handleComment(e,post._id,navigate)}>
                         <i className="fa-solid fa-comment"><span>{post.comments ? post.comments.length : ""}</span></i>
                     </section >
                 </section>
-            </section>
-            
+
+                </section>
+                
                 <div className = "image">
                     <img src = {post.post} alt = {`Post Of ${post.title}`}/>
                 </div>
-
+            
                 <div className = "description">
                     <p>{post.description}</p>
                 </div>
-
+            
                 <ul className = "comments">
                     {comments}
                 </ul>
+
             </section>
         </main>
         : ""}

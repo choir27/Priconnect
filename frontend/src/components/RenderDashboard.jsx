@@ -1,10 +1,30 @@
 import {Link} from "react-router-dom"
-import {useState, useEffect} from "react"
+import {useCallback, useEffect, useState, useMemo} from "react"
 import {toast} from "react-toastify"
+import axios from "axios"
+import {trim, handleDelete, handleLike} from "../hooks/Post"
 
-const RenderDashboard = ({posts, handleDelete, handleLike, trim}) => {
+const RenderDashboard = () => {
     const [dashboard, setDashboard] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState([]);
+
+    const fetchData = useCallback(async()=>{
+        try{
+        const {data: postData} = await axios.get("http://localhost:8000/api/posts");
+        setPosts(postData);
+        }catch(err){
+        console.error(err);
+        }
+    },[]);
+
+    useEffect(()=>{
+        if(!posts.length){
+            setLoading(false);
+        }
+    },[posts.length])
+
+    useMemo(()=>fetchData(),[fetchData]);
 
     useEffect(()=>{
     const array = [];
@@ -37,10 +57,7 @@ const RenderDashboard = ({posts, handleDelete, handleLike, trim}) => {
                         </i>
                     </Link>
                     <button className = "fa-solid fa-trash button"
-                    onClick = {(e)=>{
-                        e.preventDefault();
-                        handleDelete(post._id)
-                    }}>
+                    onClick = {(e)=>handleDelete(e,post._id)}>
                     </button>
                     <Link to = "/editPost" className = "fa-solid fa-pen-to-square button" onClick = {()=>localStorage.setItem("postId", post._id)}></Link>    
                 </div>
@@ -100,9 +117,8 @@ const RenderDashboard = ({posts, handleDelete, handleLike, trim}) => {
     })
     
     setDashboard(array);
-    },[handleDelete, handleLike, posts, trim])
+    }, [posts])
 
-    
     if (loading) {
         return <h1>Loading...</h1>;
     }

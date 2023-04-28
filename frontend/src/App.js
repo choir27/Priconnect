@@ -37,7 +37,7 @@ function App() {
             </BrowserRouter>
             <ToastContainer />
           </Suspense>
-        </GoogleOAuthProvider>
+      </GoogleOAuthProvider>
     )
 }
 

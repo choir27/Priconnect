@@ -39,13 +39,5 @@ module.exports = {
         }catch(err){
             console.error(err);
         }
-    },
-    getComments: async(req,res)=>{
-        try{
-            const data = await getCollectionData("comments");
-            res.json(data);
-        }catch(err){    
-            console.error(err);
-        }
     }
 }

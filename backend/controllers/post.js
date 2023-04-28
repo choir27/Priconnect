@@ -1,5 +1,6 @@
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
+const Reply = require("../models/Reply");
 const cloudinary = require("../middleware/cloudinary.js");
 
 module.exports = {
@@ -107,19 +108,45 @@ module.exports = {
     addReplies: async (req,res)=>{
         try{
             const comment = await Comment.findById({_id: req.params.id});
+            
+            const array = comment.replies;
 
-            const array = comment["replies"]
+            const reply = await Reply.create({
+                email : req.body.email, 
+                displayName: req.body.displayName, 
+                postId: req.params.postId,
+                user: req.body.user,
+                likes: 0, 
+                replies: array
+            });
 
-            array.push(req.params.replies);
+            array.push(reply);
 
-            console.log(array);
+            const updatedComment = await Comment.findByIdAndUpdate(
+                {_id: req.params.id},
+                {
+                    replies: array
+                }
+            );
 
-            //await Comment.findOneAndUpdate(
-            //     {_id: req.params.id},
-            //     {
+            const post = await Post.findById({_id: req.params.postId});
 
-            //     }
-            // )
+            const postComment = post.comments;
+
+            const findComment = postComment.find(ele=>ele._id.toString() === req.params.id);
+
+            findComment.replies.push(req.body.reply);
+
+            console.log(postComment)
+
+            console.log(post.comments)
+
+            Post.findOneAndUpdate(
+                {_id: req.params.postId},
+                {comments: postComment}
+                )
+         
+            res.json({msg: "Reply added"})
 
         }catch(err){
             console.error(err);
@@ -130,7 +157,17 @@ module.exports = {
             const post= await Post.findById({_id: req.params.id});
             const data = post.comments
 
-            data.push(req.body.comments);            
+            const comment = await Comment.create({
+                comments: req.body.comments,
+                email : req.body.email, 
+                displayName: req.body.displayName, 
+                postId: req.params.id,
+                user: req.body.user,
+                likes: 0, 
+                replies: []
+            })
+
+            data.push(comment);    
 
             await Post.findByIdAndUpdate(
                 {_id: req.params.id},
@@ -147,16 +184,6 @@ module.exports = {
                 }
             )
 
-            await Comment.create({
-                comments: req.body.comments,
-                email : req.body.email, 
-                displayName: req.body.displayName, 
-                postId: req.params.id,
-                user: req.body.user,
-                likes: 0, 
-                replies: []
-            })
-
             res.json({msg: "Added comment"})
         }catch(err){
             console.error(err);
@@ -164,9 +191,22 @@ module.exports = {
     },
     deleteComment: async (req,res)=> {
         try{
+            const post = await Post.findById({_id: req.params.postId});
+            
+            const findPost = post.comments.find(comment=>comment._id.toString() === req.params.id);
+
+            const currentPost = post.comments
+
+            currentPost.splice(post.comments.indexOf(findPost),1);
+
+            await Post.updateOne({_id: req.params.postId},
+                {comments: currentPost}
+            );
+
             await Comment.deleteOne({ _id: req.params.id });
 
-            res.json({msg: "Added comment"})
+            res.json({msg: "Added comment"});
+
         }catch(err){
             console.error(err);
         }

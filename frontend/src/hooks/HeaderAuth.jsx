@@ -12,7 +12,7 @@ const handleLogout = async()=>{
           if(!localStorage.getItem("id")){
             window.location.reload();
           };
-        })
+        });
 
     }catch(err){
       console.error(err);

@@ -1,10 +1,24 @@
-import {trim} from "../hooks/PostDashboard"
+import {trim} from "../hooks/Post"
 import {toast} from "react-toastify"
+import axios from "axios"
 import {Link} from "react-router-dom"
-import {useCallback, useState, useMemo} from "react"
+import {useCallback, useEffect, useState, useMemo} from "react"
 
-const RenderDashboardGuest = ({users, posts}) => {
+const RenderDashboardGuest = () => {
     const [listOfPosts, setListOfPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const [users, setUsers] = useState([]);
+  
+    const fetchData = useCallback(async () => {
+      const [postsResponse, usersResponse] = await Promise.all([
+        axios.get("http://localhost:8000/api/posts"),
+        axios.get("http://localhost:8000/api/users"),
+      ]);
+      setPosts(postsResponse.data);
+      setUsers(usersResponse.data);
+    },[setPosts, setUsers]);
+  
+    useEffect(()=>{fetchData()},[fetchData]);
 
     const renderPosts = useCallback(()=>{
         const userMap = new Map();
