@@ -30,6 +30,8 @@ router.post("/addComment/:id", mainController.addComment);
 
 router.delete("/deleteComment/:id/:postId", mainController.deleteComment);
 
-router.put("/addReplies/:id/:postId", mainController.addReplies);
+router.put("/addReplies/:id/:postId", mainController.addReply);
+
+router.delete("/deleteReply/:comment/:reply/:post", mainController.deleteReply);
 
 module.exports = router;

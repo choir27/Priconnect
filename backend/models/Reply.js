@@ -16,8 +16,8 @@ const ReplySchema = new mongoose.Schema({
     likes: {
         type: Number
     },
-    replies: {
-        type: Array
+    reply: {
+        type: String
     },
     createdAt: {
         type: Date,

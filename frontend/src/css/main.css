@@ -463,7 +463,11 @@ text-transform: capitalize;
     background: rgba(101, 110, 117, 0.45);
     margin-bottom: 2rem;
     padding: 1rem;
-    width: 60%;
+    width: 80%;
+}
+
+#comments .comments.reply{
+    width: 100%;
 }
 
 #comments .user{
@@ -495,6 +499,7 @@ text-transform: capitalize;
     font-size: 1rem;
     width: 5rem;
     padding: .5rem;
+    margin-right:1rem;
 }
 
 #comments .icons span{
@@ -505,6 +510,12 @@ text-transform: capitalize;
     position: relative;
     z-index:0;
 }
+
+#comments .fa-angle-up, #comments .fa-angle-down{
+    width: 60%;
+    margin-bottom: 2rem;
+}
+
 
 /* Reply
   ========================================================================== */
@@ -517,7 +528,6 @@ text-transform: capitalize;
     z-index: 1;
     padding: 1rem;
 }
-
 
 @-webkit-keyframes fadeIn {
     from { opacity: 0; }
@@ -612,4 +622,16 @@ text-transform: capitalize;
     padding: 2rem;
     border-radius: 5px;
     background: rgb(187, 187, 187,.4);
+  }
+
+  #viewPost .comments{
+    margin-top: 4rem;
+  }
+
+  #viewPost .comments tbody tr{
+    background:rgba(0, 0, 0, 0.45);
+  }
+
+  #viewPost .comments tbody td{
+    height: auto;
   }

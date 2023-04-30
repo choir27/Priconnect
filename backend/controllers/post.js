@@ -105,60 +105,53 @@ module.exports = {
             console.error(err);
         }
     },
-    addReplies: async (req,res)=>{
-        try{
-            const comment = await Comment.findById({_id: req.params.id});
-            
-            const array = comment.replies;
-
-            const reply = await Reply.create({
-                email : req.body.email, 
-                displayName: req.body.displayName, 
-                postId: req.params.postId,
-                user: req.body.user,
-                likes: 0, 
-                replies: array
-            });
-
-            array.push(reply);
-
-            const updatedComment = await Comment.findByIdAndUpdate(
-                {_id: req.params.id},
-                {
-                    replies: array
-                }
-            );
-
-            const post = await Post.findById({_id: req.params.postId});
-
-            const postComment = post.comments;
-
-            const findComment = postComment.find(ele=>ele._id.toString() === req.params.id);
-
-            findComment.replies.push(req.body.reply);
-
-            console.log(postComment)
-
-            console.log(post.comments)
-
-            Post.findOneAndUpdate(
-                {_id: req.params.postId},
-                {comments: postComment}
-                )
-         
-            res.json({msg: "Reply added"})
-
-        }catch(err){
-            console.error(err);
+    addReply: async (req, res) => {
+        try {
+          // Find the comment by ID
+          const comment = await Comment.findById(req.params.id);
+      
+          // Create a new reply object
+          const reply = await Reply.create({
+            email: req.body.email,
+            displayName: req.body.displayName,
+            postId: req.params.postId,
+            user: req.body.user,
+            likes: 0,
+            reply: req.body.reply,
+          });
+      
+          // Add the new reply to the comment's replies array
+          comment.replies.push(reply);
+      
+          // Save the updated comment with the new reply
+          await comment.save();
+      
+          // Find the post by ID
+          const post = await Post.findById(req.params.postId);
+      
+          // Update the post's comments array with the updated comment
+          post.comments.forEach((commentObj, index) => {
+            if (commentObj._id.toString() === req.params.id) {
+              post.comments[index] = comment;
+            }
+          });
+      
+          // Save the updated post with the updated comment
+          await post.save();
+      
+          res.json({ msg: "Reply added" });
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ error: "Server error" });
         }
-    },
+      },      
     addComment: async (req,res)=> {
         try{
             const post= await Post.findById({_id: req.params.id});
             const data = post.comments
 
             const comment = await Comment.create({
-                comments: req.body.comments,
+                comment: req.body.comments,
                 email : req.body.email, 
                 displayName: req.body.displayName, 
                 postId: req.params.id,
@@ -210,5 +203,43 @@ module.exports = {
         }catch(err){
             console.error(err);
         }
-    }
+    },
+    deleteReply: async (req, res) => {
+        try {
+            await Reply.deleteOne({_id: req.params.reply});
+        
+            const comment = await Comment.findById(req.params.comment)
+        
+            const findReply = comment.replies.indexOf(comment.replies.find(ele=>ele._id.toString() === req.params.reply));
+        
+            const updatedComment = comment.replies;
+        
+            updatedComment.splice(findReply, 1);
+        
+            await Comment.findByIdAndUpdate({_id: req.params.comment},{
+                replies: updatedComment
+            });
+        
+            const post = await Post.findById(req.params.post)
+        
+            //returns array with reply comment removed from comment array
+            const updatedPostComments = post.comments.map(postComment => {
+                if(postComment._id.toString() === req.params.comment){
+                    postComment.replies = updatedComment;
+                    return postComment;
+                }
+                return postComment;
+            })
+
+            await Post.findByIdAndUpdate(req.params.post, {
+                comments: updatedPostComments
+            })
+        
+            res.json({msg: "deleted reply"})
+    
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ msg: "Server error" });
+        }
+    } 
 }

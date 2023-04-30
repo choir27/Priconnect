@@ -30,7 +30,11 @@ const ViewPost = () => {
     useMemo(()=>{
         if(post){
             if(post.comments){
-            setComments(post.comments.map((ele,i)=><li key = {i}>{ele}</li>));
+            setComments(post.comments.map((ele,i)=><tr key = {i}>
+                <td>{ele.comment}</td>
+                <td>{ele.displayName}</td>
+                <td>{ele.email}</td>
+                </tr>));
             }
         }
     },[post]);
@@ -70,9 +74,18 @@ const ViewPost = () => {
                     <p>{post.description}</p>
                 </div>
             
-                <ul className = "comments">
-                    {comments}
-                </ul>
+                <table className = "comments">
+                    <thead>
+                        <tr>
+                            <th>Comment</th>
+                            <th>Comment By</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {comments}
+                    </tbody>
+                </table>
 
             </section>
         </main>

@@ -13,7 +13,7 @@ const handleDelete = async(e, id)=>{
     }catch(err){
         console.error(err);
     }
-  };
+};
 
 const handleComment = async(e,user,comments) => {
     try{
@@ -36,7 +36,45 @@ const handleComment = async(e,user,comments) => {
     }catch(err){
         console.error(err);
     }
-  };
+};
+
+const handleReply = async(e, user, reply) => {
+    try{
+      e.preventDefault();
+      const formData = new URLSearchParams();
+
+      const currentUser = user.find(ele=>ele.googleId === localStorage.getItem("id"));
+
+      formData.append("user", localStorage.getItem("id"));
+      formData.append("displayName", currentUser.displayName);
+      formData.append("email", currentUser.email);
+      formData.append("reply", reply);
+      axios.put(`http://localhost:8000/addReplies/${localStorage.getItem("commentId")}/${localStorage.getItem("postId")}`, formData, {})
+        .then(res=>{
+          console.log(res)
+          window.location.reload();
+        });
+    }catch(err){
+      console.error(err);
+    }
+};
+
+const handleReplyDelete = async(e, replyId, commentId) => {
+  try{
+    e.preventDefault();
+    
+    await axios.delete(`http://localhost:8000/deleteReply/${commentId}/${replyId}/${localStorage.getItem("postId")}`)
+      .then(res=>{
+        console.log(res)
+        // window.location.reload();
+      });
+
+  }catch(err){
+    console.error(err);
+  }
+};
 
 export {handleComment,
-        handleDelete}
+      handleDelete,
+      handleReply,
+      handleReplyDelete}
