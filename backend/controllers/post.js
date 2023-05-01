@@ -185,6 +185,12 @@ module.exports = {
     deleteComment: async (req,res)=> {
         try{
             const post = await Post.findById({_id: req.params.postId});
+
+            const findComment = post.comments.find(ele=>ele._id.toString()===req.params.id);
+
+            findComment.replies.forEach(async(ele)=>{
+                await Reply.deleteOne({ _id: ele._id });
+            });
             
             const findPost = post.comments.find(comment=>comment._id.toString() === req.params.id);
 
@@ -241,5 +247,30 @@ module.exports = {
           console.error(err);
           res.status(500).json({ msg: "Server error" });
         }
-    } 
+    },
+    addCommentLike: async (req,res) => {
+        try{
+            const post = await Post.findById(req.params.post);
+
+            const comments = post.comments
+
+            const indexOfComment = post.comments.findIndex(comment=>comment._id.toString() === req.params.comment);
+
+            const updatedComment = await Comment.findByIdAndUpdate(req.params.comment,
+                {$inc: {likes: 1}},
+                { new: true } // Return the updated document
+            );
+
+            comments[indexOfComment] = updatedComment;
+
+            await Post.findByIdAndUpdate(req.params.post, {
+                comments: comments
+            });
+
+            res.json({msg: "Added one like"});
+
+        }catch(err){
+            console.error
+        }
+    }
 }

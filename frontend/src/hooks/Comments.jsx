@@ -1,9 +1,9 @@
 import axios from "axios"
 
-const handleDelete = async(e, id)=>{
+const handleDelete = async(e, commentId)=>{
     try{
       e.preventDefault();
-      const response = await axios.delete(`http://localhost:8000/deleteComment/${id}/${localStorage.getItem("postId")}`);
+      const response = await axios.delete(`http://localhost:8000/deleteComment/${commentId}/${localStorage.getItem("postId")}`);
       
       const deleteComments = response.data;
 
@@ -66,8 +66,34 @@ const handleReplyDelete = async(e, replyId, commentId) => {
     await axios.delete(`http://localhost:8000/deleteReply/${commentId}/${replyId}/${localStorage.getItem("postId")}`)
       .then(res=>{
         console.log(res)
-        // window.location.reload();
+        window.location.reload();
       });
+
+  }catch(err){
+    console.error(err);
+  }
+};
+
+const handleLike = async(e, commentId) => {
+  try{
+    e.preventDefault();
+    await axios.put(`http://localhost:8000/addCommentLike/${commentId}/${localStorage.getItem("postId")}`)
+      .then(res=>{
+        console.log(res);
+        window.location.reload();
+      })
+    
+  }catch(err){
+    console.error(err);
+  }
+}
+
+const handleReplyLike = async(e, replyId, commentId) => {
+  try{
+    e.preventDefault();
+
+    console.log(`reply ${replyId}`)
+    console.log(`comment ${commentId}`)
 
   }catch(err){
     console.error(err);
@@ -76,5 +102,7 @@ const handleReplyDelete = async(e, replyId, commentId) => {
 
 export {handleComment,
       handleDelete,
+      handleLike,
       handleReply,
-      handleReplyDelete}
+      handleReplyDelete,
+      handleReplyLike}

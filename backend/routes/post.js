@@ -28,6 +28,8 @@ router.put("/editPost/:id", upload.single("file"), mainController.editPost);
 
 router.post("/addComment/:id", mainController.addComment);
 
+router.put("/addCommentLike/:comment/:post", mainController.addCommentLike);
+
 router.delete("/deleteComment/:id/:postId", mainController.deleteComment);
 
 router.put("/addReplies/:id/:postId", mainController.addReply);

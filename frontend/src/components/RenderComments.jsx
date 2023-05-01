@@ -1,5 +1,5 @@
 import {useEffect, useState, useMemo, useCallback} from "react"
-import {handleDelete, handleReplyDelete} from "../hooks/Comments"
+import {handleDelete, handleLike, handleReplyDelete, handleReplyLike} from "../hooks/Comments"
 import axios from "axios"
 
 const RenderComments = ({setShowComments, setShowReply, showComments}) => {
@@ -67,7 +67,7 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
     
 
           const renderReplies = (comment) => {
-            return comment.replies.map((ele,i)=>
+            return comment.replies.map(ele=>
               <ul key = {ele._id}  className = {`reply comments flex ${
                 show[comment._id] ? "show" : "hidden"
               }`}>
@@ -76,7 +76,7 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
                       <li><h6 className = "text">{ele.reply}</h6></li>
     
                       <ul className = "icons">
-                        <li className = "flex justifyContent fa-solid fa-thumbs-up button"><span>{ele.likes}</span></li>
+                        <li className = "flex justifyContent fa-solid fa-thumbs-up button" onClick = {(e)=>handleReplyLike(e,ele._id,comment._id)}><span>{ele.likes}</span></li>
                         <li className = "flex justifyContent fa-solid fa-trash button" onClick = {(e)=>handleReplyDelete(e,ele._id,comment._id)}></li>
                       </ul>
                 </ul>
@@ -86,8 +86,6 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
 
           const arr = [];
 
-          console.log(postComments)
-
             postComments.forEach((ele,i)=>{
               arr.push(
                 <section key = {i} className = "comments flex">
@@ -96,7 +94,7 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
                   <li><h6 className = "text">{ele.comment}</h6></li>
 
                   <ul className = "icons">
-                    <li className = "flex justifyContent fa-solid fa-thumbs-up button"><span>{ele.likes}</span></li>
+                    <li className = "flex justifyContent fa-solid fa-thumbs-up button" onClick = {(e)=>handleLike(e,ele._id)}><span>{ele.likes}</span></li>
                     <li 
                     className = "flex justifyContent fa-solid fa-comment button" 
                     onClick = {()=>{setShowReply(true)
