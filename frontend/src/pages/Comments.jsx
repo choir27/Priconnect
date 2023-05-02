@@ -60,8 +60,10 @@ const Comments = () => {
           </form>
           : 
           <form>
-            <textarea disabled type = "text" spellCheck = {true} name = "comments" onChange = {(e)=>setComments(e.target.value)}/>        
-            <input onClick = {()=>toast.error("Login to comment on posts")} disabled type = "submit" className = "button"/>        
+            <textarea disabled type = "text"/>        
+            <button onClick = {(e)=>{
+              e.preventDefault();
+              toast.error("Login to comment on posts")}} className = "button">Submit</button>      
           </form>
           }
           </section >

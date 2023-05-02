@@ -19,6 +19,7 @@ module.exports = {
                 cloudinaryId: result.public_id,
                 user: req.body.user,
                 displayName: req.body.displayName,
+                status: req.body.status,
                 comments: [],
                 likes: 0
             });
@@ -49,6 +50,7 @@ module.exports = {
                     cloudinaryId: req.body.cloudinaryId,
                     user: req.body.user,
                     displayName: req.body.displayName,
+                    status: req.body.status,
                     comments: req.body.comments,
                     likes: req.body.likes
                 }, 
@@ -76,6 +78,7 @@ module.exports = {
                 cloudinaryId: result.public_id,
                 user: req.body.user,
                 displayName: req.body.displayName,
+                status: req.body.status,
                 comments: req.params.comments,
                 likes: req.params.likes
             }, 
@@ -98,16 +101,26 @@ module.exports = {
         try{
             let post = await Post.findById(req.params.id);
 
-            post.comments.forEach(async(ele)=>{
-                const comment = await Comment.findById(ele._id);
-                
-                const replies = comment.replies
-                    replies.forEach(async(element)=>{
-                        await Reply.deleteOne(element._id);
+                post.comments.forEach(async(ele)=>{
+                    const comment = await Comment.findById(ele._id);
+                    
+                    if(comment){
+                    const replies = comment.replies
+             
+                    if(comment && replies.length){
+                        replies.forEach(async(element)=>{
+                            await Reply.deleteOne(element._id);
+                            await Comment.deleteOne(ele._id);
+                        });
+                    }else{
                         await Comment.deleteOne(ele._id);
+                    };
 
-                    });
-            });
+                    }else{
+                        await Comment.deleteOne(ele._id);
+                    };
+                });
+
             await cloudinary.uploader.destroy(post.cloudinaryId);
             await Post.deleteOne({ _id: req.params.id });
 
@@ -176,15 +189,7 @@ module.exports = {
             await Post.findByIdAndUpdate(
                 {_id: req.params.id},
                 {
-                    title: post.title,
-                    post: post.post,
-                    description: post.description,
-                    fileName: post.fileName,
-                    cloudinaryId: post.cloudinaryId,
-                    user: post.user,
-                    displayName: post.displayName,
                     comments: data,
-                    likes: post.likes
                 }
             )
 
@@ -199,9 +204,11 @@ module.exports = {
 
             const findComment = post.comments.find(ele=>ele._id.toString()===req.params.id);
 
-            findComment.replies.forEach(async(ele)=>{
-                await Reply.deleteOne({ _id: ele._id });
-            });
+            if(findComment){
+                findComment.replies.forEach(async(ele)=>{
+                    await Reply.deleteOne({ _id: ele._id });
+                });
+            }
             
             const findPost = post.comments.find(comment=>comment._id.toString() === req.params.id);
 

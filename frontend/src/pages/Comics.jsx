@@ -7,7 +7,9 @@ const Comics = () => {
     <main className = "flex justifyContent column" id = "comics">
       {localStorage.getItem("id") ? <HeaderAuth/> : <HeaderGuest/>}
       <h1 className = "justifyContent flex">Comics</h1>
-      <section className = "flex justifyContent strips"> 
+      <section className = "flex justifyContent strips column alignItems">
+        <h3>Artist: YuureiDoushi</h3>
+        <h3>Translations: Kinsei</h3> 
         <ComicStrip/>
       </section>
     </main>

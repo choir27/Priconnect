@@ -1,9 +1,11 @@
 import axios from "axios"
 import HeaderAuth from "../components/HeaderAuth"
+import HeaderGuest from "../components/HeaderGuest"
 import {useMemo, useCallback, useState} from "react"
 import moment from "moment"
 import {handleLike, handleComment} from "../hooks/Post"
 import {useNavigate} from "react-router-dom"
+import {toast} from "react-toastify"
 
 const ViewPost = () => {
 
@@ -30,21 +32,30 @@ const ViewPost = () => {
     useMemo(()=>{
         if(post){
             if(post.comments){
+                if(post.comments[0]){
             setComments(post.comments.map((ele,i)=><tr key = {i}>
                 <td>{ele.comment}</td>
                 <td>{ele.displayName}</td>
                 <td>{ele.email}</td>
                 </tr>));
+                }else{
+            setComments(
+                <tr>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+            )
             }
         }
+    }
     },[post]);
-
 
     return (
         <>
         {post && listOfPosts ? 
         <main className = "flex justifyContent column" id = "viewPost">
-            <HeaderAuth className = {"pages"}/>
+            {localStorage.getItem("id") ? <HeaderAuth className = {"pages"}/> : <HeaderGuest className = {"pages"}/>}
             <section className = "column alignItems flex">
                 <h1>{post.title}</h1>
 
@@ -55,9 +66,15 @@ const ViewPost = () => {
                 </section>
 
                 <section className = "flex justifyContent" id = "icons">
+                    {localStorage.getItem("id") ?
                     <section className = "button" onClick = {(e)=>handleLike(e,post._id)}>
                         <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
                     </section>
+                    :
+                    <section className = "button" onClick = {()=>toast.error("Login to Like posts")}>
+                        <i className="fa-solid fa-thumbs-up"><span>{post.likes}</span></i>
+                    </section>
+                    }
 
                     <section className = "button" onClick = {(e)=>handleComment(e,post._id,navigate)}>
                         <i className="fa-solid fa-comment"><span>{post.comments ? post.comments.length : ""}</span></i>

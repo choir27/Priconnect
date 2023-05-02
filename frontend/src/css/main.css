@@ -187,8 +187,14 @@ footer{
    ========================================================================== */
 
   #myCarousel{
+    margin-top: 2rem;
     max-width: 60%;
     min-width: 60%;
+  }
+
+  #comics h3{
+    line-height: 3rem;
+    font-size: 3rem;
   }
 
   #comics .active {
@@ -218,28 +224,35 @@ text-transform: capitalize;
 }
 
 #show .rightAlign{
-    padding: 2rem;
+    padding: 1rem 1rem 1rem 2rem;
 }
 
 .posts{
     padding: 0rem 2rem;
 }
 
-#show .post{
-    padding: 2rem;
-    max-height: 50%;
-    margin: 0rem 2rem 4rem 2rem;
-    justify-content: space-evenly;
-    background: rgba(27, 31, 34, 0.85);
-}
+#show .image img{
+    max-width: auto;
+}       
+
 
 #show .image{
-    width: auto;
+    max-width: 30%;
+}
+
+#show .buttons{
+    margin-top: 1rem;
+}
+
+#show .post{
+    padding: 2rem;
+    margin: 0rem 2rem 4rem 2rem;
+    background: rgba(27, 31, 34, 0.85);
 }
 
 #show .post img:hover{
     cursor: pointer;
-    background: rgb(187, 187, 187,.4);
+    opacity: 50%;
 }
 
 .icons i{
@@ -259,7 +272,8 @@ text-transform: capitalize;
 }
 
 .icons{
-    padding: 2rem 0rem .5rem 0rem;
+    max-height: 35%;
+    padding: 1rem 0rem .5rem 0rem;
     margin: 0rem;
 }
 
@@ -635,3 +649,7 @@ text-transform: capitalize;
   #viewPost .comments tbody td{
     height: auto;
   }
+
+  #viewPost h1{
+    text-align: center;    
+}

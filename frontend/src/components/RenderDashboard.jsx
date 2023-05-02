@@ -36,11 +36,9 @@ const RenderDashboard = () => {
     if(post.user === localStorage.getItem("id")){
         array.push(
         <section key = {post._id} className = "post flex">
-            <div className = "image">
-                <Link to = "/viewPost">
-                    <img src = {post.post} alt = {`Post of ${post.title}`} onClick = {()=>localStorage.setItem("postId",post._id)}/>
-                </Link>
-            </div>
+            <Link to = "/viewPost" className = "image flex alignItems justifyContent">
+                <img src = {post.post} alt = {`Post of ${post.title}`} onClick = {()=>localStorage.setItem("postId",post._id)}/>
+            </Link>
             <section className = "rightAlign">
                 <h2>{post.title}</h2><h4>By {post.displayName}</h4>
 
@@ -60,16 +58,15 @@ const RenderDashboard = () => {
                     onClick = {(e)=>handleDelete(e,post._id)}>
                     </button>
                     <Link to = "/editPost" className = "fa-solid fa-pen-to-square button" onClick = {()=>localStorage.setItem("postId", post._id)}></Link>    
+
+                    <Link to = "/viewPost" className = "button" onClick = {()=>localStorage.setItem("postId",post._id)}>View post</Link>
+                </div>
+                
+                <div className = "flex buttons">
+                    <p>{trim(post.description)}</p>
                 </div>
 
-                <p>{trim(post.description)}</p>
-
-                <Link to = "/viewPost"
-                className = "button"
-                onClick = {()=>localStorage.setItem("postId",post._id)}
-                >
-                    View post
-                </Link>
+             
             </section>
         </section>
         )
@@ -94,16 +91,12 @@ const RenderDashboard = () => {
                                 <span>{post.comments.length}</span>
                             </i>
                         </Link>
+
+                        <Link to = "/viewPost" className = "button" onClick = {()=>localStorage.setItem("postId",post._id)}>View post</Link>
                     </div>
     
                     <p>{trim(post.description)}</p>
     
-                    <Link to = "/viewPost"
-                    className = "button"
-                    onClick = {()=>localStorage.setItem("postId",post._id)}
-                    >
-                        View post
-                    </Link>
                 </section>
             </section>
             )

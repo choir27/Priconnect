@@ -1,6 +1,7 @@
 import {useEffect, useState, useMemo, useCallback} from "react"
 import {handleDelete, handleLike, handleReplyDelete, handleReplyLike} from "../hooks/Comments"
 import axios from "axios"
+import {toast} from "react-toastify"
 
 const RenderComments = ({setShowComments, setShowReply, showComments}) => {
 
@@ -58,7 +59,6 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
  
       useEffect(()=>{
         if(postComments){
-
           const toggleCommentReplies = (commentId) => {
             const updatedComments = { ...show };
             updatedComments[commentId] = !updatedComments[commentId];
@@ -67,6 +67,7 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
     
 
           const renderReplies = (comment) => {
+            if(localStorage.getItem("id")){
             return comment.replies.map(ele=>
               <ul key = {ele._id}  className = {`reply comments flex ${
                 show[comment._id] ? "show" : "hidden"
@@ -82,6 +83,22 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
                 </ul>
               </ul>
             )
+            }else{
+              return comment.replies.map(ele=>
+                <ul key = {ele._id}  className = {`reply comments flex ${
+                  show[comment._id] ? "show" : "hidden"
+                }`}>
+                  <ul className = "info">
+                        <li className = "user">{ele.displayName}  {ele.email}</li>
+                        <li><h6 className = "text">{ele.reply}</h6></li>
+
+                        <ul className = "icons">
+                          <li className = "flex justifyContent fa-solid fa-thumbs-up button" onClick = {()=>toast.error("Login to Like Replies")}><span>{ele.likes}</span></li>
+                        </ul>
+                  </ul>
+                </ul>
+              )
+            }
           };
 
           const arr = [];
@@ -94,7 +111,13 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
                   <li><h6 className = "text">{ele.comment}</h6></li>
 
                   <ul className = "icons">
+                      {localStorage.getItem("id") ?
                     <li className = "flex justifyContent fa-solid fa-thumbs-up button" onClick = {(e)=>handleLike(e,ele._id)}><span>{ele.likes}</span></li>
+                    :
+                    <li className = "flex justifyContent fa-solid fa-thumbs-up button" onClick = {()=>toast.error("Login to Like Comments")}><span>{ele.likes}</span></li>
+                  }
+
+                      {localStorage.getItem("id") ?
                     <li 
                     className = "flex justifyContent fa-solid fa-comment button" 
                     onClick = {()=>{setShowReply(true)
@@ -102,7 +125,17 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
                     }}>
                       <span>{ele.replies.length}</span>
                     </li>
+                     :
+                     <li 
+                    className = "flex justifyContent fa-solid fa-comment button" 
+                    onClick = {()=>toast.error("Login to Add Reply")}>
+                      <span>{ele.replies.length}</span>
+                    </li>
+                     }
+
+                    {localStorage.getItem("id") ?
                     <li className = "flex justifyContent fa-solid fa-trash button" onClick = {(e)=>handleDelete(e,ele._id)}></li>
+                    : ""}
                   </ul>
 
                   <section className = {`flex alignItems justifyContent column`}>

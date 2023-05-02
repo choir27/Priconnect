@@ -2,7 +2,7 @@ import {trim} from "../hooks/Post"
 import {toast} from "react-toastify"
 import axios from "axios"
 import {Link} from "react-router-dom"
-import {useCallback, useEffect, useState, useMemo} from "react"
+import {useCallback, useEffect, useState} from "react"
 
 const RenderDashboardGuest = () => {
     const [listOfPosts, setListOfPosts] = useState([]);
@@ -31,11 +31,11 @@ const RenderDashboardGuest = () => {
           const isPostPublic = post.status === "public";
       
           return (
+            <>
+        { isPostPublic ?    
             <section key={post._id} className="post flex">
-              <Link to = "/viewPost">
-              <div className="image">
+              <Link to = "/viewPost" className = "image flex justifyContent alignItems">
                 <img src={post.post} alt={`Post of ${post.title}`} onClick={() => localStorage.setItem("postId", post._id)} />
-              </div>
               </Link>
               <section className="rightAlign">
                 <h2>{post.title}</h2>
@@ -51,23 +51,29 @@ const RenderDashboardGuest = () => {
                       <span>{post.comments.length}</span>
                     </i>
                   </Link>
+
+                  <Link to="/viewPost" className="button" onClick={() =>localStorage.setItem("postId", post._id)}>
+                    View Post
+                  </Link>
              
                 </div>
                 <div className="flex buttons">
                   <p>{trim(post.description)}</p>
                 </div>
-                <Link to="/viewPost" className="button" onClick={() =>localStorage.setItem("postId", post._id)}>
-                  View Post
-                </Link>
+         
               </section>
             </section>
+        : ""}
+        </>
           );
         });
     
       },[posts, users]);
     
-      useMemo(()=>{setListOfPosts(renderPosts())}, [renderPosts]);
-    
+      useEffect(() => {
+        setListOfPosts(renderPosts());
+      }, [renderPosts]);
+
       return listOfPosts
 }
 
