@@ -96,7 +96,18 @@ module.exports = {
     },
     deletePost: async (req,res) => {
         try{
-            let post = await Post.findById({ _id: req.params.id });
+            let post = await Post.findById(req.params.id);
+
+            post.comments.forEach(async(ele)=>{
+                const comment = await Comment.findById(ele._id);
+                
+                const replies = comment.replies
+                    replies.forEach(async(element)=>{
+                        await Reply.deleteOne(element._id);
+                        await Comment.deleteOne(ele._id);
+
+                    });
+            });
             await cloudinary.uploader.destroy(post.cloudinaryId);
             await Post.deleteOne({ _id: req.params.id });
 
@@ -257,8 +268,7 @@ module.exports = {
             const indexOfComment = post.comments.findIndex(comment=>comment._id.toString() === req.params.comment);
 
             const updatedComment = await Comment.findByIdAndUpdate(req.params.comment,
-                {$inc: {likes: 1}},
-                { new: true } // Return the updated document
+                {$inc: {likes: 1}}
             );
 
             comments[indexOfComment] = updatedComment;
@@ -271,6 +281,38 @@ module.exports = {
 
         }catch(err){
             console.error
+        }
+    },
+    addReplyLike: async (req,res) => {
+        try{
+            const post = await Post.findById(req.params.post);
+
+            const comments = post.comments.find(comment=>comment._id.toString() === req.params.comment);
+
+            const indexOfReply = comments.replies.findIndex(reply=>reply._id.toString() === req.params.reply);
+
+            const updatedReply = await Reply.findByIdAndUpdate(req.params.reply,
+                {$inc: {likes: 1}},
+                { new: true } // Return the updated document
+            );
+
+            const currentComment = await Comment.findById(req.params.comment);
+
+            currentComment.replies[currentComment.replies.findIndex(reply => reply._id.toString() === req.params.reply)] = updatedReply;
+
+            comments.replies[indexOfReply] = updatedReply;
+
+            await Comment.findByIdAndUpdate(req.params.comment, {
+                replies: currentComment.replies
+            });
+
+            await Post.findByIdAndUpdate(req.params.post, {
+                comments: comments
+            });
+
+            res.json({msg: "Added one like"});
+        }catch(err){
+            console.error(err);
         }
     }
 }

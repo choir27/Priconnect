@@ -91,10 +91,12 @@ const handleLike = async(e, commentId) => {
 const handleReplyLike = async(e, replyId, commentId) => {
   try{
     e.preventDefault();
-
-    console.log(`reply ${replyId}`)
-    console.log(`comment ${commentId}`)
-
+    await axios.put(`http://localhost:8000/addReplyLike/${replyId}/${commentId}/${localStorage.getItem("postId")}`)
+      .then(res=>{
+        console.log(res);
+        window.location.reload();
+      })
+    
   }catch(err){
     console.error(err);
   }

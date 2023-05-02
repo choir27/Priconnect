@@ -36,4 +36,6 @@ router.put("/addReplies/:id/:postId", mainController.addReply);
 
 router.delete("/deleteReply/:comment/:reply/:post", mainController.deleteReply);
 
+router.put("/addReplyLike/:reply/:comment/:post", mainController.addReplyLike);
+
 module.exports = router;
