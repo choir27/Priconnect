@@ -106,7 +106,10 @@ const ViewPost = () => {
 
             </section>
         </main>
-        : ""}
+        :  <main className = "flex column justifyContent" id = "comments">
+        {localStorage.getItem("id") ? <HeaderAuth className = {"pages"}/> : <HeaderGuest className = {"pages"}/>}
+        <h1>Loading...</h1>
+      </main>}
         </>
     )
 }

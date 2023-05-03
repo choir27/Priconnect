@@ -1,0 +1,44 @@
+#menu{
+    display: none;
+}
+
+@media (max-width:1000px) and (orientation: landscape){
+    #auth nav ul{
+        flex-direction: column;
+    }
+
+    .nav{
+        display: none;
+     }
+
+@-webkit-keyframes fadeIn {
+    from { height: 0; }
+      to { height: 100%; }
+}
+@keyframes fadeIn {
+    from { height: 0; }
+      to { height: 100%; }
+}
+
+#nav {
+    display: block;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+    #menu{
+        display: flex;
+    }
+
+    #auth nav ul li .button, #auth nav ul li{
+        width: 100%;
+    }
+}
+
+
+@media (orientation: portrait){
+
+    #auth nav ul li .button, #auth nav ul li{
+        width: 100%;
+    }
+}

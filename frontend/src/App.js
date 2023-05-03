@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css"
 import {BrowserRouter} from "react-router-dom"
 import {Route, Routes} from "react-router"
 import PrivateRoutes from "./middleware/PrivateRoutes"
+import Loading from "./components/Loading"
 
 function App() {
 
@@ -18,26 +19,26 @@ function App() {
   const Comments = lazy(()=>import("./pages/Comments"));
 
     return(
-      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-          <Suspense fallback = {<h1>Loading...</h1>}>
-            <BrowserRouter>
-              <Routes>
-                <Route exact path = "/" element = {<Home/>}/>
-                <Route path = "/dashboard" element = {<Dashboard/>}/>
-                <Route path = "/viewPost" element = {<ViewPost/>}/>
-                <Route path = "/comics" element = {<Comics/>}/>
-                <Route path = "/comments" element = {<Comments/>}/>
-                <Route element={<PrivateRoutes />}>
-                  <Route path = "/editPost" element = {<EditPost/>}/>
-                  <Route path = "/post" element = {<Post/>}/>
-                  <Route path = "/account" element = {<Account/>}/>
-                </Route>
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            <Suspense fallback = {<Loading/>}>
+              <BrowserRouter>
+                <Routes>
+                  <Route exact path = "/" element = {<Home/>}/>
+                  <Route path = "/dashboard" element = {<Dashboard/>}/>
+                  <Route path = "/viewPost" element = {<ViewPost/>}/>
+                  <Route path = "/comics" element = {<Comics/>}/>
+                  <Route path = "/comments" element = {<Comments/>}/>
+                  <Route element={<PrivateRoutes />}>
+                    <Route path = "/editPost" element = {<EditPost/>}/>
+                    <Route path = "/post" element = {<Post/>}/>
+                    <Route path = "/account" element = {<Account/>}/>
+                  </Route>
 
-              </Routes>
-            </BrowserRouter>
-            <ToastContainer />
-          </Suspense>
-      </GoogleOAuthProvider>
+                </Routes>
+              </BrowserRouter>
+              <ToastContainer />
+            </Suspense>
+        </GoogleOAuthProvider>
     )
 }
 

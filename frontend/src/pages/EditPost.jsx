@@ -94,7 +94,10 @@ const EditPost = () => {
                 </section>
               </form>
             : 
-            "An Unexpected Error has occured, please try again"
+            <main className = "flex column justifyContent" id = "comments">
+      <HeaderAuth className = {"pages"}/>
+      <h1>Loading...</h1>
+    </main>
             }
           </section>
         </div>

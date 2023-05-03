@@ -34,6 +34,7 @@ const Comments = () => {
         fetchData();
     },[]);
 
+
     useEffect(()=>setCurrentPost(posts.find(ele=>ele._id === localStorage.getItem("postId"))),[posts]);
 
   return (
@@ -72,7 +73,12 @@ const Comments = () => {
             <RenderComments setShowComments = {setShowComments} setShowReply = {setShowReply} showComments = {showComments}/>
           </section>
         </main>
-      : ""}
+      :  
+      
+      <main className = "flex column justifyContent" id = "comments">
+      {localStorage.getItem("id") ? <HeaderAuth className = {"pages"}/> : <HeaderGuest className = {"pages"}/>}
+      <h1>Loading...</h1>
+    </main>}
   </div>
   )
     
