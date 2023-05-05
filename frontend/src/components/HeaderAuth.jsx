@@ -7,15 +7,16 @@ const HeaderAuth = ({className}) => {
   const [display, setDisplay] = useState("");
 
   return (
-    <header className = {`flex alignItems column ${className}`} id = "auth">
+    <header className = {`flex column alignItems ${className}`} id = "auth">
       <h1>For Everything Princess:Connect Re-Dive</h1>   
       {display !== "nav" ? 
       <button className = "button fa-solid fa-bars" id = "menu" onClick = {()=>setDisplay("nav")}></button>
       :
-      <button className = "button fa-solid fa-xmark" id = "close" onClick = {()=>setDisplay("")}></button>
-      }
       <nav id = {display} className = "nav">
+      <button className = "button fa-solid fa-xmark" id = "close" onClick = {()=>setDisplay("")}></button>
+
         <ul className = "flex alignItems">
+
           <li><Link className = "button" to = "/">Home</Link></li>
 
           <li><Link className = "button" to = "/dashboard">Dashboard</Link></li>
@@ -30,6 +31,8 @@ const HeaderAuth = ({className}) => {
 
         </ul>
       </nav>
+      }
+
     </header>
   )
 }

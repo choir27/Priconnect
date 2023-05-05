@@ -53,7 +53,7 @@ const RenderDashboardGuest = () => {
                   </Link>
 
                   <Link to="/viewPost" className="button" onClick={() =>localStorage.setItem("postId", post._id)}>
-                    View Post
+                    View
                   </Link>
              
                 </div>

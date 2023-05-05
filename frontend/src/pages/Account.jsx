@@ -14,14 +14,19 @@ const Account = () => {
             <tr>
               <th>Image</th>
               <th>Post Title</th>
-              <th>Like/Comment</th>
-              <th>Edit/Delete</th>
+              <th>Like / Comment</th>
+              <th>Edit / Delete</th>
             </tr>
           </thead>
           <tbody>
             <RenderAccount/>
           </tbody>
         </table>
+      </div>
+
+      <div className = "noDisplay verticalTable">
+      <RenderAccount/>
+
       </div>
     </main>
   )

@@ -15,7 +15,9 @@ const Comics = () => {
   
       array.push(
       <div key = {i} className = "item">
-        <img src = {Assets[comic]} alt = {comic}/>
+        <a rel = "noreferrer" target = "_blank"  href = {Assets[comic]}>
+          <img src = {Assets[comic]} alt = {comic}/>
+        </a>
       </div>
       );
     }
@@ -43,7 +45,9 @@ const Comics = () => {
       <div className="carousel-inner" role="listbox">
 
         <div className = "item active">
-          <img src = {Assets.comic0} alt = "comic0" />
+          <a rel = "noreferrer" target = "_blank" href = {Assets.comic0}>
+            <img src = {Assets.comic0} alt = "comic0" />
+          </a>
         </div>
 
         {comics}

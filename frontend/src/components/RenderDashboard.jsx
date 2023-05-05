@@ -59,7 +59,7 @@ const RenderDashboard = () => {
                     </button>
                     <Link to = "/editPost" className = "fa-solid fa-pen-to-square button" onClick = {()=>localStorage.setItem("postId", post._id)}></Link>    
 
-                    <Link to = "/viewPost" className = "button" onClick = {()=>localStorage.setItem("postId",post._id)}>View post</Link>
+                    <Link to = "/viewPost" className = "button" onClick = {()=>localStorage.setItem("postId",post._id)}>View</Link>
                 </div>
                 
                 <div className = "flex buttons">
@@ -92,11 +92,12 @@ const RenderDashboard = () => {
                             </i>
                         </Link>
 
-                        <Link to = "/viewPost" className = "button" onClick = {()=>localStorage.setItem("postId",post._id)}>View post</Link>
+                        <Link to = "/viewPost" className = "button" onClick = {()=>localStorage.setItem("postId",post._id)}>View</Link>
                     </div>
     
-                    <p>{trim(post.description)}</p>
-    
+                    <div className = "flex buttons">
+                        <p>{trim(post.description)}</p>
+                    </div>    
                 </section>
             </section>
             )
