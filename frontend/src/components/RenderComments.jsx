@@ -144,13 +144,13 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
                     className = "button fa-solid fa-angle-up"
                     onClick ={(e)=>{e.preventDefault()
                       toggleCommentReplies(ele._id)}}
-                    ><span>Hide Replies ({ele.replies.length})</span></button>
+                    ><span>Replies ({ele.replies.length})</span></button>
                     :
                     <button 
                     className = "button fa-solid fa-angle-down" 
                     onClick ={(e)=>{e.preventDefault()
                       toggleCommentReplies(ele._id)}}
-                    ><span>Show Replies ({ele.replies.length})</span></button>
+                    ><span>Replies ({ele.replies.length})</span></button>
                     }
                     {renderReplies(ele)}
                   </section>

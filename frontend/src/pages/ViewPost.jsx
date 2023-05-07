@@ -91,7 +91,8 @@ const ViewPost = () => {
                     <p>{post.description}</p>
                 </div>
             
-                <table className = "comments">
+                <div id = "comments" className = "flex justifyContent">
+                    <table className = "comments">
                     <thead>
                         <tr>
                             <th>Comment</th>
@@ -102,7 +103,8 @@ const ViewPost = () => {
                     <tbody>
                         {comments}
                     </tbody>
-                </table>
+                    </table>
+                </div>
 
             </section>
         </main>

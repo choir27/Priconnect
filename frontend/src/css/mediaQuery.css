@@ -15,6 +15,10 @@
     display: none;
 }
 
+#reply{
+    z-index: 0;
+}
+
 @media (max-width:1200px) and (orientation: landscape){
     #dashboard .table-wrapper{
         width: 100%;
@@ -143,6 +147,14 @@
 
 @media (max-width: 800px) and (orientation: landscape){
 
+    #viewPost section.info #icons{
+        align-items: center;
+    }
+
+    #viewPost section.info #icons:first-child{
+        padding-bottom: 0rem;
+    }
+
     #comments .comments, #comments .comments .button.fa-solid.fa-angle-down, #comments .viewPost form input{
         width: 100%;
     }
@@ -203,10 +215,106 @@
     #dashboard thead tr th:nth-child(2){
         width: 30%;
     }
+
+    
+    #viewPost #comments{
+        overflow-x: auto;
+    }
+
+    #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
+        display: none;
+    }
+
 }
 
+#viewPost #comments{
+    width: 100%;
+}
+
+#viewPost #comments thead th{
+    padding-top: 1rem;
+}
+
+@media (max-width: 536px) and (orientation: portrait){
+     #comments #menu{
+        margin-left: 1rem;
+    }
+}
 
 @media (orientation: portrait){
+
+    #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
+        display: none;
+    }
+
+    #viewPost #comments{
+        overflow-x: auto;
+    }
+
+    #viewPost .info{
+        flex-direction: column;
+        margin-bottom: 0rem;
+    }
+
+    #viewPost #icons{
+        padding-top: 0rem;
+    }
+
+    #viewPost .description p{
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+
+    #comments .info #icons section.button{
+        height: auto;
+    }
+
+    #comments .icons{
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    #comments .viewPost{
+        flex-direction: column;
+    }
+
+    #comments .viewPost form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0rem;
+    }
+
+    #comments .viewPost div .button{
+        margin-bottom: 1rem;
+    }
+
+    #comments .viewPost textarea{
+        height: 30vh;
+    }
+
+    #comments form .button, #comments .comments .button{
+        width: 100%;
+    }
+
+    #comments .comments .icons + section{
+        margin-top: 2rem;
+    } 
+    
+    #comments .comments, #comments .info{
+        width: auto;
+        padding: 1rem 1rem 0rem 1rem;
+    }
+
+    #comments .button.fa-solid.fa-angle-down{
+        height: auto;
+    }
+
+    #comments .comments .button{
+        margin-bottom: 1rem;
+    }
 
     #add .form .button{
         width: 40%;

@@ -9,9 +9,7 @@ const HeaderAuth = ({className}) => {
   return (
     <header className = {`flex column alignItems ${className}`} id = "auth">
       <h1>For Everything Princess:Connect Re-Dive</h1>   
-      {display !== "nav" ? 
       <button className = "button fa-solid fa-bars" id = "menu" onClick = {()=>setDisplay("nav")}></button>
-      :
       <nav id = {display} className = "nav">
       <button className = "button fa-solid fa-xmark" id = "close" onClick = {()=>setDisplay("")}></button>
 
@@ -31,7 +29,6 @@ const HeaderAuth = ({className}) => {
 
         </ul>
       </nav>
-      }
 
     </header>
   )
