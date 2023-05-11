@@ -1,0 +1,471 @@
+#menu, #close{
+    display: none;
+}
+
+
+#nav{
+    width: 100%;
+    padding: 0rem;
+    margin: 0rem;
+    position: fixed;
+    z-index: 1;
+}
+
+.noDisplay{
+    display: none;
+}
+
+#reply{
+    z-index: 0;
+}
+
+@media (max-width:1200px) and (orientation: landscape){
+    #dashboard .table-wrapper{
+        width: 100%;
+        padding: 0rem;
+        margin: 0rem;
+    }
+
+    #dashboard .tableImage a{
+        padding-left: 1rem;
+    }
+
+    #dashboard .tableImage{
+        width: 100%;
+    }
+
+    #dashboard thead tr th{
+        padding: 0 0em 0 1em;    
+    }
+
+    #dashboard{
+        align-items: center;
+    }
+
+    #dashboard .buttons div{
+        flex-direction: column;
+    }
+
+    #dashboard .button{
+        width: 100%;
+    }
+
+    #dashboard td{
+        height: 0;
+    }
+
+    #dashboard .icons div{
+        width: auto;
+        align-items: center;
+    }
+
+    #dashboard .icons .button{
+        width: 60%;
+    }
+
+
+    #show .post .button{
+        max-height: auto;
+    }
+
+    #show .post .buttons{
+        display: none;
+    }
+
+    #show .post .image{
+        max-width: 50%;    
+    }
+
+    #show .post{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #show .post .icons{
+        flex-direction: column;
+    }
+
+
+}
+
+@media (max-width:1000px) and (orientation: landscape){
+
+    #nav ul{
+        background: white;
+        height: 50%;
+    }
+
+      .nav {
+        display: none;
+      }
+      
+      @-webkit-keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      #nav {
+        opacity: 0;
+        display: block;
+        -webkit-animation: fadeIn 1s forwards;
+        animation: fadeIn 1s forwards;
+      }       
+
+
+      #nav ul{
+        display: flex;
+        flex-direction: column;
+      }
+
+    #menu, #close{
+        margin: .5rem 0rem 0rem .5rem;
+        background: black;
+        position: fixed;
+        align-self: flex-start;
+        display: block;
+        max-width: 15%;
+    }   
+
+    #nav ul li .button, #nav ul li{
+        width: 100%;
+    }
+
+    header#header h1, header#auth h1{
+        padding: 2rem;
+    }
+
+    #footer .icons{
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 800px) and (orientation: landscape){
+
+    #viewPost section.info #icons{
+        align-items: center;
+    }
+
+    #viewPost section.info #icons:first-child{
+        padding-bottom: 0rem;
+    }
+
+    #comments .comments, #comments .comments .button.fa-solid.fa-angle-down, #comments .viewPost form input{
+        width: 100%;
+    }
+
+    #comments .fa-solid.fa-comment{
+        margin-top: 2rem;
+    }
+
+    #comments .viewPost{
+        flex-direction: column;
+    }
+
+    #comments .viewPost form{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #add .form .button{
+        width: 85%;
+    }
+
+    #add .form{
+        padding: 0rem 3rem;
+        justify-content: center;
+    }
+
+    #add section .input, #add section textarea{
+        width: 50%;
+    }
+
+    #add .submit{
+        justify-content: center;
+        width: 100%;
+    }
+
+    #add .submit input{
+        width: 50%;
+    }
+
+    #add .form section{
+        padding: 0rem;
+        margin: 0rem;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #dashboard .tableImage, #dashboard table thead tr th:first-child{
+        display: none;
+    }
+
+    #dashboard table .icons div{
+        width: 100%;
+    }
+
+    #dashboard thead tr th:nth-child(2){
+        width: 30%;
+    }
+
+    
+    #viewPost #comments{
+        overflow-x: auto;
+    }
+
+    #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
+        display: none;
+    }
+
+}
+
+#viewPost #comments{
+    width: 100%;
+}
+
+#viewPost #comments thead th{
+    padding-top: 1rem;
+}
+
+@media (max-width: 536px) and (orientation: portrait){
+     #comments #menu{
+        margin-left: 1rem;
+    }
+}
+
+@media (orientation: portrait){
+
+    #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
+        display: none;
+    }
+
+    #viewPost #comments{
+        overflow-x: auto;
+    }
+
+    #viewPost .info{
+        flex-direction: column;
+        margin-bottom: 0rem;
+    }
+
+    #viewPost #icons{
+        padding-top: 0rem;
+    }
+
+    #viewPost .description p{
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+
+    #comments .info #icons section.button{
+        height: auto;
+    }
+
+    #comments .icons{
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    #comments .viewPost{
+        flex-direction: column;
+    }
+
+    #comments .viewPost form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0rem;
+    }
+
+    #comments .viewPost div .button{
+        margin-bottom: 1rem;
+    }
+
+    #comments .viewPost textarea{
+        height: 30vh;
+    }
+
+    #comments form .button, #comments .comments .button{
+        width: 100%;
+    }
+
+    #comments .comments .icons + section{
+        margin-top: 2rem;
+    } 
+    
+    #comments .comments, #comments .info{
+        width: auto;
+        padding: 1rem 1rem 0rem 1rem;
+    }
+
+    #comments .button.fa-solid.fa-angle-down{
+        height: auto;
+    }
+
+    #comments .comments .button{
+        margin-bottom: 1rem;
+    }
+
+    #add .form .button{
+        width: 40%;
+    }
+
+    #add .form{
+        flex-direction: column;
+    }
+
+    #add section .input, #add section textarea{
+        width: 50%;
+    }
+
+    #add .submit{
+        justify-content: center;
+        width: 100%;
+    }
+
+    #add .submit .button{
+        width: 40%;
+    }
+
+    #add .form section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .table-wrapper{
+        display: none;
+    }
+
+    #dashboard .verticalTable{
+        display: flex;
+    }
+
+    #dashboard .verticalTable tr{
+        flex-direction: column;
+        display: flex;
+    }
+
+    #dashboard .verticalTable td{
+        width: 100%;
+    }
+
+    #dashboard .verticalTable td.tableImage a{
+        width: 50%;
+    }
+
+    #dashboard .verticalTable tr {
+        border: solid 1px #ffffff;
+        border-left: 0;
+        border-right: 0;
+    }
+
+        #dashboard .verticalTable tr:nth-child(2n + 1) {
+            background-color: rgba(255, 255, 255, 0.075);
+        }
+
+    #dashboard .verticalTable td {
+        font-size: 2rem;
+        vertical-align: middle;
+    }
+
+    #dashboard .verticalTable td, #dashboard .verticalTable .tableImage{
+        display: flex;
+        justify-content: center;
+    }
+
+    #show .post .button{
+        max-height: auto;
+    }
+
+    #show .post .buttons{
+        display: none;
+    }
+
+    #show .post .image{
+        max-width: 50%;    
+    }
+
+    #show .post{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #show .post .icons{
+        flex-direction: column;
+    }
+
+    #nav{
+        width: 100%;
+        margin: 0rem;
+        padding: 0rem;
+        position: fixed;
+        z-index: 1;
+        background: white;
+    }
+    
+    #nav ul{
+        height: 50%;
+    }
+
+    header#header h1, header#auth h1{
+        padding: 2rem;
+    }
+
+    #footer .icons{
+        width: 100%;
+    }
+   
+    .nav {
+        display: none;
+      }
+      
+      @-webkit-keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      #nav {
+        opacity: 0;
+        display: block;
+        -webkit-animation: fadeIn 1s forwards;
+        animation: fadeIn 1s forwards;
+      }       
+
+
+      #nav ul{
+        display: flex;
+        flex-direction: column;
+      }
+
+
+
+    #menu, #close{
+        margin: .5rem 0rem 0rem .5rem;
+        background: black;
+        z-index: 1;
+        position: fixed;
+        align-self: flex-start;
+        display: block;
+        min-width: 10%;
+    }   
+
+    #nav ul li .button, #nav ul li{
+        width: 100%;
+    }
+}

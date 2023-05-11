@@ -1,34 +1,33 @@
 {
-  "name": "for_everything_priconne",
+  "name": "drawconnect",
   "version": "1.0.0",
-  "description": "App for your priconne needs",
-  "main": "app.js",
+  "description": "users can post their created drawings, share their posts as well as others, and like/comment on posts",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "ssr": "node backend/index.js"
   },
-  "author": "Richard Choi",
-  "license": "MIT",
-  "dependencies": {
-    "cloudinary": "^1.32.0",
-    "connect-mongo": "^4.6.0",
-    "connect-mongodb-session": "^3.1.1",
-    "cors": "^2.8.5",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.36.1",
+    "connect-mongo": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "method-override": "^3.0.0",
-    "moment": "^2.29.4",
-    "mongodb": "^4.9.0",
-    "mongoose": "^6.5.1",
-    "morgan": "^1.10.0",
+    "google-auth-library": "^8.7.0",
+    "mongoose": "^7.0.4",
     "multer": "^1.4.5-lts.1",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0",
-    "react": "^18.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
+    "passport-google-oauth20": "^2.0.0"
   }
 }

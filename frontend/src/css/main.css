@@ -1,0 +1,652 @@
+
+/* General
+   ========================================================================== */
+
+.select-dropdown{
+    cursor: pointer;
+}
+
+/* Box Model Hack */
+*,
+*:before,
+*:after {
+     box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+
+.clear {
+	clear: both;
+}
+
+.flex{
+     display: flex;
+}
+
+.column{
+     flex-direction: column;
+}
+
+.row{
+     flex-direction: row;
+}
+
+.justifyContent{
+     justify-content: center;
+}
+
+.alignItems{
+     align-items: center;
+}
+
+li{
+     list-style-type: none;
+}
+
+a{
+     text-decoration: none;
+}
+
+.dropdown-content, .select-dropdown, .hidden{
+     display: none;
+}
+
+body{
+     background: no-repeat url('../assets/background/blueSky.jpg') center/cover;
+}
+
+.index section, textarea, input, label, .button{
+    border-radius: 5px;
+}
+
+.button{
+    background: rgba(27, 31, 34, 0.85);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    box-shadow: inset 0 0 0 1px #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    line-height: 2.75rem;
+    outline: 0;
+    padding: 1rem 1.25rem 1rem 1.35rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    border: 1px solid white;
+}   
+
+.button:hover{
+    text-decoration: none;
+    cursor: pointer;
+    background: rgb(187, 187, 187,.4);
+    color: black;
+}
+
+i:hover{
+    color: rgb(187, 187, 187,.4);
+}
+
+::placeholder, textarea, input, label, .button, p, h1, h2, h3, h4, h5, h6, i, td, th, span, small, a, li, nav i:hover{
+     color: white;
+}
+
+.about h2{
+    font-size: 3rem;
+}
+
+h1{
+    font-size: 6rem;
+    margin: 0rem;
+    padding: 1rem 0rem 2rem 0rem;
+}
+
+img{
+    width: 100%;
+}
+
+/* Header
+   ========================================================================== */
+
+header h1{
+    margin-bottom: 1rem;
+    padding: 2rem 0rem;
+    border-bottom: 3px solid white;
+    border-top: 3px solid white;
+    width: auto;
+    font-size: 4rem;
+}
+
+header ul{
+    margin-top: 1rem;
+    justify-content: space-around;
+} 
+
+header li{
+    height: auto;
+}
+
+header{
+    padding: 0rem 0rem 2rem 0rem;
+}
+
+.about{
+    background: rgba(27, 31, 34, 0.85);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 85%;
+}
+
+header nav{
+    width: 85%;
+    padding-bottom: 0rem;
+}
+
+header.pages{
+    padding-bottom: 0;
+}
+
+header.pages h1{
+    margin-top: 1rem;
+}
+
+/* Footer
+   ========================================================================== */
+
+
+footer .icons{
+    font-size: 2rem;
+    width: 40%;
+    padding: 2rem;
+}
+
+footer small{
+    text-align: left;
+    width: 30%;
+}
+
+footer .icons{
+    justify-content: space-around;
+}
+
+footer{
+    justify-content: space-evenly;
+    padding: 0rem 2rem;
+}
+
+
+/* Comics
+   ========================================================================== */
+
+  #myCarousel{
+    margin-top: 2rem;
+    max-width: 60%;
+    min-width: 60%;
+  }
+
+  #comics h3{
+    line-height: 3rem;
+    font-size: 3rem;
+  }
+
+  #comics .active {
+      scroll-snap-type: unset;
+  }
+  
+  #comics li {
+      scroll-snap-align: center;
+      display: inline-block;
+  }
+
+
+/* Show
+  ========================================================================== */
+
+#show h2, #show h4, #show a{
+font-size: 2rem;
+text-transform: capitalize;
+}
+
+#show h2{
+    padding-bottom: 3rem;
+}
+
+#show .post h2{
+    padding-bottom: 1rem;
+}
+
+#show .rightAlign{
+    padding: 1rem 1rem 1rem 2rem;
+}
+
+.posts{
+    padding: 0rem 2rem;
+}
+
+
+
+#show .image{
+    max-width: 30%;
+}
+
+#show .buttons{
+    margin-top: 1rem;
+}
+
+#show .post{
+    padding: 2rem;
+    margin: 0rem 2rem 4rem 2rem;
+    background: rgba(27, 31, 34, 0.85);
+}
+
+#show .post img:hover{
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.icons i{
+    font-size: 2rem;
+    padding: .5rem 0rem;
+}
+
+.icons span{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.post p{
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.icons{
+    max-height: 35%;
+    padding: 1rem 0rem .5rem 0rem;
+    margin: 0rem;
+}
+
+.post a{
+    padding: .5rem;
+    padding-bottom: 0rem;   
+    margin: 0rem;
+}
+
+.post .button{
+    padding: .8rem;
+    margin-right: 1rem;
+}
+
+
+/* Add
+  ========================================================================== */
+
+#add{
+    min-width: 54rem;
+    background: rgba(27, 31, 34, 0.85);
+    margin-top: 4rem;
+    border-radius: 4px;
+}
+
+
+#add .input{
+    font-size: 1.2rem;
+    background: none;
+    margin: 1rem;
+}
+
+
+#add .submit{
+    width: 30%;
+}
+
+
+#add .form section, #add .submit, #add textarea, #add .buttons section, #add .input{
+    padding: 1rem;
+}
+
+#add textarea, textarea{
+    resize: none;
+    background: none;
+    font-size: 1.4rem;
+    margin: 1rem;
+    height: 30vh;
+}
+
+#add .form{
+    justify-content: space-evenly;
+}
+
+#add form h2{
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+}
+
+#add .form section, #add .form .button, #add form, #add input, #add textarea, #add .buttons div label, #add .buttons div select{
+    width: 100%;
+}
+
+#add input, #add textarea{
+    border: 1px solid white;
+}
+
+#add form{
+    padding: 2rem;
+}
+
+#add .form select{
+    padding: 1.2rem;
+}
+
+
+/* Table
+  ========================================================================== */
+
+
+.table-wrapper {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    padding: 2rem;
+}
+
+#dashboard .tableImage{
+    width: 20%;
+}
+
+
+    table tbody tr {
+        border: solid 1px #ffffff;
+        border-left: 0;
+        border-right: 0;
+    }
+
+        table tbody tr:nth-child(2n + 1) {
+            background-color: rgba(255, 255, 255, 0.075);
+        }
+
+    table td {
+        font-size: 2rem;
+        vertical-align: middle;
+        padding: 2rem;
+        height: 330px;
+    }
+
+    table th {
+        font-size: 2.5rem;
+        padding: 0 0.75em 0.75em 0.75em;
+        text-align: left;
+    }
+
+    table thead {
+        border-bottom: solid 2px #ffffff;
+    }
+
+    table .title{
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    table .icons .button{
+        padding-left: 1rem; 
+    }
+
+    table .button{
+        margin-right: 2rem;
+    }
+
+    #dashboard .buttons{
+        text-align: center;
+    }
+    
+    
+/* Comments
+  ========================================================================== */
+
+#comments section i{
+    font-size: 4rem;
+}
+
+#comments .viewPost div + a.button{
+    width: 100%;
+}
+
+#comments .viewPost{
+    justify-content: space-evenly;
+    padding: 2rem;
+}
+
+#comments h1{
+    text-align: center;
+}
+
+#comments .viewPost span{
+    margin-left: 2rem;
+}
+
+#comments form{
+    width: 100%;
+}
+
+#comments form .button {
+    width: 40%;
+}
+
+#comments div{
+    justify-content: space-around;
+}
+
+#comments section.showComments, #comments section.viewPost{
+    padding: 2rem;
+    background: rgba(27, 31, 34, 0.85);
+}
+
+#comments section.viewPost{
+    margin: 3rem;
+}
+
+#comments section.showComments{
+    margin: 0rem 3rem;
+}
+
+#comments form{
+    padding: 2rem;
+}
+
+#comments textarea{
+    margin-bottom: 3rem;
+    height: 22vh;
+    font-size: 1.2rem;
+    background: none;
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid white;
+}
+
+#comments .comments{
+    justify-content: space-between;
+    background: rgba(101, 110, 117, 0.45);
+    margin-bottom: 2rem;
+    padding: 1rem;
+    width: 80%;
+}
+
+#comments .comments.reply{
+    width: 100%;
+}
+
+#comments .user{
+    font-size: .8rem;
+}
+
+#comments .text{
+    padding: .8rem;
+    margin-top: .8rem;
+    border-radius: 5px;
+    overflow: auto;
+    background:rgba(163, 174, 182, 0.45)
+}
+
+#comments h6{
+    font-size: 1rem;
+}
+
+#comments .comments li{
+    line-height: 1.5rem;
+}
+
+#comments .info{
+    width: 100%;
+    padding: .5rem;
+}
+
+#comments .icons li{
+    font-size: 1rem;
+    width: 5rem;
+    padding: .5rem;
+    margin-right:1rem;
+}
+
+#comments .icons span{
+    margin-left: 1rem;
+}
+
+#comments .fa-angle-up, #comments .fa-angle-down{
+    width: 60%;
+    margin-bottom: 2rem;
+}
+
+
+/* Reply
+  ========================================================================== */
+
+#reply{
+    background:rgba(7, 21, 31);
+    width: 80%;
+    height: 100%;
+    position:fixed;
+    z-index: 1;
+    padding: 1rem;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+.show {
+    display: block;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+
+#reply small{
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 4rem;
+}
+
+#reply small:hover{
+    cursor: pointer;
+    color:rgba(101, 110, 117, 0.45);
+}
+
+#reply form{
+    padding: 0rem 2rem 2rem 2rem;
+    width: 100%;
+}
+
+#reply textarea{
+    font-size: 2.5rem;
+    height: 20rem;
+    color: white;
+}
+
+#reply input{
+    margin-top: 2rem;
+}
+
+
+/* viewPost
+  ========================================================================== */
+
+  #viewPost .info{
+    font-size: 2rem;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+  }
+
+  #viewPost .info section{
+    background:rgba(0, 0, 0, 0.45);
+    padding: 2rem;
+  }
+
+  #viewPost .info .button:hover{
+    text-decoration: none;
+    cursor: pointer;
+    background: rgb(187, 187, 187,.4);
+    color: black;
+  }
+
+  #viewPost .info section.column{
+    justify-content: space-between;
+  }
+  
+  #viewPost .info h3{
+    text-transform: capitalize;
+  }
+
+  #viewPost #icons .button span{
+    margin-left: 1rem;
+  }
+
+  #viewPost img{
+    max-width: auto;
+  }
+
+  #viewPost .image{
+    max-width: 80%;
+    padding: 2rem;
+  }
+
+  #viewPost .description p{
+    font-size: 3rem;
+  }
+
+  #viewPost .description{
+    padding: 2rem;
+    border-radius: 5px;
+    background: rgb(187, 187, 187,.4);
+  }
+
+  #viewPost .comments{
+    margin-top: 4rem;
+  }
+
+  #viewPost .comments tbody tr{
+    background:rgba(0, 0, 0, 0.45);
+  }
+
+  #viewPost .comments tbody td{
+    height: auto;
+  }
+
+  #viewPost h1{
+    text-align: center;    
+}
