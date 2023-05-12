@@ -13,7 +13,7 @@ const RenderComments = ({setShowComments, setShowReply, showComments}) => {
     const fetchData = async () => {
         try{
           const [postResponse] = await Promise.all([
-            axios.get("http://localhost:8000/api/posts"),
+            axios.get("https://priconne-backend.onrender.com/api/posts"),
           ]);
           setPosts(postResponse.data);
         }catch(err){

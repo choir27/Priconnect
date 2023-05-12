@@ -11,7 +11,7 @@ const trim = (string) => {
 const handleDelete = async(e,id)=>{
   try{
     e.preventDefault();
-    const response = await axios.delete(`http://localhost:8000/deletePost/${id}`);
+    const response = await axios.delete(`https://priconne-backend.onrender.com/deletePost/${id}`);
     console.log(response.data);
     window.location.reload();
   }catch(err){
@@ -22,7 +22,7 @@ const handleDelete = async(e,id)=>{
 const handleLike = async(e,id)=>{
   try{
     e.preventDefault();
-    const response = await axios.put(`http://localhost:8000/addLike/${id}`);
+    const response = await axios.put(`https://priconne-backend.onrender.com/addLike/${id}`);
     console.log(response.data);
     window.location.reload();
   }catch(err){

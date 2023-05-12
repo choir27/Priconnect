@@ -16,7 +16,7 @@ const ViewPost = () => {
 
     const fetchData = useCallback(async () => {
         const [postsResponse] = await Promise.all([
-          axios.get("http://localhost:8000/api/posts"),
+          axios.get("https://priconne-backend.onrender.com/api/posts"),
         ]);
         setListOfPosts(postsResponse.data);
       },[setListOfPosts]);

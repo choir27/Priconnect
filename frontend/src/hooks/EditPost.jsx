@@ -23,7 +23,7 @@ const handleSubmit = async(e, defaultPost, description, title, post, currentPost
         }
 
         const [usersResponse] = await Promise.all([
-          axios.get("http://localhost:8000/api/users"),
+          axios.get("https://priconne-backend.onrender.com/api/users"),
         ]);
 
         const formData = new FormData();
@@ -48,7 +48,7 @@ const handleSubmit = async(e, defaultPost, description, title, post, currentPost
         formData.append("user", localStorage.getItem("id"));
         formData.append("displayName", usersResponse.data[0].displayName);
 
-        await axios.put(`http://localhost:8000/editPost/${currentPost._id}`, formData)
+        await axios.put(`https://priconne-backend.onrender.com/editPost/${currentPost._id}`, formData)
           .then(res=>{
             console.log(res);
             navigate("/account");

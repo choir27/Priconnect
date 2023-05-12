@@ -11,8 +11,8 @@ const RenderDashboardGuest = () => {
   
     const fetchData = useCallback(async () => {
       const [postsResponse, usersResponse] = await Promise.all([
-        axios.get("http://localhost:8000/api/posts"),
-        axios.get("http://localhost:8000/api/users"),
+        axios.get("https://priconne-backend.onrender.com/api/posts"),
+        axios.get("https://priconne-backend.onrender.com/api/users"),
       ]);
       setPosts(postsResponse.data);
       setUsers(usersResponse.data);
