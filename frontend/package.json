@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "proxy": "http://localhost:8000/",
+  "proxy": "https://priconne-backend.onrender.com/",
   "description": "",
   "main": "index.js",
   "scripts": {

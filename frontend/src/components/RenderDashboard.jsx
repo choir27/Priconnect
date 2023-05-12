@@ -11,7 +11,7 @@ const RenderDashboard = () => {
 
     const fetchData = useCallback(async()=>{
         try{
-        const {data: postData} = await axios.get("http://localhost:8000/api/posts");
+        const {data: postData} = await axios.get("https://priconne-backend.onrender.com/api/posts");
         setPosts(postData);
         }catch(err){
         console.error(err);

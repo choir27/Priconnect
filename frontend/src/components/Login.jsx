@@ -16,7 +16,7 @@ const Signup = () => {
             if(userInfo){
 
                   await axios
-                    .post("http://www.localhost:8000/auth/google/refresh-token", {
+                    .post("https://priconne-backend.onrender.com/auth/google/refresh-token", {
                         userInfo,
                         tokenResponse             
                     })
