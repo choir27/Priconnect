@@ -163,6 +163,10 @@
         margin-top: 2rem;
     }
 
+    #close{
+        z-index: 2;
+    }
+
     #comments .viewPost{
         flex-direction: column;
     }
@@ -409,7 +413,6 @@
         width: 100%;
         margin: 0rem;
         padding: 0rem;
-        position: fixed;
         z-index: 1;
         background: white;
     }
@@ -453,8 +456,6 @@
         flex-direction: column;
       }
 
-
-
     #menu, #close{
         margin: .5rem 0rem 0rem .5rem;
         background: black;
@@ -464,6 +465,10 @@
         display: block;
         min-width: 10%;
     }   
+
+    #close{
+        z-index: 2;
+    }
 
     #nav ul li .button, #nav ul li{
         width: 100%;

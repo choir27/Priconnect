@@ -650,3 +650,7 @@ text-transform: capitalize;
   #viewPost h1{
     text-align: center;    
 }
+
+main{
+    min-height: 100vh;
+}
