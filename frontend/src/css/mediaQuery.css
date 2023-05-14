@@ -19,6 +19,15 @@
     z-index: 0;
 }
 
+#viewPost #comments{
+    width: 100%;
+}
+
+#viewPost #comments thead th{
+    padding-top: 1rem;
+}
+
+
 @media (max-width:1200px) and (orientation: landscape){
     #dashboard .table-wrapper{
         width: 100%;
@@ -231,13 +240,6 @@
 
 }
 
-#viewPost #comments{
-    width: 100%;
-}
-
-#viewPost #comments thead th{
-    padding-top: 1rem;
-}
 
 @media (max-width: 536px) and (orientation: portrait){
      #comments #menu{
@@ -246,6 +248,10 @@
 }
 
 @media (orientation: portrait){
+
+    h1{
+        max-width: 80%;
+    }
 
     #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
         display: none;
