@@ -4,3 +4,7 @@ config.env
 # Local Netlify folder
 .netlify
 .env
+
+./frontend/.env
+frontend/.env
+/frontend/.env

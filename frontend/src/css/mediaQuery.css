@@ -1,5 +1,6 @@
 #menu, #close{
     display: none;
+    position: fixed;
 }
 
 
@@ -7,7 +8,7 @@
     width: 100%;
     padding: 0rem;
     margin: 0rem;
-    position: fixed;
+    position: fixed ;
     z-index: 1;
 }
 
@@ -249,8 +250,16 @@
 
 @media (orientation: portrait){
 
-    h1{
-        max-width: 80%;
+    main header + h1, header h1{
+        font-size: 3rem;
+    }
+
+    #show h2{
+        max-width: 50%;
+    }
+
+    body, main{
+        align-items: center;
     }
 
     #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
@@ -403,7 +412,7 @@
     }
 
     #show .post .image{
-        max-width: 50%;    
+        max-width: 60%;    
     }
 
     #show .post{
@@ -466,7 +475,6 @@
         margin: .5rem 0rem 0rem .5rem;
         background: black;
         z-index: 1;
-        position: fixed;
         align-self: flex-start;
         display: block;
         min-width: 10%;
