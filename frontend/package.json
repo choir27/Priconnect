@@ -1,8 +1,8 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
-  "proxy": "https://priconne-backend.onrender.com/",
-  "description": "",
+  "version": "2.6.0",
+  "proxy": "https://priconne-backend-production.up.railway.app",
+  "description": "social media that connects users together",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",

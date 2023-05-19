@@ -24,10 +24,16 @@ const Account = () => {
         </table>
       </div>
 
-      <div className = "noDisplay verticalTable">
+<div className = "noDisplay verticalTable">
+<table id = "table">
+      <tbody>
       <RenderAccount/>
 
-      </div>
+      </tbody>
+    </table>
+</div>
+
+
     </main>
   )
 }

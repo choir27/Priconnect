@@ -11,8 +11,8 @@ const RenderDashboardGuest = () => {
   
     const fetchData = useCallback(async () => {
       const [postsResponse, usersResponse] = await Promise.all([
-        axios.get("https://priconne-backend.onrender.com/api/posts"),
-        axios.get("https://priconne-backend.onrender.com/api/users"),
+        axios.get("https://priconne-backend-production.up.railway.app/api/posts"),
+        axios.get("https://priconne-backend-production.up.railway.app/api/users"),
       ]);
       setPosts(postsResponse.data);
       setUsers(usersResponse.data);
@@ -26,13 +26,15 @@ const RenderDashboardGuest = () => {
           userMap.set(user.googleId, user);
         }
       
-        return posts.map((post) => {
+        const array = [];
+
+        posts.forEach((post) => {
           const user = userMap.get(post.user);
           const isPostPublic = post.status === "public";
       
-          return (
-            <>
-        { isPostPublic ?    
+          if(isPostPublic){
+            array.push(
+            
             <section key={post._id} className="post flex">
               <Link to = "/viewPost" className = "image flex justifyContent alignItems">
                 <img src={post.post} alt={`Post of ${post.title}`} onClick={() => localStorage.setItem("postId", post._id)} />
@@ -52,7 +54,7 @@ const RenderDashboardGuest = () => {
                     </i>
                   </Link>
 
-                  <Link to="/viewPost" className="button" onClick={() =>localStorage.setItem("postId", post._id)}>
+                  <Link to="/viewPost" className="button" onClick={()=>localStorage.setItem("postId", post._id)}>
                     View
                   </Link>
              
@@ -63,11 +65,12 @@ const RenderDashboardGuest = () => {
          
               </section>
             </section>
-        : ""}
-        </>
-          );
+            );
+          }
         });
     
+        return array;
+
       },[posts, users]);
     
       useEffect(() => {

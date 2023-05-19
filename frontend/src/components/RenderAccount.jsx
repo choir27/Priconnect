@@ -10,7 +10,7 @@ const RenderAccount = () => {
 
   const fetchData = useCallback(async()=>{
     try{
-      const {data: postData} = await axios.get("https://priconne-backend.onrender.com/api/posts");
+      const {data: postData} = await axios.get("https://priconne-backend-production.up.railway.app/api/posts");
       setListOfPosts(postData); 
     }catch(err){
       console.error(err);

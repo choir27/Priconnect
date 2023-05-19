@@ -16,9 +16,11 @@ const EditPost = () => {
 
   const navigate = useNavigate();
 
-  const fetchData = useCallback(async() => {
-      const {data: postData} = await axios.get("http://localhost:3000/api/posts");
-      setListOfPosts(postData);
+  const fetchData = useCallback( async()=> {
+      const [postsResponse] = await Promise.all([
+        axios.get("https://priconne-backend-production.up.railway.app/api/posts")
+      ])
+      setListOfPosts(postsResponse.data);
   },[]);
 
   useMemo(()=>{fetchData()},[fetchData]);
@@ -94,10 +96,7 @@ const EditPost = () => {
                 </section>
               </form>
             : 
-            <main className = "flex column justifyContent" id = "comments">
-      <HeaderAuth className = {"pages"}/>
       <h1>Loading...</h1>
-    </main>
             }
           </section>
         </div>

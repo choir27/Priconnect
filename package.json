@@ -1,7 +1,7 @@
 {
-  "name": "drawconnect",
+  "name": "priconnect",
   "version": "1.0.0",
-  "description": "users can post their created drawings, share their posts as well as others, and like/comment on posts",
+  "description": "users can post, share their posts as well as others, and like/comment on posts",
   "main": "index.js",
   "scripts": {
     "start": "node backend/server.js",

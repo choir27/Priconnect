@@ -5,7 +5,7 @@ const handleLogout = async()=>{
     try{
       googleLogout();
 
-      await axios.delete(`https://priconne-backend.onrender.com/auth/google/logout/${localStorage.getItem("mongoID")}`)
+      await axios.delete(`https://priconne-backend-production.up.railway.app/auth/google/logout/${localStorage.getItem("mongoID")}`)
         .then(res=>{
           console.log(res);
           localStorage.removeItem("id");

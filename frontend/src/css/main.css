@@ -291,7 +291,7 @@ text-transform: capitalize;
   ========================================================================== */
 
 #add{
-    min-width: 54rem;
+    width: 100%;
     background: rgba(27, 31, 34, 0.85);
     margin-top: 4rem;
     border-radius: 4px;
@@ -341,9 +341,6 @@ text-transform: capitalize;
     border: 1px solid white;
 }
 
-#add form{
-    padding: 2rem;
-}
 
 #add .form select{
     padding: 1.2rem;

@@ -3,7 +3,7 @@ import axios from "axios"
 const handleDelete = async(e, commentId)=>{
     try{
       e.preventDefault();
-      const response = await axios.delete(`https://priconne-backend.onrender.com/deleteComment/${commentId}/${localStorage.getItem("postId")}`);
+      const response = await axios.delete(`https://priconne-backend-production.up.railway.app/deleteComment/${commentId}/${localStorage.getItem("postId")}`);
       
       const deleteComments = response.data;
 
@@ -21,7 +21,7 @@ const handleComment = async(e,user,comments) => {
       const currentUser = user.find(ele=>ele.googleId === localStorage.getItem("id"));
 
       if(currentUser){        
-        const response = await axios.post(`https://priconne-backend.onrender.com/addComment/${localStorage.getItem("postId")}`, {
+        const response = await axios.post(`https://priconne-backend-production.up.railway.app/addComment/${localStorage.getItem("postId")}`, {
           user: localStorage.getItem("id"),
           email: currentUser.email, 
           displayName: currentUser.displayName,
@@ -49,7 +49,7 @@ const handleReply = async(e, user, reply) => {
       formData.append("displayName", currentUser.displayName);
       formData.append("email", currentUser.email);
       formData.append("reply", reply);
-      axios.put(`https://priconne-backend.onrender.com/addReplies/${localStorage.getItem("commentId")}/${localStorage.getItem("postId")}`, formData, {})
+      axios.put(`https://priconne-backend-production.up.railway.app/addReplies/${localStorage.getItem("commentId")}/${localStorage.getItem("postId")}`, formData, {})
         .then(res=>{
           console.log(res)
           window.location.reload();
@@ -63,7 +63,7 @@ const handleReplyDelete = async(e, replyId, commentId) => {
   try{
     e.preventDefault();
     
-    await axios.delete(`https://priconne-backend.onrender.com/deleteReply/${commentId}/${replyId}/${localStorage.getItem("postId")}`)
+    await axios.delete(`https://priconne-backend-production.up.railway.app/deleteReply/${commentId}/${replyId}/${localStorage.getItem("postId")}`)
       .then(res=>{
         console.log(res)
         window.location.reload();
@@ -77,7 +77,7 @@ const handleReplyDelete = async(e, replyId, commentId) => {
 const handleLike = async(e, commentId) => {
   try{
     e.preventDefault();
-    await axios.put(`https://priconne-backend.onrender.com/addCommentLike/${commentId}/${localStorage.getItem("postId")}`)
+    await axios.put(`https://priconne-backend-production.up.railway.app/addCommentLike/${commentId}/${localStorage.getItem("postId")}`)
       .then(res=>{
         console.log(res);
         window.location.reload();
@@ -91,7 +91,7 @@ const handleLike = async(e, commentId) => {
 const handleReplyLike = async(e, replyId, commentId) => {
   try{
     e.preventDefault();
-    await axios.put(`https://priconne-backend.onrender.com/addReplyLike/${replyId}/${commentId}/${localStorage.getItem("postId")}`)
+    await axios.put(`https://priconne-backend-production.up.railway.app/addReplyLike/${replyId}/${commentId}/${localStorage.getItem("postId")}`)
       .then(res=>{
         console.log(res);
         window.location.reload();

@@ -187,17 +187,8 @@
         flex-direction: column;
     }
 
-    #add .form .button{
-        width: 85%;
-    }
-
     #add .form{
         padding: 0rem 3rem;
-        justify-content: center;
-    }
-
-    #add section .input, #add section textarea{
-        width: 50%;
     }
 
     #add .submit{
@@ -258,12 +249,30 @@
         max-width: 50%;
     }
 
-    body, main{
+    main{
         align-items: center;
     }
 
-    #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
+    header{
+        width: 100%;
+    }
+
+    .icons-row1, .icons-row2{
+        display: flex;
+        justify-content: space-evenly;
+        padding-bottom: 1rem;
+    }
+    
+
+    #viewPost #comments tbody td:nth-child(2), #viewPost #comments thead th:nth-child(2), #viewPost #comments tbody td:nth-child(3), #viewPost #comments thead th:nth-child(3){
         display: none;
+    }
+
+    
+    #comments section.viewPost{
+        margin: 0rem;
+        width: 100%;
+        padding: 2rem 0rem;
     }
 
     #viewPost #comments{
@@ -335,16 +344,9 @@
         margin-bottom: 1rem;
     }
 
-    #add .form .button{
-        width: 40%;
-    }
 
     #add .form{
         flex-direction: column;
-    }
-
-    #add section .input, #add section textarea{
-        width: 50%;
     }
 
     #add .submit{
@@ -352,9 +354,6 @@
         width: 100%;
     }
 
-    #add .submit .button{
-        width: 40%;
-    }
 
     #add .form section{
         display: flex;
@@ -366,41 +365,32 @@
         display: none;
     }
 
+    #table, #table tbody{
+        padding: 0rem;
+        height: auto;
+    }
+
     #dashboard .verticalTable{
         display: flex;
     }
 
-    #dashboard .verticalTable tr{
-        flex-direction: column;
+    #table tbody tr{
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-    #dashboard .verticalTable td{
+    #table tbody img{
         width: 100%;
     }
 
-    #dashboard .verticalTable td.tableImage a{
-        width: 50%;
+    #table tbody .tableImage{
+        width: 60%;
     }
 
-    #dashboard .verticalTable tr {
-        border: solid 1px #ffffff;
-        border-left: 0;
-        border-right: 0;
-    }
-
-        #dashboard .verticalTable tr:nth-child(2n + 1) {
-            background-color: rgba(255, 255, 255, 0.075);
-        }
-
-    #dashboard .verticalTable td {
-        font-size: 2rem;
-        vertical-align: middle;
-    }
-
-    #dashboard .verticalTable td, #dashboard .verticalTable .tableImage{
-        display: flex;
-        justify-content: center;
+    #table tbody td{
+        height: auto;
     }
 
     #show .post .button{
@@ -479,6 +469,20 @@
         display: block;
         min-width: 10%;
     }   
+
+    #add{
+        padding: 2rem;
+    }
+    
+    #viewPost .info section.column{
+        align-items: center;
+        text-align: center;
+    }
+
+    #viewPost #icons section.button{
+        padding: 1rem;
+    }
+
 
     #close{
         z-index: 2;

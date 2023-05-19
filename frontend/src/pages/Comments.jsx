@@ -20,8 +20,8 @@ const Comments = () => {
     const fetchData = async () => {
       try{
         const [usersResponse, postResponse] = await Promise.all([
-          axios.get("https://priconne-backend.onrender.com/api/users"),
-          axios.get("https://priconne-backend.onrender.com/api/posts")
+          axios.get("https://priconne-backend-production.up.railway.app/api/users"),
+          axios.get("https://priconne-backend-production.up.railway.app/api/posts")
         ]);
         setPosts(postResponse.data);
         setUser(usersResponse.data);

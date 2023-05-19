@@ -11,7 +11,7 @@ const trim = (string) => {
 const handleDelete = async(e,id)=>{
   try{
     e.preventDefault();
-    const response = await axios.delete(`https://priconne-backend.onrender.com/deletePost/${id}`);
+    const response = await axios.delete(`https://priconne-backend-production.up.railway.app/deletePost/${id}`);
     console.log(response.data);
     window.location.reload();
   }catch(err){
@@ -22,7 +22,7 @@ const handleDelete = async(e,id)=>{
 const handleLike = async(e,id)=>{
   try{
     e.preventDefault();
-    const response = await axios.put(`https://priconne-backend.onrender.com/addLike/${id}`);
+    const response = await axios.put(`https://priconne-backend-production.up.railway.app/addLike/${id}`);
     console.log(response.data);
     window.location.reload();
   }catch(err){
