@@ -26,6 +26,8 @@ const handleSubmit = async(e, defaultPost, description, title, post, currentPost
           axios.get("https://priconne-backend-production.up.railway.app/api/users"),
         ]);
 
+        const user = usersResponse.data.find(account=>account.googleId === localStorage.getItem("id"));
+
         const formData = new FormData();
 
         if(!post){
@@ -37,18 +39,14 @@ const handleSubmit = async(e, defaultPost, description, title, post, currentPost
         formData.append("fileName", post.fileName);
       };
 
-        if(currentPost.comments.length){
-          formData.append("comments", currentPost.comments);
-        };
-      
         formData.append("likes", currentPost.likes);
         formData.append("title", title);
         formData.append("status", status);
         formData.append("description", description);
         formData.append("user", localStorage.getItem("id"));
-        formData.append("displayName", usersResponse.data[0].displayName);
+        formData.append("displayName", user.displayName);
 
-        await axios.put(`https://priconne-backend-production.up.railway.app/editPost/${currentPost._id}`, formData)
+        await axios.put(`https://priconne-backend-production.up.railway.app/editPost/${currentPost._id}/${localStorage.getItem("postId")}`, formData)
           .then(res=>{
             console.log(res);
             navigate("/account");

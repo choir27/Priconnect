@@ -10,7 +10,7 @@ const handleSubmit = async(e, navigate, post, title, status, description) => {
             return;
         }
   
-        if(!post.type.includes("gif") && !post.type.includes("png") && !post.type.includes("jpg") && !post.type.includes("jpeg") && !post.type.includes("webp")){
+        if(!post.type.includes("png") && !post.type.includes("jpg") && !post.type.includes("jpeg") && !post.type.includes("webp")){
           toast.error("Please Input A Picture File");
           return;
         }
@@ -18,7 +18,9 @@ const handleSubmit = async(e, navigate, post, title, status, description) => {
         const [usersResponse] = await Promise.all([
           axios.get("https://priconne-backend-production.up.railway.app/api/users"),
         ]);
-    
+
+        const user = usersResponse.data.find(account=>account.googleId === localStorage.getItem("id"));
+              
         const formData = new FormData();
 
         formData.append("file", post);
@@ -27,9 +29,9 @@ const handleSubmit = async(e, navigate, post, title, status, description) => {
         formData.append("status", status);
         formData.append("description", description);
         formData.append("user", localStorage.getItem("id"));
-        formData.append("displayName", usersResponse.data[0].displayName);
+        formData.append("displayName", user.displayName);
         
-        await axios.post("https://priconne-backend-production.up.railway.app/post", formData)
+       axios.post("https://priconne-backend-production.up.railway.app/post", formData)
           .then(res=>{
             console.log(res);
             navigate("/account");

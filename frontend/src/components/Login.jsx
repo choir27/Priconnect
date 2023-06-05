@@ -11,17 +11,15 @@ const Signup = () => {
               .get('https://www.googleapis.com/oauth2/v3/userinfo', {
                 headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
               })
-              .then(res => res.data);
+              .then(res =>res.data);
               
             if(userInfo){
-
                   await axios
                     .post("https://priconne-backend-production.up.railway.app/auth/google/refresh-token", {
                         userInfo,
                         tokenResponse             
                     })
                     .then(response=>{
-                      console.log(response);
                       localStorage.setItem("mongoID", response.data.user._id);
                       localStorage.setItem("id", userInfo.sub);
                       window.location.reload();
