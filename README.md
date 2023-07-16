@@ -2,7 +2,7 @@ Priconnect
 
 <a href = "https://priconnect.netlify.app/">Link Here!</a>
 
-<img width="959" alt="Screenshot 2023-05-11 200031" src="https://github.com/choir27/Priconnect/assets/66279068/a0d70421-06b4-4b34-9e91-bf120e9376b9">
+![Screenshot 2023-07-16 160316](https://github.com/choir27/Priconnect/assets/66279068/be4cc4e4-90f1-4496-a98d-3a34d56bc9c0)
 
 <br>
 How It's Made: Tech used: React, MongoDB, HTML, CSS, JavaScript, Node, Express
