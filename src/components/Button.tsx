@@ -1,6 +1,6 @@
-import {Button} from "../middleware/Interfaces"
+import {ButtonInterface} from "../middleware/Interfaces"
 
-export function Button(props: Button){
+export function Button(props: ButtonInterface){
     return(
         <button
         className = {props.classNames}
