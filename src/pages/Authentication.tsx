@@ -1,35 +1,36 @@
 import {Button} from "../components/Button"
-import {useGoogleLogin} from "@react-oauth/google"
-import axios from "axios"
 import api from "../middleware/Appwrite"
-import {Client, Account, ID} from "appwrite"
+import {useState, useEffect} from "react"
+import {SignUp} from "../hooks/Auth"
+import {setEmail} from "../middleware/Sessions"
+import {User} from "../middleware/Interfaces"
 
 export default function Authentication(){
 
-    async function SignUp(){
-        try{
+    const [user,setUser] = useState<User>();
 
-            // https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/655a7df759c63bebf9ab
+    
+    useEffect(()=>{
+        async function GetAccount(){
+            try{
+                const account = await api.getAccount();
+                
+                setUser(account);
+            }catch(err){
+                console.error(err);
+            }
+        }
 
-            // https://www.googleapis.com/oauth2/v3/userinfo
-            // const userInfo = await axios.get("https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/655a7df759c63bebf9ab", {
-            //     headers: { Authorization: `Bearer ${tokenResponse.access_token}` }
-            // });
+        GetAccount();
 
-            // console.log(userInfo)
+        if(user){
+            setEmail(user.email);
+        }
+    },[])
 
-            const client = new Client()
-                .setEndpoint(import.meta.env.VITE_REACT_APP_ENDPOINT) // Your API Endpoint
-                .setProject(import.meta.env.VITE_REACT_APP_PROJECT);     // Your project ID
-            
-            const account = new Account(client);
 
-            account.createOAuth2Session('google', "http://localhost:5173/dashboard");
-        
-        }catch(err){
-            console.error(err);
-        };
-    }
+
+    console.log(user);
 
        
     return(
@@ -37,6 +38,7 @@ export default function Authentication(){
             <h1>Authentication</h1>
 
             {Button({text: "Login", onClick: ()=> SignUp()})}
+
 
             <a href = "/dashboard">Dashboard</a>
 
