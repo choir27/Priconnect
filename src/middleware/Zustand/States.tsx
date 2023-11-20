@@ -1,7 +1,7 @@
 import {create} from "zustand"
 import {produce} from "immer"
 import {State, Action} from "./Types"
-import {Image} from "./Interfaces"
+import {Image, Post} from "../Interfaces"
 
 export const useStore = create<State & Action>(
     (set)=>({
@@ -29,6 +29,16 @@ export const useStore = create<State & Action>(
                     }
                 )
             );
-        } 
+        },
+        posts: [],
+        setPosts: (posts: Post[])=>{
+            set(
+                produce(
+                    (state: State)=>{
+                        state.posts = posts;
+                    }
+                )
+            );
+        }
     })
 )

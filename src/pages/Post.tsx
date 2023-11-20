@@ -1,17 +1,14 @@
 import GetAccount from "../hooks/Authentication/GetAccount"
 import Header from "../components/Header"
-import RenderPosts from "../hooks/Post/RenderPosts"
 
-export default function Dashboard(){
+export default function Post(){
 
     GetAccount();
 
     return(
         <main>
             <Header/>
-            <h1>Dashboard</h1>
-
-            <RenderPosts/>
+            <h1>Post</h1>
         </main>
     )
 }

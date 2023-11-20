@@ -1,8 +1,8 @@
 import {TextInput} from "../hooks/Post/Inputs"
 import {Button} from "../components/Button"
 import CreatePost from "../hooks/Post/CreatePost"
-import {useStore} from "../middleware/States"
-import {Action, State} from "../middleware/Types"
+import {useStore} from "../middleware/Zustand/States"
+import {Action, State} from "../middleware/Zustand/Types"
 import ImageUpload from "../hooks/Post/UploadImage"
 
 export default function CreatePostHub(){
@@ -17,7 +17,7 @@ export default function CreatePostHub(){
 
             <ImageUpload/>
 
-            {Button({text: "Create Post", onClick: ()=> CreatePost({text: text, image: image})})}
+            {Button({text: "Create Post", classNames: "button", onClick: ()=> CreatePost({text: text, image: image})})}
 
             {image.original_filename}
         </form>

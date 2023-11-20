@@ -15,9 +15,9 @@ export default function Header(){
     return(
         <header>
             <nav>
-                {user ? "" : <a href = "/">Home</a>}
-                {user ? <a href = "/dashboard">Dashboard</a> : ""}
-                {user ? Button({text: "Logout", onClick: ()=> SignOut(navigate)}) : ""}
+                {user ? "" : <a className = "button" href = "/">Home</a>}
+                {user ? <a className = "button" href = "/dashboard">Dashboard</a> : ""}
+                {user ? Button({text: "Logout", classNames: "button", onClick: ()=> SignOut(navigate)}) : ""}
             </nav>
 
             {user ? <CreatePost/> : ""}

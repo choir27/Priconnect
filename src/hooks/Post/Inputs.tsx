@@ -1,6 +1,4 @@
-interface TextInputInterface{
-    setText: (e:string) => void
-}
+import {TextInputInterface} from "../../middleware/Interfaces"
 
 export function TextInput(props: TextInputInterface){
     return(

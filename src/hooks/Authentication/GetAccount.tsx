@@ -1,5 +1,4 @@
-import {useState, useEffect} from "react"
-import {User} from "../../middleware/Interfaces"
+import {useEffect} from "react"
 import api from "../../middleware/Appwrite"
 import {setEmail} from "../../middleware/Sessions"
 
@@ -17,7 +16,7 @@ export default function GetAccount(){
             }catch(err){
                 console.error(err);
             }
-        }
+        };
 
         GetAccount();
 

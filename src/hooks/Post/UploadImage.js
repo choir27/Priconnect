@@ -1,5 +1,5 @@
 import {Button} from "../../components/Button"
-import {useStore} from "../../middleware/States"
+import {useStore} from "../../middleware/Zustand/States"
 
 export default function ImageUpload(){
 
@@ -31,6 +31,6 @@ export default function ImageUpload(){
     }
 
     return(
-        Button({text: "Upload Image", onClick: ()=>uploadImage()})
+        Button({text: "Upload Image", classNames: "button", onClick: ()=>uploadImage()})
     )
 }
