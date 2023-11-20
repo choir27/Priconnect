@@ -13,6 +13,5 @@ export function TextInput(props: TextInputInterface){
         name ="text" 
         id = "text"
         />
-
     )
 }
