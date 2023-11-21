@@ -1,4 +1,4 @@
-import {Image, Post} from "../Interfaces"
+import {Image, Post, User} from "../Interfaces"
 
 export type State = {
     text: string,
@@ -11,3 +11,15 @@ export type Action = {
     setImage: (e:Image)=>void,
     setPosts: (e:Post[])=>void
 };
+
+export type Context = {
+    posts: Post[],
+    user: User
+}
+
+export const defaultUser = {
+    email: "",
+    $id: "",
+    name: "",
+    $createdAt: ""
+}

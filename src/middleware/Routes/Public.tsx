@@ -1,13 +1,12 @@
 import {Outlet, Navigate} from "react-router-dom"
 import {useContext} from "react"
-import {UserContext} from "../../middleware/Context"
-import {User} from "../../middleware/Interfaces"
+import {ApiContext} from "../../middleware/Context"
 import {getEmail} from "../../middleware/Sessions"
 
 export default function PublicRoutes(){
-    const user = useContext(UserContext) as User;
+    const {user} = useContext(ApiContext);
 
     return(
-        user?.email || user?.email === getEmail() ? <Navigate to = "/dashboard"/> : <Outlet/>
+       getEmail() || user?.email || user?.email === getEmail() ? <Navigate to = "/dashboard"/> : <Outlet/>
     )
 }

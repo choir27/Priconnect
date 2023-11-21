@@ -1,57 +1,43 @@
-import {
-  QueryClientProvider,
-  QueryClient
-} from "@tanstack/react-query"
 import {BrowserRouter} from "react-router-dom"
 import {Routes, Route} from "react-router"
-import {Authentication, Dashboard, Post} from "./Routes"
+import {Authentication, Dashboard, ExpandedPost} from "./Routes"
 import PrivateRoutes from "./middleware/Routes/Private"
 import PublicRoutes from "./middleware/Routes/Public"
+import {defaultUser} from "./middleware/Zustand/Types"
 import {useEffect, useState, Suspense} from "react"
-import api from "./middleware/Appwrite"
-import {UserContext} from "./middleware/Context"
-import {User} from "./middleware/Interfaces"
+import {GetPosts, GetAccount} from "./hooks/FetchData"
+import {ApiContext} from "./middleware/Context"
+import {User, Post} from "./middleware/Interfaces"
 
 export default function App(){
 
-  //create a client
-  const queryClient = new QueryClient();
+  const [user,setUser] = useState<User>(defaultUser);
+  const [posts, setPosts] = useState<Post[]>([]);
 
-  const [user,setUser] = useState<User>();
     
   useEffect(()=>{
-      async function GetAccount(){
-          try{
-              const account = await api.getAccount();
-              
-              setUser(account);
-          }catch(err){
-              console.error(err);
-          }
-      }
 
-      GetAccount();
+      GetAccount((e:User)=>setUser(e));
+      GetPosts((e:Post[])=>setPosts(e));
 
   },[]);
 
   //create routes
   return(
-      <QueryClientProvider client = {queryClient}>
+    <ApiContext.Provider value = {{posts, user}}>
         <Suspense fallback = {<h1>Loading...</h1>}>
-          <UserContext.Provider value = {user}>
             <BrowserRouter>
               <Routes>
                 <Route element = {<PrivateRoutes/>}>
+                  <Route path = {`/:id`} element = {<ExpandedPost/>}/>
                   <Route path = "/dashboard" element = {<Dashboard/>}/>
-                  <Route path = {`/post/:id`} element = {<Post/>}/>
                 </Route>
                 <Route element = {<PublicRoutes/>}>
                   <Route path = "/" element = {<Authentication/>}/>
                 </Route>
               </Routes>
             </BrowserRouter>
-          </UserContext.Provider>
         </Suspense>
-      </QueryClientProvider>
+      </ApiContext.Provider>
   )
 }

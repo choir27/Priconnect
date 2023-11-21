@@ -1,14 +1,13 @@
 import {Button} from "../components/Button"
 import {SignOut} from "../hooks/Authentication/Auth"
 import {useNavigate} from "react-router-dom"
-import {UserContext} from "../middleware/Context"
+import {ApiContext} from "../middleware/Context"
 import {useContext} from "react"
-import {User} from "../middleware/Interfaces"
 import CreatePost from "./CreatePost"
 
 export default function Header(){
 
-    const user = useContext(UserContext) as User;
+    const {user} = useContext(ApiContext);
 
     const navigate:(e:string) => void = useNavigate() as (e:string) => void;
 

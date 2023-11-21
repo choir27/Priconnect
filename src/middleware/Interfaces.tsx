@@ -25,6 +25,8 @@ export interface CreatePostInterface{
 
 export interface Post{
     $id: string,
+    $createdAt: string,
+    $updatedAt: string,
     text: string,
     image: string,
     likes: number
