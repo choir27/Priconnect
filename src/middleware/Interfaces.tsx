@@ -29,7 +29,7 @@ export interface Post{
     $updatedAt: string,
     text: string,
     image: string,
-    likes: number
+    likes: string[]
 };
 
 export interface TextInputInterface{
@@ -39,5 +39,12 @@ export interface TextInputInterface{
 export interface PostsInterface{
     posts: Post[],
     optionDisplay: boolean,
-    setOptionDisplay: (e: boolean) => void
+    setOptionDisplay: (e: boolean) => void,
+    user: User
 };
+
+export interface addLikeInterface{
+    post: Post,
+    user: User,
+    navigate: (e:string)=>void
+}
