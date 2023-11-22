@@ -62,3 +62,9 @@ export interface Comment{
 export interface addCommentInterface extends addLikeInterface{
     comment: string
 };
+
+export interface PostOptionsInterface{
+    post: Post, 
+    props: PostsInterface, 
+    checkLikeLogic: string
+};

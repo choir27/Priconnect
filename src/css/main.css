@@ -6,6 +6,10 @@ img{
     width: 100%;
 }
 
+.hidden{
+    display: none;
+}
+
 .imageContainer{
     width: 20%;
 }

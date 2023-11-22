@@ -1,6 +1,6 @@
 import {useState, useContext} from "react"
 import {ApiContext} from "../../../../middleware/Context"
-import {Posts} from "./Posts"
+import Posts from "./Posts"
 
 export default function RenderPosts(){
 
