@@ -1,4 +1,4 @@
-import {TextInputInterface} from "../../middleware/Interfaces"
+import {TextInputInterface, CommentInputInterface} from "../../middleware/Interfaces"
 
 export function TextInput(props: TextInputInterface){
     return(
@@ -10,6 +10,20 @@ export function TextInput(props: TextInputInterface){
         type = "text" 
         name ="text" 
         id = "text"
+        />
+    )
+}
+
+export function CommentInput(props: CommentInputInterface){
+    return(
+        <input
+        placeholder = "Add a Comment"
+        minLength = {1}
+        maxLength = {1000}
+        onChange = {(e)=>props.setComment(e.target.value)}
+        type = "text"
+        name = "comment"
+        id = "comment"
         />
     )
 }

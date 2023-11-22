@@ -29,11 +29,16 @@ export interface Post{
     $updatedAt: string,
     text: string,
     image: string,
-    likes: string[]
+    likes: string[],
+    comments: string[]
 };
 
 export interface TextInputInterface{
     setText: (e:string) => void
+};
+
+export interface CommentInputInterface{
+    setComment: (e:string) => void
 };
 
 export interface PostsInterface{
@@ -47,4 +52,13 @@ export interface addLikeInterface{
     post: Post,
     user: User,
     navigate: (e:string)=>void
-}
+};
+
+export interface Comment{
+    comment: string,
+    id: string
+};
+
+export interface addCommentInterface extends addLikeInterface{
+    comment: string
+};

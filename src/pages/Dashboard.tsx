@@ -1,6 +1,6 @@
 import GetAccount from "../hooks/Authentication/GetAccount"
 import Header from "../components/Header"
-import RenderPosts from "../hooks/Post/RenderPosts"
+import RenderPosts from "../hooks/Post/RenderPosts/Posts/RenderPosts"
 
 export default function Dashboard(){
 

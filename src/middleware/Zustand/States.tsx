@@ -39,6 +39,16 @@ export const useStore = create<State & Action>(
                     }
                 )
             );
+        },
+        comment: "",
+        setComment: (comment: string)=>{
+            set(
+                produce(
+                    (state: State)=>{
+                        state.comment = comment;
+                    }
+                )
+            );
         }
     })
 )

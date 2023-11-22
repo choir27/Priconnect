@@ -33,9 +33,22 @@ a{
     color: white;
 }
 
+
 .button:hover{
     text-decoration: none;
     cursor: pointer;
     background: rgb(187, 187, 187,.4);
     color: black;
+}
+
+.flex{
+    display: flex;
+}
+
+.alignCenter{
+    align-items: center;
+}
+
+.justifyCenter{
+    justify-content: center;
 }

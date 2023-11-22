@@ -3,13 +3,15 @@ import {Image, Post, User} from "../Interfaces"
 export type State = {
     text: string,
     image: Image,
-    posts: Post[]
+    posts: Post[],
+    comment: string
 };
 
 export type Action = {
     setText: (e:string)=>void,
     setImage: (e:Image)=>void,
-    setPosts: (e:Post[])=>void
+    setPosts: (e:Post[])=>void,
+    setComment: (e:string)=>void
 };
 
 export type Context = {
