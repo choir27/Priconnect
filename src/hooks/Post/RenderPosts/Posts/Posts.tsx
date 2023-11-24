@@ -2,29 +2,32 @@ import {getEmail} from "../../../../middleware/Sessions"
 import {setPostId} from "../../../../middleware/Sessions"
 import {Post, PostsInterface} from "../../../../middleware/Interfaces"
 import {useNavigate} from "react-router"
-import PostOptions from "../../PostOptions"
+import PostOptions from "./PostOptions"
 
 export default function Posts(props: PostsInterface){
 
     const navigate = useNavigate();
 
-    const listOfPosts = props.posts.map((post: Post)=>{
+    const listOfPosts = props?.posts?.map((post: Post)=>{
 
-        const image = JSON.parse(post.image);
+        const image = JSON?.parse(post?.image);
 
         let duplicates = "";
 
-        if(post.likes[0]){
+        if(post?.likes[0]){
 
-            const findDuplicate = post.likes.find((like: string)=>{
-                const likeObject = JSON.parse(like);
+            const findDuplicate = post?.likes?.find((like: string)=>{
+                const likeObject = JSON?.parse(like);
 
-                if(likeObject.id === props.user.email || likeObject.id === getEmail()){
+                if(likeObject?.id === props?.user?.email || likeObject?.id === getEmail()){
                     return likeObject;
                 }
             }) as string;
 
-            duplicates = JSON.parse(findDuplicate).id;
+            if(findDuplicate){
+                duplicates = JSON?.parse(findDuplicate)?.id;
+            }
+
         }
 
         const checkLikeLogic: string = duplicates ? "fa-solid fa-heart button" : "fa-regular fa-heart button"

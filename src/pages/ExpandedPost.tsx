@@ -1,18 +1,20 @@
 import GetAccount from "../hooks/Authentication/GetAccount"
 import Header from "../components/Header"
 import {useParams} from "react-router"
-import {useContext} from "react"
+import {useContext, useState} from "react"
 import {ApiContext} from "../middleware/Context"
 import {Post} from "../middleware/Interfaces"
 import {Button} from "../components/Button"
 import {totalLikes} from "../hooks/Post/RenderPosts/Likes/totalLikes"
 import {getEmail} from "../middleware/Sessions"
-import RenderComments from "../hooks/Post/RenderPosts/Comments/renderComments"
+import RenderComments from "../hooks/Post/RenderPosts/Comments/renderComments/renderComments"
+import PostOptions from "../hooks/Post/RenderPosts/Posts/PostOptions"
 
 export default function ExpandedPost(){
 
     const {id} = useParams();
     const {posts, user} = useContext(ApiContext);
+    const [optionDisplay, setOptionDisplay] = useState<boolean>(false);
 
     let image = {secure_url: "", original_filename: "", created_at: ""};
     let createdAt = new Date();
@@ -40,7 +42,9 @@ export default function ExpandedPost(){
                 }
             }) as string;
 
-            duplicates = JSON.parse(findDuplicate).id;
+            if(findDuplicate){
+                duplicates = JSON?.parse(findDuplicate)?.id;
+            }
         }
 
     }
@@ -48,6 +52,15 @@ export default function ExpandedPost(){
     const checkLikeLogic = duplicates ? "fa-solid fa-heart button" : "fa-regular fa-heart button"
 
     GetAccount();
+
+    const props = {
+        posts: posts,
+        optionDisplay: optionDisplay,
+        setOptionDisplay: (e:boolean)=>setOptionDisplay(e),
+        user: user
+    };
+
+    const post = expandedPost;
 
     return(
         <main>
@@ -66,12 +79,7 @@ export default function ExpandedPost(){
 
                 Image created at {image?.created_at}
 
-                <div>
-                    <span>{expandedPost?.likes[0] ? totalLikes(expandedPost?.likes) : 0}</span>{Button({text: "", classNames: checkLikeLogic, onClick: ()=>""})}
-                    {Button({text: "", classNames: "fa-solid fa-repeat button", onClick: ()=>""})}
-                    {Button({text: "", classNames: "fa-solid fa-share button", onClick: ()=>""})}
-                    {Button({text: "", classNames: "fa-solid fa-ellipsis-vertical button", onClick: ()=>""})}
-                </div>
+                <PostOptions {...{post, props, checkLikeLogic}}/>
 
                 <RenderComments {...expandedPost}/>
             </section>

@@ -1,6 +1,6 @@
-import api from "../../middleware/Appwrite"
+import api from "../../../middleware/Appwrite"
 import {Permission, Role} from "appwrite"
-import {CreatePostInterface} from "../../middleware/Interfaces"
+import {CreatePostInterface} from "../../../middleware/Interfaces"
 
 export default async function CreatePost(props: CreatePostInterface){
 

@@ -3,7 +3,7 @@ import {SignOut} from "../hooks/Authentication/Auth"
 import {useNavigate} from "react-router-dom"
 import {ApiContext} from "../middleware/Context"
 import {useContext} from "react"
-import CreatePost from "./CreatePost"
+import CreatePostHub from "./CreatePostHub"
 
 export default function Header(){
 
@@ -19,7 +19,7 @@ export default function Header(){
                 {user ? Button({text: "Logout", classNames: "button", onClick: ()=> SignOut(navigate)}) : ""}
             </nav>
 
-            {user ? <CreatePost/> : ""}
+            {user ? <CreatePostHub/> : ""}
 
         </header>
     )

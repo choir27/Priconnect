@@ -23,7 +23,8 @@ export async function SignOut(navigate: (e:string)=>void){
 
         setEmail("");
 
-        navigate("/");
+        await navigate("/");
+        window.location.reload();
 
     }catch(err){
         console.error(err);

@@ -7,6 +7,6 @@ export default function PublicRoutes(){
     const {user} = useContext(ApiContext);
 
     return(
-       getEmail() || user?.email || user?.email === getEmail() ? <Navigate to = "/dashboard"/> : <Outlet/>
+       getEmail() !== "" || user?.email ? <Navigate to = "/dashboard"/> : <Outlet/>
     )
 }

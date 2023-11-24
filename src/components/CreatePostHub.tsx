@@ -1,6 +1,6 @@
 import {TextInput} from "../hooks/Post/Inputs"
-import {Button} from "../components/Button"
-import CreatePost from "../hooks/Post/CreatePost"
+import {Button} from "./Button"
+import CreatePost from "../hooks/Post/ManagePosts/CreatePost"
 import {useStore} from "../middleware/Zustand/States"
 import {Action, State} from "../middleware/Zustand/Types"
 import ImageUpload from "../hooks/Post/UploadImage"

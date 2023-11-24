@@ -68,3 +68,7 @@ export interface PostOptionsInterface{
     props: PostsInterface, 
     checkLikeLogic: string
 };
+
+export interface CommentLike{
+    id: string
+};

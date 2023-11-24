@@ -1,10 +1,9 @@
-import {Post} from "../../middleware/Interfaces"
-import api from "../../middleware/Appwrite"
+import {Post} from "../../../middleware/Interfaces"
+import api from "../../../middleware/Appwrite"
 import axios from "axios"
 
-export async function deletePost(post: Post){
+export async function deletePost(post: Post, navigate: (e:string)=>void){
     try{    
-
         const backendURL = "https://priconnect-backend.onrender.com";
 
         // local testing purposes const localURL = "http://localhost:8000";
@@ -13,6 +12,8 @@ export async function deletePost(post: Post){
 
         await api.deleteDocument(import.meta.env.VITE_REACT_APP_DATABASE_ID, import.meta.env.VITE_REACT_APP_COLLECTION_ID, post.$id);
 
+        navigate("/dashboard");
+        
         window.location.reload();
     }catch(err){
         console.error(err);

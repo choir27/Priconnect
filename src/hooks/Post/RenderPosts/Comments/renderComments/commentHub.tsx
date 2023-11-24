@@ -1,10 +1,10 @@
-import {Button} from "../../../../components/Button"
-import {addComment} from "./addComment"
-import {addCommentInterface} from "../../../../middleware/Interfaces"
-import {CommentInput} from "../../Inputs"
-import {useStore} from "../../../../middleware/Zustand/States"
-import {Action, State} from "../../../../middleware/Zustand/Types"
-import {totalComment} from "../Comments/totalComments"
+import {Button} from "../../../../../components/Button"
+import {addComment} from "../manageComments/addComment"
+import {addCommentInterface} from "../../../../../middleware/Interfaces"
+import {CommentInput} from "../../../Inputs"
+import {useStore} from "../../../../../middleware/Zustand/States"
+import {Action, State} from "../../../../../middleware/Zustand/Types"
+import {totalComment} from "../manageComments/totalComments"
 
 export default function CommentHub(props: addCommentInterface){
 
