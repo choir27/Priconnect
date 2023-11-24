@@ -11,6 +11,8 @@ export default function RenderComments(post: Post){
             return(
                 <article key = {`${commentObj.comment}-${post.$id}-${post.$createdAt}-${post.$updatedAt}-${commentObj.user}`}>
                     <p>{commentObj.comment}</p>
+
+                    <h2>{commentObj.id}</h2>
                  
                     <CommentOptions {...{post, index}}/>
                 </article>

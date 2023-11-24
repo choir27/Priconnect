@@ -72,3 +72,8 @@ export interface PostOptionsInterface{
 export interface CommentLike{
     id: string
 };
+
+export interface CommentOptionsInterface{
+    post: Post,
+    index: number
+}
