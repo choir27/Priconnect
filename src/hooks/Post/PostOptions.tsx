@@ -5,6 +5,7 @@ import {useNavigate} from "react-router"
 import CommentHub from "./RenderPosts/Comments/commentHub"
 import {totalLikes} from "./RenderPosts/Likes/totalLikes"
 import {addLike} from "./RenderPosts/Likes/addLike"
+import {deletePost} from "./DeletePost"
 
 export default function PostOptions(props: PostOptionsInterface):React.JSX.Element{
 
@@ -22,7 +23,7 @@ export default function PostOptions(props: PostOptionsInterface):React.JSX.Eleme
         {optionDisplay ? 
             <section>
                 <div>
-                    {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>""})}
+                    {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deletePost(props.post)})}
                     {Button({text: "", classNames: "fa-solid fa-repeat button", onClick: ()=>""})}
                     {Button({text: "", classNames: "fa-solid fa-share button", onClick: ()=>""})}
                 </div>         
