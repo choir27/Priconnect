@@ -4,6 +4,7 @@ import { ReplyOptionsInterface, CommentLike } from "../../../../../middleware/In
 import { ApiContext } from "../../../../../middleware/Context";
 import {useContext} from "react"
 import { getEmail } from "../../../../../middleware/Sessions";
+import {deleteReply} from "../manageReplies/deleteReply"
 
 export default function ReplyOptions(props: ReplyOptionsInterface){
 
@@ -32,7 +33,7 @@ export default function ReplyOptions(props: ReplyOptionsInterface){
     return(
         <div className = "flex alignItems justifyContent">
         {Button({text: "", classNames: checkLikeLogic, onClick: ()=>addReplyLike({...{post: props.post, index: props.index, replyIndex: props.replyIndex}}, user)})}
-        {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>""})}
+        {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deleteReply({post: props.post,index: props.index,replyIndex: props.replyIndex})})}
     </div>
     )
 }
