@@ -1,5 +1,7 @@
 import {Post} from "../../../../../middleware/Interfaces"
 import CommentOptions from "./commentOptions"
+import ReplyHub from "../renderReplies/replyHub"
+import RenderReplies from "../renderReplies/renderReplies"
 
 export default function RenderComments(post: Post){
 
@@ -14,7 +16,10 @@ export default function RenderComments(post: Post){
 
                     <h2>{commentObj.id}</h2>
                  
+                    <ReplyHub {...{post, index}}/>
                     <CommentOptions {...{post, index}}/>
+
+                    <RenderReplies {...{post, index}}/>
                 </article>
             )
         })
@@ -24,11 +29,13 @@ export default function RenderComments(post: Post){
                 <h1>Comments</h1>
                 {listOfComments}
             </section>
-        )
+        );
 
     }else{
-        <section>
-            <h1>Loading...</h1>
-        </section>
-    }
+        return(
+            <section>
+                <h1>Loading...</h1>
+            </section>
+        );
+    };
 }

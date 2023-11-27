@@ -27,3 +27,17 @@ export function CommentInput(props: CommentInputInterface){
         />
     )
 }
+
+export function ReplyInput(props: CommentInputInterface){
+    return(
+        <input
+        placeholder = "Add a Reply"
+        minLength = {1}
+        maxLength = {1000}
+        onChange = {(e)=>props.setComment(e.target.value)}
+        type = "text"
+        name = "comment"
+        id = "comment"
+        />
+    )
+}

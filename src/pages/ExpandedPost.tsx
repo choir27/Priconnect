@@ -75,9 +75,16 @@ export default function ExpandedPost(){
 
                 {expandedPost?.text}
 
-                <img src = {image?.secure_url} alt = {image?.original_filename}/>
+                {image?.secure_url ?
+                <section>
+                    <img src = {image?.secure_url} alt = {image?.original_filename}/>
 
-                Image created at {image?.created_at}
+                    Image created at {image?.created_at}
+                </section>
+                : 
+                ""
+                }
+         
 
                 <PostOptions {...{post, props, checkLikeLogic}}/>
 

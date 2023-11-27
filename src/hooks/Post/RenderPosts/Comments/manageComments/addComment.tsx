@@ -8,7 +8,7 @@ export async function addComment(props: addCommentInterface){
         if(props.comment){
 
             let comment = {
-                id: props.user.email,
+                id: "",
                 comment: props.comment,
                 replies: [],
                 likes: []

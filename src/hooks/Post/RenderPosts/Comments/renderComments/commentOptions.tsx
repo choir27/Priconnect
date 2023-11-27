@@ -5,6 +5,7 @@ import {useContext} from "react"
 import {ApiContext} from "../../../../../middleware/Context"
 import {getEmail} from "../../../../../middleware/Sessions"
 import {deleteComment} from "../manageComments/deleteComment"
+import replyOptions from "../manageReplies/replyOptions"
 
 export default function CommentOptions(props: CommentOptionsInterface){
 
@@ -34,7 +35,6 @@ export default function CommentOptions(props: CommentOptionsInterface){
                 {comment?.likes?.length}{Button({text: "", classNames: checkLikeLogic, onClick: ()=>addCommentLike(props.post, props.index, user)})}
                 {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deleteComment({post: props.post, index: props.index})})}
             </div>
-        )
-            
+        );            
     }
 }
