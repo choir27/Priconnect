@@ -76,4 +76,14 @@ export interface CommentLike{
 export interface CommentOptionsInterface{
     post: Post,
     index: number
-}
+};
+
+export interface ReplyOptionsInterface extends CommentOptionsInterface{
+    replyIndex: number
+};
+
+export interface Reply{
+    comment: string,
+    id: string,
+    likes: string[]
+};

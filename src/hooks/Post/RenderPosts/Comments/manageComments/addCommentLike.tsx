@@ -41,7 +41,7 @@ export async function addCommentLike(post: Post, index: number, user: User){
 
                 comments["likes"] = array;
     
-                post.comments[index] = (JSON.stringify(comments));
+                post.comments[index] = JSON.stringify(comments);
     
                 const data = {
                     comments: post.comments
