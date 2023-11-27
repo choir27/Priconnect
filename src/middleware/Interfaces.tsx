@@ -30,6 +30,7 @@ export interface Post{
     text: string,
     image: string,
     likes: string[],
+    email: string,
     comments: string[]
 };
 

@@ -6,6 +6,7 @@ import CommentHub from "../Comments/renderComments/commentHub"
 import {totalLikes} from "../Likes/totalLikes"
 import {addLike} from "../Likes/addLike"
 import {deletePost} from "../../ManagePosts/DeletePost"
+import { getEmail } from "../../../../middleware/Sessions";
 
 export default function PostOptions(props: PostOptionsInterface):React.JSX.Element{
 
@@ -23,7 +24,7 @@ export default function PostOptions(props: PostOptionsInterface):React.JSX.Eleme
         {optionDisplay ? 
             <section>
                 <div>
-                    {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deletePost(props.post, navigate)})}
+                    {props.post.email === props.props.user.email || props.post.email === getEmail() ? Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deletePost(props.post, navigate)}): ""}
                     {Button({text: "", classNames: "fa-solid fa-repeat button", onClick: ()=>""})}
                     {Button({text: "", classNames: "fa-solid fa-share button", onClick: ()=>""})}
                 </div>         

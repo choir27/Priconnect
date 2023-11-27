@@ -12,11 +12,17 @@ export default function ReplyOptions(props: ReplyOptionsInterface){
 
     let duplicates = ""
 
+    let replyId = ""
+
     if(props.post){
 
         const comment = JSON.parse(props?.post?.comments[props?.index]);
 
-        if(comment.replies[props.replyIndex].likes[0]){
+        const reply = comment.replies[props.replyIndex];
+
+        replyId = reply.id;
+
+        if(reply.likes[0]){
 
             const findDuplicate = comment?.replies[props.replyIndex].likes?.find((commentLike: CommentLike)=>
                 commentLike?.id === user.email || commentLike?.id === getEmail()
@@ -33,7 +39,7 @@ export default function ReplyOptions(props: ReplyOptionsInterface){
     return(
         <div className = "flex alignItems justifyContent">
         {Button({text: "", classNames: checkLikeLogic, onClick: ()=>addReplyLike({...{post: props.post, index: props.index, replyIndex: props.replyIndex}}, user)})}
-        {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deleteReply({post: props.post,index: props.index,replyIndex: props.replyIndex})})}
+        {replyId === user.email || replyId === getEmail() ? Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deleteReply({post: props.post,index: props.index,replyIndex: props.replyIndex})}) : ""}
     </div>
     )
 }

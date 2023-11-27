@@ -9,7 +9,6 @@ export function TextInput(props: TextInputInterface){
         onChange ={(e)=>props.setText(e.target.value)} 
         type = "text" 
         name ="text" 
-        id = "text"
         />
     )
 }
@@ -23,7 +22,6 @@ export function CommentInput(props: CommentInputInterface){
         onChange = {(e)=>props.setComment(e.target.value)}
         type = "text"
         name = "comment"
-        id = "comment"
         />
     )
 }
@@ -37,7 +35,6 @@ export function ReplyInput(props: CommentInputInterface){
         onChange = {(e)=>props.setComment(e.target.value)}
         type = "text"
         name = "comment"
-        id = "comment"
         />
     )
 }

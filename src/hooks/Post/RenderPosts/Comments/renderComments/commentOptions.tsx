@@ -5,7 +5,6 @@ import {useContext} from "react"
 import {ApiContext} from "../../../../../middleware/Context"
 import {getEmail} from "../../../../../middleware/Sessions"
 import {deleteComment} from "../manageComments/deleteComment"
-import replyOptions from "../manageReplies/replyOptions"
 
 export default function CommentOptions(props: CommentOptionsInterface){
 
@@ -13,10 +12,13 @@ export default function CommentOptions(props: CommentOptionsInterface){
 
     let duplicates = "";
 
+    let commentId = ""
+
     if(props.post){
 
         const comment = JSON.parse(props?.post?.comments[props?.index]);
 
+        commentId = comment.id;
 
         if(comment?.likes[0]){
             const findDuplicate = comment?.likes?.find((commentLike: CommentLike)=>
@@ -33,7 +35,7 @@ export default function CommentOptions(props: CommentOptionsInterface){
         return(
             <div className = "flex alignItems justifyContent">
                 {comment?.likes?.length}{Button({text: "", classNames: checkLikeLogic, onClick: ()=>addCommentLike(props.post, props.index, user)})}
-                {Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deleteComment({post: props.post, index: props.index})})}
+                {commentId === user.email || commentId === getEmail() ? Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deleteComment({post: props.post, index: props.index})}) : ""}
             </div>
         );            
     }
