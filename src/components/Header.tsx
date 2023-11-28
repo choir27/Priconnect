@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom"
 import {ApiContext} from "../middleware/Context"
 import {useContext} from "react"
 import CreatePostHub from "./CreatePostHub"
+import {getEmail} from "../middleware/Sessions"
 
 export default function Header(){
 
@@ -14,9 +15,10 @@ export default function Header(){
     return(
         <header>
             <nav>
-                {user ? "" : <a className = "button" href = "/">Home</a>}
-                {user ? <a className = "button" href = "/dashboard">Dashboard</a> : ""}
-                {user ? Button({text: "Logout", classNames: "button", onClick: ()=> SignOut(navigate)}) : ""}
+                {user || getEmail() ? "" : <a className = "button" href = "/">Home</a>}
+                {user || getEmail() ? <a className = "button" href = "/dashboard">Dashboard</a> : ""}
+                {user || getEmail() ? <a className = "button" href = "/account">Account</a> : ""}
+                {user || getEmail() ? Button({text: "Logout", classNames: "button", onClick: ()=> SignOut(navigate)}) : ""}
             </nav>
 
             {user ? <CreatePostHub/> : ""}

@@ -32,22 +32,43 @@ export default function Posts(props: PostsInterface){
 
         const checkLikeLogic: string = duplicates ? "fa-solid fa-heart button" : "fa-regular fa-heart button"
 
-        return(
-            <section key = {image.public_id} >
-                <article className = "button" onClick = {()=>{
-                    setPostId(post.$id);
-                    navigate(`/${post.$id}`);
-                }}>
-                <p>{post.text}</p>
-                <div className="imageContainer">
-                    <img src = {image.secure_url} alt = {image.original_name}/>
-                </div>
 
-                </article>
-                <PostOptions {...{post, props, checkLikeLogic}}/>
+        if(window.location.href.includes("account") && (post.email === props.user.email || post.email === getEmail())){
+            return(
+                <section key = {image.public_id} >
+                    <article className = "button" onClick = {()=>{
+                        setPostId(post.$id);
+                        navigate(`/${post.$id}`);
+                    }}>
+                    <p>{post.text}</p>
+                    <div className="imageContainer">
+                        <img src = {image.secure_url} alt = {image.original_name}/>
+                    </div>
+
+                    </article>
+                    <PostOptions {...{post, props, checkLikeLogic}}/>
              
-            </section>
-        )
+                </section>
+            )
+        }else if(!window.location.href.includes("account")){
+            return(
+                <section key = {image.public_id} >
+                    <article className = "button" onClick = {()=>{
+                        setPostId(post.$id);
+                        navigate(`/${post.$id}`);
+                    }}>
+                    <p>{post.text}</p>
+                    <div className="imageContainer">
+                        <img src = {image.secure_url} alt = {image.original_name}/>
+                    </div>
+    
+                    </article>
+                    <PostOptions {...{post, props, checkLikeLogic}}/>
+                 
+                </section>
+            )
+        };
+
     });
 
     return(

@@ -2,40 +2,58 @@ import {Post} from "../../../../../middleware/Interfaces"
 import CommentOptions from "./commentOptions"
 import ReplyHub from "../renderReplies/replyHub"
 import RenderReplies from "../renderReplies/renderReplies"
+import { getEmail } from "../../../../../middleware/Sessions"
+import {useContext} from "react"
+import {ApiContext} from "../../../../../middleware/Context"
 
 export default function RenderComments(post: Post){
 
+    const {user} = useContext(ApiContext);
+
     if(post){
         
-        const listOfComments = post.comments.map((comment: string, index: number)=>{
+        return post.comments.map((comment: string, index: number)=>{
             const commentObj = JSON.parse(comment);
 
-            return(
-                <article key = {`${commentObj.comment}-${post.$id}-${post.$createdAt}-${post.$updatedAt}-${commentObj.user}`}>
-                    <p>{commentObj.comment}</p>
+            if(window.location.href.includes("account") && (commentObj.id === user.email || commentObj.id === getEmail())){
+                return(
+                    <article key = {`${commentObj.comment}-${post.$id}-${post.$createdAt}-${post.email}-${post.$updatedAt}-${commentObj.user}-${index}`}>
+                        <p>{commentObj.comment}</p>
+    
+                        <h2>{commentObj.id}</h2>
+                     
+                        <ReplyHub {...{post, index}}/>
+                        <CommentOptions {...{post, index}}/>
+    
+                        <RenderReplies {...{post, index}}/>
+                    </article>
+                );
+            }
+            else if(!window.location.href.includes("account")){
+                return(
+                    <article key = {`${commentObj.comment}-${post.$id}-${post.$createdAt}-${post.$updatedAt}-${commentObj.user}`}>
+                        <p>{commentObj.comment}</p>
+    
+                        <h2>{commentObj.id}</h2>
+                     
+                        <ReplyHub {...{post, index}}/>
+                        <CommentOptions {...{post, index}}/>
+    
+                        <RenderReplies {...{post, index}}/>
+                    </article>
+                );
+            };
 
-                    <h2>{commentObj.id}</h2>
-                 
-                    <ReplyHub {...{post, index}}/>
-                    <CommentOptions {...{post, index}}/>
+        });
 
-                    <RenderReplies {...{post, index}}/>
-                </article>
-            )
-        })
-
-        return(
-            <section>
-                <h1>Comments</h1>
-                {listOfComments}
-            </section>
-        );
-
+  
     }else{
+
         return(
             <section>
                 <h1>Loading...</h1>
             </section>
         );
     };
-}
+
+};

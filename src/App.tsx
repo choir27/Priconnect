@@ -1,6 +1,6 @@
 import {BrowserRouter} from "react-router-dom"
 import {Routes, Route} from "react-router"
-import {Authentication, Dashboard, ExpandedPost} from "./Routes"
+import {Authentication, Dashboard, ExpandedPost, Account} from "./Routes"
 import PrivateRoutes from "./middleware/Routes/Private"
 import PublicRoutes from "./middleware/Routes/Public"
 import {defaultUser} from "./middleware/Zustand/Types"
@@ -31,6 +31,7 @@ export default function App(){
                 <Route element = {<PrivateRoutes/>}>
                   <Route path = {`/:id`} element = {<ExpandedPost/>}/>
                   <Route path = "/dashboard" element = {<Dashboard/>}/>
+                  <Route path = "/account" element = {<Account/>}/>
                 </Route>
                 <Route element = {<PublicRoutes/>}>
                   <Route path = "/" element = {<Authentication/>}/>
