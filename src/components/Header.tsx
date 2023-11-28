@@ -15,13 +15,12 @@ export default function Header(){
     return(
         <header>
             <nav>
-                {user || getEmail() ? "" : <a className = "button" href = "/">Home</a>}
-                {user || getEmail() ? <a className = "button" href = "/dashboard">Dashboard</a> : ""}
-                {user || getEmail() ? <a className = "button" href = "/account">Account</a> : ""}
-                {user || getEmail() ? Button({text: "Logout", classNames: "button", onClick: ()=> SignOut(navigate)}) : ""}
+                {user.email || getEmail() ? <a className = "button" href = "/dashboard  ">Home</a> : ""}
+                {user.email || getEmail() ? <a className = "button" href = "/account">Account</a> : ""}
+                {user.email || getEmail() ? Button({text: "Logout", classNames: "button", onClick: ()=> SignOut(navigate)}) : ""}
             </nav>
 
-            {user ? <CreatePostHub/> : ""}
+            {user.email || getEmail() ? <CreatePostHub/> : ""}
 
         </header>
     )

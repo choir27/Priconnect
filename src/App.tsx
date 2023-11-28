@@ -29,7 +29,7 @@ export default function App(){
             <BrowserRouter>
               <Routes>
                 <Route element = {<PrivateRoutes/>}>
-                  <Route path = {`/:id`} element = {<ExpandedPost/>}/>
+                  <Route path = "/:id" element = {<ExpandedPost/>}/>
                   <Route path = "/dashboard" element = {<Dashboard/>}/>
                   <Route path = "/account" element = {<Account/>}/>
                 </Route>
