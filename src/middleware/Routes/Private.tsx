@@ -8,6 +8,6 @@ export default function PrivateRoutes(){
     const {user} = useContext(ApiContext);
 
     return(
-        getEmail() !== "" || user?.email ? <Outlet/> : <Navigate to = "/"/>
+        getEmail() || user?.email ? <Outlet/> : <Navigate to = "/"/>
     )
 }

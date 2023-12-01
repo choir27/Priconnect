@@ -32,7 +32,7 @@ export default function App(){
                   <Route path = "/:id" element = {<ExpandedPost/>}/>
                   <Route path = "/dashboard" element = {<Dashboard/>}/>
                   <Route path = "/account" element = {<Account/>}/>
-                </Route>
+                </Route> 
                 <Route element = {<PublicRoutes/>}>
                   <Route path = "/" element = {<Authentication/>}/>
                 </Route>

@@ -18,7 +18,6 @@ export default async function SubscribeToAccount(id: string, email: string){
         if(findAccount){
 
             if(findAccount.subscriptions.includes(id)){
-                console.log("duplicate");
                 return
             };
         
