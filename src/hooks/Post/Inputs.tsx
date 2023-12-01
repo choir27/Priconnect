@@ -1,4 +1,4 @@
-import {TextInputInterface, CommentInputInterface} from "../../middleware/Interfaces"
+import {TextInputInterface, CommentInputInterface, SearchInputInterface} from "../../middleware/Interfaces"
 
 export function TextInput(props: TextInputInterface){
     return(
@@ -35,6 +35,19 @@ export function ReplyInput(props: CommentInputInterface){
         onChange = {(e)=>props.setComment(e.target.value)}
         type = "text"
         name = "comment"
+        />
+    )
+}
+
+export function SearchInput(props: SearchInputInterface){
+    return(
+        <input
+        placeholder = "Find Post/User"
+        minLength = {1}
+        maxLength = {1000}
+        onChange = {(e)=>props.setSearchValue(e.target.value)}
+        type = "search"
+        name = "search"
         />
     )
 }

@@ -49,6 +49,16 @@ export const useStore = create<State & Action>(
                     }
                 )
             );
+        },
+        searchValue: "",
+        setSearchValue: (searchValue: string)=>{
+            set(
+                produce(
+                    (state: State)=>{
+                        state.searchValue = searchValue;
+                    }
+                )
+            );
         }
     })
 )

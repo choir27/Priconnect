@@ -42,6 +42,10 @@ export interface CommentInputInterface{
     setComment: (e:string) => void
 };
 
+export interface SearchInputInterface{
+    setSearchValue: (e:string) => void
+};
+
 export interface PostsInterface{
     posts: Post[],
     optionDisplay: boolean,

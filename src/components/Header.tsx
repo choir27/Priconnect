@@ -5,6 +5,7 @@ import {ApiContext} from "../middleware/Context"
 import {useContext} from "react"
 import CreatePostHub from "./CreatePostHub"
 import {getEmail} from "../middleware/Sessions"
+import SearchBar from "./SearchBar"
 
 export default function Header(){
 
@@ -21,6 +22,7 @@ export default function Header(){
             </nav>
 
             {user.email || getEmail() ? <CreatePostHub/> : ""}
+            {user.email || getEmail() ? <SearchBar/> : ""}
 
         </header>
     )

@@ -8,8 +8,6 @@ export default function GetAccount(){
         async function GetAccount(){
             try{
                 const account = await api.getAccount();
-
-                console.log(account)
                     
                 if(account){
                     setEmail(account.email);
