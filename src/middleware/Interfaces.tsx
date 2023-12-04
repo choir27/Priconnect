@@ -92,3 +92,13 @@ export interface Reply{
     id: string,
     likes: string[]
 };
+
+export interface SearchInterface{
+    user: User,
+    searchValue: string
+};
+
+export interface SearchHistory{
+    id: string,
+    searchHistory: string[]
+};

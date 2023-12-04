@@ -16,7 +16,7 @@ export default function SearchResults(){
 
     if(searchValue){
         posts.forEach((post:Post)=>{
-            if(post.text.includes(searchValue) || post.email.includes(searchValue) || post.comments.includes(searchValue)){
+            if(post.text.toLowerCase().includes(searchValue.toLowerCase()) || post.email.toLowerCase().includes(searchValue.toLowerCase())){
                 searchResults.push(post);
             };
         });
