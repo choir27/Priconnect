@@ -102,3 +102,8 @@ export interface SearchHistory{
     id: string,
     searchHistory: string[]
 };
+
+export interface SubscribedPosts{
+    id: string,
+    subscriptions: string[]
+};

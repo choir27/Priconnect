@@ -6,6 +6,11 @@ export async function GetPosts(setPosts: (e:Post[])=>void){
         const data = await api.listDocuments(import.meta.env.VITE_REACT_APP_DATABASE_ID, import.meta.env.VITE_REACT_APP_COLLECTION_ID); 
 
         if(data.documents.length){
+
+            data.documents.sort((a:Post,b:Post)=>{
+                return new Date(b.$createdAt).getTime() -  new Date(a.$createdAt).getTime() ;
+            });
+
           setPosts(data.documents);
         }
         
