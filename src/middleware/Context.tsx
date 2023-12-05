@@ -8,5 +8,6 @@ export const ApiContext = createContext<Context>({
         name: "",
         $createdAt: ""
     },
-    posts: []
+    posts: [],
+    subscribedPosts: []
 });

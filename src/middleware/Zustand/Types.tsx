@@ -1,4 +1,4 @@
-import {Image, Post, User} from "../Interfaces"
+import {Image, Post, User, SubscribedPosts} from "../Interfaces"
 
 export type State = {
     text: string,
@@ -18,7 +18,8 @@ export type Action = {
 
 export type Context = {
     posts: Post[],
-    user: User
+    user: User,
+    subscribedPosts: SubscribedPosts[]
 }
 
 export const defaultUser = {

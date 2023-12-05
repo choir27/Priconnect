@@ -105,7 +105,8 @@ export interface SearchHistory{
 
 export interface SubscribedPosts{
     id: string,
-    subscriptions: string[]
+    blocked: string[]
+    subscriptions: string[],
 };
 
 export interface Account{
