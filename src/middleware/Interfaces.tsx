@@ -107,3 +107,9 @@ export interface SubscribedPosts{
     id: string,
     subscriptions: string[]
 };
+
+export interface Account{
+    subscriptions: string[],
+    id: string,
+    $id: string
+};

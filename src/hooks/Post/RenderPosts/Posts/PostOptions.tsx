@@ -1,20 +1,43 @@
 import {Button} from "../../../../components/Button"
-import {PostOptionsInterface} from "../../../../middleware/Interfaces";
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect} from "react"
 import {useNavigate} from "react-router"
 import CommentHub from "../Comments/renderComments/commentHub"
 import {totalLikes} from "../Likes/totalLikes"
 import {addLike} from "../Likes/addLike"
 import {deletePost} from "../../ManagePosts/DeletePost"
-import { getEmail } from "../../../../middleware/Sessions";
-import SubscribeToAccount from "../../../Account/subscribeToAccount";
+import SubscribeToAccount from "../../../Account/subscribeToAccount"
+import UnSubscribeToAccount from "../../../Account/unsubscribeToAccount"
+import {PostOptionsInterface, SubscribedPosts} from "../../../../middleware/Interfaces"
+import { getEmail } from "../../../../middleware/Sessions"
 import {ApiContext} from "../../../../middleware/Context"
+import api from "../../../../middleware/Appwrite"
 
 export default function PostOptions(props: PostOptionsInterface):React.JSX.Element{
 
     const [optionDisplay, setOptionDisplay] = useState<boolean>(false);
     const navigate = useNavigate();
     const {user} = useContext(ApiContext);
+
+    const [subscriptions, setSubscriptions] = useState<string[]>([]);
+
+    useEffect(()=>{
+
+        async function GetSubscribedPosts(){
+            try{
+                const data = await api.listDocuments(import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID, import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID);
+
+                const findSubscriptions = data.documents.find((subscribedPosts: SubscribedPosts)=>subscribedPosts.id === user.$id || subscribedPosts.id === getEmail());
+
+                setSubscriptions(findSubscriptions.subscriptions);
+
+            }catch(err){
+                console.error(err);
+            }
+        };
+
+        GetSubscribedPosts();
+
+    },[]);
 
     return(
     <section>
@@ -29,7 +52,10 @@ export default function PostOptions(props: PostOptionsInterface):React.JSX.Eleme
                 <div>
                     {props.post.email === props.props.user.email || props.post.email === getEmail() ? Button({text: "", classNames: "fa-solid fa-trash-can button", onClick: ()=>deletePost(props.post, navigate)}): ""}
                     {Button({text: "", classNames: "fa-solid fa-repeat button", onClick: ()=>""})}
-                    {props.post.email !== props.props.user.email || props.post.email !== getEmail() ? Button({text: `Subscribe To ${props.post.email}`, onClick: ()=>SubscribeToAccount(props.post.email, user.email)}) : ""}
+                    {(props.post.email !== props.props.user.email || props.post.email !== getEmail()) ? 
+                    (subscriptions.includes(props.post.email) ? 
+                    Button({text: `Unsubscribe from ${props.post.email}`, onClick: ()=>UnSubscribeToAccount(props.post.email, user.email)}) : 
+                    (Button({text: `Subscribe To ${props.post.email}`, onClick: ()=>SubscribeToAccount(props.post.email, user.email)}) ) ): ""}
                 </div>         
             </section>
         : ""}

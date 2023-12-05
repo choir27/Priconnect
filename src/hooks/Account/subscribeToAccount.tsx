@@ -1,11 +1,6 @@
 import api from "../../middleware/Appwrite";
 import {Permission, Role} from "appwrite"
-
-interface Account{
-    subscriptions: string[],
-    id: string,
-    $id: string
-};
+import {Account} from "../../middleware/Interfaces"
 
 export default async function SubscribeToAccount(id: string, email: string){
     try{

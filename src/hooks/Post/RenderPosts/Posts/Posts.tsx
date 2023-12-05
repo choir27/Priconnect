@@ -32,7 +32,7 @@ export default function Posts(props: PostsInterface){
                 });
     
                 props?.posts.forEach((post:Post)=>{
-                    if(!findSubscriptions   .subscriptions.includes(post.email) && post.email !== (props.user.email || getEmail())){
+                    if(!findSubscriptions.subscriptions.includes(post.email) && post.email !== (props.user.email || getEmail())){
                         array.push(post);
                     };
                 });
