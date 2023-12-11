@@ -1,12 +1,12 @@
-export function totalComment(commentArray: string[]){
-    let sum = 0;
+export function totalComment(commentArray: string[]) {
+  let sum = 0;
 
-    commentArray.forEach((comment: string)=>{
-        const commentObject = JSON.parse(comment);
-        if(commentObject.comment){
-            sum++;
-        };
-    });
+  commentArray.forEach((comment: string) => {
+    const commentObject = JSON.parse(comment);
+    if (commentObject.comment) {
+      sum++;
+    }
+  });
 
-    return sum;
-};
+  return sum;
+}

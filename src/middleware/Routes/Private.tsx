@@ -1,13 +1,10 @@
-import {Outlet, Navigate} from "react-router-dom"
-import {useContext} from "react"
-import {ApiContext} from "../../middleware/Context"
-import {getEmail} from "../../middleware/Sessions"
+import { Outlet, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { ApiContext } from "../../middleware/Context";
+import { getEmail } from "../../middleware/Sessions";
 
-export default function PrivateRoutes(){
+export default function PrivateRoutes() {
+  const { user } = useContext(ApiContext);
 
-    const {user} = useContext(ApiContext);
-
-    return(
-        getEmail() || user?.email ? <Outlet/> : <Navigate to = "/"/>
-    )
+  return getEmail() || user?.email ? <Outlet /> : <Navigate to="/" />;
 }

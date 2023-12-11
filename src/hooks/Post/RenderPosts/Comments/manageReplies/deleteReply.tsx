@@ -1,23 +1,27 @@
-import {ReplyOptionsInterface} from "../../../../../middleware/Interfaces"
+import { ReplyOptionsInterface } from "../../../../../middleware/Interfaces";
 import api from "../../../../../middleware/Appwrite";
 
-export async function deleteReply(props: ReplyOptionsInterface){
-    try{
-        const comments = JSON.parse(props.post.comments[props.index]);
+export async function deleteReply(props: ReplyOptionsInterface) {
+  try {
+    const comments = JSON.parse(props.post.comments[props.index]);
 
-        comments.replies.splice(props.replyIndex, 1);
+    comments.replies.splice(props.replyIndex, 1);
 
-        props.post.comments[props.index] = JSON.stringify(comments);
+    props.post.comments[props.index] = JSON.stringify(comments);
 
-        const data = {
-            comments: props.post.comments
-        };
+    const data = {
+      comments: props.post.comments,
+    };
 
-        await api.updateDocument(import.meta.env.VITE_REACT_APP_DATABASE_ID, import.meta.env.VITE_REACT_APP_COLLECTION_ID, props.post.$id, data);
-    
-        window.location.reload();
+    await api.updateDocument(
+      import.meta.env.VITE_REACT_APP_DATABASE_ID,
+      import.meta.env.VITE_REACT_APP_COLLECTION_ID,
+      props.post.$id,
+      data,
+    );
 
-    }catch(err){
-        console.error(err);
-    }
+    window.location.reload();
+  } catch (err) {
+    console.error(err);
+  }
 }

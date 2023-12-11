@@ -1,0 +1,4 @@
+build
+coverage
+.env
+node_modules

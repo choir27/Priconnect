@@ -1,36 +1,36 @@
-import {Button} from "../../components/Button"
-import {useStore} from "../../middleware/Zustand/States"
+import { Button } from "../../components/Button";
+import { useStore } from "../../middleware/Zustand/States";
 
-export default function ImageUpload(){
+export default function ImageUpload() {
+  const setImage = useStore((action) => action.setImage);
 
-    const setImage = useStore((action)=>action.setImage);
+  function uploadImage() {
+    const myWidget = cloudinary.createUploadWidget(
+      {
+        cloudName: import.meta.env.VITE_REACT_APP_CLOUDINARY_NAME,
+        uploadPreset: import.meta.env.VITE_REACT_APP_CLOUDINARY_PRESET,
+        sources: ["local", "url"], // restrict the upload sources to URL and local files
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log("Done! Here is the image info: ", result.info);
 
-    function uploadImage(){
-        const myWidget = cloudinary.createUploadWidget(
-            {
-              cloudName: import.meta.env.VITE_REACT_APP_CLOUDINARY_NAME,
-              uploadPreset: import.meta.env.VITE_REACT_APP_CLOUDINARY_PRESET,
-              sources: [ "local", "url"], // restrict the upload sources to URL and local files
-            },
-            (error, result) => {
-                if (!error && result && result.event === "success") {
-                  console.log("Done! Here is the image info: ", result.info);
+          setImage({
+            created_at: result.info.created_at,
+            original_filename: result.info.original_filename,
+            public_id: result.info.public_id,
+            secure_url: result.info.secure_url,
+          });
+        }
+      },
+    );
 
-                  setImage({
-                    created_at: result.info.created_at,
-                    original_filename: result.info.original_filename,
-                    public_id: result.info.public_id,
-                    secure_url: result.info.secure_url
-                  });
+    myWidget.open();
+  }
 
-                };
-            }
-        ); 
-
-        myWidget.open();
-    }
-
-    return(
-        Button({text: "Upload Image", classNames: "button", onClick: ()=>uploadImage()})
-    )
+  return Button({
+    text: "Upload Image",
+    classNames: "button",
+    onClick: () => uploadImage(),
+  });
 }

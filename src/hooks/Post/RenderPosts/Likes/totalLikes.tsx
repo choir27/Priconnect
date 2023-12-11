@@ -1,10 +1,10 @@
-export function totalLikes(likeArray: string[]){
-    let sum = 0;
+export function totalLikes(likeArray: string[]) {
+  let sum = 0;
 
-    likeArray.forEach((like: string)=>{
-        const likeObject = JSON.parse(like);
-        sum += likeObject.likes;
-    })
+  likeArray.forEach((like: string) => {
+    const likeObject = JSON.parse(like);
+    sum += likeObject.likes;
+  });
 
-    return sum;
-};
+  return sum;
+}

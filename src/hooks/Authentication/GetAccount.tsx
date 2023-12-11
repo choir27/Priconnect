@@ -1,25 +1,21 @@
-import {useEffect} from "react"
-import api from "../../middleware/Appwrite"
-import {setEmail} from "../../middleware/Sessions"
+import { useEffect } from "react";
+import api from "../../middleware/Appwrite";
+import { setEmail } from "../../middleware/Sessions";
 
-export default function GetAccount(){
-    
-    useEffect(()=>{
-        async function GetAccount(){
-            try{
-                const account = await api.getAccount();
-                    
-                if(account){
-                    setEmail(account.email);
-                }
+export default function GetAccount() {
+  useEffect(() => {
+    async function GetAccount() {
+      try {
+        const account = await api.getAccount();
 
-            }catch(err){
-                console.error(err);
-            }
-        };
+        if (account) {
+          setEmail(account.email);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
 
-        GetAccount();
-
-    },[]);
-    
+    GetAccount();
+  }, []);
 }
