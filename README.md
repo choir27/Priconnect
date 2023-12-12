@@ -1,19 +1,25 @@
-# AutoAligners
+Priconnect
 
-AutoAligners is a web application that allows users to make appointments for various car services, and receive email notifications when their car(s) are ready for pickup. These notifications are sent manually by the employee user(s), who are given admin level access to certain aspects of the application. There are also other additional elements to the application, such as making PTO requests for employees, purchasing a finance plan, and viewing the overall sales made.
+Link Here!
 
-<a href = "https://autoaligners.netlify.app/">
+How It's Made: Tech used: React, MongoDB, HTML, CSS, JavaScript, Node, Express
+Taking the core UI design from the previous version of this application, version 2.0.0 adds a comment and reply function while also changing the core code from EJS to React. Separating various application elements into components and functions into hooks, React provides an efficient method of organizing and implementing code logic. Not only that, but using React allowed the code to run faster with hooks like useMemo and useCallback.
 
-![AutoAligners_Preview](https://github.com/choir27/AutoAligners/assets/66279068/3b83a36b-e6ed-45f3-a6c8-3768e76dd9cb)
 
-</a>
+Using @react-oauth/google, users can send their Google account information to the backend, which saves the data into the MongoDB database, creating unique users' respective from Google accounts. Posts, comments, and replies are generated, edited, and deleted using a combination of URL parameters, the formData constructor, and the Axios npm library package. The React Suspense component and the union of boolean values and React states handle loading while waiting for particular elements of the application to render.
 
-<a href = "https://autoaligners.netlify.app/">Check out the website!</a>
 
-## How It's Made: Tech used: Vite, TypeScript, Appwrite
+The React hook useNavigate and window.location.reload object method to handle redirects, which automatically updates the data in the MongoDB database; the Promise.all Axios method and the async method fetches the updated data. Instead of alerts, Priconnect uses the react-toastify npm library package to notify users of a particular error, which has its custom CSS styling. Lazy is a React function that helps increase the speed of rendering all the application images by only rendering the necessary UI elements first, then adding the unnecessary components later.
 
-The logic for the reservation calendar and time slots hub was manually created by me. I did this instead of using the integrated HTML datetime-local type input because the input provided too many options for the user to select from. Looking at it from a perspective from an actual employee that would be working at this auto shop, I wanted to limit the days and times that users would be able to make a reservation so that only businesss hours and days would display. Furthermore, I wanted to be able to customize the time slot display in respect to any current existing appointments, so users would not make any overlapping appointments.
+Optimizations:
 
-![Reservation_Preview](https://github.com/choir27/AutoAligners/assets/66279068/b30796ec-37e9-4644-ab0b-87ebec0a26b7)
+My priority of additions or changes I want to make to this application would be to add a subscription system, where the Dashboard would first show only posts belonging to accounts that the user subscribed to; there would also be an unsubscribe option for users, allowing them to remove users from their subscriptions. Real-time text messaging between accounts is another function I would love to add, extending communications between accounts outside of just comments or replies. In that messaging system, users could send text and potentially gifs, emojis, and video links where the video thumbnail, description, and title would also show.
 
-Employee users are created by the main admin account, and one of the main aspects that these users are able to do is not only restock the current inventory items that are in stock, but also sell those inventory items to potential clients. When purchases are made in the application, the current inventory stock amount is updated to reflect this change. Upon making a sale to a client, the purchase history page updates the graphs visually to reflect those new sales, and the employee page has a history of all the sales they personally made, which also updates accordingly. The cart, graphs, and employee sale history all use pagination to handle large amounts of data to decrease the strain of rendering the content.
+
+I would also love to add the ability to delete messages and block users, preventing communication between users with each other through messaging, comments, or replies, and posts and account pages would not be viewable. Filtering posts by particular categories, like by date and popularity, and letting the user search through the entire collection of posts for certain words or phrases is another function I want to add to this application. I want to look at my code again and see if I can reduce the render time or the logic speed by reducing their time complexity.
+
+Lessons Learned:
+
+After conducting experiments with the code and researching online, I successfully learned how to implement Google authentication in a React application. Consequently, I transmitted the Google account data to a MongoDB database via an established backend server. After building K-pop Wired using React, I was able to effectively implement all the elements that I learned from experimenting around, letting me build Priconnect at a faster rate.
+
+Examples: Take a look at these couple examples that I have in my own portfolio: K-pop Wired: https://kpopwired.netlify.app/ The Real Estate Beast: https://therealestatebeast.netlify.app/
