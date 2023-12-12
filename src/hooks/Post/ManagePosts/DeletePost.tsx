@@ -1,6 +1,7 @@
 import { Post } from "../../../middleware/Interfaces";
 import api from "../../../middleware/Appwrite";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export async function deletePost(post: Post, navigate: (e: string) => void) {
   try {
@@ -35,5 +36,6 @@ export async function deletePost(post: Post, navigate: (e: string) => void) {
     }
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

@@ -15,6 +15,7 @@ import {
 import { getEmail } from "../../../../middleware/Sessions";
 import { ApiContext } from "../../../../middleware/Context";
 import api from "../../../../middleware/Appwrite";
+import { toast } from "react-toastify";
 
 export default function PostOptions(
   props: PostOptionsInterface,
@@ -42,6 +43,7 @@ export default function PostOptions(
         setSubscriptions(findSubscriptions.subscriptions);
       } catch (err) {
         console.error(err);
+        toast.error(`${err}`);
       }
     }
 

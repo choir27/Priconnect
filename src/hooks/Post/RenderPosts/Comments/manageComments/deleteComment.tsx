@@ -1,5 +1,6 @@
 import { CommentOptionsInterface } from "../../../../../middleware/Interfaces";
 import api from "../../../../../middleware/Appwrite";
+import { toast } from "react-toastify";
 
 export async function deleteComment(props: CommentOptionsInterface) {
   try {
@@ -20,5 +21,6 @@ export async function deleteComment(props: CommentOptionsInterface) {
     window.location.reload();
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

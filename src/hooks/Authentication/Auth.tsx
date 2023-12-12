@@ -1,6 +1,7 @@
 import { Client, Account } from "appwrite";
 import api from "../../middleware/Appwrite";
 import { setEmail } from "../../middleware/Sessions";
+import { toast } from "react-toastify";
 
 export async function SignUp() {
   try {
@@ -18,6 +19,7 @@ export async function SignUp() {
     );
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }
 
@@ -31,5 +33,6 @@ export async function SignOut(navigate: (e: string) => void) {
     window.location.reload();
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

@@ -1,6 +1,7 @@
 import api from "../../../../middleware/Appwrite";
 import { addLikeInterface } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
+import { toast } from "react-toastify";
 
 export async function addLike(props: addLikeInterface) {
   try {
@@ -58,5 +59,6 @@ export async function addLike(props: addLikeInterface) {
     }
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

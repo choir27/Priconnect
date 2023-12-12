@@ -1,5 +1,6 @@
 import { ReplyOptionsInterface } from "../../../../../middleware/Interfaces";
 import api from "../../../../../middleware/Appwrite";
+import { toast } from "react-toastify";
 
 export async function deleteReply(props: ReplyOptionsInterface) {
   try {
@@ -23,5 +24,6 @@ export async function deleteReply(props: ReplyOptionsInterface) {
     window.location.reload();
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

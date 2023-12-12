@@ -2,6 +2,7 @@ import api from "../../../middleware/Appwrite";
 import { Permission, Role } from "appwrite";
 import { CreatePostInterface, User } from "../../../middleware/Interfaces";
 import { getEmail } from "../../../middleware/Sessions";
+import { toast } from "react-toastify";
 
 export default async function CreatePost(
   props: CreatePostInterface,
@@ -30,5 +31,6 @@ export default async function CreatePost(
     window.location.reload();
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

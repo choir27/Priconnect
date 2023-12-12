@@ -14,6 +14,7 @@ import { useEffect, useState, Suspense } from "react";
 import { GetPosts, GetAccount, GetSubscribedPosts } from "./hooks/FetchData";
 import { ApiContext } from "./middleware/Context";
 import { User, Post, SubscribedPosts } from "./middleware/Interfaces";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const [user, setUser] = useState<User>(defaultUser);
@@ -43,6 +44,7 @@ export default function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <ToastContainer position="top-left" closeOnClick theme="dark" />
       </Suspense>
     </ApiContext.Provider>
   );

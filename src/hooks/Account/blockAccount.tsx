@@ -1,6 +1,7 @@
 import api from "../../middleware/Appwrite";
 import { Permission, Role } from "appwrite";
 import { Account } from "../../middleware/Interfaces";
+import { toast } from "react-toastify";
 
 export default async function BlockAccount(id: string, email: string) {
   try {
@@ -58,5 +59,6 @@ export default async function BlockAccount(id: string, email: string) {
     window.location.reload();
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

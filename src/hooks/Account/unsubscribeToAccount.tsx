@@ -1,5 +1,6 @@
 import api from "../../middleware/Appwrite";
 import { Account } from "../../middleware/Interfaces";
+import { toast } from "react-toastify";
 
 export default async function UnSubscribeToAccount(id: string, email: string) {
   try {
@@ -33,5 +34,6 @@ export default async function UnSubscribeToAccount(id: string, email: string) {
     }
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

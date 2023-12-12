@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import PostOptions from "./PostOptions";
 import { useState, useEffect, useContext } from "react";
 import { ApiContext } from "../../../../middleware/Context";
+import { toast } from "react-toastify";
 
 export default function Posts(props: PostsInterface) {
   const navigate = useNavigate();
@@ -85,6 +86,7 @@ export default function Posts(props: PostsInterface) {
         }
       } catch (err) {
         console.error(err);
+        toast.error(`${err}`);
       }
     }
 

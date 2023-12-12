@@ -5,6 +5,7 @@ import {
 } from "../../../../../middleware/Interfaces";
 import { getEmail } from "../../../../../middleware/Sessions";
 import api from "../../../../../middleware/Appwrite";
+import { toast } from "react-toastify";
 
 export async function addReplyLike(props: ReplyOptionsInterface, user: User) {
   try {
@@ -84,5 +85,6 @@ export async function addReplyLike(props: ReplyOptionsInterface, user: User) {
     }
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

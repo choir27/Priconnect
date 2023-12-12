@@ -1,6 +1,7 @@
 import { Post, User, CommentLike } from "../../../../../middleware/Interfaces";
 import api from "../../../../../middleware/Appwrite";
 import { getEmail } from "../../../../../middleware/Sessions";
+import { toast } from "react-toastify";
 
 export async function addCommentLike(post: Post, index: number, user: User) {
   try {
@@ -77,5 +78,6 @@ export async function addCommentLike(post: Post, index: number, user: User) {
     }
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

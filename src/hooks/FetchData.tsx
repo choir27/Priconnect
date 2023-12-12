@@ -1,5 +1,6 @@
 import api from "../middleware/Appwrite";
 import { Post, User, SubscribedPosts } from "../middleware/Interfaces";
+import { toast } from "react-toastify";
 
 export async function GetPosts(setPosts: (e: Post[]) => void) {
   try {
@@ -17,6 +18,7 @@ export async function GetPosts(setPosts: (e: Post[]) => void) {
     setPosts(data.documents);
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }
 
@@ -27,6 +29,7 @@ export async function GetAccount(setUser: (e: User) => void) {
     setUser(account);
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }
 
@@ -42,5 +45,6 @@ export async function GetSubscribedPosts(
     setSubscribedPosts(data.documents);
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }

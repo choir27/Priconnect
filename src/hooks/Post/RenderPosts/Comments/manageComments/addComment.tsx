@@ -1,6 +1,7 @@
 import { addCommentInterface } from "../../../../../middleware/Interfaces";
 import api from "../../../../../middleware/Appwrite";
 import { getEmail } from "../../../../../middleware/Sessions";
+import { toast } from "react-toastify";
 
 export async function addComment(props: addCommentInterface) {
   try {
@@ -60,5 +61,6 @@ export async function addComment(props: addCommentInterface) {
     }
   } catch (err) {
     console.error(err);
+    toast.error(`${err}`);
   }
 }
