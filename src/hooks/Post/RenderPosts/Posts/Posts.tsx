@@ -24,65 +24,82 @@ export default function Posts(props: PostsInterface) {
   useEffect(() => {
     async function GetSubscribedPosts() {
       try {
-        const findSubscriptions = subscribedPosts.find(
-          (subscribedPosts: SubscribedPosts) =>
-            subscribedPosts.id === props.user.$id ||
-            subscribedPosts.id === getEmail(),
-        );
+        if (props.posts.length) {
+          const findSubscriptions = subscribedPosts.find(
+            (subscribedPosts: SubscribedPosts) =>
+              subscribedPosts.id === props.user.$id ||
+              subscribedPosts.id === getEmail(),
+          );
 
-        const array: Post[] = [];
+          const findCurrentUserBlocked = subscribedPosts.find(
+            (subscribedPosts: SubscribedPosts) =>
+              subscribedPosts.blocked.includes(props.user.$id) ||
+              subscribedPosts.blocked.includes(getEmail() as string),
+          );
 
-        if (
-          findSubscriptions?.subscriptions &&
-          !findSubscriptions.blocked.length
-        ) {
-          props?.posts.forEach((post: Post) => {
-            if (
-              findSubscriptions.subscriptions.includes(post.email) ||
-              post.email === getEmail() ||
-              post.email === props.user.email
-            ) {
-              array.push(post);
-            }
-          });
+          const array: Post[] = [];
 
-          props?.posts.forEach((post: Post) => {
-            if (
-              !findSubscriptions.subscriptions.includes(post.email) &&
-              post.email !== (props.user.email || getEmail())
-            ) {
-              array.push(post);
-            }
-          });
+          if (
+            findSubscriptions?.subscriptions &&
+            !findSubscriptions.blocked.length &&
+            !findCurrentUserBlocked
+          ) {
+            props.posts.forEach((post: Post) => {
+              if (
+                findSubscriptions.subscriptions.includes(post.email) ||
+                post.email === getEmail() ||
+                post.email === props.user.email
+              ) {
+                array.push(post);
+              }
+            });
 
-          setPosts(array);
-        } else if (
-          findSubscriptions?.subscriptions &&
-          findSubscriptions.blocked.length
-        ) {
-          props?.posts.forEach((post: Post) => {
-            console.log(findSubscriptions.blocked); //we don't want to see these posts
-            console.log(findSubscriptions.id);
-            if (
-              findSubscriptions.subscriptions.includes(post.email) ||
-              (post.email === (props.user.email || getEmail()) &&
-                !findSubscriptions.blocked.includes(post.email))
-            ) {
-              array.push(post);
-            }
-          });
+            props.posts.forEach((post: Post) => {
+              if (
+                !findSubscriptions.subscriptions.includes(post.email) &&
+                post.email !== (props.user.email || getEmail())
+              ) {
+                array.push(post);
+              }
+            });
 
-          props?.posts.forEach((post: Post) => {
-            if (
-              !findSubscriptions.subscriptions.includes(post.email) &&
-              post.email !== (props.user.email || getEmail()) &&
-              !findSubscriptions.blocked.includes(post.email)
-            ) {
-              array.push(post);
-            }
-          });
+            setPosts(array);
+          } else if (
+            findSubscriptions?.blocked.length &&
+            !findCurrentUserBlocked
+          ) {
+            props.posts.forEach((post: Post) => {
+              if (
+                findSubscriptions.subscriptions.includes(post.email) ||
+                (post.email === (props.user.email || getEmail()) &&
+                  !findSubscriptions.blocked.includes(post.email))
+              ) {
+                array.push(post);
+              }
+            });
 
-          setPosts(array);
+            props.posts.forEach((post: Post) => {
+              if (
+                !findSubscriptions.subscriptions.includes(post.email) &&
+                post.email !== (props.user.email || getEmail()) &&
+                !findSubscriptions.blocked.includes(post.email)
+              ) {
+                array.push(post);
+              }
+            });
+
+            setPosts(array);
+          } else if (findCurrentUserBlocked) {
+            props.posts.forEach((post: Post) => {
+              if (!findCurrentUserBlocked.id.includes(post.email)) {
+                array.push(post);
+              }
+            });
+
+            console.log(array);
+
+            setPosts(array);
+          }
         }
       } catch (err) {
         console.error(err);
@@ -93,7 +110,7 @@ export default function Posts(props: PostsInterface) {
     GetSubscribedPosts();
   }, [props.posts, subscribedPosts]);
 
-  if (subscribedPosts.length) {
+  if (subscribedPosts.length && posts.length) {
     const listOfPosts = posts?.map((post: Post) => {
       const image = JSON?.parse(post?.image);
 
@@ -162,11 +179,7 @@ export default function Posts(props: PostsInterface) {
       }
     });
 
-    return (
-      <section>
-        {listOfPosts.length ? listOfPosts : <h1>Loading...</h1>}
-      </section>
-    );
+    return <section>{listOfPosts}</section>;
   } else if (!posts.length && props.posts.length) {
     const listOfPosts = props.posts?.map((post: Post) => {
       const image = JSON?.parse(post?.image);
@@ -236,10 +249,6 @@ export default function Posts(props: PostsInterface) {
       }
     });
 
-    return (
-      <section>
-        {listOfPosts.length ? listOfPosts : <h1>Loading...</h1>}
-      </section>
-    );
+    return <section>{listOfPosts}</section>;
   }
 }

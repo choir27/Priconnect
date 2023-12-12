@@ -29,7 +29,6 @@ export async function GetAccount(setUser: (e: User) => void) {
     setUser(account);
   } catch (err) {
     console.error(err);
-    toast.error(`${err}`);
   }
 }
 

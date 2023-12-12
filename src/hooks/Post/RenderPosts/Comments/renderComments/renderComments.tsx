@@ -49,10 +49,6 @@ export default function RenderComments(post: Post) {
       }
     });
   } else {
-    return (
-      <section>
-        <h1>Loading...</h1>
-      </section>
-    );
+    return "";
   }
 }

@@ -40,7 +40,9 @@ export default function PostOptions(
             subscribedPosts.id === getEmail(),
         );
 
-        setSubscriptions(findSubscriptions.subscriptions);
+        if (findSubscriptions) {
+          setSubscriptions(findSubscriptions.subscriptions);
+        }
       } catch (err) {
         console.error(err);
         toast.error(`${err}`);
