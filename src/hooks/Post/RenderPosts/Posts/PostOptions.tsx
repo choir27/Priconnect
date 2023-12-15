@@ -5,9 +5,9 @@ import CommentHub from "../Comments/renderComments/commentHub";
 import { totalLikes } from "../Likes/totalLikes";
 import { addLike } from "../Likes/addLike";
 import { deletePost } from "../../ManagePosts/DeletePost";
-import SubscribeToAccount from "../../../Account/subscribeToAccount";
-import UnSubscribeToAccount from "../../../Account/unsubscribeToAccount";
-import BlockAccount from "../../../Account/blockAccount";
+import SubscribeToAccount from "../../../Account/manageAccount/subscribeToAccount";
+import UnSubscribeToAccount from "../../../Account/manageAccount/unsubscribeToAccount";
+import BlockAccount from "../../../Account/manageAccount/blockAccount";
 import {
   PostOptionsInterface,
   SubscribedPosts,

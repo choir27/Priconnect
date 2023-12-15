@@ -107,6 +107,7 @@ export interface SubscribedPosts {
   id: string;
   blocked: string[];
   subscriptions: string[];
+  $id: string;
 }
 
 export interface Account {

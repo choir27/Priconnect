@@ -57,3 +57,8 @@ a {
 .justifyCenter {
   justify-content: center;
 }
+
+.blocked{
+  background: black;
+  color: white;
+}

@@ -1,4 +1,4 @@
-import RenderPosts from "../../hooks/Post/RenderPosts/Posts/RenderPosts";
+import RenderPosts from "../../Post/RenderPosts/Posts/RenderPosts";
 import RenderAccountComment from "./renderAccountComments";
 
 export function renderAccount() {

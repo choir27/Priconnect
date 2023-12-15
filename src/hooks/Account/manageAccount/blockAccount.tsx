@@ -1,6 +1,6 @@
-import api from "../../middleware/Appwrite";
+import api from "../../../middleware/Appwrite";
 import { Permission, Role } from "appwrite";
-import { Account } from "../../middleware/Interfaces";
+import { Account } from "../../../middleware/Interfaces";
 import { toast } from "react-toastify";
 
 export default async function BlockAccount(id: string, email: string) {

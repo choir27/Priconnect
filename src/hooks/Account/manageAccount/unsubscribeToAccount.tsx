@@ -1,5 +1,5 @@
-import api from "../../middleware/Appwrite";
-import { Account } from "../../middleware/Interfaces";
+import api from "../../../middleware/Appwrite";
+import { Account } from "../../../middleware/Interfaces";
 import { toast } from "react-toastify";
 
 export default async function UnSubscribeToAccount(id: string, email: string) {
