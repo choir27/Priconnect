@@ -99,6 +99,7 @@ export interface SearchInterface {
 }
 
 export interface SearchHistory {
+  $id?: string;
   id: string;
   searchHistory: string[];
 }

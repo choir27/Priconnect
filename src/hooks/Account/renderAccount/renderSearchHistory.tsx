@@ -6,16 +6,41 @@ import api from "../../../middleware/Appwrite";
 import { toast } from "react-toastify";
 import { Button } from "../../../components/Button";
 
-async function removeSearchWord() {
+async function removeSearchWord(account: SearchHistory | undefined, searchWord: string) {
   try {
+    if(account){
+
+      const arr = account.searchHistory
+
+      arr.splice(arr.indexOf(searchWord),1);
+
+      const data = {
+        searchHistory: arr
+      };
+
+      await api.updateDocument(import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID, import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID, account.$id, data);
+
+      window.location.reload();
+    }
   } catch (err) {
     console.error(err);
     toast.error(`${err}`);
   }
 }
 
-async function clearSearchHistory() {
+async function clearSearchHistory(account: SearchHistory | undefined) {
   try {
+    if(account){
+
+      const data = {
+        searchHistory: []
+      };
+
+      await api.updateDocument(import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID, import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID, account.$id, data);
+
+      window.location.reload();
+
+    }   
   } catch (err) {
     console.error(err);
     toast.error(`${err}`);
@@ -25,6 +50,7 @@ async function clearSearchHistory() {
 export default function RenderSearchHistory() {
   const { user } = useContext(ApiContext);
   const [searchHistory, setSearchHistory] = useState<React.JSX.Element[]>([]);
+  const [account, setAccount] = useState<SearchHistory>();
 
   useEffect(() => {
     async function GetSearchData() {
@@ -39,6 +65,8 @@ export default function RenderSearchHistory() {
             searchHistory.id === user.email || searchHistory.id === getEmail(),
         );
 
+        setAccount(findAccount);
+
         const searchHistoryList = findAccount.searchHistory.map(
           (search: string, i: number) => {
             return (
@@ -47,7 +75,7 @@ export default function RenderSearchHistory() {
                 {Button({
                   text: "",
                   classNames: "button fa-solid fa-xmark",
-                  onClick: () => "",
+                  onClick: () => removeSearchWord(findAccount, search)
                 })}
               </section>
             );
@@ -67,6 +95,7 @@ export default function RenderSearchHistory() {
   return (
     <section>
       <h3>Your Search History</h3>
+      {Button({text: "Clear Search History", onClick: ()=> clearSearchHistory(account), classNames: "button"})}
       {searchHistory}
     </section>
   );
