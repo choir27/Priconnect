@@ -1,10 +1,55 @@
 import api from "../../../../middleware/Appwrite";
-import { addLikeInterface } from "../../../../middleware/Interfaces";
+import { addLikeInterface, SubscribedPosts } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import { toast } from "react-toastify";
+import {Permission, Role} from "appwrite";
 
 export async function addLike(props: addLikeInterface) {
   try {
+
+    const subscribeData = await api.listDocuments(
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID
+    );
+
+    const findAccount = subscribeData.documents?.find(
+      (subscribePosts: SubscribedPosts) =>
+      subscribePosts.id === props.post.email,
+    );
+
+    if(findAccount){
+      const subscribeObj = {
+        numOfLikes: findAccount.numOfLikes += 1 
+      };
+      
+      await api.updateDocument(
+        import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+        import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+        findAccount.$id,
+        subscribeObj
+      );
+    }else{
+      const data = {
+        id: props.user.email,
+        subscriptions: [],
+        blocked: [],
+        numOfSubscriptions: 0,
+        numOfPosts: 0,
+        numOfLikes: 1 
+      };
+      
+      await api.createDocument(
+        import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+        import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+        data,
+        [
+          Permission.read(Role.user(props.user.$id)),
+          Permission.update(Role.user(props.user.$id)),
+          Permission.delete(Role.user(props.user.$id)),
+        ],
+      );
+    }
+
     let likes = { id: "", likes: 0 };
 
     if (props.user.email) {
@@ -57,6 +102,7 @@ export async function addLike(props: addLikeInterface) {
 
       window.location.reload();
     }
+
   } catch (err) {
     console.error(err);
     toast.error(`${err}`);
