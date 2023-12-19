@@ -25,11 +25,11 @@ export default function RenderAccountStatistics() {
         const renderStatistics = (
           <section>
             <h2>Likes:</h2>
-            <h2>{findAccount.numOfLikes}</h2>
+            <h2>{findAccount?.numOfLikes | 0}</h2>
             <h2>Subscribers:</h2>
-            <h2>{findAccount.numOfSubscriptions}</h2>
+            <h2>{findAccount?.numOfSubscriptions | 0}</h2>
             <h2>Posts: </h2>
-            <h2>{findAccount.numOfPosts}</h2>
+            <h2>{findAccount?.numOfPosts | 0}</h2>
           </section>
         );
 

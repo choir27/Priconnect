@@ -1,10 +1,30 @@
-import { Post } from "../../../middleware/Interfaces";
+import { Post, SubscribedPosts } from "../../../middleware/Interfaces";
 import api from "../../../middleware/Appwrite";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 export async function deletePost(post: Post, navigate: (e: string) => void) {
   try {
+    const subscribeData = await api.listDocuments(
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+    );
+
+    const findAccount = subscribeData.documents?.find(
+      (subscribePosts: SubscribedPosts) => subscribePosts.id === post.email,
+    );
+
+    const subscribeObj = {
+      numOfPosts: (findAccount.numOfPosts -= 1),
+    };
+
+    await api.updateDocument(
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+      findAccount.$id,
+      subscribeObj,
+    );
+
     if (JSON.parse(post.image).public_id) {
       const backendURL = "https://priconnect-backend.onrender.com";
 

@@ -1,8 +1,11 @@
 import api from "../../../middleware/Appwrite";
-import { Account } from "../../../middleware/Interfaces";
+import { Account, SubscribedPosts } from "../../../middleware/Interfaces";
 import { toast } from "react-toastify";
 
-export default async function UnSubscribeToAccount(id: string, email: string) {
+export default async function UnSubscribeToAccount(
+  postId: string,
+  email: string,
+) {
   try {
     const subscriptions = await api.listDocuments(
       import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
@@ -13,10 +16,25 @@ export default async function UnSubscribeToAccount(id: string, email: string) {
       (account: Account) => account.id === email,
     );
 
+    const findUnsubscribeAccount = subscriptions.documents?.find(
+      (subscribePosts: SubscribedPosts) => subscribePosts.id === postId,
+    );
+
+    const subscribeObj = {
+      numOfSubscriptions: (findUnsubscribeAccount.numOfSubscriptions -= 1),
+    };
+
+    await api.updateDocument(
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+      findUnsubscribeAccount.$id,
+      subscribeObj,
+    );
+
     const array = findAccount.subscriptions;
 
-    if (array.includes(id)) {
-      array.splice(array.indexOf(id), 1);
+    if (array.includes(postId)) {
+      array.splice(array.indexOf(postId), 1);
 
       const data = {
         id: email,

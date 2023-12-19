@@ -11,8 +11,8 @@ async function removeSearchWord(
   searchWord: string,
 ) {
   try {
-    if (account) {
-      const arr = account.searchHistory;
+    if (account && account.searchHistory) {
+      const arr = account?.searchHistory;
 
       arr.splice(arr.indexOf(searchWord), 1);
 
@@ -76,8 +76,7 @@ export default function RenderSearchHistory() {
         );
 
         setAccount(findAccount);
-
-        const searchHistoryList = findAccount.searchHistory.map(
+        const searchHistoryList = findAccount?.searchHistory.map(
           (search: string, i: number) => {
             return (
               <section key={i}>

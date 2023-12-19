@@ -19,39 +19,6 @@ export async function addLike(props: addLikeInterface) {
         subscribePosts.id === props.post.email,
     );
 
-    if (findAccount) {
-      const subscribeObj = {
-        numOfLikes: (findAccount.numOfLikes += 1),
-      };
-
-      await api.updateDocument(
-        import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
-        import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
-        findAccount.$id,
-        subscribeObj,
-      );
-    } else {
-      const data = {
-        id: props.user.email,
-        subscriptions: [],
-        blocked: [],
-        numOfSubscriptions: 0,
-        numOfPosts: 0,
-        numOfLikes: 1,
-      };
-
-      await api.createDocument(
-        import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
-        import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
-        data,
-        [
-          Permission.read(Role.user(props.user.$id)),
-          Permission.update(Role.user(props.user.$id)),
-          Permission.delete(Role.user(props.user.$id)),
-        ],
-      );
-    }
-
     let likes = { id: "", likes: 0 };
 
     if (props.user.email) {
@@ -100,6 +67,39 @@ export async function addLike(props: addLikeInterface) {
 
         window.location.reload();
       } else {
+        if (findAccount) {
+          const subscribeObj = {
+            numOfLikes: (findAccount.numOfLikes += 1),
+          };
+
+          await api.updateDocument(
+            import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+            import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+            findAccount.$id,
+            subscribeObj,
+          );
+        } else {
+          const data = {
+            id: props.user.email,
+            subscriptions: [],
+            blocked: [],
+            numOfSubscriptions: 0,
+            numOfPosts: 0,
+            numOfLikes: 1,
+          };
+
+          await api.createDocument(
+            import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+            import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+            data,
+            [
+              Permission.read(Role.user(props.user.$id)),
+              Permission.update(Role.user(props.user.$id)),
+              Permission.delete(Role.user(props.user.$id)),
+            ],
+          );
+        }
+
         props.post.likes.push(JSON.stringify(likes));
 
         const data = {
@@ -116,6 +116,39 @@ export async function addLike(props: addLikeInterface) {
         window.location.reload();
       }
     } else {
+      if (findAccount) {
+        const subscribeObj = {
+          numOfLikes: (findAccount.numOfLikes += 1),
+        };
+
+        await api.updateDocument(
+          import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+          import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+          findAccount.$id,
+          subscribeObj,
+        );
+      } else {
+        const data = {
+          id: props.user.email,
+          subscriptions: [],
+          blocked: [],
+          numOfSubscriptions: 0,
+          numOfPosts: 0,
+          numOfLikes: 1,
+        };
+
+        await api.createDocument(
+          import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+          import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+          data,
+          [
+            Permission.read(Role.user(props.user.$id)),
+            Permission.update(Role.user(props.user.$id)),
+            Permission.delete(Role.user(props.user.$id)),
+          ],
+        );
+      }
+
       const data = {
         likes: [JSON.stringify(likes)],
       };
