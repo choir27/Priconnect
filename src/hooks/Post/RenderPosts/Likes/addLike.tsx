@@ -1,43 +1,45 @@
 import api from "../../../../middleware/Appwrite";
-import { addLikeInterface, SubscribedPosts } from "../../../../middleware/Interfaces";
+import {
+  addLikeInterface,
+  SubscribedPosts,
+} from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import { toast } from "react-toastify";
-import {Permission, Role} from "appwrite";
+import { Permission, Role } from "appwrite";
 
 export async function addLike(props: addLikeInterface) {
   try {
-
     const subscribeData = await api.listDocuments(
       import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
-      import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID
+      import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
     );
 
     const findAccount = subscribeData.documents?.find(
       (subscribePosts: SubscribedPosts) =>
-      subscribePosts.id === props.post.email,
+        subscribePosts.id === props.post.email,
     );
 
-    if(findAccount){
+    if (findAccount) {
       const subscribeObj = {
-        numOfLikes: findAccount.numOfLikes += 1 
+        numOfLikes: (findAccount.numOfLikes += 1),
       };
-      
+
       await api.updateDocument(
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
         findAccount.$id,
-        subscribeObj
+        subscribeObj,
       );
-    }else{
+    } else {
       const data = {
         id: props.user.email,
         subscriptions: [],
         blocked: [],
         numOfSubscriptions: 0,
         numOfPosts: 0,
-        numOfLikes: 1 
+        numOfLikes: 1,
       };
-      
+
       await api.createDocument(
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
@@ -71,7 +73,32 @@ export async function addLike(props: addLikeInterface) {
       }) as string;
 
       if (JSON.parse(findDuplicate).id) {
-        return;
+        const likes = props.post.likes;
+        likes.splice(props.post.likes.indexOf(findDuplicate), 1);
+
+        const data = {
+          likes: props.post.likes,
+        };
+
+        await api.updateDocument(
+          import.meta.env.VITE_REACT_APP_DATABASE_ID,
+          import.meta.env.VITE_REACT_APP_COLLECTION_ID,
+          props.post.$id,
+          data,
+        );
+
+        const subscribeObj = {
+          numOfLikes: (findAccount.numOfLikes -= 1),
+        };
+
+        await api.updateDocument(
+          import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
+          import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
+          findAccount.$id,
+          subscribeObj,
+        );
+
+        window.location.reload();
       } else {
         props.post.likes.push(JSON.stringify(likes));
 
@@ -102,7 +129,6 @@ export async function addLike(props: addLikeInterface) {
 
       window.location.reload();
     }
-
   } catch (err) {
     console.error(err);
     toast.error(`${err}`);

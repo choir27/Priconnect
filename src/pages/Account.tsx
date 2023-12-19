@@ -15,7 +15,7 @@ export default function Account() {
 
       <h1>{user?.name}</h1>
 
-      <RenderAccountStatistics/>
+      <RenderAccountStatistics />
 
       <RenderBlockedAccounts />
 

@@ -6,19 +6,26 @@ import api from "../../../middleware/Appwrite";
 import { toast } from "react-toastify";
 import { Button } from "../../../components/Button";
 
-async function removeSearchWord(account: SearchHistory | undefined, searchWord: string) {
+async function removeSearchWord(
+  account: SearchHistory | undefined,
+  searchWord: string,
+) {
   try {
-    if(account){
+    if (account) {
+      const arr = account.searchHistory;
 
-      const arr = account.searchHistory
-
-      arr.splice(arr.indexOf(searchWord),1);
+      arr.splice(arr.indexOf(searchWord), 1);
 
       const data = {
-        searchHistory: arr
+        searchHistory: arr,
       };
 
-      await api.updateDocument(import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID, import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID, account.$id, data);
+      await api.updateDocument(
+        import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID,
+        import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID,
+        account.$id,
+        data,
+      );
 
       window.location.reload();
     }
@@ -30,17 +37,20 @@ async function removeSearchWord(account: SearchHistory | undefined, searchWord: 
 
 async function clearSearchHistory(account: SearchHistory | undefined) {
   try {
-    if(account){
-
+    if (account) {
       const data = {
-        searchHistory: []
+        searchHistory: [],
       };
 
-      await api.updateDocument(import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID, import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID, account.$id, data);
+      await api.updateDocument(
+        import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID,
+        import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID,
+        account.$id,
+        data,
+      );
 
       window.location.reload();
-
-    }   
+    }
   } catch (err) {
     console.error(err);
     toast.error(`${err}`);
@@ -75,7 +85,7 @@ export default function RenderSearchHistory() {
                 {Button({
                   text: "",
                   classNames: "button fa-solid fa-xmark",
-                  onClick: () => removeSearchWord(findAccount, search)
+                  onClick: () => removeSearchWord(findAccount, search),
                 })}
               </section>
             );
@@ -95,7 +105,11 @@ export default function RenderSearchHistory() {
   return (
     <section>
       <h3>Your Search History</h3>
-      {Button({text: "Clear Search History", onClick: ()=> clearSearchHistory(account), classNames: "button"})}
+      {Button({
+        text: "Clear Search History",
+        onClick: () => clearSearchHistory(account),
+        classNames: "button",
+      })}
       {searchHistory}
     </section>
   );

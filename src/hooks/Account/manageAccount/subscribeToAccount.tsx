@@ -15,33 +15,32 @@ export default async function SubscribeToAccount(id: string, email: string) {
     const findAccount = subscriptions.documents.find(
       (account: Account) => account.id === email,
     );
-    
+
     const findPostAccount = subscriptions.documents.find(
       (account: Account) => id === account.id,
     );
-    
-    if(findPostAccount){
+
+    if (findPostAccount) {
       const data = {
-        numOfSubscriptions: findPostAccount.numOfSubscriptions+=1
+        numOfSubscriptions: (findPostAccount.numOfSubscriptions += 1),
       };
-  
+
       await api.updateDocument(
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
         findPostAccount.$id,
         data,
       );
-  
-    }else{
+    } else {
       const data = {
         id: id,
         subscriptions: [],
         blocked: [],
         numOfSubscriptions: 1,
         numOfPosts: 0,
-        numOfLikes: 0 
+        numOfLikes: 0,
       };
-      
+
       await api.createDocument(
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_DATABASE_ID,
         import.meta.env.VITE_REACT_APP_SUBSCRIBE_COLLECTION_ID,
