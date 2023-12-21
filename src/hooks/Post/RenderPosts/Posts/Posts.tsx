@@ -21,6 +21,11 @@ export default function Posts(props: PostsInterface) {
   //using that list, we show posts belonging to those accounts first, before showing other posts
   //make sure they are listed from most recent to most old posts
 
+  const listOfPrivateAccounts = subscribedPosts.map(
+    (SubscribedPosts: SubscribedPosts) =>
+      SubscribedPosts.private ? SubscribedPosts.id : "",
+  );
+
   useEffect(() => {
     async function GetSubscribedPosts() {
       try {
@@ -57,7 +62,8 @@ export default function Posts(props: PostsInterface) {
             props.posts.forEach((post: Post) => {
               if (
                 !findSubscriptions.subscriptions.includes(post.email) &&
-                post.email !== (props.user.email || getEmail())
+                post.email !== (props.user.email || getEmail()) &&
+                !listOfPrivateAccounts.includes(post.email)
               ) {
                 array.push(post);
               }
@@ -95,8 +101,6 @@ export default function Posts(props: PostsInterface) {
                 array.push(post);
               }
             });
-
-            console.log(array);
 
             setPosts(array);
           }
@@ -158,7 +162,10 @@ export default function Posts(props: PostsInterface) {
             <PostOptions {...{ post, props, checkLikeLogic }} />
           </section>
         );
-      } else if (!window.location.href.includes("account")) {
+      } else if (
+        !window.location.href.includes("account") &&
+        !listOfPrivateAccounts.includes(post.email)
+      ) {
         return (
           <section key={post.$id}>
             <article
@@ -228,7 +235,11 @@ export default function Posts(props: PostsInterface) {
             <PostOptions {...{ post, props, checkLikeLogic }} />
           </section>
         );
-      } else if (!window.location.href.includes("account")) {
+      } else if (
+        !window.location.href.includes("account") &&
+        !listOfPrivateAccounts.includes(post.email)
+      ) {
+        listOfPrivateAccounts.includes(post.email);
         return (
           <section key={post.$id}>
             <article

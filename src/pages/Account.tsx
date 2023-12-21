@@ -5,6 +5,7 @@ import { renderAccount } from "../hooks/Account/renderAccount/renderAccount";
 import RenderBlockedAccounts from "../hooks/Account/renderAccount/renderBlockedAccounts";
 import RenderSearchHistory from "../hooks/Account/renderAccount/renderSearchHistory";
 import RenderAccountStatistics from "../hooks/Account/renderAccount/renderAccountStatistics";
+import TogglePrivatePublic from "../hooks/Account/manageAccount/togglePrivatePublic";
 
 export default function Account() {
   const { user } = useContext(ApiContext);
@@ -16,6 +17,8 @@ export default function Account() {
       <h1>{user?.name}</h1>
 
       <RenderAccountStatistics />
+
+      <TogglePrivatePublic />
 
       <RenderBlockedAccounts />
 
