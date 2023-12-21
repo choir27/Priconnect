@@ -1,7 +1,6 @@
 import api from "../middleware/Appwrite";
-import { Post, User, SubscribedPosts } from "../middleware/Interfaces";
+import { Post, User, Account } from "../middleware/Interfaces";
 import { toast } from "react-toastify";
-import { SearchHistory } from "../middleware/Interfaces";
 
 export async function GetPosts(setPosts: (e: Post[]) => void) {
   try {
@@ -34,7 +33,7 @@ export async function GetAccount(setUser: (e: User) => void) {
 }
 
 export async function GetSubscribedPosts(
-  setSubscribedPosts: (e: SubscribedPosts[]) => void,
+  setSubscribedPosts: (e: Account[]) => void,
 ) {
   try {
     const data = await api.listDocuments(

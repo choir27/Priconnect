@@ -3,7 +3,7 @@ import { Permission, Role } from "appwrite";
 import {
   CreatePostInterface,
   User,
-  SubscribedPosts,
+  Account,
 } from "../../../middleware/Interfaces";
 import { getEmail } from "../../../middleware/Sessions";
 import { toast } from "react-toastify";
@@ -38,7 +38,7 @@ export default async function CreatePost(
     );
 
     const findAccount = subscribeData.documents?.find(
-      (subscribePosts: SubscribedPosts) => subscribePosts.id === user.email,
+      (account: Account) => account.id === user.email,
     );
 
     if (findAccount) {

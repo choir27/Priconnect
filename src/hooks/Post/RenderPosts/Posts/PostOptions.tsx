@@ -10,7 +10,7 @@ import UnSubscribeToAccount from "../../../Account/manageAccount/unsubscribeToAc
 import BlockAccount from "../../../Account/manageAccount/blockAccount";
 import {
   PostOptionsInterface,
-  SubscribedPosts,
+  Account,
 } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import { ApiContext } from "../../../../middleware/Context";
@@ -35,7 +35,7 @@ export default function PostOptions(
         );
 
         const findSubscriptions = data.documents.find(
-          (subscribedPosts: SubscribedPosts) =>
+          (subscribedPosts: Account) =>
             subscribedPosts.id === user.$id ||
             subscribedPosts.id === getEmail(),
         );

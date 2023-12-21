@@ -3,7 +3,7 @@ import { setPostId } from "../../../../middleware/Sessions";
 import {
   Post,
   PostsInterface,
-  SubscribedPosts,
+  Account,
 } from "../../../../middleware/Interfaces";
 import { useNavigate } from "react-router";
 import PostOptions from "./PostOptions";
@@ -21,9 +21,8 @@ export default function Posts(props: PostsInterface) {
   //using that list, we show posts belonging to those accounts first, before showing other posts
   //make sure they are listed from most recent to most old posts
 
-  const listOfPrivateAccounts = subscribedPosts.map(
-    (SubscribedPosts: SubscribedPosts) =>
-      SubscribedPosts.private ? SubscribedPosts.id : "",
+  const listOfPrivateAccounts = subscribedPosts.map((account: Account) =>
+    account.private ? account.id : "",
   );
 
   useEffect(() => {
@@ -31,15 +30,14 @@ export default function Posts(props: PostsInterface) {
       try {
         if (props.posts.length) {
           const findSubscriptions = subscribedPosts.find(
-            (subscribedPosts: SubscribedPosts) =>
-              subscribedPosts.id === props.user.$id ||
-              subscribedPosts.id === getEmail(),
+            (account: Account) =>
+              account.id === props.user.$id || account.id === getEmail(),
           );
 
           const findCurrentUserBlocked = subscribedPosts.find(
-            (subscribedPosts: SubscribedPosts) =>
-              subscribedPosts.blocked.includes(props.user.$id) ||
-              subscribedPosts.blocked.includes(getEmail() as string),
+            (account: Account) =>
+              account.blocked.includes(props.user.$id) ||
+              account.blocked.includes(getEmail() as string),
           );
 
           const array: Post[] = [];

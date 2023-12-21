@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { SaveSearchHistory } from "../hooks/SaveSearchHistory";
 import { useContext } from "react";
 import { ApiContext } from "../middleware/Context";
+import SearchHistorySuggest from "./SearchHistorySuggest";
 
 export default function SearchBar() {
   const setSearchValue = useStore((action: Action) => action.setSearchValue);
@@ -25,6 +26,7 @@ export default function SearchBar() {
           navigate("/searchResults");
         },
       })}
+      <SearchHistorySuggest />
     </section>
   );
 }

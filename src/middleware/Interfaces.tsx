@@ -104,16 +104,10 @@ export interface SearchHistory {
   searchHistory: string[];
 }
 
-export interface SubscribedPosts {
+export interface Account {
   id: string;
   blocked: string[];
   subscriptions: string[];
   $id: string;
   private: boolean;
-}
-
-export interface Account {
-  subscriptions: string[];
-  id: string;
-  $id: string;
 }

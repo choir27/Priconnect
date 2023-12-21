@@ -2,17 +2,17 @@ import { Button } from "../../../components/Button";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { ApiContext } from "../../../middleware/Context";
-import { SubscribedPosts } from "../../../middleware/Interfaces";
+import { Account } from "../../../middleware/Interfaces";
 import { getEmail } from "../../../middleware/Sessions";
 import api from "../../../middleware/Appwrite";
 
 async function changeAccountVisibility(
-  subscribedPost: SubscribedPosts[],
+  subscribedPost: Account[],
   user: string,
 ) {
   try {
     const findAccount = subscribedPost.find(
-      (subscribedPosts: SubscribedPosts) =>
+      (subscribedPosts: Account) =>
         subscribedPosts.id === user || subscribedPosts.id == getEmail(),
     );
 
@@ -40,7 +40,7 @@ export default function TogglePrivatePublic() {
   const { subscribedPosts, user } = useContext(ApiContext);
 
   const findAccount = subscribedPosts.find(
-    (subscribedPosts: SubscribedPosts) =>
+    (subscribedPosts: Account) =>
       subscribedPosts.id === user.email || subscribedPosts.id == getEmail(),
   );
 

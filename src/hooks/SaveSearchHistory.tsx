@@ -22,7 +22,7 @@ export async function SaveSearchHistory(props: SearchInterface) {
       },
     );
 
-    if (findSearchHistory.id) {
+    if (findSearchHistory) {
       const array = findSearchHistory.searchHistory;
 
       array.push(props.searchValue);

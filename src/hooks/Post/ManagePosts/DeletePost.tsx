@@ -1,4 +1,4 @@
-import { Post, SubscribedPosts } from "../../../middleware/Interfaces";
+import { Post, Account } from "../../../middleware/Interfaces";
 import api from "../../../middleware/Appwrite";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ export async function deletePost(post: Post, navigate: (e: string) => void) {
     );
 
     const findAccount = subscribeData.documents?.find(
-      (subscribePosts: SubscribedPosts) => subscribePosts.id === post.email,
+      (account: Account) => account.id === post.email,
     );
 
     const subscribeObj = {
