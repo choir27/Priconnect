@@ -1,8 +1,5 @@
 import api from "../../../../middleware/Appwrite";
-import {
-  addLikeInterface,
-  SubscribedPosts,
-} from "../../../../middleware/Interfaces";
+import { addLikeInterface, Account } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import { toast } from "react-toastify";
 import { Permission, Role } from "appwrite";
@@ -15,8 +12,7 @@ export async function addLike(props: addLikeInterface) {
     );
 
     const findAccount = subscribeData.documents?.find(
-      (subscribePosts: SubscribedPosts) =>
-        subscribePosts.id === props.post.email,
+      (subscribePosts: Account) => subscribePosts.id === props.post.email,
     );
 
     let likes = { id: "", likes: 0 };

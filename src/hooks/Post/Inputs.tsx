@@ -4,8 +4,6 @@ import {
   SearchInputInterface,
 } from "../../middleware/Interfaces";
 
-import SearchHistorySuggest from "../../components/SearchHistorySuggest";
-
 export function TextInput(props: TextInputInterface) {
   return (
     <input

@@ -1,5 +1,5 @@
 import api from "../../../middleware/Appwrite";
-import { Account, SubscribedPosts } from "../../../middleware/Interfaces";
+import { Account } from "../../../middleware/Interfaces";
 import { toast } from "react-toastify";
 
 export default async function UnSubscribeToAccount(
@@ -17,7 +17,7 @@ export default async function UnSubscribeToAccount(
     );
 
     const findUnsubscribeAccount = subscriptions.documents?.find(
-      (subscribePosts: SubscribedPosts) => subscribePosts.id === postId,
+      (account: Account) => account.id === postId,
     );
 
     const subscribeObj = {

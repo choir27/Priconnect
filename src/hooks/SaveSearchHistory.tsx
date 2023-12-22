@@ -11,6 +11,7 @@ export async function SaveSearchHistory(props: SearchInterface) {
       import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID,
     );
 
+    //find current logged in users search history
     const findSearchHistory = searchHistory.documents.find(
       (searchHistory: SearchHistory) => {
         if (
@@ -31,6 +32,8 @@ export async function SaveSearchHistory(props: SearchInterface) {
         searchHistory: array,
       };
 
+      //update array with new search value
+
       await api.updateDocument(
         import.meta.env.VITE_REACT_APP_SEARCH_DATABASE_ID,
         import.meta.env.VITE_REACT_APP_SEARCH_COLLECTION_ID,
@@ -38,6 +41,7 @@ export async function SaveSearchHistory(props: SearchInterface) {
         data,
       );
     } else {
+      //create new object in database and create search history if none exist in DB
       const data = {
         id: props.user.email || getEmail(),
         searchHistory: [props.searchValue],

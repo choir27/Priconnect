@@ -1,6 +1,6 @@
 import { ApiContext } from "../../../middleware/Context";
 import { useContext, useState, useEffect } from "react";
-import { SubscribedPosts } from "../../../middleware/Interfaces";
+import { Account } from "../../../middleware/Interfaces";
 import { getEmail } from "../../../middleware/Sessions";
 import api from "../../../middleware/Appwrite";
 
@@ -17,7 +17,7 @@ export default function RenderAccountStatistics() {
         );
 
         const findAccount = subscribeData.documents?.find(
-          (subscribePosts: SubscribedPosts) =>
+          (subscribePosts: Account) =>
             subscribePosts.id === user.email ||
             subscribePosts.id === getEmail(),
         );

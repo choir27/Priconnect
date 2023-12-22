@@ -1,12 +1,12 @@
 import { ApiContext } from "../../../middleware/Context";
 import { useContext, useState, useEffect } from "react";
-import { SubscribedPosts } from "../../../middleware/Interfaces";
+import { Account } from "../../../middleware/Interfaces";
 import { getEmail } from "../../../middleware/Sessions";
 import { Button } from "../../../components/Button";
 import { toast } from "react-toastify";
 import api from "../../../middleware/Appwrite";
 
-async function unBlock(account: string, currentAccount: SubscribedPosts) {
+async function unBlock(account: string, currentAccount: Account) {
   try {
     const array = currentAccount.blocked;
 
@@ -33,11 +33,11 @@ async function unBlock(account: string, currentAccount: SubscribedPosts) {
 export default function RenderBlockedAccounts() {
   const { subscribedPosts, user } = useContext(ApiContext);
 
-  const [currentAccount, setCurrentAccount] = useState<SubscribedPosts>();
+  const [currentAccount, setCurrentAccount] = useState<Account>();
 
   useEffect(() => {
     const findAccount = subscribedPosts.find(
-      (subscribedPosts: SubscribedPosts) =>
+      (subscribedPosts: Account) =>
         user.email || subscribedPosts.id === getEmail(),
     );
     setCurrentAccount(findAccount);

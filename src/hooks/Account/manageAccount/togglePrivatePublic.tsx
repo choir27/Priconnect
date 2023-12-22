@@ -12,8 +12,7 @@ async function changeAccountVisibility(
 ) {
   try {
     const findAccount = subscribedPost.find(
-      (subscribedPosts: Account) =>
-        subscribedPosts.id === user || subscribedPosts.id == getEmail(),
+      (account: Account) => account.id === user || account.id == getEmail(),
     );
 
     if (findAccount) {
@@ -40,8 +39,7 @@ export default function TogglePrivatePublic() {
   const { subscribedPosts, user } = useContext(ApiContext);
 
   const findAccount = subscribedPosts.find(
-    (subscribedPosts: Account) =>
-      subscribedPosts.id === user.email || subscribedPosts.id == getEmail(),
+    (account: Account) => account.id === user.email || account.id == getEmail(),
   );
 
   return Button({
