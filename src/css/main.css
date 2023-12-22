@@ -50,6 +50,18 @@ a {
   display: flex;
 }
 
+.column {
+  flex-direction: column;
+}
+
+.alignStart {
+  align-self: flex-start;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
 .alignCenter {
   align-items: center;
 }

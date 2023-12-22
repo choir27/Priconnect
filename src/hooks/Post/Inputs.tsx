@@ -4,6 +4,8 @@ import {
   SearchInputInterface,
 } from "../../middleware/Interfaces";
 
+import SearchHistorySuggest from "../../components/SearchHistorySuggest";
+
 export function TextInput(props: TextInputInterface) {
   return (
     <input
@@ -52,6 +54,7 @@ export function SearchInput(props: SearchInputInterface) {
       onChange={(e) => props.setSearchValue(e.target.value)}
       type="search"
       name="search"
+      value={props.searchValue}
     />
   );
 }

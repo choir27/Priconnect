@@ -17,7 +17,10 @@ export default function SearchBar() {
 
   return (
     <section>
-      {SearchInput({ setSearchValue: (e: string) => setSearchValue(e) })}
+      {SearchInput({
+        setSearchValue: (e: string) => setSearchValue(e),
+        searchValue,
+      })}
       {Button({
         text: "",
         classNames: "fa-solid fa-magnifying-glass button",

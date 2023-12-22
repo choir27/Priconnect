@@ -44,6 +44,7 @@ export interface CommentInputInterface {
 
 export interface SearchInputInterface {
   setSearchValue: (e: string) => void;
+  searchValue?: string;
 }
 
 export interface PostsInterface {
@@ -102,6 +103,7 @@ export interface SearchHistory {
   $id?: string;
   id: string;
   searchHistory: string[];
+  $createdAt?: string;
 }
 
 export interface Account {
