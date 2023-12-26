@@ -74,3 +74,21 @@ a {
   background: black;
   color: white;
 }
+
+/*Comics
+========================================================================== */
+
+#myCarousel {
+  margin-top: 2rem;
+  max-width: 60%;
+  min-width: 60%;
+}
+
+#comics .active {
+  scroll-snap-type: unset;
+}
+
+#comics li {
+  scroll-snap-align: center;
+  display: inline-block;
+}

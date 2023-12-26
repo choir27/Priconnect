@@ -2,6 +2,7 @@ export interface ButtonInterface {
   text: string;
   classNames?: string;
   onClick: () => void;
+  key?: string;
 }
 
 export interface User {

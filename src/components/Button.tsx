@@ -8,6 +8,7 @@ export function Button(props: ButtonInterface) {
         e.preventDefault();
         props.onClick();
       }}
+      key={props.key}
     >
       {props.text}
     </button>

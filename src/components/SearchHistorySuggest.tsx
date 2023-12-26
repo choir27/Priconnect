@@ -25,8 +25,6 @@ export default function SearchHistorySuggest() {
             searchHistory.id === user.email || searchHistory.id === getEmail(),
         );
 
-        console.log(findSearchHistory);
-
         setSearchHistory(findSearchHistory.searchHistory);
       } catch (err) {
         console.error(err);
@@ -37,19 +35,18 @@ export default function SearchHistorySuggest() {
   }, []);
 
   return (
-    <section>
-      <section className="column flex alignStart">
-        {searchHistory
-          .map((searchTerm: string, i: number) => {
-            return Button({
-              text: searchTerm,
-              classNames: "button",
-              onClick: () => setSearchValue(searchTerm),
-            });
-          })
-          .slice(searchHistory.length - 5, searchHistory.length)
-          .reverse()}
-      </section>
+    <section className="column flex alignStart">
+      {searchHistory
+        .map((searchTerm: string, i: number) => {
+          return Button({
+            text: searchTerm,
+            classNames: "button",
+            onClick: () => setSearchValue(searchTerm),
+            key: i.toString(),
+          });
+        })
+        .slice(searchHistory.length - 5, searchHistory.length)
+        .reverse()}
     </section>
   );
 }
