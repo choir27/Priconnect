@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
-import { ApiContext } from "../middleware/Context";
-import { Post } from "../middleware/Interfaces";
-import { useStore } from "../middleware/Zustand/States";
-import { State } from "../middleware/Zustand/Types";
-import Posts from "../hooks/Post/RenderPosts/Posts/Posts";
+import { ApiContext } from "../../middleware/Context";
+import { Post } from "../../middleware/Interfaces";
+import { useStore } from "../../middleware/Zustand/States";
+import { State } from "../../middleware/Zustand/Types";
+import Posts from "../../hooks/Post/RenderPosts/Posts/Posts";
 
 export default function SearchResults() {
   const { posts, user } = useContext(ApiContext);

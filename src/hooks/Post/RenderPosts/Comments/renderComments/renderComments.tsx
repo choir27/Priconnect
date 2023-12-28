@@ -9,7 +9,7 @@ import { ApiContext } from "../../../../../middleware/Context";
 export default function RenderComments(post: Post) {
   const { user } = useContext(ApiContext);
 
-  if (post) {
+  if (post && post.comments.length) {
     return post.comments.map((comment: string, index: number) => {
       const commentObj = JSON.parse(comment);
 
@@ -48,7 +48,11 @@ export default function RenderComments(post: Post) {
         );
       }
     });
-  } else {
-    return "";
+  } else if (!post.comments.length) {
+    return (
+      <section>
+        <h1>There are no comments to render right now.</h1>
+      </section>
+    );
   }
 }

@@ -1,11 +1,11 @@
-import { SearchInput } from "../hooks/Post/Inputs";
-import { useStore } from "../middleware/Zustand/States";
-import { Action, State } from "../middleware/Zustand/Types";
-import { Button } from "./Button";
+import { SearchInput } from "../../hooks/Post/Inputs";
+import { useStore } from "../../middleware/Zustand/States";
+import { Action, State } from "../../middleware/Zustand/Types";
+import { Button } from "../Button";
 import { useNavigate } from "react-router";
-import { SaveSearchHistory } from "../hooks/SaveSearchHistory";
+import { SaveSearchHistory } from "../../hooks/SaveSearchHistory";
 import { useContext } from "react";
-import { ApiContext } from "../middleware/Context";
+import { ApiContext } from "../../middleware/Context";
 import SearchHistorySuggest from "./SearchHistorySuggest";
 
 export default function SearchBar() {

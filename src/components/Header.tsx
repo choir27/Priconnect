@@ -5,7 +5,7 @@ import { ApiContext } from "../middleware/Context";
 import { useContext } from "react";
 import CreatePostHub from "./CreatePostHub";
 import { getEmail } from "../middleware/Sessions";
-import SearchBar from "./SearchBar";
+import SearchBar from "./Search/SearchBar";
 
 export default function Header() {
   const { user } = useContext(ApiContext);
@@ -14,6 +14,7 @@ export default function Header() {
 
   return (
     <header>
+      <h1>Priconnect</h1>
       <nav>
         {user.email || getEmail() ? (
           <a className="button" href="/dashboard  ">

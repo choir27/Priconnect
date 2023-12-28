@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { ApiContext } from "../middleware/Context";
-import { getEmail } from "../middleware/Sessions";
-import { SearchHistory } from "../middleware/Interfaces";
-import api from "../middleware/Appwrite";
-import { Button } from "../components/Button";
-import { useStore } from "../middleware/Zustand/States";
-import { Action } from "../middleware/Zustand/Types";
+import { ApiContext } from "../../middleware/Context";
+import { getEmail } from "../../middleware/Sessions";
+import { SearchHistory } from "../../middleware/Interfaces";
+import api from "../../middleware/Appwrite";
+import { Button } from "../Button";
+import { useStore } from "../../middleware/Zustand/States";
+import { Action } from "../../middleware/Zustand/Types";
 
 export default function SearchHistorySuggest() {
   const { user } = useContext(ApiContext);

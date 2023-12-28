@@ -9,7 +9,8 @@ export default function RenderReplies(props: CommentOptionsInterface) {
     props &&
     props.post &&
     props.post.comments &&
-    props.post.comments[props.index]
+    props.post.comments[props.index] &&
+    JSON.parse(props.post.comments[props.index]).replies.length
   ) {
     const comments = JSON.parse(props.post.comments[props.index]);
 
@@ -33,7 +34,7 @@ export default function RenderReplies(props: CommentOptionsInterface) {
   } else {
     return (
       <section>
-        <h1>Loading...</h1>
+        <h1>There are no replies to render right now.</h1>
       </section>
     );
   }

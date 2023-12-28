@@ -6,9 +6,14 @@ import RenderBlockedAccounts from "../hooks/Account/renderAccount/renderBlockedA
 import RenderSearchHistory from "../hooks/Account/renderAccount/renderSearchHistory";
 import RenderAccountStatistics from "../hooks/Account/renderAccount/renderAccountStatistics";
 import TogglePrivatePublic from "../hooks/Account/manageAccount/togglePrivatePublic";
+import Footer from "../components/Footer";
+import Ads from "../components/Ads";
+import GetAccount from "../hooks/Authentication/GetAccount";
 
 export default function Account() {
   const { user } = useContext(ApiContext);
+
+  GetAccount();
 
   return (
     <main>
@@ -25,6 +30,10 @@ export default function Account() {
       <RenderSearchHistory />
 
       {renderAccount()}
+
+      <Ads />
+
+      <Footer />
     </main>
   );
 }
