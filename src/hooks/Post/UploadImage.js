@@ -30,7 +30,7 @@ export default function ImageUpload() {
 
   return Button({
     text: "Upload Image",
-    classNames: "button",
+    classNames: "button2",
     onClick: () => uploadImage(),
   });
 }

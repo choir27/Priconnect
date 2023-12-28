@@ -6,6 +6,7 @@ export type State = {
   posts: Post[];
   comment: string;
   searchValue: string;
+  display: boolean;
 };
 
 export type Action = {
@@ -14,6 +15,7 @@ export type Action = {
   setPosts: (e: Post[]) => void;
   setComment: (e: string) => void;
   setSearchValue: (e: string) => void;
+  setDisplay: (e: boolean) => void;
 };
 
 export type Context = {

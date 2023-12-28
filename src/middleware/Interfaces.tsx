@@ -37,6 +37,8 @@ export interface Post {
 
 export interface TextInputInterface {
   setText: (e: string) => void;
+  rows?: number,
+  cols?: number
 }
 
 export interface CommentInputInterface {

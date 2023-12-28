@@ -1,4 +1,4 @@
-import { TextInput } from "../hooks/Post/Inputs";
+import { TextBoxInput } from "../hooks/Post/Inputs";
 import { Button } from "./Button";
 import CreatePost from "../hooks/Post/ManagePosts/CreatePost";
 import { useStore } from "../middleware/Zustand/States";
@@ -12,20 +12,28 @@ export default function CreatePostHub() {
   const text = useStore((state: State) => state.text);
   const image = useStore((state: State) => state.image);
   const { user } = useContext(ApiContext);
+  const setDisplay = useStore((action: Action)=>action.setDisplay);
 
   return (
-    <form>
-      {TextInput({ setText: (e: string) => setText(e) })}
+    <section id = 'create'>
+      <form className = 'flex column alignCenter justifyCenter'>
+          {Button({
+            text: "",
+            classNames: "button fa-solid fa-xmark",
+            onClick: () => setDisplay(false),
+          })}
+          {TextBoxInput({ setText: (e: string) => setText(e), rows: 12, cols: 40})}
 
-      <ImageUpload />
+          <ImageUpload />
 
-      {Button({
-        text: "Create Post",
-        classNames: "button",
-        onClick: () => CreatePost({ text: text, image: image }, user),
-      })}
+          {Button({
+            text: "Create Post",
+            classNames: "button",
+            onClick: () => CreatePost({ text: text, image: image }, user),
+          })}
 
-      {image.original_filename}
-    </form>
+          {image.original_filename}
+      </form>
+    </section>
   );
 }

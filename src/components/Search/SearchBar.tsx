@@ -16,20 +16,20 @@ export default function SearchBar() {
   const { user } = useContext(ApiContext);
 
   return (
-    <section>
+    <section className = 'search flex alignCenter'>
       {SearchInput({
         setSearchValue: (e: string) => setSearchValue(e),
         searchValue,
       })}
       {Button({
         text: "",
-        classNames: "fa-solid fa-magnifying-glass button",
+        classNames: "fa-solid fa-magnifying-glass",
         onClick: () => {
           SaveSearchHistory({ user, searchValue });
           navigate("/searchResults");
         },
       })}
-      <SearchHistorySuggest />
+      {/* <SearchHistorySuggest /> */}
     </section>
   );
 }

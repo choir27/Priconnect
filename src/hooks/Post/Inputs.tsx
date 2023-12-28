@@ -17,6 +17,20 @@ export function TextInput(props: TextInputInterface) {
   );
 }
 
+export function TextBoxInput(props: TextInputInterface) {
+  return (
+    <textarea
+      placeholder="Write a Post"
+      minLength={1}
+      maxLength={1000}
+      onChange={(e) => props.setText(e.target.value)}
+      name="text"
+      rows = {props.rows}
+      cols = {props.cols}
+    />
+  );
+}
+
 export function CommentInput(props: CommentInputInterface) {
   return (
     <input
