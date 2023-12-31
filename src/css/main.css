@@ -11,20 +11,21 @@ main {
   min-height: 100vh;
 }
 
-input{
+input {
   color: #483a3a;
   border-radius: 10px;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
-a{
+a {
   transition:
     color 0.2s ease-in-out,
     font-weight 0.2s ease-in-out;
   color: #483a3a;
 }
 
-a:hover, header nav button:hover{
+a:hover,
+header nav button:hover {
   cursor: pointer;
   color: black;
   font-weight: bold;
@@ -68,12 +69,11 @@ img {
   color: #483a3a;
 }
 
-button{
-  transition:
-    text-decoration 0.2 ease-in-out;
+button {
+  transition: text-decoration 0.2 ease-in-out;
 }
 
-.button2{
+.button2 {
   background: #c57fe6;
   transition:
     background-color 0.2s ease-in-out,
@@ -113,14 +113,13 @@ button{
   align-items: flex-start;
 }
 
-.alignEnd{
+.alignEnd {
   align-items: flex-end;
 }
 
 .alignCenter {
   align-items: center;
 }
-
 
 .justifyStart {
   justify-content: flex-start;
@@ -166,38 +165,40 @@ a {
 /*Header
 ========================================================================== */
 
-header{
-  padding: 1rem .5rem;
+header {
+  padding: 1rem 0.5rem;
 }
 
-header, header section{
+header,
+header section {
   width: 100%;
 }
 
-header .logoContainer{
+header .logoContainer {
   width: 5%;
   margin-right: 2rem;
 }
 
-header button{
+header button {
   border: none;
   background: none;
 }
 
-header .nav{
+header .nav {
   width: 30%;
 }
 
-header .nav nav{
+header .nav nav {
   width: 100%;
 }
 
-header nav a, header nav button{
+header nav a,
+header nav button {
   font-size: 2.5rem;
   color: #483a3a;
 }
 
-header .fa-plus{
+header .fa-plus {
   margin-right: 2rem;
   font-size: 4rem;
 }
@@ -205,36 +206,35 @@ header .fa-plus{
 /*Search
 ========================================================================== */
 
-.search button{
+.search button {
   font-size: 2.5rem;
   margin: 0rem 1.5rem;
 }
 
-.search input{
+.search input {
   width: 100%;
 }
 
-.search{
+.search {
   font-size: 2rem;
   margin-bottom: 1rem;
-} 
+}
 
-.search button{
+.search button {
   color: #483a3a;
 }
 
-.search button:hover{
+.search button:hover {
   cursor: pointer;
   color: black;
   font-weight: bold;
   text-decoration: underline dotted;
 }
 
-
 /*Create
 ========================================================================== */
 
-textarea{
+textarea {
   color: #483a3a;
   resize: none;
   border-radius: 10px;
@@ -242,31 +242,29 @@ textarea{
   margin-bottom: 2rem;
 }
 
-#create{
+#create {
   height: 100%;
   background: rgb(225, 193, 239);
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   border-radius: 10px;
   padding: 2rem 5rem;
 }
 
-#create .button2{
+#create .button2 {
   margin-bottom: 5rem;
 }
 
-#create .fa-solid{
+#create .fa-solid {
   align-self: flex-end;
   margin-bottom: 2rem;
 }
 
-
 /*Comics
 ========================================================================== */
 
-#myCarousel {
-  margin-top: 2rem;
-  max-width: 60%;
-  min-width: 60%;
+#comics {
+  position: relative;
 }
 
 #comics .active {
@@ -276,6 +274,76 @@ textarea{
 #comics li {
   scroll-snap-align: center;
   display: inline-block;
+}
+
+/*Posts
+========================================================================== */
+
+#posts {
+  width: 100%;
+  margin-right: 2rem;
+}
+
+#posts .trimmedPost {
+  background: #f2e5f7;
+  border-radius: 10px;
+  min-height: 24rem;
+  position: relative;
+  margin-bottom: 10rem;
+}
+
+#posts .post {
+  background: #f2e5f7;
+  border-radius: 10px;
+  min-height: 18rem;
+  position: relative;
+  margin-bottom: 10rem;
+}
+
+#options {
+  background: #dcb2ef;
+  width: 25%;
+  bottom: 0.2rem;
+  padding: 2.5rem 2rem;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: absolute;
+}
+
+#options button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+#options button {
+  margin-left: 1rem;
+  margin-right: 2rem;
+  background: none;
+}
+
+#options button,
+#options span {
+  font-size: 4rem;
+}
+
+#dashboard {
+  position: relative;
+  margin-top: 12rem;
+  padding: 0rem 1rem;
+}
+
+#dashboard .imageContainer {
+  width: 50%;
+}
+
+#dashboard img {
+  border-radius: 10px;
+}
+
+#dashboard .post p,
+#dashboard .trimmedPost p {
+  padding: 2rem;
+  font-size: 3rem;
 }
 
 /*Footer

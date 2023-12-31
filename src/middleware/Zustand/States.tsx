@@ -52,9 +52,9 @@ export const useStore = create<State & Action>((set) => ({
   display: false,
   setDisplay: (display: boolean) => {
     set(
-      produce((state: State)=>{
+      produce((state: State) => {
         state.display = display;
       }),
     );
-  }
+  },
 }));

@@ -10,6 +10,7 @@ import { PostOptionsInterface } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import { ApiContext } from "../../../../middleware/Context";
 import GetSubscribedPosts from "./PostFunctions/GetSubscribedPosts";
+import { totalComment } from "../Comments/manageComments/totalComments";
 
 export default function PostOptions(
   props: PostOptionsInterface,
@@ -19,7 +20,7 @@ export default function PostOptions(
   const { user } = useContext(ApiContext);
 
   return (
-    <section>
+    <section id="options">
       <div className="flex alignItems justifyContent">
         <CommentHub
           post={props.post}
@@ -38,11 +39,11 @@ export default function PostOptions(
               navigate: navigate,
             }),
         })}
-        {Button({
+        {/* {Button({
           text: "",
-          classNames: "fa-solid fa-ellipsis-vertical button",
+          classNames: "fa-solid fa-ellipsis-vertical",
           onClick: () => setOptionDisplay(!optionDisplay),
-        })}
+        })} */}
       </div>
 
       {optionDisplay ? (
@@ -52,13 +53,13 @@ export default function PostOptions(
             props.post.email === getEmail()
               ? Button({
                   text: "",
-                  classNames: "fa-solid fa-trash-can button",
+                  classNames: "fa-solid fa-trash-can",
                   onClick: () => deletePost(props.post, navigate),
                 })
               : ""}
             {Button({
               text: "",
-              classNames: "fa-solid fa-repeat button",
+              classNames: "fa-solid fa-repeat",
               onClick: () => "",
             })}
 

@@ -16,7 +16,7 @@ export default function SearchBar() {
   const { user } = useContext(ApiContext);
 
   return (
-    <section className = 'search flex alignCenter'>
+    <section className="search flex alignCenter">
       {SearchInput({
         setSearchValue: (e: string) => setSearchValue(e),
         searchValue,

@@ -34,8 +34,8 @@ export default function Posts(props: PostsInterface) {
         props: props,
         checkLikeLogic: "",
       })
-        ? "fa-solid fa-heart button"
-        : "fa-regular fa-heart button";
+        ? "fa-solid fa-heart"
+        : "fa-regular fa-heart";
 
       if (
         window.location.href.includes("account") &&
@@ -54,7 +54,7 @@ export default function Posts(props: PostsInterface) {
       }
     });
 
-    return <section>{listOfPosts}</section>;
+    return <section id="posts">{listOfPosts}</section>;
   } else if (!posts.length && props.posts.length) {
     const listOfPosts = props.posts?.map((post: Post) => {
       const checkLikeLogic: string = findDuplicate({
@@ -62,8 +62,8 @@ export default function Posts(props: PostsInterface) {
         props: props,
         checkLikeLogic: "",
       })
-        ? "fa-solid fa-heart button"
-        : "fa-regular fa-heart button";
+        ? "fa-solid fa-heart"
+        : "fa-regular fa-heart";
 
       if (
         window.location.href.includes("account") &&
@@ -82,6 +82,6 @@ export default function Posts(props: PostsInterface) {
       }
     });
 
-    return <section>{listOfPosts}</section>;
+    return <section id="posts">{listOfPosts}</section>;
   }
 }

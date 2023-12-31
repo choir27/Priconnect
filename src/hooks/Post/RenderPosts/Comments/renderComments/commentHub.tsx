@@ -13,11 +13,11 @@ export default function CommentHub(props: addCommentInterface) {
 
   return (
     <section>
-      {CommentInput({ setComment: (e: string) => setComment(e) })}
+      {/* {CommentInput({ setComment: (e: string) => setComment(e) })} */}
       {totalComment(props.post.comments)}
       {Button({
         text: "",
-        classNames: "fa-regular fa-comment button",
+        classNames: "fa-regular fa-comment",
         onClick: () =>
           addComment({
             post: props.post,

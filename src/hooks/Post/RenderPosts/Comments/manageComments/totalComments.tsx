@@ -8,5 +8,5 @@ export function totalComment(commentArray: string[]) {
     }
   });
 
-  return sum;
+  return <span>{sum}</span>;
 }

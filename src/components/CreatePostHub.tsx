@@ -12,27 +12,31 @@ export default function CreatePostHub() {
   const text = useStore((state: State) => state.text);
   const image = useStore((state: State) => state.image);
   const { user } = useContext(ApiContext);
-  const setDisplay = useStore((action: Action)=>action.setDisplay);
+  const setDisplay = useStore((action: Action) => action.setDisplay);
 
   return (
-    <section id = 'create'>
-      <form className = 'flex column alignCenter justifyCenter'>
-          {Button({
-            text: "",
-            classNames: "button fa-solid fa-xmark",
-            onClick: () => setDisplay(false),
-          })}
-          {TextBoxInput({ setText: (e: string) => setText(e), rows: 12, cols: 40})}
+    <section id="create">
+      <form className="flex column alignCenter justifyCenter">
+        {Button({
+          text: "",
+          classNames: "button fa-solid fa-xmark",
+          onClick: () => setDisplay(false),
+        })}
+        {TextBoxInput({
+          setText: (e: string) => setText(e),
+          rows: 12,
+          cols: 40,
+        })}
 
-          <ImageUpload />
+        <ImageUpload />
 
-          {Button({
-            text: "Create Post",
-            classNames: "button",
-            onClick: () => CreatePost({ text: text, image: image }, user),
-          })}
+        {Button({
+          text: "Create Post",
+          classNames: "button",
+          onClick: () => CreatePost({ text: text, image: image }, user),
+        })}
 
-          {image.original_filename}
+        {image.original_filename}
       </form>
     </section>
   );

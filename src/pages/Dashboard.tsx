@@ -4,23 +4,26 @@ import RenderPosts from "../hooks/Post/RenderPosts/Posts/RenderPosts";
 import Ads from "../components/Ads";
 import Footer from "../components/Footer";
 import CreatePostHub from "../components/CreatePostHub";
-import {State} from "../middleware/Zustand/Types"
-import {useStore} from "../middleware/Zustand/States"
+import { State } from "../middleware/Zustand/Types";
+import { useStore } from "../middleware/Zustand/States";
 
 export default function Dashboard() {
   GetAccount();
 
-  const display = useStore((state:State)=>state.display);
+  const display = useStore((state: State) => state.display);
 
   return (
-    <main className = "flex column alignCenter">
+    <main className="flex column alignCenter">
       <Header />
-      {display ? <CreatePostHub/> : ""}
-      {/* <h1>Dashboard</h1>
+      {display ? <CreatePostHub /> : ""}
 
-      <RenderPosts />
+      <section className="flex" id="dashboard">
+        <RenderPosts />
 
-      <Ads />
+        <Ads />
+      </section>
+
+      {/* 
 
       <Footer /> */}
     </main>

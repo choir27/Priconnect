@@ -25,8 +25,8 @@ export function TextBoxInput(props: TextInputInterface) {
       maxLength={1000}
       onChange={(e) => props.setText(e.target.value)}
       name="text"
-      rows = {props.rows}
-      cols = {props.cols}
+      rows={props.rows}
+      cols={props.cols}
     />
   );
 }

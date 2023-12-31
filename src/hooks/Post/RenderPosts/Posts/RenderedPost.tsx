@@ -9,15 +9,21 @@ export default function RenderedPost(renderedPost: PostOptionsInterface) {
   const image = JSON?.parse(renderedPost.post?.image);
 
   return (
-    <section key={renderedPost.post.$id}>
+    <section
+      key={renderedPost.post.$id}
+      className={renderedPost.post.text.length > 100 ? "trimmedPost" : "post"}
+    >
       <article
-        className="button"
         onClick={() => {
           setPostId(renderedPost.post.$id);
           navigate(`/${renderedPost.post.$id}`);
         }}
       >
-        <p>{renderedPost.post.text}</p>
+        <p>
+          {renderedPost.post.text.length > 100
+            ? renderedPost.post.text.slice(0, 200).trim() + "..."
+            : renderedPost.post.text}
+        </p>
         <div className="imageContainer">
           <img src={image.secure_url} alt={image.original_name} />
         </div>
