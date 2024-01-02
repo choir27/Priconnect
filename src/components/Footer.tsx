@@ -1,8 +1,10 @@
-export default function Footer() {
+import { CommentLike } from "../middleware/Interfaces";
+
+export default function Footer(props: CommentLike) {
   const currentDate = new Date();
 
   return (
-    <footer className="flex justifyBetween">
+    <footer className="flex justifyBetween" id={props.id}>
       <section>
         <h2>Citations/Source/Credits</h2>
         <h3>

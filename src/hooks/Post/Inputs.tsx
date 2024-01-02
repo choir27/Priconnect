@@ -1,58 +1,19 @@
 import {
-  TextInputInterface,
-  CommentInputInterface,
+  TextBoxInputInterface,
   SearchInputInterface,
 } from "../../middleware/Interfaces";
 
-export function TextInput(props: TextInputInterface) {
-  return (
-    <input
-      placeholder="Write a Post"
-      minLength={1}
-      maxLength={1000}
-      onChange={(e) => props.setText(e.target.value)}
-      type="text"
-      name="text"
-    />
-  );
-}
-
-export function TextBoxInput(props: TextInputInterface) {
+export function TextBoxInput(props: TextBoxInputInterface) {
   return (
     <textarea
-      placeholder="Write a Post"
+      placeholder={props.placeholder}
       minLength={1}
       maxLength={1000}
-      onChange={(e) => props.setText(e.target.value)}
-      name="text"
+      onChange={(e) => props.setChange(e.target.value)}
+      name={props.name}
       rows={props.rows}
       cols={props.cols}
-    />
-  );
-}
-
-export function CommentInput(props: CommentInputInterface) {
-  return (
-    <input
-      placeholder="Add a Comment"
-      minLength={1}
-      maxLength={1000}
-      onChange={(e) => props.setComment(e.target.value)}
-      type="text"
-      name="comment"
-    />
-  );
-}
-
-export function ReplyInput(props: CommentInputInterface) {
-  return (
-    <input
-      placeholder="Add a Reply"
-      minLength={1}
-      maxLength={1000}
-      onChange={(e) => props.setComment(e.target.value)}
-      type="text"
-      name="comment"
+      className={props.classNames}
     />
   );
 }

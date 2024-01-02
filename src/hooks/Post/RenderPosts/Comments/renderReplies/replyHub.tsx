@@ -1,6 +1,6 @@
 import { Button } from "../../../../../components/Button";
 import { CommentOptionsInterface } from "../../../../../middleware/Interfaces";
-import { ReplyInput } from "../../../Inputs";
+import { TextBoxInput } from "../../../Inputs";
 import { useStore } from "../../../../../middleware/Zustand/States";
 import { Action, State } from "../../../../../middleware/Zustand/Types";
 import { totalComment } from "../manageComments/totalComments";
@@ -19,7 +19,11 @@ export default function ReplyHub(props: CommentOptionsInterface) {
 
   return (
     <section>
-      {ReplyInput({ setComment: (e: string) => setReply(e) })}
+      {TextBoxInput({
+        setChange: (e: string) => setReply(e),
+        placeholder: "Add a Reply",
+        name: "reply",
+      })}
       {totalComment(props.post.comments)}
       {Button({
         text: "",

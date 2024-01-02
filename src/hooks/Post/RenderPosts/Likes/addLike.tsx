@@ -35,7 +35,7 @@ export async function addLike(props: addLikeInterface) {
         }
       }) as string;
 
-      if (JSON.parse(findDuplicate).id) {
+      if (findDuplicate) {
         const likes = props.post.likes;
         likes.splice(props.post.likes.indexOf(findDuplicate), 1);
 

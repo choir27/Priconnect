@@ -10,7 +10,6 @@ import { PostOptionsInterface } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import { ApiContext } from "../../../../middleware/Context";
 import GetSubscribedPosts from "./PostFunctions/GetSubscribedPosts";
-import { totalComment } from "../Comments/manageComments/totalComments";
 
 export default function PostOptions(
   props: PostOptionsInterface,
@@ -21,8 +20,9 @@ export default function PostOptions(
 
   return (
     <section id="options">
-      <div className="flex alignItems justifyContent">
+      <div className="flex alignCenter justifyCenter">
         <CommentHub
+          expandedPostDomain={props.expandedPostDomain}
           post={props.post}
           user={props.props.user}
           navigate={navigate}

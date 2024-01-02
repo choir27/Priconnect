@@ -1,4 +1,5 @@
-import { ButtonInterface } from "../middleware/Interfaces";
+import { ButtonInterface, ButtonLinkInterface } from "../middleware/Interfaces";
+import { Link } from "react-router-dom";
 
 export function Button(props: ButtonInterface) {
   return (
@@ -12,5 +13,13 @@ export function Button(props: ButtonInterface) {
     >
       {props.text}
     </button>
+  );
+}
+
+export function ButtonLink(props: ButtonLinkInterface) {
+  return (
+    <Link to={props.domain} className={props.classNames} key={props.key}>
+      {props.text}
+    </Link>
   );
 }

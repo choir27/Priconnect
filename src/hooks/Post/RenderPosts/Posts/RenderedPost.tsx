@@ -14,25 +14,27 @@ export default function RenderedPost(renderedPost: PostOptionsInterface) {
       className={renderedPost.post.text.length > 100 ? "trimmedPost" : "post"}
     >
       <article
+        className={image.secure_url ? "flex alignCenter justifyBetween" : ""}
         onClick={() => {
           setPostId(renderedPost.post.$id);
           navigate(`/${renderedPost.post.$id}`);
         }}
       >
+        <div className="imageContainer">
+          <img src={image.secure_url} alt={image.original_name} />
+        </div>
         <p>
           {renderedPost.post.text.length > 100
             ? renderedPost.post.text.slice(0, 200).trim() + "..."
             : renderedPost.post.text}
         </p>
-        <div className="imageContainer">
-          <img src={image.secure_url} alt={image.original_name} />
-        </div>
       </article>
       <PostOptions
         {...{
           post: renderedPost.post,
           props: renderedPost.props,
           checkLikeLogic: renderedPost.checkLikeLogic,
+          expandedPostDomain: `/${renderedPost.post.$id}`,
         }}
       />
     </section>

@@ -23,9 +23,7 @@ export default function Dashboard() {
         <Ads />
       </section>
 
-      {/* 
-
-      <Footer /> */}
+      <Footer {...{ id: "footer" }} />
     </main>
   );
 }

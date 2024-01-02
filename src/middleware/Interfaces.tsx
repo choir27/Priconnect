@@ -5,6 +5,10 @@ export interface ButtonInterface {
   key?: string;
 }
 
+export interface ButtonLinkInterface extends ButtonInterface {
+  domain: string;
+}
+
 export interface User {
   email: string;
   $id: string;
@@ -35,14 +39,13 @@ export interface Post {
   comments: string[];
 }
 
-export interface TextInputInterface {
-  setText: (e: string) => void;
+export interface TextBoxInputInterface {
+  setChange: (e: string) => void;
+  placeholder: string;
+  name: string;
+  classNames?: string;
   rows?: number;
   cols?: number;
-}
-
-export interface CommentInputInterface {
-  setComment: (e: string) => void;
 }
 
 export interface SearchInputInterface {
@@ -70,16 +73,18 @@ export interface Comment {
 
 export interface addCommentInterface extends addLikeInterface {
   comment: string;
+  expandedPostDomain?: string;
 }
 
 export interface PostOptionsInterface {
   post: Post;
   props: PostsInterface;
   checkLikeLogic: string;
+  expandedPostDomain: string;
 }
 
 export interface CommentLike {
-  id: string;
+  id?: string;
 }
 
 export interface CommentOptionsInterface {
