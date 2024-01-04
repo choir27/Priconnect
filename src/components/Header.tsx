@@ -8,6 +8,7 @@ import { Action } from "../middleware/Zustand/Types";
 import { getEmail } from "../middleware/Sessions";
 import SearchBar from "./Search/SearchBar";
 import { Assets } from "../middleware/Assets";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { user } = useContext(ApiContext);
@@ -21,7 +22,9 @@ export default function Header() {
         <div className="logoContainer">
           <img src={Assets.Logo} alt="Priconnect Logo Vector Picture" />
         </div>
-        <h1>Priconnect</h1>
+        <Link to="/">
+          <h1>Priconnect</h1>
+        </Link>
       </section>
 
       {Button({
@@ -34,8 +37,30 @@ export default function Header() {
         {user.email || getEmail() ? <SearchBar /> : ""}
 
         <nav className="flex alignEnd justifyBetween">
-          {user.email || getEmail() ? <a href="/dashboard  ">Home</a> : ""}
-          {user.email || getEmail() ? <a href="/account">Account</a> : ""}
+          {user.email || getEmail() ? (
+            <a
+              className={
+                window.location.href.includes("dashboard") ? "active" : ""
+              }
+              href="/dashboard  "
+            >
+              Home
+            </a>
+          ) : (
+            ""
+          )}
+          {user.email || getEmail() ? (
+            <a
+              className={
+                window.location.href.includes("account") ? "active" : ""
+              }
+              href="/account"
+            >
+              Account
+            </a>
+          ) : (
+            ""
+          )}
           {user.email || getEmail()
             ? Button({
                 text: "Logout",

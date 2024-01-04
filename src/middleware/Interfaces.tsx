@@ -58,6 +58,8 @@ export interface PostsInterface {
   optionDisplay: boolean;
   setOptionDisplay: (e: boolean) => void;
   user: User;
+  endIndex?: number;
+  startIndex?: number;
 }
 
 export interface addLikeInterface {
@@ -80,7 +82,7 @@ export interface PostOptionsInterface {
   post: Post;
   props: PostsInterface;
   checkLikeLogic: string;
-  expandedPostDomain: string;
+  expandedPostDomain?: string;
 }
 
 export interface CommentLike {
@@ -120,4 +122,10 @@ export interface Account {
   subscriptions: string[];
   $id: string;
   private: boolean;
+}
+
+export interface PaginatedButtonsInterface {
+  setEndIndex: (e: number) => void;
+  endIndex: number;
+  rowsPerPage: number;
 }

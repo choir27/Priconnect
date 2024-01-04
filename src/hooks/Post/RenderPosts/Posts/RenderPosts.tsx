@@ -2,7 +2,12 @@ import { useState, useContext } from "react";
 import { ApiContext } from "../../../../middleware/Context";
 import Posts from "./Posts";
 
-export default function RenderPosts() {
+interface RenderPostsInterface {
+  startIndex: number;
+  endIndex: number;
+}
+
+export default function RenderPosts(props: RenderPostsInterface) {
   const { posts, user } = useContext(ApiContext);
 
   const [optionDisplay, setOptionDisplay] = useState<boolean>(false);
@@ -14,5 +19,7 @@ export default function RenderPosts() {
       setOptionDisplay(e);
     },
     user: user,
+    startIndex: props.startIndex,
+    endIndex: props.endIndex,
   });
 }

@@ -28,59 +28,63 @@ export default function Posts(props: PostsInterface) {
   }, [props.posts, subscribedPosts]);
 
   if (subscribedPosts.length && posts.length) {
-    const listOfPosts = posts?.map((post: Post) => {
-      const checkLikeLogic: string = findDuplicate({
-        post: post,
-        props: props,
-        checkLikeLogic: "",
-      })
-        ? "fa-solid fa-heart"
-        : "fa-regular fa-heart";
+    const listOfPosts = posts
+      ?.map((post: Post) => {
+        const checkLikeLogic: string = findDuplicate({
+          post: post,
+          props: props,
+          checkLikeLogic: "",
+        })
+          ? "fa-solid fa-heart"
+          : "fa-regular fa-heart";
 
-      if (
-        window.location.href.includes("account") &&
-        (post.email === props.user.email || post.email === getEmail())
-      ) {
-        return (
-          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-        );
-      } else if (
-        !window.location.href.includes("account") &&
-        !listOfPrivateAccounts.includes(post.email)
-      ) {
-        return (
-          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-        );
-      }
-    });
+        if (
+          window.location.href.includes("account") &&
+          (post.email === props.user.email || post.email === getEmail())
+        ) {
+          return (
+            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+          );
+        } else if (
+          !window.location.href.includes("account") &&
+          !listOfPrivateAccounts.includes(post.email)
+        ) {
+          return (
+            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+          );
+        }
+      })
+      .slice(props.startIndex, props.endIndex);
 
     return <section id="posts">{listOfPosts}</section>;
   } else if (!posts.length && props.posts.length) {
-    const listOfPosts = props.posts?.map((post: Post) => {
-      const checkLikeLogic: string = findDuplicate({
-        post: post,
-        props: props,
-        checkLikeLogic: "",
-      })
-        ? "fa-solid fa-heart"
-        : "fa-regular fa-heart";
+    const listOfPosts = props.posts
+      ?.map((post: Post) => {
+        const checkLikeLogic: string = findDuplicate({
+          post: post,
+          props: props,
+          checkLikeLogic: "",
+        })
+          ? "fa-solid fa-heart"
+          : "fa-regular fa-heart";
 
-      if (
-        window.location.href.includes("account") &&
-        (post.email === props.user.email || post.email === getEmail())
-      ) {
-        return (
-          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-        );
-      } else if (
-        !window.location.href.includes("account") &&
-        !listOfPrivateAccounts.includes(post.email)
-      ) {
-        return (
-          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-        );
-      }
-    });
+        if (
+          window.location.href.includes("account") &&
+          (post.email === props.user.email || post.email === getEmail())
+        ) {
+          return (
+            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+          );
+        } else if (
+          !window.location.href.includes("account") &&
+          !listOfPrivateAccounts.includes(post.email)
+        ) {
+          return (
+            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+          );
+        }
+      })
+      .slice(props.startIndex, props.endIndex);
 
     return <section id="posts">{listOfPosts}</section>;
   }

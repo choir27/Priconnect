@@ -23,7 +23,9 @@ export default function CreatePostHub() {
           onClick: () => setDisplay(false),
         })}
         {TextBoxInput({
-          setText: (e: string) => setText(e),
+          setChange: (e: string) => setText(e),
+          placeholder: "Add Text",
+          name: "text",
           rows: 12,
           cols: 40,
         })}

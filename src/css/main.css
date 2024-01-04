@@ -74,7 +74,7 @@ button {
 }
 
 .button2 {
-  background: #c57fe6;
+  background: #d395f0;
   transition:
     background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
@@ -146,6 +146,10 @@ h1 {
   color: #483a3a;
 }
 
+h1:hover {
+  color: #826666;
+}
+
 a {
   color: #483a3a;
   text-decoration: none;
@@ -164,6 +168,9 @@ a {
 
 /*Header
 ========================================================================== */
+.active {
+  text-decoration: underline;
+}
 
 header {
   padding: 1rem 0.5rem;
@@ -307,8 +314,13 @@ textarea {
   padding: 0rem;
 }
 
+#posts .comment button {
+  border: none;
+}
+
 #posts .comment textarea {
   margin: 0rem;
+  color: #483a3a;
 }
 
 #options {
@@ -341,6 +353,7 @@ textarea {
 #options a,
 #options span {
   font-size: 4rem;
+  color: #483a3a;
 }
 
 #dashboard {
