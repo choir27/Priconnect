@@ -3,7 +3,7 @@ import { PaginatedButtonsInterface } from "../middleware/Interfaces";
 
 export default function PaginatedButton(props: PaginatedButtonsInterface) {
   return (
-    <div key="buttons">
+    <div key="buttons" className="paginatedButton">
       {Button({
         text: "Show More",
         key: "showMoreButton",

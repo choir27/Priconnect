@@ -40,18 +40,20 @@ export default function GetSubscribedPosts(post: Post): React.JSX.Element {
   }, []);
 
   return (
-    <>
+    <div id="subscribe">
       {post.email !== user.email || post.email !== getEmail()
         ? subscriptions.includes(post.email)
           ? Button({
-              text: `Unsubscribe from ${post.email}`,
+              text: `Unfollow ${post.email.split("@")[0]}`,
+              classNames: "button2",
               onClick: () => UnSubscribeToAccount(post.email, user.email),
             })
           : Button({
-              text: `Subscribe To ${post.email}`,
+              text: `Follow ${post.email.split("@")[0]}`,
+              classNames: "button2",
               onClick: () => SubscribeToAccount(post.email, user.email),
             })
         : ""}
-    </>
+    </div>
   );
 }

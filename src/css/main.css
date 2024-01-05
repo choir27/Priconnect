@@ -271,7 +271,7 @@ textarea {
 ========================================================================== */
 
 #comics {
-  position: relative;
+  height: auto;
 }
 
 #comics .active {
@@ -288,13 +288,13 @@ textarea {
 
 #posts {
   width: 100%;
-  margin-right: 2rem;
+  margin-right: 8rem;
 }
 
 #posts .trimmedPost {
   background: #f2e5f7;
   border-radius: 10px;
-  min-height: 24rem;
+  min-height: 20rem;
   position: relative;
   margin-bottom: 25rem;
 }
@@ -302,15 +302,15 @@ textarea {
 #posts .post {
   background: #f2e5f7;
   border-radius: 10px;
-  min-height: 18rem;
+  min-height: 15rem;
   position: relative;
   margin-bottom: 25rem;
 }
 
 #posts .comment {
   position: absolute;
-  top: 10rem;
-  margin-top: 2rem;
+  margin-top: 12rem;
+  left: 1rem;
   padding: 0rem;
 }
 
@@ -323,30 +323,44 @@ textarea {
   color: #483a3a;
 }
 
-#options {
+#posts #options {
+  position: relative;
   background: #dcb2ef;
-  width: 25% auto;
-  bottom: 0.2rem;
-  padding: 2.5rem 2rem;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
-  position: absolute;
+  border: none;
+  padding: 2rem;
+  margin: 0rem;
+  border-radius: 10px;
+}
+
+#posts .fa-ellipsis-vertical {
+  align-self: flex-end;
+  border: none;
 }
 
 #options button:hover,
-#options a:hover {
+#options .fa-comment:hover {
   cursor: pointer;
   color: white;
 }
 
 #options button,
-#options a {
+#options .fa-comment {
   margin-left: 1rem;
   margin-right: 2rem;
 }
 
-#options button.fa-heart {
+#options .fa-comment,
+#options button.fa-heart,
+#options button.fa-ellipsis-vertical,
+#options button.fa-trash-can,
+#options button.fa-repeat {
   background: none;
+}
+
+#options button.fa-ellipsis-vertical {
+  padding: 1.2rem 1rem;
+  border-radius: 10px;
+  background: #dcb2ef;
 }
 
 #options button,
@@ -354,6 +368,28 @@ textarea {
 #options span {
   font-size: 4rem;
   color: #483a3a;
+}
+
+#options .comment button {
+  padding: 2rem 0rem;
+}
+
+#posts .displayOptions {
+  align-self: flex-end;
+  flex-direction: column;
+  position: absolute;
+  background: #f5ac19;
+  margin-top: 7rem;
+  max-width: 60%;
+  z-index: 1;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+}
+
+#posts .displayOptions .button2 {
+  border: none;
+  margin-bottom: 1rem;
 }
 
 #dashboard {
@@ -366,13 +402,20 @@ textarea {
   width: 50%;
 }
 
+#dashboard img,
+#dashboard .imageContainer {
+  margin: 0rem;
+  padding: 0rem;
+  border: none;
+}
+
 #dashboard img {
   border-radius: 10px;
 }
 
 #dashboard .post p,
 #dashboard .trimmedPost p {
-  padding: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
   font-size: 3rem;
 }
 
