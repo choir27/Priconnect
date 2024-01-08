@@ -39,16 +39,6 @@ export default function CommentHub(props: addCommentInterface) {
             }),
         })}
       </section>
-
-      {totalComment(props.post.comments)}
-      {Button({
-        text: "",
-        classNames: "fa-regular fa-comment",
-        onClick: () => {
-          setPostId(props.post.$id);
-          navigate(`${props.expandedPostDomain}`);
-        },
-      })}
     </section>
   );
 }

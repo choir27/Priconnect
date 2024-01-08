@@ -5,6 +5,9 @@ import { Post } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import RenderComments from "../Comments/renderComments/renderComments";
 import PostOptions from "./PostOptions";
+import { Button } from "../../../../components/Button";
+import GetSubscribedPosts from "./PostFunctions/GetSubscribedPosts";
+import BlockAccount from "../../../Account/manageAccount/blockAccount";
 
 export default function RenderExpandedPost() {
   const { id } = useParams();
@@ -12,8 +15,6 @@ export default function RenderExpandedPost() {
   const [optionDisplay, setOptionDisplay] = useState<boolean>(false);
 
   let image = { secure_url: "", original_filename: "", created_at: "" };
-  let createdAt = new Date();
-  let updatedAt = new Date();
 
   let duplicates = "";
 
@@ -22,9 +23,6 @@ export default function RenderExpandedPost() {
   if (posts.length && expandedPost) {
     const postImage: string = expandedPost?.image as string;
     image = JSON.parse(postImage);
-
-    createdAt = new Date(expandedPost?.$createdAt);
-    updatedAt = new Date(expandedPost?.$updatedAt);
 
     if (expandedPost?.likes[0]) {
       const findDuplicate = expandedPost.likes.find((like: string) => {
@@ -55,29 +53,57 @@ export default function RenderExpandedPost() {
   const post = expandedPost;
 
   return (
-    <section>
+    <section id="posts">
       {expandedPost ? (
-        <article>
-          Created at:{" "}
-          {`${
-            createdAt?.getMonth() + 1
-          }/${createdAt?.getDate()}/${createdAt?.getFullYear()}`}
-          Last Updated:{" "}
-          {`${
-            updatedAt?.getMonth() + 1
-          }/${updatedAt?.getDate()}/${updatedAt?.getFullYear()}`}
-          {expandedPost?.text}
-          {image?.secure_url ? (
-            <section className="imageContainer">
-              <img src={image?.secure_url} alt={image?.original_filename} />
-              Image created at {image?.created_at}
+        <section id="expandedPost">
+          <article className="post">
+            {Button({
+              text: "",
+              classNames: "fa-solid fa-ellipsis-vertical button2",
+              onClick: () => setOptionDisplay(!optionDisplay),
+            })}
+            <section className="postContainer">
+              {image?.secure_url ? (
+                <section className="imageContainer">
+                  <img src={image?.secure_url} alt={image?.original_filename} />
+                </section>
+              ) : (
+                ""
+              )}
+
+              {expandedPost?.text ? <p>{expandedPost?.text}</p> : ""}
+
+              {optionDisplay ? (
+                <div className="flex displayOptions alignCenter justifyCenter">
+                  {expandedPost?.email !== user.email ||
+                  expandedPost?.email !== getEmail() ? (
+                    <GetSubscribedPosts {...expandedPost} />
+                  ) : (
+                    ""
+                  )}
+
+                  {expandedPost?.email === user.email ||
+                  expandedPost?.email === getEmail()
+                    ? ""
+                    : Button({
+                        text: `Block ${expandedPost?.email.split("@")[0]}`,
+                        classNames: "button2",
+                        onClick: () =>
+                          BlockAccount(expandedPost?.email, user.email),
+                      })}
+                </div>
+              ) : (
+                ""
+              )}
             </section>
-          ) : (
-            ""
-          )}
-          <PostOptions {...{ post, props, checkLikeLogic }} />
-          <RenderComments {...expandedPost} />
-        </article>
+
+            <PostOptions {...{ post, props, checkLikeLogic }} />
+          </article>
+
+          <section>
+            <RenderComments {...expandedPost} />
+          </section>
+        </section>
       ) : (
         <section>
           <h1>There is no post to render right now.</h1>

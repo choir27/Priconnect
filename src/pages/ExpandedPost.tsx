@@ -10,11 +10,12 @@ export default function ExpandedPost() {
   return (
     <main>
       <Header />
-      <h1>Post</h1>
 
-      <RenderExpandedPost />
+      <section className="flex justifyBetween">
+        <RenderExpandedPost />
 
-      <Ads />
+        <Ads />
+      </section>
 
       <Footer />
     </main>

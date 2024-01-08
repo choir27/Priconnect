@@ -6,6 +6,8 @@ import { addLike } from "../Likes/addLike";
 import { deletePost } from "../../ManagePosts/DeletePost";
 import { PostOptionsInterface } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
+import { totalComment } from "../Comments/manageComments/totalComments";
+import { setPostId } from "../../../../middleware/Sessions";
 
 export default function PostOptions(
   props: PostOptionsInterface,
@@ -22,31 +24,42 @@ export default function PostOptions(
           navigate={navigate}
           comment={""}
         />
-        <span>{props.post.likes[0] ? totalLikes(props.post.likes) : 0}</span>
-        {Button({
-          text: "",
-          classNames: props.checkLikeLogic,
-          onClick: () =>
-            addLike({
-              post: props.post,
-              user: props.props.user,
-              navigate: navigate,
-            }),
-        })}
+        <div className="icons">
+          {totalComment(props.post.comments)}
+          {Button({
+            text: "",
+            classNames: "fa-regular fa-comment",
+            onClick: () => {
+              setPostId(props.post.$id);
+              navigate(`${props.expandedPostDomain}`);
+            },
+          })}
+          <span>{props.post.likes[0] ? totalLikes(props.post.likes) : 0}</span>
+          {Button({
+            text: "",
+            classNames: props.checkLikeLogic,
+            onClick: () =>
+              addLike({
+                post: props.post,
+                user: props.props.user,
+                navigate: navigate,
+              }),
+          })}
 
-        {Button({
-          text: "",
-          classNames: "fa-solid fa-repeat",
-          onClick: () => "",
-        })}
-        {props.post.email === props.props.user.email ||
-        props.post.email === getEmail()
-          ? Button({
-              text: "",
-              classNames: "fa-solid fa-trash-can",
-              onClick: () => deletePost(props.post, navigate),
-            })
-          : ""}
+          {Button({
+            text: "",
+            classNames: "fa-solid fa-repeat",
+            onClick: () => "",
+          })}
+          {props.post.email === props.props.user.email ||
+          props.post.email === getEmail()
+            ? Button({
+                text: "",
+                classNames: "fa-solid fa-trash-can",
+                onClick: () => deletePost(props.post, navigate),
+              })
+            : ""}
+        </div>
       </div>
     </section>
   );

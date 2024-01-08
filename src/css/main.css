@@ -283,12 +283,70 @@ textarea {
   display: inline-block;
 }
 
+/*ExpandedPost
+========================================================================== */
+
+#expandedPost {
+  padding: 4rem 1rem 0rem 1rem;
+}
+
+#expandedPost .postContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#expandedPost .imageContainer img {
+  border-radius: 10px;
+}
+
+#expandedPost .fa-ellipsis-vertical {
+  font-size: 6rem;
+}
+
+#expandedPost .fa-ellipsis-vertical:hover {
+  color: white;
+}
+
+#expandedPost .imageContainer {
+  width: 50%;
+}
+
+#expandedPost .post {
+  display: flex;
+  flex-direction: column;
+}
+
+#expandedPost #textOnly .fa-ellipsis-vertical {
+  align-self: flex-end;
+}
+
+#posts #expandedPost p {
+  padding: 4rem 2rem;
+  font-size: 3rem;
+}
+
+#posts #expandedPost .icons {
+  display: flex;
+  align-items: center;
+}
+
+#posts #expandedPost .icons button {
+  padding: 0rem;
+}
+
 /*Posts
 ========================================================================== */
 
 #posts {
   width: 100%;
   margin-right: 8rem;
+}
+
+#posts .imageAndText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #posts .trimmedPost {
@@ -337,6 +395,27 @@ textarea {
   border: none;
 }
 
+#posts .displayOptions {
+  align-self: flex-end;
+  flex-direction: column;
+  position: absolute;
+  background: #f5ac19;
+  margin-top: 7rem;
+  max-width: 60%;
+  z-index: 1;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+}
+
+#posts .displayOptions .button2 {
+  border: none;
+  margin-bottom: 1rem;
+}
+
+/*Options
+========================================================================== */
+
 #options button:hover,
 #options .fa-comment:hover {
   cursor: pointer;
@@ -374,23 +453,8 @@ textarea {
   padding: 2rem 0rem;
 }
 
-#posts .displayOptions {
-  align-self: flex-end;
-  flex-direction: column;
-  position: absolute;
-  background: #f5ac19;
-  margin-top: 7rem;
-  max-width: 60%;
-  z-index: 1;
-  padding: 1rem;
-  border-radius: 10px;
-  border: none;
-}
-
-#posts .displayOptions .button2 {
-  border: none;
-  margin-bottom: 1rem;
-}
+/*Dashboard
+========================================================================== */
 
 #dashboard {
   position: relative;

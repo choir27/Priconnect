@@ -20,11 +20,11 @@ export default function RenderedPost(renderedPost: PostOptionsInterface) {
   return (
     <section
       key={renderedPost.post.$id}
-      className={
+      className={`${
         renderedPost.post.text.length > 100
           ? "trimmedPost flex column"
           : "post flex column"
-      }
+      }`}
     >
       {Button({
         text: "",
@@ -65,16 +65,28 @@ export default function RenderedPost(renderedPost: PostOptionsInterface) {
       )}
 
       <article
-        className={image.secure_url ? "flex alignCenter justifyBetween" : ""}
+        className={
+          image.secure_url && renderedPost.post.text
+            ? "imageAndText"
+            : "textOnly"
+        }
       >
-        <div className="imageContainer">
-          <img src={image.secure_url} alt={image.original_name} />
-        </div>
-        <p>
-          {renderedPost.post.text.length > 100
-            ? renderedPost.post.text.slice(0, 200).trim() + "..."
-            : renderedPost.post.text}
-        </p>
+        {image.secure_url ? (
+          <div className="imageContainer">
+            <img src={image.secure_url} alt={image.original_name} />
+          </div>
+        ) : (
+          ""
+        )}
+        {renderedPost.post.text ? (
+          <p>
+            {renderedPost.post.text.length > 100
+              ? renderedPost.post.text.slice(0, 200).trim() + "..."
+              : renderedPost.post.text}
+          </p>
+        ) : (
+          ""
+        )}
       </article>
 
       <PostOptions
