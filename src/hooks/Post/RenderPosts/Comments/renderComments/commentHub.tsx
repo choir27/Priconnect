@@ -4,18 +4,11 @@ import { addCommentInterface } from "../../../../../middleware/Interfaces";
 import { TextBoxInput } from "../../../Inputs";
 import { useStore } from "../../../../../middleware/Zustand/States";
 import { Action, State } from "../../../../../middleware/Zustand/Types";
-import { totalComment } from "../manageComments/totalComments";
-import { setPostId } from "../../../../../middleware/Sessions";
-import { useNavigate } from "react-router";
 
 export default function CommentHub(props: addCommentInterface) {
   const setComment = useStore((action: Action) => action.setComment);
 
   const comment = useStore((state: State) => state.comment);
-
-  const navigate = useNavigate();
-
-  console.log(props.expandedPostDomain);
 
   return (
     <section>

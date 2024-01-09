@@ -3,7 +3,6 @@ import { CommentOptionsInterface } from "../../../../../middleware/Interfaces";
 import { TextBoxInput } from "../../../Inputs";
 import { useStore } from "../../../../../middleware/Zustand/States";
 import { Action, State } from "../../../../../middleware/Zustand/Types";
-import { totalComment } from "../manageComments/totalComments";
 import { addReply } from "../manageReplies/addReply";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
@@ -18,16 +17,17 @@ export default function ReplyHub(props: CommentOptionsInterface) {
   const navigate = useNavigate();
 
   return (
-    <section>
+    <section className="flex reply justifyCenter">
       {TextBoxInput({
         setChange: (e: string) => setReply(e),
         placeholder: "Add a Reply",
         name: "reply",
+        rows: 3,
+        cols: 35,
       })}
-      {totalComment(props.post.comments)}
       {Button({
-        text: "",
-        classNames: "fa-regular fa-comment button",
+        text: "Add a Reply",
+        classNames: "button2",
         onClick: () =>
           addReply(
             {

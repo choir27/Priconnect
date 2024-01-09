@@ -19,6 +19,7 @@ export default function RenderComments(post: Post) {
       ) {
         return (
           <article
+            className="post"
             key={`${commentObj.comment}-${post.$id}-${post.$createdAt}-${post.email}-${post.$updatedAt}-${commentObj.user}-${index}`}
           >
             <p>{commentObj.comment}</p>
@@ -34,25 +35,20 @@ export default function RenderComments(post: Post) {
       } else if (!window.location.href.includes("account")) {
         return (
           <article
+            className="post"
             key={`${commentObj.comment}-${post.$id}-${post.$createdAt}-${post.$updatedAt}-${commentObj.user}`}
           >
             <p>{commentObj.comment}</p>
 
-            <h2>{commentObj.id}</h2>
+            {/* <h2>{commentObj.id}</h2> */}
 
             <ReplyHub {...{ post, index }} />
             <CommentOptions {...{ post, index }} />
 
-            <RenderReplies {...{ post, index }} />
+            {/* <RenderReplies {...{ post, index }} /> */}
           </article>
         );
       }
     });
-  } else if (!post.comments.length) {
-    return (
-      <section>
-        <h1>There are no comments to render right now.</h1>
-      </section>
-    );
   }
 }

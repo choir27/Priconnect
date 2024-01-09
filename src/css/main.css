@@ -146,6 +146,11 @@ h1 {
   color: #483a3a;
 }
 
+h2 {
+  font-size: 4rem;
+  color: #483a3a;
+}
+
 h1:hover {
   color: #826666;
 }
@@ -333,6 +338,23 @@ textarea {
 
 #posts #expandedPost .icons button {
   padding: 0rem;
+}
+
+#posts .expandedPostComments .post,
+#posts .expandedPostComments,
+#posts .expandedPostComments #options {
+  position: relative;
+}
+
+#posts .expandedPostComments .post .reply {
+  position: absolute;
+  margin-top: 25rem;
+  margin-left: 2rem;
+}
+
+#posts .expandedPostComments .post .reply .button2 {
+  max-height: 10rem;
+  margin-left: 2rem;
 }
 
 /*Posts

@@ -100,7 +100,7 @@ export default function RenderExpandedPost() {
             <PostOptions {...{ post, props, checkLikeLogic }} />
           </article>
 
-          <section>
+          <section className="expandedPostComments">
             <RenderComments {...expandedPost} />
           </section>
         </section>

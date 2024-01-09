@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { ApiContext } from "../../../../../middleware/Context";
 import { getEmail } from "../../../../../middleware/Sessions";
 import { deleteComment } from "../manageComments/deleteComment";
+import { totalCommentAmount } from "../manageComments/totalComments";
 
 export default function CommentOptions(props: CommentOptionsInterface) {
   const { user } = useContext(ApiContext);
@@ -18,7 +19,6 @@ export default function CommentOptions(props: CommentOptionsInterface) {
 
   if (props.post) {
     const comment = JSON.parse(props?.post?.comments[props?.index]);
-
     commentId = comment.id;
 
     if (comment?.likes[0]) {
@@ -37,13 +37,21 @@ export default function CommentOptions(props: CommentOptionsInterface) {
       : "fa-regular fa-heart button";
 
     return (
-      <div className="flex alignItems justifyContent">
-        {comment?.likes?.length}
+      <section id="options" className="flex alignCenter">
+        <span>{comment?.likes?.length}</span>
         {Button({
           text: "",
           classNames: checkLikeLogic,
           onClick: () => addCommentLike(props.post, props.index, user),
         })}
+        {totalCommentAmount(comment.replies)}
+
+        {Button({
+          text: "",
+          classNames: "fa-regular fa-comment",
+          onClick: () => "",
+        })}
+
         {commentId === user.email || commentId === getEmail()
           ? Button({
               text: "",
@@ -52,7 +60,7 @@ export default function CommentOptions(props: CommentOptionsInterface) {
                 deleteComment({ post: props.post, index: props.index }),
             })
           : ""}
-      </div>
+      </section>
     );
   }
 }
