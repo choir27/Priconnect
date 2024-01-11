@@ -24,7 +24,7 @@ export default function RenderComments(post: Post) {
           >
             <p>{commentObj.comment}</p>
 
-            <h2>{commentObj.id}</h2>
+            {/* <h2>{commentObj.id}</h2> */}
 
             <ReplyHub {...{ post, index }} />
             <CommentOptions {...{ post, index }} />
@@ -45,7 +45,7 @@ export default function RenderComments(post: Post) {
             <ReplyHub {...{ post, index }} />
             <CommentOptions {...{ post, index }} />
 
-            {/* <RenderReplies {...{ post, index }} /> */}
+            <RenderReplies {...{ post, index }} />
           </article>
         );
       }

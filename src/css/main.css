@@ -317,7 +317,7 @@ textarea {
   width: 50%;
 }
 
-#expandedPost .post {
+#posts #expandedPost .post {
   display: flex;
   flex-direction: column;
 }
@@ -334,6 +334,15 @@ textarea {
 #posts #expandedPost .icons {
   display: flex;
   align-items: center;
+}
+
+.paginatedButton {
+  width: 60%;
+  margin-bottom: 6rem;
+}
+
+#posts #expandedPost .expandedPostComments .post {
+  margin-bottom: 10rem;
 }
 
 #posts #expandedPost .icons button {
@@ -357,6 +366,62 @@ textarea {
   margin-left: 2rem;
 }
 
+#posts .expandedPostComments .post #options .fa-heart {
+  padding: 0rem;
+}
+
+#posts .expandedPostComments .post #options .fa-comment {
+  margin-left: 1rem;
+  margin-right: 0rem;
+}
+
+#posts .expandedPostComments .post #options {
+  position: relative;
+}
+
+#reply {
+  margin-top: 15rem;
+}
+
+#reply article {
+  min-height: 10rem;
+  border-radius: 10px;
+  background: #f2e5f7;
+  border: 3px solid #f5ac19;
+  margin-top: 2rem;
+}
+
+#reply .replyOptions {
+  background: #dcb2ef;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#reply .replyOptions span {
+  font-size: 3rem;
+  margin-left: 2rem;
+}
+
+#reply .buttons {
+  margin: 2rem 0rem;
+}
+
+#reply .buttons .button2 {
+  margin: 0rem 1rem;
+}
+
+#reply p {
+  padding: 1rem;
+}
+
+#reply .replyOptions .fa-heart,
+#reply .replyOptions .fa-trash-can {
+  padding-left: 1rem;
+}
+
+#reply .replyOptions button {
+  background: none;
+}
 /*Posts
 ========================================================================== */
 

@@ -129,3 +129,10 @@ export interface PaginatedButtonsInterface {
   endIndex: number;
   rowsPerPage: number;
 }
+
+export interface Pagination {
+  setCurrentPage: (e: number) => void;
+  length: number;
+  rowsPerPage: number;
+  currentPage: number;
+}

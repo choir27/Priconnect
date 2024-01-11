@@ -8,6 +8,7 @@ import { ApiContext } from "../../../../../middleware/Context";
 import { useContext } from "react";
 import { getEmail } from "../../../../../middleware/Sessions";
 import { deleteReply } from "../manageReplies/deleteReply";
+import { totalLikes } from "../../Likes/totalLikes";
 
 export default function ReplyOptions(props: ReplyOptionsInterface) {
   const { user } = useContext(ApiContext);
@@ -16,10 +17,12 @@ export default function ReplyOptions(props: ReplyOptionsInterface) {
 
   let replyId = "";
 
+  let reply = [];
+
   if (props.post) {
     const comment = JSON.parse(props?.post?.comments[props?.index]);
 
-    const reply = comment.replies[props.replyIndex];
+    reply = comment.replies[props.replyIndex];
 
     replyId = reply.id;
 
@@ -40,7 +43,8 @@ export default function ReplyOptions(props: ReplyOptionsInterface) {
     : "fa-regular fa-heart button";
 
   return (
-    <div className="flex alignItems justifyContent">
+    <div className="flex alignCenter replyOptions">
+      <span>{totalLikes(reply.likes)}</span>
       {Button({
         text: "",
         classNames: checkLikeLogic,

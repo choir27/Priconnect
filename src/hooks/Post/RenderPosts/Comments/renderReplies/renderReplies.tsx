@@ -3,6 +3,8 @@ import {
   Reply,
 } from "../../../../../middleware/Interfaces";
 import ReplyOptions from "../manageReplies/replyOptions";
+import PaginatedNav from "../../../../../components/PaginatedNav";
+import { useState } from "react";
 
 export default function RenderReplies(props: CommentOptionsInterface) {
   if (
@@ -12,29 +14,41 @@ export default function RenderReplies(props: CommentOptionsInterface) {
     props.post.comments[props.index] &&
     JSON.parse(props.post.comments[props.index]).replies.length
   ) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 2;
+
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+
     const comments = JSON.parse(props.post.comments[props.index]);
 
-    const listOfComments = comments.replies.map(
-      (reply: Reply, index: number) => {
+    const listOfComments = comments.replies
+      .map((reply: Reply, index: number) => {
         return (
           <article
             key={`${reply.id} ${reply.comment} ${props.post.$id} ${props.post.likes} ${props.post.$createdAt} ${props.post.$updatedAt} ${props.post.text}`}
           >
-            THIS IS A REPLY:
-            <h2>{reply.comment}</h2>
+            <p>{reply.comment}</p>
             <ReplyOptions
               {...{ post: props.post, index: props.index, replyIndex: index }}
             />
           </article>
         );
-      },
-    );
+      })
+      .slice(startIndex, endIndex);
 
-    return <section>{listOfComments}</section>;
-  } else {
     return (
-      <section>
-        <h1>There are no replies to render right now.</h1>
+      <section id="reply" className="flex column">
+        {listOfComments}
+
+        <PaginatedNav
+          {...{
+            setCurrentPage,
+            length: comments.replies.length,
+            rowsPerPage: rowsPerPage,
+            currentPage: currentPage,
+          }}
+        />
       </section>
     );
   }
