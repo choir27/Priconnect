@@ -299,6 +299,7 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 #expandedPost .imageContainer img {
@@ -377,6 +378,16 @@ textarea {
 
 #posts .expandedPostComments .post #options {
   position: relative;
+}
+
+#posts #expandedPost .postContainer .displayOptions {
+  top: -4rem;
+  margin-left: 56rem;
+}
+
+#posts #expandedPost #subscribeButtons {
+  margin-left: 61.5rem;
+  top: -5rem;
 }
 
 #reply {

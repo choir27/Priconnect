@@ -5,7 +5,7 @@ import { Post } from "../../../../middleware/Interfaces";
 import { getEmail } from "../../../../middleware/Sessions";
 import RenderComments from "../Comments/renderComments/renderComments";
 import PostOptions from "./PostOptions";
-import { Button } from "../../../../components/Button";
+import { Button, ButtonLink } from "../../../../components/Button";
 import GetSubscribedPosts from "./PostFunctions/GetSubscribedPosts";
 import BlockAccount from "../../../Account/manageAccount/blockAccount";
 
@@ -74,24 +74,34 @@ export default function RenderExpandedPost() {
               {expandedPost?.text ? <p>{expandedPost?.text}</p> : ""}
 
               {optionDisplay ? (
-                <div className="flex displayOptions alignCenter justifyCenter">
-                  {expandedPost?.email !== user.email ||
-                  expandedPost?.email !== getEmail() ? (
+                expandedPost?.email !== user.email ||
+                expandedPost?.email !== getEmail() ? (
+                  <div className="flex displayOptions alignCenter justifyCenter">
                     <GetSubscribedPosts {...expandedPost} />
-                  ) : (
-                    ""
-                  )}
 
-                  {expandedPost?.email === user.email ||
-                  expandedPost?.email === getEmail()
-                    ? ""
-                    : Button({
-                        text: `Block ${expandedPost?.email.split("@")[0]}`,
-                        classNames: "button2",
-                        onClick: () =>
-                          BlockAccount(expandedPost?.email, user.email),
-                      })}
-                </div>
+                    {expandedPost?.email === user.email ||
+                    expandedPost?.email === getEmail()
+                      ? ""
+                      : Button({
+                          text: `Block ${expandedPost?.email.split("@")[0]}`,
+                          classNames: "button2",
+                          onClick: () =>
+                            BlockAccount(expandedPost?.email, user.email),
+                        })}
+                  </div>
+                ) : (
+                  <div
+                    id="subscribeButtons"
+                    className="flex displayOptions alignCenter justifyCenter"
+                  >
+                    {ButtonLink({
+                      domain: "/account",
+                      text: "Your Account",
+                      onClick: () => "",
+                      classNames: "button2",
+                    })}
+                  </div>
+                )
               ) : (
                 ""
               )}
