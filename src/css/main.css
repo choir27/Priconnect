@@ -327,9 +327,14 @@ textarea {
   align-self: flex-end;
 }
 
-#posts #expandedPost p {
+#posts #expandedPost .postContainer p {
   padding: 4rem 2rem;
   font-size: 3rem;
+}
+
+#posts #expandedPost .expandedPostComments p {
+  font-size: 3rem;
+  padding: 2rem;
 }
 
 #posts #expandedPost .icons {
@@ -358,7 +363,7 @@ textarea {
 
 #posts .expandedPostComments .post .reply {
   position: absolute;
-  margin-top: 25rem;
+  margin-top: 30rem;
   margin-left: 2rem;
 }
 
@@ -388,6 +393,19 @@ textarea {
 #posts #expandedPost #subscribeButtons {
   margin-left: 61.5rem;
   top: -5rem;
+}
+
+#posts #expandedPost .expandedPostComments #subscribeButtons {
+  top: 3rem;
+}
+
+#posts #reply article {
+  display: flex;
+  flex-direction: column;
+}
+
+#posts #reply .fa-ellipsis-vertical {
+  align-self: flex-end;
 }
 
 #reply {
