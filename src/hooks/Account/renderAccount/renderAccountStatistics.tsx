@@ -23,13 +23,19 @@ export default function RenderAccountStatistics() {
         );
 
         const renderStatistics = (
-          <section>
-            <h2>Likes:</h2>
-            <h2>{findAccount?.numOfLikes | 0}</h2>
-            <h2>Subscribers:</h2>
-            <h2>{findAccount?.numOfSubscriptions | 0}</h2>
-            <h2>Posts: </h2>
-            <h2>{findAccount?.numOfPosts | 0}</h2>
+          <section className="flex justifyBetween statistics">
+            <div className="flex">
+              <h2>{findAccount?.numOfLikes | 0}</h2>
+              <h2>Likes:</h2>
+            </div>
+            <div className="flex">
+              <h2>{findAccount?.numOfSubscriptions | 0}</h2>
+              <h2>Followers:</h2>
+            </div>
+            <div className="flex">
+              <h2>{findAccount?.numOfPosts | 0}</h2>
+              <h2>Posts: </h2>
+            </div>
           </section>
         );
 
@@ -42,5 +48,5 @@ export default function RenderAccountStatistics() {
     getStatistics();
   }, []);
 
-  return <section>{statistics}</section>;
+  return statistics;
 }

@@ -12,6 +12,7 @@ import comic10 from "../assets/comics/Comic11.jpeg";
 import comic11 from "../assets/comics/Comic12.jpeg";
 import comic12 from "../assets/comics/Comic13.jpeg";
 import Logo from "../assets/cluster.svg";
+import settingIcon from "../assets/settingIcon.png";
 
 export const Assets: { [key: string]: string } = {
   comic0,
@@ -28,4 +29,5 @@ export const Assets: { [key: string]: string } = {
   comic11,
   comic12,
   Logo,
+  settingIcon,
 };

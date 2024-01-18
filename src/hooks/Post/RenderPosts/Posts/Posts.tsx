@@ -28,64 +28,68 @@ export default function Posts(props: PostsInterface) {
   }, [props.posts, subscribedPosts]);
 
   if (subscribedPosts.length && posts.length) {
-    const listOfPosts = posts
-      ?.map((post: Post) => {
-        const checkLikeLogic: string = findDuplicate({
-          post: post,
-          props: props,
-          checkLikeLogic: "",
-        })
-          ? "fa-solid fa-heart"
-          : "fa-regular fa-heart";
-
-        if (
-          window.location.href.includes("account") &&
-          (post.email === props.user.email || post.email === getEmail())
-        ) {
-          return (
-            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-          );
-        } else if (
-          !window.location.href.includes("account") &&
-          !listOfPrivateAccounts.includes(post.email)
-        ) {
-          return (
-            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-          );
-        }
+    const listOfPosts = posts?.map((post: Post) => {
+      const checkLikeLogic: string = findDuplicate({
+        post: post,
+        props: props,
+        checkLikeLogic: "",
       })
-      .slice(props.startIndex, props.endIndex);
+        ? "fa-solid fa-heart"
+        : "fa-regular fa-heart";
 
-    return <section id="posts">{listOfPosts}</section>;
+      if (
+        window.location.href.includes("account") &&
+        (post.email === props.user.email || post.email === getEmail())
+      ) {
+        return (
+          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+        );
+      } else if (
+        !window.location.href.includes("account") &&
+        !listOfPrivateAccounts.includes(post.email)
+      ) {
+        return (
+          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+        );
+      }
+    });
+
+    return (
+      <section id="posts">
+        {listOfPosts.slice(props.startIndex, props.endIndex)}
+      </section>
+    );
   } else if (!posts.length && props.posts.length) {
-    const listOfPosts = props.posts
-      ?.map((post: Post) => {
-        const checkLikeLogic: string = findDuplicate({
-          post: post,
-          props: props,
-          checkLikeLogic: "",
-        })
-          ? "fa-solid fa-heart"
-          : "fa-regular fa-heart";
-
-        if (
-          window.location.href.includes("account") &&
-          (post.email === props.user.email || post.email === getEmail())
-        ) {
-          return (
-            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-          );
-        } else if (
-          !window.location.href.includes("account") &&
-          !listOfPrivateAccounts.includes(post.email)
-        ) {
-          return (
-            <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
-          );
-        }
+    const listOfPosts = props.posts?.map((post: Post) => {
+      const checkLikeLogic: string = findDuplicate({
+        post: post,
+        props: props,
+        checkLikeLogic: "",
       })
-      .slice(props.startIndex, props.endIndex);
+        ? "fa-solid fa-heart"
+        : "fa-regular fa-heart";
 
-    return <section id="posts">{listOfPosts}</section>;
+      if (
+        window.location.href.includes("account") &&
+        (post.email === props.user.email || post.email === getEmail())
+      ) {
+        return (
+          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+        );
+      } else if (
+        !window.location.href.includes("account") &&
+        !listOfPrivateAccounts.includes(post.email)
+      ) {
+        return (
+          <RenderedPost {...{ post: post, props: props, checkLikeLogic }} />
+        );
+      }
+    });
+
+    return (
+      <section id="posts">
+        {listOfPosts.slice(props.startIndex, props.endIndex)}
+      </section>
+    );
   }
 }

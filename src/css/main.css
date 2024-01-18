@@ -641,3 +641,77 @@ footer .icons,
 footer small {
   padding-bottom: 0.5rem;
 }
+
+/*Account
+========================================================================== */
+
+#account h2 {
+  text-transform: capitalize;
+}
+
+#account .statistics div h2 {
+  margin-right: 1rem;
+}
+
+#account .statistics {
+  padding-top: 2rem;
+}
+
+#account .hero {
+  margin-left: 2rem;
+  margin-top: 10rem;
+}
+
+#account .imageContainer {
+  margin-left: 4rem;
+}
+
+#account #posts {
+  padding-left: 2rem;
+  margin-top: 10rem;
+}
+
+#account #posts .post {
+  display: flex;
+  flex-direction: column;
+}
+
+#account #options {
+  padding: 1rem;
+}
+
+#account #posts p {
+  font-size: 3rem;
+  padding: 2rem;
+}
+
+#account #posts .reply {
+  position: absolute;
+  margin-top: 25rem;
+  align-items: flex-start;
+}
+
+#account #posts {
+  margin: 5rem 0rem 0rem 1.5rem;
+  width: 80%;
+}
+
+#account .post {
+  background: #f2e5f7;
+}
+
+#account .comment {
+  width: 100%;
+}
+
+#account .comment .button2 {
+  padding: 2.5rem;
+}
+
+#account #posts #options .fa-heart {
+  padding-left: 0rem;
+}
+
+#comics {
+  width: 30%;
+}

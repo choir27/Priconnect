@@ -9,29 +9,46 @@ import TogglePrivatePublic from "../hooks/Account/manageAccount/togglePrivatePub
 import Footer from "../components/Footer";
 import Ads from "../components/Ads";
 import GetAccount from "../hooks/Authentication/GetAccount";
+import { Assets } from "../middleware/Assets";
+import { useStore } from "../middleware/Zustand/States";
+import { State } from "../middleware/Zustand/Types";
+import CreatePostHub from "../components/CreatePostHub";
 
 export default function Account() {
   const { user } = useContext(ApiContext);
+  const display = useStore((state: State) => state.display);
 
   GetAccount();
 
   return (
-    <main>
+    <main id="account" className="flex column alignCenter">
       <Header />
+      {display ? <CreatePostHub /> : ""}
 
-      <h1>{user?.name}</h1>
+      <section className="flex">
+        <article>
+          <section className="flex alignCenter justifyCenter hero">
+            <div className="flex column">
+              <h2>Welcome to Your Account, {user?.name}!</h2>
+              <RenderAccountStatistics />
+            </div>
 
-      <RenderAccountStatistics />
+            <div className="imageContainer">
+              <img src={Assets.settingIcon} />
+            </div>
+          </section>
 
-      <TogglePrivatePublic />
+          {/* <TogglePrivatePublic /> */}
 
-      <RenderBlockedAccounts />
+          {/* <RenderBlockedAccounts /> */}
 
-      <RenderSearchHistory />
+          {/* <RenderSearchHistory /> */}
 
-      {renderAccount()}
+          {renderAccount()}
+        </article>
 
-      <Ads />
+        <Ads />
+      </section>
 
       <Footer />
     </main>
