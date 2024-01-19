@@ -1,16 +1,12 @@
 import { useEffect, useContext, useState } from "react";
 import api from "../../../../../middleware/Appwrite";
-import { Account } from "../../../../../middleware/Interfaces";
+import { Account, Comment } from "../../../../../middleware/Interfaces";
 import { ApiContext } from "../../../../../middleware/Context";
 import { getEmail } from "../../../../../middleware/Sessions";
 import { toast } from "react-toastify";
 import UnSubscribeToAccount from "../../../../Account/manageAccount/unsubscribeToAccount";
 import SubscribeToAccount from "../../../../Account/manageAccount/subscribeToAccount";
 import { Button } from "../../../../../components/Button";
-
-interface Comment {
-  id: string;
-}
 
 export default function SubscribeComments(props: Comment) {
   const { user } = useContext(ApiContext);

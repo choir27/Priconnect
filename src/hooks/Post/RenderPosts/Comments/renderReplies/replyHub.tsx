@@ -17,7 +17,7 @@ export default function ReplyHub(props: CommentOptionsInterface) {
   const navigate = useNavigate();
 
   return (
-    <section className="flex reply justifyCenter">
+    <section className="flex reply alignStart justifyCenter">
       {TextBoxInput({
         setChange: (e: string) => setReply(e),
         placeholder: "Add a Reply",

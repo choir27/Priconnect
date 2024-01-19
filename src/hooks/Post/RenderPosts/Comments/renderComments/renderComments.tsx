@@ -8,7 +8,6 @@ export default function RenderComments(post: Post) {
   const { user } = useContext(ApiContext);
 
   return post.comments.map((comment: string, index: number) => {
-    const commentObj = JSON.parse(comment);
     if (
       window.location.href.includes("account") &&
       (post.email === user.email || post.email === getEmail())

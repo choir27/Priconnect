@@ -24,7 +24,7 @@ export default function PostOptions(
           navigate={navigate}
           comment={""}
         />
-        <div className="icons">
+        <div className="icons flex alignCenter">
           {totalComment(props.post.comments)}
           {Button({
             text: "",

@@ -33,7 +33,7 @@ export default function RenderedPost(renderedPost: PostOptionsInterface) {
       })}
 
       {optionDisplay ? (
-        <div className="flex displayOptions alignCenter justifyCenter">
+        <div className="flex displayOptions column alignItems justifyCenter">
           {Button({
             text: "Expand This Post",
             classNames: "button2",
@@ -67,7 +67,7 @@ export default function RenderedPost(renderedPost: PostOptionsInterface) {
       <article
         className={
           image.secure_url && renderedPost.post.text
-            ? "imageAndText"
+            ? "imageAndText flex alignCenter justifyBetween"
             : "textOnly"
         }
       >

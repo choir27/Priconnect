@@ -56,13 +56,13 @@ export default function RenderExpandedPost() {
     <section id="posts">
       {expandedPost ? (
         <section id="expandedPost">
-          <article className="post">
+          <article className="post flex column">
             {Button({
               text: "",
               classNames: "fa-solid fa-ellipsis-vertical button2",
               onClick: () => setOptionDisplay(!optionDisplay),
             })}
-            <section className="postContainer">
+            <section className="postContainer flex justifyBetween alignCenter">
               {image?.secure_url ? (
                 <section className="imageContainer">
                   <img src={image?.secure_url} alt={image?.original_filename} />
@@ -76,7 +76,7 @@ export default function RenderExpandedPost() {
               {optionDisplay ? (
                 expandedPost?.email !== user.email ||
                 expandedPost?.email !== getEmail() ? (
-                  <div className="flex displayOptions alignCenter justifyCenter">
+                  <div className="flex displayOptions alignCenter justifyCenter column">
                     <GetSubscribedPosts {...expandedPost} />
 
                     {expandedPost?.email === user.email ||

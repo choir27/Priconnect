@@ -39,20 +39,6 @@ export interface Post {
   comments: string[];
 }
 
-export interface TextBoxInputInterface {
-  setChange: (e: string) => void;
-  placeholder: string;
-  name: string;
-  classNames?: string;
-  rows?: number;
-  cols?: number;
-}
-
-export interface SearchInputInterface {
-  setSearchValue: (e: string) => void;
-  searchValue?: string;
-}
-
 export interface PostsInterface {
   posts: Post[];
   optionDisplay: boolean;
@@ -60,6 +46,27 @@ export interface PostsInterface {
   user: User;
   endIndex?: number;
   startIndex?: number;
+}
+
+export interface PostOptionsInterface {
+  post: Post;
+  props: PostsInterface;
+  checkLikeLogic: string;
+  expandedPostDomain?: string;
+}
+
+export interface RenderPostsInterface {
+  startIndex: number;
+  endIndex: number;
+}
+
+export interface TextBoxInputInterface {
+  setChange: (e: string) => void;
+  placeholder: string;
+  name: string;
+  classNames?: string;
+  rows?: number;
+  cols?: number;
 }
 
 export interface addLikeInterface {
@@ -73,15 +80,14 @@ export interface Comment {
   id: string;
 }
 
-export interface addCommentInterface extends addLikeInterface {
+export interface CommentElementInterface {
   comment: string;
-  expandedPostDomain?: string;
+  post: Post;
+  index: number;
 }
 
-export interface PostOptionsInterface {
-  post: Post;
-  props: PostsInterface;
-  checkLikeLogic: string;
+export interface addCommentInterface extends addLikeInterface {
+  comment: string;
   expandedPostDomain?: string;
 }
 
@@ -102,6 +108,17 @@ export interface Reply {
   comment: string;
   id: string;
   likes: string[];
+}
+
+export interface ReplyElement {
+  index: number;
+  reply: Reply;
+  props: CommentOptionsInterface;
+}
+
+export interface SearchInputInterface {
+  setSearchValue: (e: string) => void;
+  searchValue?: string;
 }
 
 export interface SearchInterface {

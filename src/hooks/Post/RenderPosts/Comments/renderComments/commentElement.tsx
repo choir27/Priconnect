@@ -7,15 +7,9 @@ import BlockAccount from "../../../../Account/manageAccount/blockAccount";
 import SubscribeComments from "./subscribeComments";
 import { useContext, useState } from "react";
 import { ApiContext } from "../../../../../middleware/Context";
-import { Post } from "../../../../../middleware/Interfaces";
+import { CommentElementInterface } from "../../../../../middleware/Interfaces";
 
-interface CommentElement {
-  comment: string;
-  post: Post;
-  index: number;
-}
-
-export default function CommentElement(props: CommentElement) {
+export default function CommentElement(props: CommentElementInterface) {
   const { user } = useContext(ApiContext);
   const [optionDisplay, setOptionDisplay] = useState<boolean>(false);
 
@@ -23,7 +17,7 @@ export default function CommentElement(props: CommentElement) {
 
   return (
     <article
-      className="post"
+      className="post flex column"
       key={`${commentObj.comment}-${props.post.$id}-${props.post.$createdAt}-${props.post.email}-${props.post.$updatedAt}-${commentObj.user}`}
     >
       {Button({
@@ -34,7 +28,7 @@ export default function CommentElement(props: CommentElement) {
 
       {optionDisplay ? (
         commentObj?.id !== user.email || commentObj?.id !== getEmail() ? (
-          <div className="flex displayOptions alignCenter justifyCenter">
+          <div className="flex column displayOptions alignCenter justifyCenter">
             <SubscribeComments {...commentObj} />
             {commentObj?.id === user.email || commentObj?.id === getEmail()
               ? ""

@@ -1,3 +1,6 @@
+/*General
+========================================================================== */
+
 html {
   font-size: 62.5%;
 }
@@ -12,32 +15,135 @@ main {
 }
 
 input {
-  color: #483a3a;
-  border-radius: 10px;
   padding: 0.5rem 1rem;
 }
 
-a {
-  transition:
-    color 0.2s ease-in-out,
-    font-weight 0.2s ease-in-out;
+#dashboard,
+#posts .expandedPostComments .post,
+#posts .expandedPostComments,
+#posts .trimmedPost,
+#posts .post,
+#expandedPost .postContainer,
+#posts #options {
+  position: relative;
+}
+
+textarea,
+button,
+a,
+span,
+input,
+small,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #483a3a;
 }
 
+img,
+textarea,
+input,
+.button,
+.button2,
+#create,
+#reply article,
+#posts .trimmedPost,
+#posts .post,
+#posts .displayOptions,
+#options button.fa-ellipsis-vertical,
+#expandedPost .imageContainer img {
+  border-radius: 10px;
+}
+
+img,
+header,
+footer,
+header section,
+.search input,
+header .nav nav,
+#posts,
+#account .comment {
+  width: 100%;
+}
+
+#reply article,
+#posts .trimmedPost,
+#posts .post,
+#account .post {
+  background: #f2e5f7;
+}
+
+#dashboard input,
+#posts .comment,
+#posts .displayOptions,
+#posts .expandedPostComments .post .reply,
+#account #posts .reply {
+  position: absolute;
+}
+
+#reply .replyOptions,
+#options button.fa-ellipsis-vertical,
+#posts #options {
+  background: #dcb2ef;
+}
+
+.button,
+#posts .displayOptions {
+  background: #f5ac19;
+}
+
 a:hover,
-header nav button:hover {
+header nav button:hover,
+.button,
+.button2,
+.button:hover,
+.search button:hover,
+#options button:hover,
+#options .fa-comment:hover {
   cursor: pointer;
-  color: black;
-  font-weight: bold;
+}
+
+#posts .displayOptions,
+#create .fa-solid,
+#posts .fa-ellipsis-vertical,
+#expandedPost #textOnly .fa-ellipsis-vertical,
+#posts #reply .fa-ellipsis-vertical {
+  align-self: flex-end;
+}
+
+header button,
+.button,
+#posts .fa-ellipsis-vertical,
+#posts .displayOptions,
+#posts .comment button,
+#posts .displayOptions .button2,
+#posts #options {
+  border: none;
+}
+
+a,
+a:hover,
+.button,
+.button2,
+.button:hover,
+footer .icons a:hover {
   text-decoration: none;
+}
+
+span,
+p,
+textarea,
+.button2,
+.button {
+  font-size: 3rem;
 }
 
 /*Images
 ========================================================================== */
-
-img {
-  width: 100%;
-}
 
 .imageContainer {
   width: 20%;
@@ -52,21 +158,14 @@ img {
 ========================================================================== */
 
 .button {
-  background: #f5ac19;
   transition:
     background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
-  cursor: pointer;
   display: inline-block;
-  font-size: 3rem;
   outline: 0;
   padding: 1.5rem 2.3rem 1.5rem 2.3rem;
   text-align: center;
-  text-decoration: none;
   text-transform: capitalize;
-  border-radius: 10px;
-  border: none;
-  color: #483a3a;
 }
 
 button {
@@ -78,22 +177,16 @@ button {
   transition:
     background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
-  cursor: pointer;
   display: inline-block;
-  font-size: 3rem;
   outline: 0;
   padding: 1.5rem 2.3rem 1.5rem 2.3rem;
   text-align: center;
   text-decoration: none;
   text-transform: capitalize;
-  border-radius: 10px;
-  border: 2px solid #f5ac19;
-  color: #483a3a;
+  border: 3px solid #f5ac19;
 }
 
 .button:hover {
-  text-decoration: none;
-  cursor: pointer;
   background: #edc575;
   color: #776363;
 }
@@ -143,12 +236,10 @@ button {
 h1 {
   font-weight: 600;
   font-size: 6rem;
-  color: #483a3a;
 }
 
 h2 {
   font-size: 4rem;
-  color: #483a3a;
 }
 
 h1:hover {
@@ -156,8 +247,15 @@ h1:hover {
 }
 
 a {
-  color: #483a3a;
-  text-decoration: none;
+  transition:
+    color 0.2s ease-in-out,
+    font-weight 0.2s ease-in-out;
+}
+
+a:hover,
+header nav button:hover {
+  color: black;
+  font-weight: bold;
 }
 
 /*Authentication
@@ -181,18 +279,12 @@ header {
   padding: 1rem 0.5rem;
 }
 
-header,
-header section {
-  width: 100%;
-}
-
 header .logoContainer {
   width: 5%;
   margin-right: 2rem;
 }
 
 header button {
-  border: none;
   background: none;
 }
 
@@ -200,14 +292,9 @@ header .nav {
   width: 30%;
 }
 
-header .nav nav {
-  width: 100%;
-}
-
 header nav a,
 header nav button {
   font-size: 2.5rem;
-  color: #483a3a;
 }
 
 header .fa-plus {
@@ -223,21 +310,12 @@ header .fa-plus {
   margin: 0rem 1.5rem;
 }
 
-.search input {
-  width: 100%;
-}
-
 .search {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-.search button {
-  color: #483a3a;
-}
-
 .search button:hover {
-  cursor: pointer;
   color: black;
   font-weight: bold;
   text-decoration: underline dotted;
@@ -247,10 +325,7 @@ header .fa-plus {
 ========================================================================== */
 
 textarea {
-  color: #483a3a;
   resize: none;
-  border-radius: 10px;
-  font-size: 3rem;
   margin-bottom: 2rem;
 }
 
@@ -259,7 +334,6 @@ textarea {
   background: rgb(225, 193, 239);
   position: fixed;
   z-index: 1;
-  border-radius: 10px;
   padding: 2rem 5rem;
 }
 
@@ -268,7 +342,6 @@ textarea {
 }
 
 #create .fa-solid {
-  align-self: flex-end;
   margin-bottom: 2rem;
 }
 
@@ -295,17 +368,6 @@ textarea {
   padding: 4rem 1rem 0rem 1rem;
 }
 
-#expandedPost .postContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-
-#expandedPost .imageContainer img {
-  border-radius: 10px;
-}
-
 #expandedPost .fa-ellipsis-vertical {
   font-size: 6rem;
 }
@@ -318,28 +380,12 @@ textarea {
   width: 50%;
 }
 
-#posts #expandedPost .post {
-  display: flex;
-  flex-direction: column;
-}
-
-#expandedPost #textOnly .fa-ellipsis-vertical {
-  align-self: flex-end;
-}
-
 #posts #expandedPost .postContainer p {
   padding: 4rem 2rem;
-  font-size: 3rem;
 }
 
 #posts #expandedPost .expandedPostComments p {
-  font-size: 3rem;
   padding: 2rem;
-}
-
-#posts #expandedPost .icons {
-  display: flex;
-  align-items: center;
 }
 
 .paginatedButton {
@@ -355,14 +401,7 @@ textarea {
   padding: 0rem;
 }
 
-#posts .expandedPostComments .post,
-#posts .expandedPostComments,
-#posts .expandedPostComments #options {
-  position: relative;
-}
-
 #posts .expandedPostComments .post .reply {
-  position: absolute;
   margin-top: 30rem;
   margin-left: 2rem;
 }
@@ -381,10 +420,6 @@ textarea {
   margin-right: 0rem;
 }
 
-#posts .expandedPostComments .post #options {
-  position: relative;
-}
-
 #posts #expandedPost .postContainer .displayOptions {
   top: -4rem;
   margin-left: 56rem;
@@ -399,13 +434,12 @@ textarea {
   top: 3rem;
 }
 
-#posts #reply article {
-  display: flex;
-  flex-direction: column;
+#posts #expandedPost .expandedPostComments .displayOptions {
+  margin-top: 10rem;
 }
 
-#posts #reply .fa-ellipsis-vertical {
-  align-self: flex-end;
+#posts #expandedPost .expandedPostComments #reply .displayOptions {
+  margin-top: 10rem;
 }
 
 #reply {
@@ -414,20 +448,16 @@ textarea {
 
 #reply article {
   min-height: 10rem;
-  border-radius: 10px;
-  background: #f2e5f7;
   border: 3px solid #f5ac19;
   margin-top: 2rem;
 }
 
 #reply .replyOptions {
-  background: #dcb2ef;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 #reply .replyOptions span {
-  font-size: 3rem;
   margin-left: 2rem;
 }
 
@@ -455,77 +485,47 @@ textarea {
 ========================================================================== */
 
 #posts {
-  width: 100%;
-  margin-right: 8rem;
-}
-
-#posts .imageAndText {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-right: 10rem;
 }
 
 #posts .trimmedPost {
-  background: #f2e5f7;
-  border-radius: 10px;
   min-height: 20rem;
-  position: relative;
-  margin-bottom: 25rem;
 }
 
 #posts .post {
-  background: #f2e5f7;
-  border-radius: 10px;
   min-height: 15rem;
-  position: relative;
+}
+
+#posts .post,
+#posts .trimmedPost {
   margin-bottom: 25rem;
 }
 
 #posts .comment {
-  position: absolute;
   margin-top: 12rem;
   left: 1rem;
   padding: 0rem;
 }
 
-#posts .comment button {
-  border: none;
-}
-
 #posts .comment textarea {
   margin: 0rem;
-  color: #483a3a;
 }
 
 #posts #options {
-  position: relative;
-  background: #dcb2ef;
-  border: none;
   padding: 2rem;
   margin: 0rem;
-  border-radius: 10px;
-}
-
-#posts .fa-ellipsis-vertical {
-  align-self: flex-end;
-  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #posts .displayOptions {
-  align-self: flex-end;
-  flex-direction: column;
-  position: absolute;
-  background: #f5ac19;
   margin-top: 7rem;
   max-width: 60%;
   z-index: 1;
   padding: 1rem;
-  border-radius: 10px;
-  border: none;
 }
 
 #posts .displayOptions .button2 {
-  border: none;
   margin-bottom: 1rem;
 }
 
@@ -534,7 +534,6 @@ textarea {
 
 #options button:hover,
 #options .fa-comment:hover {
-  cursor: pointer;
   color: white;
 }
 
@@ -554,15 +553,12 @@ textarea {
 
 #options button.fa-ellipsis-vertical {
   padding: 1.2rem 1rem;
-  border-radius: 10px;
-  background: #dcb2ef;
 }
 
 #options button,
 #options a,
 #options span {
   font-size: 4rem;
-  color: #483a3a;
 }
 
 #options .comment button {
@@ -573,7 +569,6 @@ textarea {
 ========================================================================== */
 
 #dashboard {
-  position: relative;
   margin-top: 12rem;
   padding: 0rem 2rem;
 }
@@ -582,32 +577,15 @@ textarea {
   width: 50%;
 }
 
-#dashboard img,
-#dashboard .imageContainer {
-  margin: 0rem;
-  padding: 0rem;
-  border: none;
-}
-
-#dashboard img {
-  border-radius: 10px;
-}
-
 #dashboard .post p,
 #dashboard .trimmedPost p {
   padding: 1rem 2rem 2rem 2rem;
-  font-size: 3rem;
-}
-
-#dashboard input {
-  position: absolute;
 }
 
 /*Footer
 ========================================================================== */
 
 footer {
-  width: 100%;
   padding: 0rem 1rem;
   margin-top: 18rem;
 }
@@ -634,7 +612,6 @@ footer .icons a {
 
 footer .icons a:hover {
   color: rgb(233, 195, 195);
-  text-decoration: none;
 }
 
 footer .icons,
@@ -671,37 +648,21 @@ footer small {
   margin-top: 10rem;
 }
 
-#account #posts .post {
-  display: flex;
-  flex-direction: column;
-}
-
 #account #options {
   padding: 1rem;
 }
 
 #account #posts p {
-  font-size: 3rem;
   padding: 2rem;
 }
 
 #account #posts .reply {
-  position: absolute;
   margin-top: 25rem;
-  align-items: flex-start;
 }
 
 #account #posts {
   margin: 5rem 0rem 0rem 1.5rem;
   width: 80%;
-}
-
-#account .post {
-  background: #f2e5f7;
-}
-
-#account .comment {
-  width: 100%;
 }
 
 #account .comment .button2 {
@@ -712,6 +673,6 @@ footer small {
   padding-left: 0rem;
 }
 
-#comics {
+#account #comics {
   width: 30%;
 }

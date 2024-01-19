@@ -1,11 +1,7 @@
 import { useState, useContext } from "react";
 import { ApiContext } from "../../../../middleware/Context";
 import Posts from "./Posts";
-
-interface RenderPostsInterface {
-  startIndex: number;
-  endIndex: number;
-}
+import { RenderPostsInterface } from "../../../../middleware/Interfaces";
 
 export default function RenderPosts(props: RenderPostsInterface) {
   const { posts, user } = useContext(ApiContext);
