@@ -45,6 +45,6 @@ export default function TogglePrivatePublic() {
   return Button({
     text: findAccount?.private ? "Make Account Public" : "Make Account Private",
     onClick: () => changeAccountVisibility(subscribedPosts, user.email),
-    classNames: "button",
+    classNames: "button2",
   });
 }

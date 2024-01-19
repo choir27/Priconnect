@@ -5,6 +5,7 @@ import { ApiContext } from "../../../middleware/Context";
 import api from "../../../middleware/Appwrite";
 import { toast } from "react-toastify";
 import { Button } from "../../../components/Button";
+import PaginatedNav from "../../../components/PaginatedNav";
 
 async function removeSearchWord(
   account: SearchHistory | undefined,
@@ -35,7 +36,7 @@ async function removeSearchWord(
   }
 }
 
-async function clearSearchHistory(account: SearchHistory | undefined) {
+export async function clearSearchHistory(account: SearchHistory | undefined) {
   try {
     if (account) {
       const data = {
@@ -60,7 +61,12 @@ async function clearSearchHistory(account: SearchHistory | undefined) {
 export default function RenderSearchHistory() {
   const { user } = useContext(ApiContext);
   const [searchHistory, setSearchHistory] = useState<React.JSX.Element[]>([]);
-  const [account, setAccount] = useState<SearchHistory>();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const rowsPerPage = 2;
+
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
 
   useEffect(() => {
     async function GetSearchData() {
@@ -75,12 +81,11 @@ export default function RenderSearchHistory() {
             searchHistory.id === user.email || searchHistory.id === getEmail(),
         );
 
-        setAccount(findAccount);
-        const searchHistoryList = findAccount?.searchHistory.map(
-          (search: string, i: number) => {
+        const searchHistoryList = findAccount?.searchHistory
+          .map((search: string, i: number) => {
             return (
-              <section key={i}>
-                <h1>{search}</h1>
+              <section key={i} className="flex justifyBetween searchWord">
+                <span className="flex alignCenter">{search}</span>
                 {Button({
                   text: "",
                   classNames: "button fa-solid fa-xmark",
@@ -88,8 +93,8 @@ export default function RenderSearchHistory() {
                 })}
               </section>
             );
-          },
-        );
+          })
+          .slice(startIndex, endIndex);
 
         setSearchHistory(searchHistoryList);
       } catch (err) {
@@ -102,14 +107,18 @@ export default function RenderSearchHistory() {
   }, []);
 
   return (
-    <section>
-      <h3>Your Search History</h3>
-      {Button({
-        text: "Clear Search History",
-        onClick: () => clearSearchHistory(account),
-        classNames: "button",
-      })}
+    <section className="searchHistory">
+      <h2>Search History</h2>
       {searchHistory}
+
+      <PaginatedNav
+        {...{
+          setCurrentPage,
+          length: searchHistory.length,
+          rowsPerPage: rowsPerPage,
+          currentPage: currentPage,
+        }}
+      />
     </section>
   );
 }

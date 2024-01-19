@@ -27,7 +27,7 @@ export function renderAccount() {
   }, [postLength]);
 
   return (
-    <section id="accountPosts" className="flex column alignStart">
+    <section id="accountPosts">
       <RenderPosts {...{ startIndex: startIndex, endIndex: endIndex }} />
       {endIndex >= postLength ? (
         ""

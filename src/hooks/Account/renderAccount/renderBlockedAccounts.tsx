@@ -5,6 +5,7 @@ import { getEmail } from "../../../middleware/Sessions";
 import { Button } from "../../../components/Button";
 import { toast } from "react-toastify";
 import api from "../../../middleware/Appwrite";
+import PaginatedNav from "../../../components/PaginatedNav";
 
 async function unBlock(account: string, currentAccount: Account) {
   try {
@@ -35,6 +36,13 @@ export default function RenderBlockedAccounts() {
 
   const [currentAccount, setCurrentAccount] = useState<Account>();
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const rowsPerPage = 2;
+
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+
   useEffect(() => {
     const findAccount = subscribedPosts.find(
       (subscribedPosts: Account) =>
@@ -43,11 +51,11 @@ export default function RenderBlockedAccounts() {
     setCurrentAccount(findAccount);
   }, [subscribedPosts]);
 
-  const listOfBlockedAccounts = currentAccount?.blocked.map(
-    (account: string) => {
+  const listOfBlockedAccounts = currentAccount?.blocked
+    .map((account: string) => {
       return (
-        <section key={account}>
-          <h3>{account}</h3>
+        <section key={account} className="flex justifyBetween blockedAccount">
+          <h3 className="flex alignCenter">{account.split("@")[0]}</h3>
           {Button({
             text: "Unblock",
             onClick: () => unBlock(account, currentAccount),
@@ -55,13 +63,22 @@ export default function RenderBlockedAccounts() {
           })}
         </section>
       );
-    },
-  );
+    })
+    .slice(startIndex, endIndex);
 
   return (
     <section className="blocked">
-      Blocked Users:
+      <h2>Blocked Users:</h2>
       {listOfBlockedAccounts}
+
+      <PaginatedNav
+        {...{
+          setCurrentPage,
+          length: listOfBlockedAccounts?.length as number,
+          rowsPerPage: rowsPerPage,
+          currentPage: currentPage,
+        }}
+      />
     </section>
   );
 }

@@ -37,36 +37,40 @@ export default function Header() {
         {user.email || getEmail() ? <SearchBar /> : ""}
 
         <nav className="flex alignEnd justifyBetween">
-          {user.email || getEmail() ? (
-            <a
-              className={
-                window.location.href.includes("dashboard") ? "active" : ""
-              }
-              href="/dashboard  "
-            >
-              Home
-            </a>
-          ) : (
-            ""
-          )}
-          {user.email || getEmail() ? (
-            <a
-              className={
-                window.location.href.includes("account") ? "active" : ""
-              }
-              href="/account"
-            >
-              Account
-            </a>
-          ) : (
-            ""
-          )}
-          {user.email || getEmail()
-            ? Button({
-                text: "Logout",
-                onClick: () => SignOut(navigate),
-              })
-            : ""}
+          <a
+            className={
+              window.location.href.includes("dashboard") ? "active" : ""
+            }
+            href="/dashboard  "
+          >
+            Home
+          </a>
+
+          <a
+            className={
+              window.location.href.includes("account") &&
+              !window.location.href.includes("settings")
+                ? "active"
+                : ""
+            }
+            href="/account"
+          >
+            Account
+          </a>
+
+          <a
+            className={
+              window.location.href.includes("settings") ? "active" : ""
+            }
+            href="/account/settings"
+          >
+            Settings
+          </a>
+
+          {Button({
+            text: "Logout",
+            onClick: () => SignOut(navigate),
+          })}
         </nav>
       </section>
     </header>

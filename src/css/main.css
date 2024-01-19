@@ -53,6 +53,8 @@ input,
 #reply article,
 #posts .trimmedPost,
 #posts .post,
+#accountSettings .searchHistory,
+#accountSettings .blocked,
 #posts .displayOptions,
 #options button.fa-ellipsis-vertical,
 #expandedPost .imageContainer img {
@@ -66,7 +68,8 @@ header section,
 .search input,
 header .nav nav,
 #posts,
-#account .comment {
+#account .comment,
+#account #accountPosts {
   width: 100%;
 }
 
@@ -78,6 +81,7 @@ header .nav nav,
 }
 
 #dashboard input,
+#account .settings,
 #posts .comment,
 #posts .displayOptions,
 #posts .expandedPostComments .post .reply,
@@ -103,10 +107,12 @@ header nav button:hover,
 .button:hover,
 .search button:hover,
 #options button:hover,
-#options .fa-comment:hover {
+#options .fa-comment:hover,
+#account .imageContainer {
   cursor: pointer;
 }
 
+#account .settings,
 #posts .displayOptions,
 #create .fa-solid,
 #posts .fa-ellipsis-vertical,
@@ -242,6 +248,10 @@ h2 {
   font-size: 4rem;
 }
 
+h3 {
+  font-size: 3rem;
+}
+
 h1:hover {
   color: #826666;
 }
@@ -289,7 +299,7 @@ header button {
 }
 
 header .nav {
-  width: 30%;
+  width: 40%;
 }
 
 header nav a,
@@ -333,7 +343,7 @@ textarea {
   height: 100%;
   background: rgb(225, 193, 239);
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   padding: 2rem 5rem;
 }
 
@@ -621,6 +631,9 @@ footer small {
 
 /*Account
 ========================================================================== */
+#account {
+  padding: 0rem 2rem;
+}
 
 #account h2 {
   text-transform: capitalize;
@@ -641,15 +654,15 @@ footer small {
 
 #account .imageContainer {
   margin-left: 4rem;
+  width: 15%;
+}
+
+#account #accountPosts {
+  padding: 0rem 2rem;
 }
 
 #account #posts {
-  padding-left: 2rem;
-  margin-top: 10rem;
-}
-
-#account #options {
-  padding: 1rem;
+  margin: 5rem 0rem 0rem 0rem;
 }
 
 #account #posts p {
@@ -660,11 +673,6 @@ footer small {
   margin-top: 25rem;
 }
 
-#account #posts {
-  margin: 5rem 0rem 0rem 1.5rem;
-  width: 80%;
-}
-
 #account .comment .button2 {
   padding: 2.5rem;
 }
@@ -673,6 +681,50 @@ footer small {
   padding-left: 0rem;
 }
 
-#account #comics {
-  width: 30%;
+#account .settings {
+  z-index: 2;
+  margin-top: 24rem;
+}
+
+/* Account Settings
+========================================================================== */
+
+#accountSettings article {
+  padding: 0rem 2rem;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+#accountSettings .blocked,
+#accountSettings .searchHistory {
+  padding: 2rem;
+  margin-right: 2rem;
+}
+
+#accountSettings .blocked {
+  width: 50%;
+}
+
+#accountSettings .searchHistory {
+  width: 40%;
+}
+
+#accountSettings .blocked h3 {
+  text-align: end;
+}
+
+#accountSettings .blocked h2,
+#accountSettings .searchHistory h2 {
+  margin-bottom: 3rem;
+}
+
+#accountSettings .blockedAccount,
+#accountSettings .searchWord {
+  margin-bottom: 4rem;
+}
+
+#accountSettings .blocked,
+#accountSettings .searchHistory {
+  background: #f2e5f7;
+  max-height: 82vh;
 }

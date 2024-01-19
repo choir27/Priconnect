@@ -6,6 +6,7 @@ import {
   ExpandedPost,
   AccountPage,
   SearchResults,
+  AccountSettings,
 } from "./Routes";
 import PrivateRoutes from "./middleware/Routes/Private";
 import PublicRoutes from "./middleware/Routes/Public";
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/searchResults" element={<SearchResults />} />
+              <Route path="/account/settings" element={<AccountSettings />} />
             </Route>
             <Route element={<PublicRoutes />}>
               <Route path="/" element={<Authentication />} />
