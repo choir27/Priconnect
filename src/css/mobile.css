@@ -1,0 +1,24 @@
+@media (max-width: 1300px) {
+#auth .button{
+    max-width: 25%;
+}
+
+#auth .logoContainer{
+    width: 25%;
+}
+
+footer{
+    flex-direction: column-reverse;
+}
+}
+
+
+@media (max-width: 900px) {
+    #auth .button{
+        max-width: 35%;
+    }
+
+    #auth .logoContainer{
+        width: 35%;
+    }
+}

@@ -3,6 +3,7 @@ import App from "./App";
 import "./css/reset.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./css/main.css";
+import "./css/mobile.css";
 
 const rootElement = document.getElementById("root")!;
 
