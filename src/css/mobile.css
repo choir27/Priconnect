@@ -10,6 +10,15 @@
 footer{
     flex-direction: column-reverse;
 }
+
+#auth footer .icons{
+    justify-content: flex-start;
+}
+
+#auth footer li{
+    margin-right: 2rem;
+}
+
 }
 
 
@@ -21,4 +30,10 @@ footer{
     #auth .logoContainer{
         width: 35%;
     }
+
+    
+    #auth footer h3{
+        font-size: 1rem;
+    }
+
 }
