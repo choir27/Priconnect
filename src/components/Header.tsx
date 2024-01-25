@@ -2,7 +2,7 @@ import { Button } from "../components/Button";
 import { SignOut } from "../hooks/Authentication/Auth";
 import { useNavigate } from "react-router-dom";
 import { ApiContext } from "../middleware/Context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useStore } from "../middleware/Zustand/States";
 import { Action } from "../middleware/Zustand/Types";
 import { getEmail } from "../middleware/Sessions";
@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const { user } = useContext(ApiContext);
   const setDisplay = useStore((action: Action) => action.setDisplay);
+  const [toggleMenu, setToggleMenu] = useState<string>("hidden");
 
   const navigate: (e: string) => void = useNavigate() as (e: string) => void;
 
@@ -27,13 +28,31 @@ export default function Header() {
         </Link>
       </section>
 
-      {Button({
-        text: "",
-        classNames: "button fa-solid fa-plus",
-        onClick: () => setDisplay(true),
-      })}
+      <div className="hidden bars">
+        {Button({
+          text: "",
+          classNames: `${
+            toggleMenu == "hidden"
+              ? "button2 fa-solid fa-bars"
+              : "button2 fa-solid fa-xmark"
+          }`,
+          onClick: () => {
+            toggleMenu == "hidden"
+              ? setToggleMenu("show")
+              : setToggleMenu("hidden");
+          },
+        })}
+      </div>
 
-      <section className="nav flex ">
+      <div className="create">
+        {Button({
+          text: "",
+          classNames: "button fa-solid fa-plus",
+          onClick: () => setDisplay(true),
+        })}
+      </div>
+
+      <section className={`nav flex ${toggleMenu}`}>
         {user.email || getEmail() ? <SearchBar /> : ""}
 
         <nav className="flex alignEnd justifyBetween">
@@ -72,6 +91,14 @@ export default function Header() {
             onClick: () => SignOut(navigate),
           })}
         </nav>
+
+        <div className="createMobile">
+          {Button({
+            text: "",
+            classNames: "button2 fa-solid fa-plus",
+            onClick: () => setDisplay(true),
+          })}
+        </div>
       </section>
     </header>
   );

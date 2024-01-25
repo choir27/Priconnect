@@ -1,39 +1,119 @@
 @media (max-width: 1300px) {
-#auth .button{
+  #auth .button {
     max-width: 25%;
-}
+  }
 
-#auth .logoContainer{
+  #auth .logoContainer {
     width: 25%;
-}
+  }
 
-footer{
+  footer {
     flex-direction: column-reverse;
-}
+  }
 
-#auth footer .icons{
+  footer .icons {
     justify-content: flex-start;
-}
+  }
 
-#auth footer li{
+  footer li {
     margin-right: 2rem;
-}
+  }
 
+  header .logoContainer {
+    width: 15%;
+  }
 }
-
 
 @media (max-width: 900px) {
-    #auth .button{
-        max-width: 35%;
-    }
+  #auth .button {
+    max-width: 35%;
+  }
 
-    #auth .logoContainer{
-        width: 35%;
-    }
+  #auth .logoContainer {
+    width: 35%;
+  }
 
-    
-    #auth footer h3{
-        font-size: 1rem;
-    }
+  header .logoContainer {
+    width: 15%;
+  }
 
+  #auth footer h3 {
+    font-size: 1rem;
+  }
+
+  #dashboard #posts {
+    margin-right: 0rem;
+  }
+
+  #comics {
+    height: 100%;
+  }
+
+  #dashboard .comment {
+    width: 100%;
+  }
+
+  #comics {
+    display: none;
+  }
+
+  .nav,
+  .create {
+    display: none;
+  }
+
+  .nav {
+    position: fixed;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    background: #f8b735;
+    border-radius: 10px;
+  }
+
+  .nav button {
+    border: none;
+  }
+
+  header .nav nav {
+    padding: 1rem 0rem;
+  }
+
+  header .nav {
+    padding: 10px;
+    top: 2rem;
+    z-index: 4;
+    width: auto;
+    left: 2rem;
+  }
+
+  .show,
+  .createMobile {
+    display: flex;
+  }
+
+  .bars {
+    z-index: 4;
+    display: flex;
+    font-size: 5rem;
+    color: #483a3a;
+    margin-right: 8rem;
+    margin-bottom: 6rem;
+  }
+
+  .bars button {
+    position: fixed;
+  }
+
+  .bars:hover {
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+  }
+
+  .paginatedButton {
+    justify-content: center;
+  }
 }

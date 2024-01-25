@@ -1,6 +1,7 @@
 export interface ButtonInterface {
   text: string | React.JSX.Element;
   classNames?: string;
+  id?: string;
   onClick: () => void;
   key?: string;
 }

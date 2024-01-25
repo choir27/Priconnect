@@ -6,7 +6,9 @@ html {
 }
 
 .hidden,
-.displayNone {
+.createMobile,
+.displayNone,
+#hidden {
   display: none;
 }
 
@@ -160,11 +162,11 @@ textarea,
   margin: 6rem 0rem 16rem 0rem;
 }
 
-#auth .fa-google{
+#auth .fa-google {
   margin-right: 1rem;
 }
 
-#auth img{
+#auth img {
   max-width: 100%;
 }
 
@@ -503,7 +505,7 @@ textarea {
 ========================================================================== */
 
 #posts {
-  margin-right: 10rem;
+  margin-right: 2rem;
 }
 
 #posts .trimmedPost {
@@ -520,6 +522,7 @@ textarea {
 }
 
 #posts .comment {
+  width: 100%;
   margin-top: 12rem;
   left: 1rem;
   padding: 0rem;
@@ -598,6 +601,10 @@ textarea {
 #dashboard .post p,
 #dashboard .trimmedPost p {
   padding: 1rem 2rem 2rem 2rem;
+}
+
+#dashboard .comment .button2 {
+  padding: 4rem 4rem;
 }
 
 /*Footer

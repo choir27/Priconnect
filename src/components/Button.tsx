@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export function Button(props: ButtonInterface) {
   return (
     <button
+      id={props.id}
       className={props.classNames}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();

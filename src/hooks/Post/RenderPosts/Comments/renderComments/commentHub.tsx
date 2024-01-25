@@ -21,7 +21,7 @@ export default function CommentHub(props: addCommentInterface) {
           name: "comment",
         })}
         {Button({
-          text: "Add Comment",
+          text: "Post",
           classNames: "button2",
           onClick: () =>
             addComment({
