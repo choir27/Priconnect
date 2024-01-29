@@ -17,7 +17,7 @@ export default function ReplyHub(props: CommentOptionsInterface) {
   const navigate = useNavigate();
 
   return (
-    <section className="flex reply alignStart justifyCenter">
+    <section className="flex reply alignCenter justifyCenter">
       {TextBoxInput({
         setChange: (e: string) => setReply(e),
         placeholder: "Add a Reply",
@@ -26,7 +26,7 @@ export default function ReplyHub(props: CommentOptionsInterface) {
         cols: 35,
       })}
       {Button({
-        text: "Add a Reply",
+        text: "Reply",
         classNames: "button2",
         onClick: () =>
           addReply(

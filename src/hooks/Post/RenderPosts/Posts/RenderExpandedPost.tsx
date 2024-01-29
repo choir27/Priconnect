@@ -62,7 +62,7 @@ export default function RenderExpandedPost() {
               classNames: "fa-solid fa-ellipsis-vertical button2",
               onClick: () => setOptionDisplay(!optionDisplay),
             })}
-            <section className="postContainer flex justifyBetween alignCenter">
+            <section className="postContainer column flex justifyBetween alignCenter">
               {image?.secure_url ? (
                 <section className="imageContainer">
                   <img src={image?.secure_url} alt={image?.original_filename} />

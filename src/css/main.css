@@ -408,13 +408,17 @@ textarea {
   padding: 2rem;
 }
 
+#posts #expandedPost .postContainer p {
+  align-self: flex-start;
+}
+
 .paginatedButton {
   width: 60%;
   margin-bottom: 6rem;
 }
 
 #posts #expandedPost .expandedPostComments .post {
-  margin-bottom: 10rem;
+  margin-bottom: 20rem;
 }
 
 #posts #expandedPost .icons button {
@@ -422,8 +426,9 @@ textarea {
 }
 
 #posts .expandedPostComments .post .reply {
-  margin-top: 30rem;
-  margin-left: 2rem;
+  width: 100%;
+  padding: 0 2rem;
+  margin-top: 28rem;
 }
 
 #posts .expandedPostComments .post .reply .button2 {
@@ -440,9 +445,14 @@ textarea {
   margin-right: 0rem;
 }
 
+#posts .expandedPostComments .post #options .fa-trash-can {
+  padding: 0rem;
+  margin-left: 2rem;
+}
+
 #posts #expandedPost .postContainer .displayOptions {
   top: -4rem;
-  margin-left: 56rem;
+  align-self: flex-end;
 }
 
 #posts #expandedPost #subscribeButtons {
@@ -582,10 +592,6 @@ textarea {
   font-size: 4rem;
 }
 
-#options .comment button {
-  padding: 2rem 0rem;
-}
-
 /*Dashboard
 ========================================================================== */
 
@@ -603,8 +609,9 @@ textarea {
   padding: 1rem 2rem 2rem 2rem;
 }
 
-#dashboard .comment .button2 {
-  padding: 4rem 4rem;
+#dashboard .comment .button2,
+#expandedPost .comment .button2 {
+  padding: 4rem;
 }
 
 /*Footer
