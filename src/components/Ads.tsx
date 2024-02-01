@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Assets } from "../middleware/Assets";
 
-const Comics = () => {
+export default function Comics () {
   const [comics, setComics] = useState<React.JSX.Element[]>([]);
   const [carousel, setCarousel] = useState<React.JSX.Element[]>([]);
 
@@ -77,5 +77,3 @@ const Comics = () => {
     </section>
   );
 };
-
-export default Comics;

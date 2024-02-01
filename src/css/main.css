@@ -511,6 +511,7 @@ textarea {
 #reply .replyOptions button {
   background: none;
 }
+
 /*Posts
 ========================================================================== */
 
@@ -558,6 +559,10 @@ textarea {
 
 #posts .displayOptions .button2 {
   margin-bottom: 1rem;
+}
+
+#posts .textOnly .imageContainer{
+  width: 80%;
 }
 
 /*Options
@@ -677,7 +682,7 @@ footer small {
 
 #account .imageContainer {
   margin-left: 4rem;
-  width: 15%;
+  min-width: 15%;
 }
 
 #account #accountPosts {
@@ -750,4 +755,23 @@ footer small {
 #accountSettings .searchHistory {
   background: #f2e5f7;
   max-height: 82vh;
+}
+
+/*Search Results
+========================================================================== */
+
+#searchResults, #searchResults p{
+  padding: 2rem;
+}
+
+#searchResults .comment .button2{
+padding: 4rem;
+}
+
+#searchResults .imageContainer{
+  width: 40%;
+}
+
+#searchResults .searchPosts{
+  width: 100%;
 }
