@@ -772,6 +772,10 @@ padding: 4rem;
   width: 40%;
 }
 
-#searchResults .searchPosts{
+#searchResults .searchPosts, #searchResults .searchPosts .paginatedButton{
   width: 100%;
+}
+
+#searchResults .searchPosts .paginatedButton{
+  justify-content: center;
 }

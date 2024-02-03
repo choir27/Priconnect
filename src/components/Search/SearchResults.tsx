@@ -39,7 +39,6 @@ export default function SearchResults() {
   return searchResults.length ? (    <section className = 'searchPosts'>
   <Posts {...props} />
 
-  <div className = 'flex justifyContent'>
     {endIndex >= searchResults.length ? (
       ""
     ) : (
@@ -49,7 +48,6 @@ export default function SearchResults() {
       endIndex = {endIndex}
     />
     )}
-  </div>
 
 </section>) :
 <h2 className = 'insert'>Please Insert a Search Term</h2>

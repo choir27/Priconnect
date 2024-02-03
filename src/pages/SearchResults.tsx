@@ -10,7 +10,7 @@ export default function SearchResultsHub() {
   return (
     <main>
       <Header />
-      <section className = 'flex justifyBetween' id = 'searchResults'>
+      <section className = 'flex' id = 'searchResults'>
         <SearchResults />
         <Ads/>
       </section>
