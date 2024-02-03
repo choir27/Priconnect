@@ -10,9 +10,9 @@ export default function SearchResultsHub() {
   return (
     <main>
       <Header />
-      <section className = 'flex' id = 'searchResults'>
+      <section className="flex" id="searchResults">
         <SearchResults />
-        <Ads/>
+        <Ads />
       </section>
 
       <Footer />

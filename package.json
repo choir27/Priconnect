@@ -1,7 +1,7 @@
 {
   "name": "priconnect",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.1.0",
   "description": "A social media platform where user accounts are able to connect with others and create posts where they will be globally available on the internet",
   "type": "module",
   "scripts": {

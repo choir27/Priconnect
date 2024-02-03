@@ -1,30 +1,29 @@
-@media (max-width: 1500px){
-  #account .hero{
+@media (max-width: 1500px) {
+  #account .hero {
     flex-direction: column;
   }
 
-  #account .imageContainer{
+  #account .imageContainer {
     margin: 0rem;
     padding-top: 2rem;
     min-width: 20%;
   }
 
-  #accountSettings section article{
+  #accountSettings section article {
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
-  #accountSettings .blocked, #accountSettings .searchHistory{
+  #accountSettings .blocked,
+  #accountSettings .searchHistory {
     width: 100%;
   }
 
-  #accountSettings .blocked{
+  #accountSettings .blocked {
     margin-bottom: 6rem;
   }
 }
-
-
 
 @media (max-width: 1300px) {
   #auth .button {
@@ -50,25 +49,23 @@
   header .logoContainer {
     width: 15%;
   }
-
 }
 
 @media (max-width: 900px) {
-
-  #accountSettings header + section{
+  #accountSettings header + section {
     width: 100%;
   }
 
-  #account .hero{
+  #account .hero {
     flex-direction: row;
     position: relative;
   }
 
-  #account h2{
+  #account h2 {
     max-width: 80%;
   }
 
-  #account .imageContainer{
+  #account .imageContainer {
     margin-left: 30rem;
     margin-bottom: 6rem;
     position: absolute;
@@ -101,7 +98,7 @@
   #comics {
     display: none;
   }
-  
+
   .nav,
   .create {
     display: none;

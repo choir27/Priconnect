@@ -561,7 +561,7 @@ textarea {
   margin-bottom: 1rem;
 }
 
-#posts .textOnly .imageContainer{
+#posts .textOnly .imageContainer {
   width: 80%;
 }
 
@@ -760,22 +760,24 @@ footer small {
 /*Search Results
 ========================================================================== */
 
-#searchResults, #searchResults p{
+#searchResults,
+#searchResults p {
   padding: 2rem;
 }
 
-#searchResults .comment .button2{
-padding: 4rem;
+#searchResults .comment .button2 {
+  padding: 4rem;
 }
 
-#searchResults .imageContainer{
+#searchResults .imageContainer {
   width: 40%;
 }
 
-#searchResults .searchPosts, #searchResults .searchPosts .paginatedButton{
+#searchResults .searchPosts,
+#searchResults .searchPosts .paginatedButton {
   width: 100%;
 }
 
-#searchResults .searchPosts .paginatedButton{
+#searchResults .searchPosts .paginatedButton {
   justify-content: center;
 }

@@ -36,19 +36,21 @@ export default function SearchResults() {
     user: user,
   };
 
-  return searchResults.length ? (    <section className = 'searchPosts'>
-  <Posts {...props} />
+  return searchResults.length ? (
+    <section className="searchPosts">
+      <Posts {...props} />
 
-    {endIndex >= searchResults.length ? (
-      ""
-    ) : (
-    <PaginatedButton
-      rowsPerPage={rowsPerPage}
-      setEndIndex={(e:number)=>setEndIndex(e)}
-      endIndex = {endIndex}
-    />
-    )}
-
-</section>) :
-<h2 className = 'insert'>Please Insert a Search Term</h2>
+      {endIndex >= searchResults.length ? (
+        ""
+      ) : (
+        <PaginatedButton
+          rowsPerPage={rowsPerPage}
+          setEndIndex={(e: number) => setEndIndex(e)}
+          endIndex={endIndex}
+        />
+      )}
+    </section>
+  ) : (
+    <h2 className="insert">Please Insert a Search Term</h2>
+  );
 }
