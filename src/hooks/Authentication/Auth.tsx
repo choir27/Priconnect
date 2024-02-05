@@ -13,8 +13,8 @@ export async function SignUp() {
 
     account.createOAuth2Session(
       "google",
-      "http://localhost:5173/dashboard",
-      "http://localhost:5173",
+      "https://priconnect.netlify.app/dashboard",
+      "https://priconnect.netlify.app/",
       ["https://www.googleapis.com/auth/cloud-platform.read-only"],
     );
   } catch (err) {
