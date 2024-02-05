@@ -36,7 +36,7 @@ By separating the Cloudinary upload widget to upload images and the AppWrite fun
 
 ## Optimizations:
 
-When adding new elements to an existing array element, I always used the in-built array push method to keep the code rendering at O(1) time and space complexity instead of the shift array method, which would be at O(n) time and space complexity.  I kept my code clean, organized and easy to navigate by separating functions and rendering certain elements by storing those lines of code in separate folders and files.
+When adding new elements to an existing array element, I always used the in-built array push method to keep the code rendering at O(1) time and space complexity instead of the shift array method, which would be at O(n) time and space complexity.  I kept my code clean, organized and easy to navigate by separating functions and rendering certain elements by storing those lines of code in separate folders and files.  I plan on adding email notifications, and displaying the search suggestions with the appropriate CSS for possible search terms.
 
 ## Lessons Learned:
 
