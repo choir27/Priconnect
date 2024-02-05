@@ -30,10 +30,16 @@ Priconnect Site Home Screen UI
 
 ## How It's Made: Tech used: Next, TypeScript, React, AppWrite, Cloudinary
 
-Using AppWrite's inbuilt OAuth method, user data  
+Using AppWrite's inbuilt OAuth method, user's Google data successfully stores in an AppWrite database, and using the React hooks useEffect and useState, the application is able to store the users email address in local storage to maintain the post login state.  Using React state to store and update the search term as the user is typing in the search bar, the search results page is able to update in real time as the user is typing or deleting their search query; also, when the user clicks on the search button, that search term is saved in that respective users search history, which is viewable in their account page.
+
+By separating the Cloudinary upload widget to upload images and the AppWrite function to upload and store post data, the application is able to categorize, organize, make the code more clean.  Using conditional logic, I am able to check if the current logged in user has already added a like to a post.  If they did and click on the heart icon again, the current user will now unlike the post and updates the total number of likes for that post.
 
 ## Optimizations:
 
+When adding new elements to an existing array element, I always used the in-built array push method to keep the code rendering at O(1) time and space complexity instead of the shift array method, which would be at O(n) time and space complexity.  I kept my code clean, organized and easy to navigate by separating functions and rendering certain elements by storing those lines of code in separate folders and files.
+
 ## Lessons Learned:
+
+I really like the way I separated and organized files and folders in my project.  It made creating changes to the code base easier, efficient, and fast, which I will definitely apply this kind of organization flow to future projects.
 
 Examples: Take a look at these couple examples that I have in my own portfolio: EchoStream https://echostream.netlify.app/ The Real Estate Beast: https://therealestatebeast.netlify.app/
