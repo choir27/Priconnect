@@ -30,6 +30,8 @@ Priconnect Site Home Screen UI
 
 ## How It's Made: Tech used: Next, TypeScript, React, AppWrite, Cloudinary
 
+Using AppWrite's inbuilt OAuth method, user data  
+
 ## Optimizations:
 
 ## Lessons Learned:
